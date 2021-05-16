@@ -51,9 +51,26 @@
                 return $this->conn->lastInsertId();
             }
 
-            // print error if something goes wrong
             printf("Error Creating User: %s.\n", $stmt->error);
             return false;
+        }
+
+        public function login(){
+            $query = "SELECT * FROM `users` WHERE id = :id LIMIT 0, 1";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':id', $this->id);
+            $stmt->execute();
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $hashed_password = $row['password'];
+
+            if (password_verify($this->password, $hashed_password)) {
+                return $row['access'];
+            } else {
+                return false;
+            }
+
+            printf("Error: %s.\n", $stmt->error);
         }
 
     }

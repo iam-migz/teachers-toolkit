@@ -50,7 +50,7 @@
             }
 
             // print error if something goes wrong
-            printf("Error Creating User: %s.\n", $stmt->error);
+            printf("Error Creating Admin: %s.\n", $stmt->error);
             return false;
         }
 

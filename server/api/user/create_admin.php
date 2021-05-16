@@ -7,6 +7,7 @@
     include_once '../../config/Database.php';
     include_once '../../models/User.php';
     include_once '../../models/Admin.php';
+    include_once '../../models/School.php';
 
     // Instantiate a DB & connect
     $database = new Database();
@@ -15,6 +16,7 @@
     // Instantiate model
     $user = new User($db);
     $admin = new Admin($db);
+    $school = new School($db);
 
     // Get raw posted data
     $data = json_decode(file_get_contents("php://input"));
@@ -31,26 +33,30 @@
         return;
     }
 
+    // Create user
     $user->password = $data->password;
     $user->access = 3;
-    
-    // Create user
-    if ($user_id = $user->create()) {
+    $user_id = $user->create();
         
-        $admin->user_id = $user_id;
-        $admin->firstname = $data->firstname;
-        $admin->lastname = $data->lastname;
-        $admin->middlename = $data->middlename;
-        $admin->phone_no = $data->phone_no;
-        $admin->email = $data->email;
+    // Create school
+    $school_id = $school->create();
 
-        if ($admin->create()) {
-            echo json_encode(
-                array('result' => 1, 'message' => 'admin created')
-            );
-        }
+    // Create admin
+    $admin->user_id = $user_id;
+    $admin->school_id = $school_id;
+    $admin->firstname = $data->firstname;
+    $admin->lastname = $data->lastname;
+    $admin->middlename = $data->middlename;
+    $admin->phone_no = $data->phone_no;
+    $admin->email = $data->email;
+
+    if ($admin->create()) {
+        echo json_encode(
+            array('result' => 1, 'message' => 'admin created')
+        );
     } else {
         echo json_encode(
-            array('result' => 0)
+            array('result' => 0, 'message' => 'failed to create admin')
         );
     }
+
