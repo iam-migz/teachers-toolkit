@@ -3,6 +3,7 @@
         private $conn;
 
         // Admin Properties
+        public $id;
         public $user_id;
         public $school_id;
         public $firstname;
@@ -46,12 +47,21 @@
             $stmt->bindParam(':email', $this->email);
 
             if ($stmt->execute()) {
+                $this->id = $this->conn->lastInsertId();
                 return true;
             }
 
             // print error if something goes wrong
             printf("Error Creating Admin: %s.\n", $stmt->error);
             return false;
+        }
+
+        public function read_one(){
+            $query = "SELECT * FROM admins WHERE id = :id LIMIT 0,1";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(":id", $this->id);
+            $stmt->execute();
+            return $stmt;
         }
 
     }

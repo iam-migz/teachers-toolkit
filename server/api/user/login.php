@@ -28,8 +28,8 @@
     if ($access = $user->login()) {
         
         session_start();
-        $_SESSION['id'] = $user['id'];
-        $_SESSION['access'] = $user['access'];
+        $_SESSION['id'] = $user->id;
+        $_SESSION['access'] = $access;
 
         if ($access == 1 ){
             // student
@@ -37,7 +37,9 @@
             // teacher
         } else if ($access == 3) {
             // admin
-            header('Location: ../../../client/index.html');
+            echo json_encode(
+                array('result' => 3, 'message' => 'logged in')
+            );
         }
     } else {
         echo json_encode(

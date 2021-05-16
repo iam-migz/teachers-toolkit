@@ -51,8 +51,11 @@
     $admin->email = $data->email;
 
     if ($admin->create()) {
+        session_start();
+        $_SESSION['id'] = $admin->id;
+        $_SESSION['access'] = 3;
         echo json_encode(
-            array('result' => 1, 'message' => 'admin created')
+            array('result' => 1, 'message' => 'success')
         );
     } else {
         echo json_encode(
