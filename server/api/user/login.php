@@ -26,6 +26,11 @@
     $user->password = $data->password;
 
     if ($access = $user->login()) {
+        
+        session_start();
+        $_SESSION['id'] = $user['id'];
+        $_SESSION['access'] = $user['access'];
+
         if ($access == 1 ){
             // student
         } else if ($access == 2) {

@@ -73,4 +73,8 @@
             printf("Error: %s.\n", $stmt->error);
         }
 
+        public function logout(){
+            
+        }
+
     }
