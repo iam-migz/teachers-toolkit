@@ -36,7 +36,7 @@
         }
     } else {
         echo json_encode(
-            array('result' => 0, 'message' => 'not logged in')
+            array('result' => 0, 'message' => 'incorrect login credentials')
         );
     }
 
