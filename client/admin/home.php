@@ -3,9 +3,13 @@
         if(isset($_SESSION['access']) && $_SESSION['access'] == 3){
 
         }else{
-            header("location: ../login/login.html");
+            // header("location: ../login/login.html");
         }
         // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
+        $data1 = "hello";
+        $data2 = "world";
+        $res = $data1.$data2;
+        echo $res;
 ?>
 <!DOCTYPE html>
 <html lang="en">

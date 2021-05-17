@@ -121,7 +121,8 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        document.querySelector("button#submit").addEventListener("click", async () => {
+        document.querySelector("button#submit").addEventListener("click", async (x) => {
+            x.preventDefault();
             const firstname = document.querySelector("#firstname").value;
             const middlename = document.querySelector("#middlename").value;
             const lastname = document.querySelector("#lastname").value;
