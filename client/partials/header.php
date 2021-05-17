@@ -73,7 +73,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user"></i>Profile</a>
+                    <i class="fas fa-user"></i><?php echo $_SESSION['user_id']; ?></a>
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-4">
                     <a class="dropdown-item" href="#">My account</a>
                     <a class="dropdown-item" href="../login/logout.php">Log out</a>

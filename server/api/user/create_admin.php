@@ -52,7 +52,8 @@
 
     if ($admin->create()) {
         session_start();
-        $_SESSION['id'] = $admin->id;
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['account_id'] = $admin->id;
         $_SESSION['access'] = 3;
         echo json_encode(
             array('result' => 1, 'message' => 'success')

@@ -46,7 +46,8 @@
 
     if ($teacher->create()) {
         session_start();
-        $_SESSION['id'] = $teacher->id;
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['account_id'] = $teacher->id;
         $_SESSION['access'] = 2;
         echo json_encode(
             array('result' => 1, 'message' => 'successfully created teacher')

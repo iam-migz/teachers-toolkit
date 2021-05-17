@@ -49,11 +49,6 @@
 })
 
 // create section
-//    public $advisor_id;
-//     public $section_name;
-//     public $strand;
-//     public $track;
-//     public $grade;
 
 ({
     "advisor_id": "1",
@@ -61,4 +56,13 @@
     "strand": "STEM",
     "track": "Academic",
     "grade": "11"
+});
+
+// create subject
+
+({
+    "teacher_id": "1",
+    "subject_name": "math",
+    "semester": "1",
+    "hours": "80"
 });

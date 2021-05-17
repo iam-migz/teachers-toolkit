@@ -56,7 +56,8 @@
 
     if ($student->create()) {
         session_start();
-        $_SESSION['id'] = $student->id;
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['account_id'] = $student->id;
         $_SESSION['access'] = 1;
         echo json_encode(
             array('result' => 1, 'message' => 'success')

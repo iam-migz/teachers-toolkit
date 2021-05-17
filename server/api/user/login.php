@@ -28,7 +28,8 @@
     if ($acc_id = $user->login()) {
         
         session_start();
-        $_SESSION['id'] = $acc_id;
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['account_id'] = $acc_id;
         $_SESSION['access'] = $user->access;
 
         if ($user->access == 1 ){
