@@ -9,8 +9,9 @@
         public $lastname;
         public $middlename;
         public $email;
-        public $permanent_address;
-        public $current_address;
+        public $province;
+        public $city;
+        public $barangay;
         public $gender;
         public $LRN;
         public $birthdate;
@@ -27,8 +28,9 @@
                     lastname = :lastname,
                     middlename = :middlename,
                     email = :email,
-                    permanent_address = :permanent_address,
-                    current_address = :current_address,
+                    province = :province,
+                    city = :city,
+                    barangay = :barangay,
                     gender = :gender,
                     LRN = :LRN,
                     birthdate = :birthdate";
@@ -40,8 +42,9 @@
             $this->lastname = htmlspecialchars(strip_tags($this->lastname));
             $this->middlename = htmlspecialchars(strip_tags($this->middlename));
             $this->email = htmlspecialchars(strip_tags($this->email));
-            $this->permanent_address = htmlspecialchars(strip_tags($this->permanent_address));
-            $this->current_address = htmlspecialchars(strip_tags($this->current_address));
+            $this->province = htmlspecialchars(strip_tags($this->province));
+            $this->city = htmlspecialchars(strip_tags($this->city));
+            $this->barangay = htmlspecialchars(strip_tags($this->barangay));
             $this->gender = htmlspecialchars(strip_tags($this->gender));
             $this->LRN = htmlspecialchars(strip_tags($this->LRN));
             $this->birthdate = htmlspecialchars(strip_tags($this->birthdate));
@@ -53,8 +56,9 @@
             $stmt->bindParam(':lastname', $this->lastname);
             $stmt->bindParam(':middlename', $this->middlename);
             $stmt->bindParam(':email', $this->email);
-            $stmt->bindParam(':permanent_address', $this->permanent_address);
-            $stmt->bindParam(':current_address', $this->current_address);
+            $stmt->bindParam(':province', $this->province);
+            $stmt->bindParam(':city', $this->city);
+            $stmt->bindParam(':barangay', $this->barangay);
             $stmt->bindParam(':gender', $this->gender);
             $stmt->bindParam(':LRN', $this->LRN);
             $stmt->bindParam(':birthdate', $this->birthdate);

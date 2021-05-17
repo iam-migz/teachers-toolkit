@@ -24,8 +24,9 @@
         !isset($data->lastname) ||
         !isset($data->middlename) ||
         !isset($data->email) ||
-        !isset($data->permanent_address) ||
-        !isset($data->current_address) ||
+        !isset($data->province) ||
+        !isset($data->city) ||
+        !isset($data->barangay) ||
         !isset($data->gender) ||
         !isset($data->LRN) ||
         !isset($data->birthdate)
@@ -46,8 +47,9 @@
     $student->middlename = $data->middlename;
     $student->email = $data->email;
 
-    $student->permanent_address = $data->permanent_address;
-    $student->current_address = $data->current_address;
+    $student->province = $data->province;
+    $student->city = $data->city;
+    $student->barangay = $data->barangay;
     $student->gender = $data->gender;
     $student->LRN = $data->LRN;
     $student->birthdate = $data->birthdate;

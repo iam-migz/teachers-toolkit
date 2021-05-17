@@ -31,8 +31,9 @@
     "lastname": "lastname",
     "middlename": "middlename",
     "email": "email",
-    "permanent_address": "permanent_address",
-    "current_address": "current_address",
+    "province": "province",
+    "city": "city",
+    "barangay": "barangay",
     "gender": "gender",
     "LRN": "LRN",
     "birthdate": "birthdate"
