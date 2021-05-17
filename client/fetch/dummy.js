@@ -38,3 +38,11 @@
     "birthdate": "birthdate"
 });
 
+// create teacher
+({
+    "firstname": "firstname",
+    "lastname": "lastname",
+    "middlename": "middlename",
+    "phone_no": "092841042",
+    "email": "example@gmail.com"
+})
