@@ -25,20 +25,23 @@
     $user->id = $data->id;
     $user->password = $data->password;
 
-    if ($access = $user->login()) {
+    if ($acc_id = $user->login()) {
         
         session_start();
-        $_SESSION['id'] = $user->id;
-        $_SESSION['access'] = $access;
+        $_SESSION['id'] = $acc_id;
+        $_SESSION['access'] = $user->access;
 
-        if ($access == 1 ){
-            // student
-        } else if ($access == 2) {
-            // teacher
-        } else if ($access == 3) {
-            // admin
+        if ($user->access == 1 ){
             echo json_encode(
-                array('result' => 3, 'message' => 'logged in')
+                array('result' => 1, 'message' => 'student logged in')
+            );
+        } else if ($user->access == 2) {
+            echo json_encode(
+                array('result' => 2, 'message' => 'teacher logged in')
+            );
+        } else if ($user->access == 3) {
+            echo json_encode(
+                array('result' => 3, 'message' => 'admin logged in')
             );
         }
     } else {

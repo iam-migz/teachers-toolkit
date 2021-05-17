@@ -46,10 +46,16 @@
     $student->middlename = $data->middlename;
     $student->email = $data->email;
 
-    if ($admin->create()) {
+    $student->permanent_address = $data->permanent_address;
+    $student->current_address = $data->current_address;
+    $student->gender = $data->gender;
+    $student->LRN = $data->LRN;
+    $student->birthdate = $data->birthdate;
+
+    if ($student->create()) {
         session_start();
-        $_SESSION['id'] = $admin->id;
-        $_SESSION['access'] = 3;
+        $_SESSION['id'] = $student->id;
+        $_SESSION['access'] = 1;
         echo json_encode(
             array('result' => 1, 'message' => 'success')
         );

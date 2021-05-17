@@ -24,3 +24,17 @@
     "school_name": ""
 });
 
+
+// create student
+({
+    "firstname": "firstname",
+    "lastname": "lastname",
+    "middlename": "middlename",
+    "email": "email",
+    "permanent_address": "permanent_address",
+    "current_address": "current_address",
+    "gender": "gender",
+    "LRN": "LRN",
+    "birthdate": "birthdate"
+});
+

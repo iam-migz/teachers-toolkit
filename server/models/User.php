@@ -34,16 +34,33 @@
         }
 
         public function login(){
-            $query = "SELECT * FROM `users` WHERE id = :id LIMIT 0, 1";
+            $query = "SELECT * FROM users WHERE id = :id LIMIT 0, 1";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id', $this->id);
             $stmt->execute();
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $this->access = $row['access'];
             $hashed_password = $row['password'];
 
             if (password_verify($this->password, $hashed_password)) {
-                return $row['access'];
+                // get the user type
+                if ($this->access == 1) {
+                    $user_table = "students";
+                } else if ($this->access == 2) {
+                    $user_table = "teachers";
+                } else if ($this->access == 3) {
+                    $user_table = "admins";
+                }
+                // get the id
+                $stmt->closeCursor();
+                $query = "SELECT id FROM ".$user_table." WHERE user_id = :id LIMIT 0, 1";
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(':id', $this->id);
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                return $row['id'];
             } else {
                 return false;
             }
@@ -51,8 +68,5 @@
             printf("Error: %s.\n", $stmt->error);
         }
 
-        public function logout(){
-            
-        }
 
     }

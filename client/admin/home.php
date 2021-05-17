@@ -6,10 +6,7 @@
             // header("location: ../login/login.html");
         }
         // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
-        $data1 = "hello";
-        $data2 = "world";
-        $res = $data1.$data2;
-        echo $res;
+        echo "<br> id is: ".$_SESSION['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

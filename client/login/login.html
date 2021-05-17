@@ -120,8 +120,16 @@
                 });
                 let data = res.data;
                 console.log('data :>> ', data);
-                if (data.result == 3) { 
-                    location.href = '../admin/home.php';
+                if (data.result) { 
+                    if (data.result == 1) {
+                        location.href = '../student/home.php';
+                    } else if (data.result == 2) {
+                        location.href = '../teacher/home.php';
+                    } else if (data.result == 3) {
+                        location.href = '../admin/home.php';
+                    }
+                } else {
+                    errorMsg.innerHTML = data.message;
                 }
             } catch (e) {
                 console.log(e);
