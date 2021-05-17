@@ -47,3 +47,18 @@
     "phone_no": "092841042",
     "email": "example@gmail.com"
 })
+
+// create section
+//    public $advisor_id;
+//     public $section_name;
+//     public $strand;
+//     public $track;
+//     public $grade;
+
+({
+    "advisor_id": "1",
+    "section_name": "section_name",
+    "strand": "STEM",
+    "track": "Academic",
+    "grade": "11"
+});
