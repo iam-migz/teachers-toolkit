@@ -6,7 +6,6 @@
             // header("location: ../login/login.html");
         }
         // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
-        echo "<br> id is: ".$_SESSION['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +16,6 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="../login/logout.php">logout</a>
-    this is admin home
+    <?php include '../partials/header.php'; ?>
 </body>
 </html>
