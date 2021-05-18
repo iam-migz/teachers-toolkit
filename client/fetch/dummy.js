@@ -66,3 +66,18 @@
     "semester": "1",
     "hours": "80"
 });
+
+// school year
+({
+    "school_id":"1",
+    "sy_start":"",
+    "sy_end":""
+});
+
+// school record
+({
+    "section_id": "",
+    "subject_id": "",
+    "teacher_id": "",
+    "school_year_id": ""
+});

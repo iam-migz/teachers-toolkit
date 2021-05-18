@@ -1,45 +1,45 @@
 <?php
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
-    header('Access-Control-Allow-Methods: PUT');
+    header('Access-Control-Allow-Methods: POST');
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     include_once '../../config/Database.php';
-    include_once '../../models/Subject.php';
+    include_once '../../models/School_Record.php';
 
     // Instantiate a DB & connect
     $database = new Database();
     $db = $database->connect();
 
     // Instantiate model
-    $subject = new Subject($db);
+    $school_record = new School_Record($db);
 
     // Get raw posted data
     $data = json_decode(file_get_contents("php://input"));
 
     if ( 
-        !isset($data->id) ||
-        !isset($data->subject_name) ||
-        !isset($data->semester) ||
-        !isset($data->hours) 
+        !isset($data->section_id) ||
+        !isset($data->subject_id) ||
+        !isset($data->teacher_id) ||
+        !isset($data->school_year_id) 
     ){
         echo json_encode( array("result" => 0, "message" => "incomplete data") );
         return;
     }
 
     // Update school
-    $subject->id = $data->id;
-    $subject->subject_name = $data->subject_name;
-    $subject->semester = $data->semester;
-    $subject->hours = $data->hours;
+    $school_record->section_id = $data->section_id;
+    $school_record->subject_id = $data->subject_id;
+    $school_record->teacher_id = $data->teacher_id;
+    $school_record->school_year_id = $data->school_year_id;
 
-    if ($subject->update()) {
+    if ($school_record->create()) {
         echo json_encode(
-            array('result' => 1, 'message' => 'subject updated')
+            array('result' => 1, 'message' => 'school record created')
         );
     } else {
         echo json_encode(
-            array('result' => 0, 'message' => 'failed to update subject')
+            array('result' => 0, 'message' => 'failed to create school record')
         );
     }
 
