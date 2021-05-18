@@ -16,10 +16,6 @@
     <title>Document</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!--  jQuery -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <style>
         body, html{ min-height: 100%; }
         body{
@@ -36,21 +32,13 @@
         .title img{
             width: 560px;
         }
-        input[type=text], input[type=email], input[type=password], input[type=date]{
-            width: 100%;
-            padding: 10px 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-            display: inline-block;
-        }
         .register-container{
             padding-top: 10%; 
             background-color: white;
             margin: 2% auto;
             width: 900px;
             border: 1px solid #ccc;
-            border-radius: 10px;
+            border-radius: 4px;
             padding: 10px 20px;
         }
         .register-title{
@@ -74,6 +62,9 @@
         }
         #error-msg {
             color: red;
+        }
+        .radio_btns{
+            text-align: center;
         }
 
         .flex-cont {
@@ -106,11 +97,6 @@
             box-shadow: 1px 1px 1px grey; 
         }
     </style>
-    <script type="text/javascript">
-        $('.datepicker').datepicker({
-            $('.datepicker').datepicker();
-        });
-    </script>
 </head>
 <body>
     <!--Main Header-->
@@ -124,41 +110,46 @@
             <div class="form-group">
                 <div class="form-row">
                     <div class="col">
-                        <!--<label for="fname">First Name:</label>-->
                         <input id="firstname" class="form-control" type="text" placeholder="Enter First Name" name="firstname" required>
                     </div>
                     <div class="col">
-                        <!--<label for="mname">Middle Name:</label>-->
                         <input id="middlename" class="form-control" type="text" placeholder="Enter Middle Name" name="middlename" required>
                     </div>
                     <div class="col">
-                        <!--<label for="lname">Last Name:</label>-->
                         <input id="lastname" class="form-control" type="text" placeholder="Enter Last Name" name="lastname" required>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group radio_btns">
                 <div class="form-row">
-                    <div class="col-10">
+                    <div class="col-8">
                         <input id="text" class="form-control" type="password" placeholder="Enter Graduate Course" name="grad_course" required>
                     </div>
                     <div class="col">
-                        <input id="gender" class="form-control" type="text" placeholder="M/F" name="gender" required>
+                        <label class="mb-0 ml-2" for="material-url">Gender: </label>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" id="male" name="gender">
+                            <label class="form-check-label" for="male">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" id="female" name="gender">
+                            <label class="form-check-label" for="female">Female</label>
+                        </div>
                     </div>
                 </div>  
             </div>
             <div class="form-group">
-                <!--<label for="pword">Password:</label>-->
                 <input id="pnum" class="form-control" type="number" placeholder="Enter Phone Number" name="pnum" required>
             </div>
             <div class="form-group">
-                <!--<label for="pword">Password:</label>-->
                 <input id="password" class="form-control" type="password" placeholder="Enter Password" name="pword" required>
             </div>
-            <div class="md-form md-outline">
-                <input type="date" id="example" class="form-control">
-                <label for="example">Enter Birthday</label>
+            <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
+                <input placeholder="Select date" type="text" id="example" class="form-control">
+                <label for="example">Enter Birthdate</label>
+                <i class="fas fa-calendar input-prefix"></i>
             </div>
+            <!--Account Type-->
             <h5 class="mt-3" style="text-align: center;">Account Type</h5>
             <div id="message" style="text-align: center;">
                 you will automatically be assigned as subject teacher.<br>
@@ -184,10 +175,15 @@
             </div>
             <div id="error-msg"></div>
             <div class="modal-footer">
-                <button id="submit" data-dismiss="modal" class="btn btn-success submit-modify">Register</button>
+                <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify">Register</button>
             </div>
         </div>
     </form>
-    
+        
+    <script type="text/javascript">
+        $('.datepicker').datepicker({
+            inline: true
+        });
+    </script>
 </body>
 </html>
