@@ -29,7 +29,7 @@
             padding-top: 10%; 
             background-color: white;
             margin: 2% auto;
-            width: 66%;
+            width: 900px;
             border: 1px solid #ccc;
             border-radius: 4px;
             padding: 10px 20px;
@@ -124,11 +124,14 @@
                     </div>
                 </div>
             </div>
-            <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">
+            <!-- <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">
                 <input placeholder="DD/MM/YYYY" type="text" id="birthdate" class="form-control">
                 <label for="example">Enter Birthdate</label>
                 <i class="fas fa-calendar input-prefix" tabindex=0></i>
-            </div>
+            </div> -->
+            <input type="date" name="" id="birthdate">
+
+            
             <div id="error-msg"></div>
             <div class="modal-footer">
                 <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify">Register</button>
@@ -152,9 +155,7 @@
         
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
-        $('.datepicker').datepicker({
-                dateFormat:"yy-mm-dd"
-            });
+        // $('.datepicker').datepicker();
 
         document.querySelector("#submit").addEventListener("click", async (x) => {
             x.preventDefault();
@@ -177,9 +178,6 @@
                 gender = 'f';
             }
             try {
-                console.log('birthdate :>> ', birthdate);
-
-                return;
                 let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/user/create_student.php',{
                     firstname, lastname, middlename, email, province, city, barangay, gender, LRN, birthdate
                 });

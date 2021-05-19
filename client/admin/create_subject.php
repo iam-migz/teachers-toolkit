@@ -101,12 +101,12 @@
             </div>
             <div class="form-group">
                 <div class="md-form">
-                    <input type="text" id="sub_name" name="sub_name" placeholder="Enter Subject Name" class="form-control">
+                    <input type="text" id="subject_name" name="subject_name" placeholder="Enter Subject Name" class="form-control">
                 </div>
             </div>
 
             <div class="form-group">
-                <select class="mdb-select md-form colorful-select dropdown-primary">
+                <select class="mdb-select md-form colorful-select dropdown-primary" id="semester">
                     <option value="Course Semester" selected disabled>Course Semester</option>
                     <option value="1st Semester">1st Semester</option>
                     <option value="2nd Semester">2nd Semester</option>
@@ -118,7 +118,7 @@
                 <label for="">Number of Hours:</label>
                 <div class="d-flex justify-content-center">
                     <div class="w-75">
-                        <input type="range" class="custom-range" id="num_hours" min="1" max="80">
+                        <input type="range" class="custom-range" id="hours" min="1" max="80">
                     </div>
                     <span class="font-weight-bold text-primary ml-2 valueSpan2"></span>
                 </div>
@@ -130,7 +130,21 @@
             </div>
         </div>
     </form>
-        
+
+    <!-- TOAST -->
+    <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute; top: 80px; right: 40px;">
+        <div class="toast-header">
+            <strong class="mr-auto">Notification</strong>
+            <small>Teachers Toolkit</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Subject Successfully Created.
+        </div> 
+    </div>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         //Range
@@ -147,20 +161,38 @@
         $(document).ready(function() {
             $('.mdb-select').materialSelect();
         });
+        
+
 
         document.querySelector("#submit").addEventListener("click", async (x) => {
             x.preventDefault();
-            const firstname = document.querySelector("#firstname").value;
-            const lastname = document.querySelector("#lastname").value;
-            const middlename = document.querySelector("#middlename").value;
-            const phone_no = document.querySelector("#phone_no").value;
-            const email = document.querySelector("#email").value;
+            const subject_name = document.querySelector("#subject_name").value;
+            const semester = document.querySelector("#semester").value;
+            const hours = document.querySelector("#hours").value;
+            const errDiv = document.querySelector("#error-msg");
 
+            if (subject_name == '' || semester == '' || hours == '') {
+                errDiv.innerHTML = "Please Complete the form";
+                return;
+            }
             try {
-                let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/user/create_teacher.php',{
-                    firstname, lastname, middlename, phone_no, email
+                let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/subject/create.php',{
+                    subject_name, semester, hours
                 });
                 let data = res.data;
+                if (res.data.result) {
+                    document.querySelector("#subject_name").value = '';
+                    document.querySelector("#hours").value = '';
+                    errDiv.innerHTML = "";
+                    var option = {
+                        animation: true,
+                        delay: 3500
+                    };   
+                    var toastHTMLElement = document.getElementById("EpicToast");
+                    var toastElement = new bootstrap.Toast(toastHTMLElement, option);
+                    toastElement.show();
+
+                }
                 console.log(data);
             } catch (e) {
                 console.log(e);

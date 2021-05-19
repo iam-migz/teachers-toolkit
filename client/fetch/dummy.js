@@ -60,7 +60,6 @@
 // create subject
 
 ({
-    "teacher_id": "1",
     "subject_name": "math",
     "semester": "1",
     "hours": "80"

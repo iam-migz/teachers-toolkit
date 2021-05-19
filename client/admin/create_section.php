@@ -89,6 +89,19 @@
             box-shadow: 1px 1px 1px grey; 
         }
     </style>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    axios.get('http://localhost/teachers-toolkit-app/server/api/teacher/read.php')
+        .then(res => {
+            let teachers = res.data.data;
+            const select = document.querySelector("#advisor_id");
+            for(teach of teachers) {
+                select.options[select.options.length] = new Option(teach.firstname+' '+teach.lastname, teach.id); 
+            }
+
+        })
+        .catch(err => console.log(err));
+</script>
 </head>
 <body>
     <!--Main Header-->
@@ -101,29 +114,50 @@
             </div>
             <div class="form-group">
                 <div class="md-form">
-                    <input type="text" id="sec_name" name="sec_name" placeholder="Enter Section Name" class="form-control">
+                    <input type="text" id="section_name" name="section_name" placeholder="Enter Section Name" class="form-control">
                 </div>
             </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-7">
+                        <select class="mdb-select md-form colorful-select dropdown-primary" id="advisor_id">
+                        <!-- data from db -->
+                        </select>
+                        <label class="mdb-main-label">Select Advisor</label>
+                    </div>
+                    <div class="col">
+                        <select class="mdb-select md-form colorful-select dropdown-primary" id="track">
+                            <option value="Academic">Academic</option>
+                            <option value="Technical-Vocational-Livelihood">Technical-Vocational-Livelihood</option>
+                            <option value="Sports and Arts">Sports and Arts</option>
+                        </select>
+                        <label class="mdb-main-label">Select Track</label>
+                    </div>
+                </div>
 
+            </div>
             <div class="form-group">
                 
                 <div class="form-row">
                     <div class="col">
-                        <select class="mdb-select md-form colorful-select dropdown-primary">
-                            <option value="Academic Track" selected disabled>Academic Track</option>
-                            <option value="Technical Vocational Livelihood (TVL) Track">Technical Vocational Livelihood (TVL) Track</option>
-                            <option value="General Academic Strand (GAS)">General Academic Strand (GAS)</option>
-                            <option value="Science, Technology, Engineering and Mathematics (STEM) Strand">Science, Technology, Engineering and Mathematics (STEM) Strand</option>
-                            <option value="Accountancy, Business and Management (ABM) Strand">Accountancy, Business and Management (ABM) Strand</option>
+                        <select class="mdb-select md-form colorful-select dropdown-primary" id="strand">
+                            <option value="Humanities and Social Sciences">Humanities and Social Sciences</option>
+                            <option value="Science, Technology, Engineering and Mathematics">Science, Technology, Engineering and Mathematics</option>
+                            <option value="Accountancy, Business and Management">Accountancy, Business and Management</option>
+                            <option value="General Academic">General Academic</option>
+                            <option value="Information and Communications Technology">Information and Communications Technology</option>
+                            <option value="Home Economics">Home Economics</option>
+                            <option value="Agri-Fishery Arts">Agri-Fishery Arts</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Arts and Design">Arts and Design</option>
                         </select>
                         <label class="mdb-main-label">Select Strand</label>
-                        
                     </div>
+
                     <div class="col">
-                        <select class="mdb-select md-form colorful-select dropdown-primary">
-                            <option value="Grade Year" selected disabled>Grade Year</option>
-                            <option value="Grade 11">11</option>
-                            <option value="Grade 12">12</option>
+                        <select class="mdb-select md-form colorful-select dropdown-primary" id="grade">
+                            <option value="11">11</option>
+                            <option value="12">12</option>
                         </select>
                         <label class="mdb-main-label">Select Grade Year</label>
                     </div>
@@ -136,6 +170,20 @@
             </div>
         </div>
     </form>
+
+    <!-- TOAST -->
+    <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute; top: 80px; right: 40px;">
+        <div class="toast-header">
+            <strong class="mr-auto">Notification</strong>
+            <small>Teachers Toolkit</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Section Successfully Created.
+        </div> 
+    </div>
         
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
@@ -156,17 +204,37 @@
 
         document.querySelector("#submit").addEventListener("click", async (x) => {
             x.preventDefault();
-            const firstname = document.querySelector("#firstname").value;
-            const lastname = document.querySelector("#lastname").value;
-            const middlename = document.querySelector("#middlename").value;
-            const phone_no = document.querySelector("#phone_no").value;
-            const email = document.querySelector("#email").value;
+
+            const advisor_id = document.querySelector("#advisor_id").value;
+            const section_name = document.querySelector("#section_name").value;
+            const strand = document.querySelector("#strand").value;
+            const track = document.querySelector("#track").value;
+            const grade = document.querySelector("#grade").value;
+            const errDiv = document.querySelector("#error-msg");
+
+            if (advisor_id == '' || section_name == '' || strand == '' || track == '' || grade == '') {
+                errDiv.innerHTML = "Please Complete the form";
+                return;
+            }
 
             try {
-                let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/user/create_teacher.php',{
-                    firstname, lastname, middlename, phone_no, email
+                console.log({advisor_id, section_name, strand, track, grade});
+                let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/section/create.php',{
+                    advisor_id, section_name, strand, track, grade
                 });
                 let data = res.data;
+                if (res.data.result) {
+                    document.querySelector("#section_name").value = '';
+                    errDiv.innerHTML = "";
+                    var option = {
+                        animation: true,
+                        delay: 3500
+                    };   
+                    var toastHTMLElement = document.getElementById("EpicToast");
+                    var toastElement = new bootstrap.Toast(toastHTMLElement, option);
+                    toastElement.show();
+
+                }
                 console.log(data);
             } catch (e) {
                 console.log(e);

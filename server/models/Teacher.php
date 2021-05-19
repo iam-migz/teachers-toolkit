@@ -53,4 +53,10 @@
             return false;
         }
 
+        public function read(){
+            $query = "SELECT * FROM teachers";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            return $stmt;
+        }
     }

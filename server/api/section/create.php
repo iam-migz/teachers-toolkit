@@ -28,7 +28,7 @@
         return;
     }
 
-    // Update school
+    // Update section
     $section->advisor_id = $data->advisor_id;
     $section->section_name = $data->section_name;
     $section->strand = $data->strand;

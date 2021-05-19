@@ -17,6 +17,7 @@
         public function create(){
             $query = "INSERT INTO sections 
                 SET 
+                    advisor_id = :advisor_id,
                     section_name = :section_name, 
                     strand = :strand,
                     track = :track,
@@ -24,11 +25,13 @@
 
             $stmt = $this->conn->prepare($query);
 
+            $this->advisor_id = htmlspecialchars(strip_tags($this->advisor_id));
             $this->section_name = htmlspecialchars(strip_tags($this->section_name));
             $this->strand = htmlspecialchars(strip_tags($this->strand));
             $this->track = htmlspecialchars(strip_tags($this->track));
             $this->grade = htmlspecialchars(strip_tags($this->grade));
 
+            $stmt->bindParam(':advisor_id', $this->advisor_id);
             $stmt->bindParam(':section_name', $this->section_name);
             $stmt->bindParam(':strand', $this->strand);
             $stmt->bindParam(':track', $this->track);
