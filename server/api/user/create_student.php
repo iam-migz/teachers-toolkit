@@ -52,8 +52,8 @@
     $student->barangay = $data->barangay;
     $student->gender = $data->gender;
     $student->LRN = $data->LRN;
-    $student->birthdate = $data->birthdate;
-
+    $student->birthdate = date('Y-m-d', strtotime($data->birthdate));
+    
     if ($student->create()) {
         session_start();
         $_SESSION['user_id'] = $user_id;

@@ -135,10 +135,26 @@
             </div>
         </div>
     </form>
+
+    <!-- TOAST -->
+    <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute; top: 80px; right: 40px;">
+        <div class="toast-header">
+            <strong class="mr-auto">Notification</strong>
+            <small>Teachers Toolkit</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Student Account Successfully Created.
+        </div> 
+    </div>
         
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
-        $('.datepicker').datepicker();
+        $('.datepicker').datepicker({
+                dateFormat:"yy-mm-dd"
+            });
 
         document.querySelector("#submit").addEventListener("click", async (x) => {
             x.preventDefault();
@@ -160,14 +176,33 @@
             } else if (female.checked) {
                 gender = 'f';
             }
-            console.log({
-                firstname, lastname, middlename, email, province, city, barangay, gender, LRN, birthdate
-            });
             try {
+                console.log('birthdate :>> ', birthdate);
+
+                return;
                 let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/user/create_student.php',{
                     firstname, lastname, middlename, email, province, city, barangay, gender, LRN, birthdate
                 });
                 let data = res.data;
+                if (res.data.result) {
+                    document.querySelector("#firstname").value = '';
+                    document.querySelector("#lastname").value = '';
+                    document.querySelector("#middlename").value = '';
+                    document.querySelector("#email").value = '';
+                    document.querySelector("#province").value = '';
+                    document.querySelector("#city").value = '';
+                    document.querySelector("#barangay").value = '';
+                    document.querySelector("#LRN").value = '';
+                    document.querySelector("#birthdate").value = '';
+                    var option = {
+                        animation: true,
+                        delay: 3500
+                    };   
+                    var toastHTMLElement = document.getElementById("EpicToast");
+                    var toastElement = new bootstrap.Toast(toastHTMLElement, option);
+                    toastElement.show();
+
+                }
                 console.log(data);
             } catch (e) {
                 console.log(e);

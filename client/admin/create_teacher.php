@@ -104,6 +104,7 @@
     
     <form>
         <div class="register-container">    
+
             <div class="register-title">
                 <h1 class="display-4">Create Teacher</h1>
             </div>
@@ -135,9 +136,25 @@
             </div>
         </div>
     </form>
-        
+    <!-- TOAST -->
+    <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute; top: 80px; right: 40px;">
+        <div class="toast-header">
+            <strong class="mr-auto">Notification</strong>
+            <small>Teachers Toolkit</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Teacher Account Successfully Created.
+        </div> 
+    </div>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
+
+     
+
         $('.datepicker').datepicker({
             inline: true
         });
@@ -155,6 +172,21 @@
                     firstname, lastname, middlename, phone_no, email
                 });
                 let data = res.data;
+                if (res.data.result) {
+                    document.querySelector("#firstname").value = '';
+                    document.querySelector("#lastname").value = '';
+                    document.querySelector("#middlename").value = '';
+                    document.querySelector("#phone_no").value = '';
+                    document.querySelector("#email").value = '';
+                    var option = {
+                        animation: true,
+                        delay: 3500
+                    };   
+                    var toastHTMLElement = document.getElementById("EpicToast");
+                    var toastElement = new bootstrap.Toast(toastHTMLElement, option);
+                    toastElement.show();
+
+                }
                 console.log(data);
             } catch (e) {
                 console.log(e);
