@@ -150,7 +150,7 @@
         //Range
         $(document).ready(function() {
             const $valueSpan = $('.valueSpan2');
-            const $value = $('#num_hours');
+            const $value = $('#hours');
             $valueSpan.html($value.val());
             $value.on('input change', () => {
                 $valueSpan.html($value.val());

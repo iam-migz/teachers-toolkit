@@ -129,8 +129,10 @@
                 <label for="example">Enter Birthdate</label>
                 <i class="fas fa-calendar input-prefix" tabindex=0></i>
             </div> -->
-            <input type="date" name="" id="birthdate">
-
+            <div class="md-form md-outline input-with-post-icon datepicker">
+                <input placeholder="Select date" type="date" id="birthdate" class="form-control">
+                <label for="example" class="text-muted" style="font-weight: 400">Enter Birthdate</label>
+            </div>
             
             <div id="error-msg"></div>
             <div class="modal-footer">

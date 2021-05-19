@@ -121,6 +121,7 @@
                 <div class="form-row">
                     <div class="col-7">
                         <select class="mdb-select md-form colorful-select dropdown-primary" id="advisor_id">
+                        <option value="Advisors" disabled selected>Advisors</option>
                         <!-- data from db -->
                         </select>
                         <label class="mdb-main-label">Select Advisor</label>
@@ -141,6 +142,7 @@
                 <div class="form-row">
                     <div class="col">
                         <select class="mdb-select md-form colorful-select dropdown-primary" id="strand">
+                            <option value="Strand Course" disabled selected>Strand Course</option>
                             <option value="Humanities and Social Sciences">Humanities and Social Sciences</option>
                             <option value="Science, Technology, Engineering and Mathematics">Science, Technology, Engineering and Mathematics</option>
                             <option value="Accountancy, Business and Management">Accountancy, Business and Management</option>
@@ -156,6 +158,7 @@
 
                     <div class="col">
                         <select class="mdb-select md-form colorful-select dropdown-primary" id="grade">
+                            <option value="Grade Year" disabled selected>Grade Year</option>
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select>
