@@ -91,7 +91,7 @@
                     <div class="col">
                         <label class="mb-0 ml-2" for="material-url">Gender: </label>
                         <div class="form-check form-check-inline">
-                            <input type="radio" class="form-check-input" id="male" name="gender">
+                            <input type="radio" class="form-check-input" id="male" name="gender" checked>
                             <label class="form-check-label" for="male">Male</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -102,38 +102,30 @@
                 </div>  
             </div>
             <div class="form-group">
-                <input id="pnum" class="form-control" type="number" placeholder="Enter Phone Number" name="pnum" required>
-            </div>
-            <div class="form-group">
-                <div class="form-row">
-                    <div class="col">
-                        <input id="p_add" class="form-control" type="text" placeholder="Enter Permanent Address" name="p_add" required>
-                    </div>
-                    <div class="col">
-                        <input id="c_add" class="form-control" type="text" placeholder="Enter Current Address" name="c_add" required>
-                    </div>
-                </div>
+                <input id="LRN" class="form-control" type="number" placeholder="Enter LRN" name="LRN" required>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col">
                         <div class="md-form mt-0">
-                            <input type="text" class="form-control" placeholder="City">
+                            <input type="text" class="form-control" placeholder="City" id="city">
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="md-form mt-0">
-                            <input type="text" class="form-control" placeholder="Province">
+                            <input type="text" class="form-control" placeholder="Province" id="province">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="md-form mt-0">
+                            <input type="text" class="form-control" placeholder="Barangay" id="barangay">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <input id="password" class="form-control" type="password" placeholder="Enter Password" name="pword" required>
-            </div>
             <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">
-                <input placeholder="DD/MM/YYYY" type="text" id="example" class="form-control">
+                <input placeholder="DD/MM/YYYY" type="text" id="birthdate" class="form-control">
                 <label for="example">Enter Birthdate</label>
                 <i class="fas fa-calendar input-prefix" tabindex=0></i>
             </div>
@@ -144,8 +136,44 @@
         </div>
     </form>
         
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         $('.datepicker').datepicker();
+
+        document.querySelector("#submit").addEventListener("click", async (x) => {
+            x.preventDefault();
+            const firstname = document.querySelector("#firstname").value;
+            const lastname = document.querySelector("#lastname").value;
+            const middlename = document.querySelector("#middlename").value;
+            const email = document.querySelector("#email").value;
+            const province = document.querySelector("#province").value;
+            const city = document.querySelector("#city").value;
+            const barangay = document.querySelector("#barangay").value;
+            let gender;
+            const LRN = document.querySelector("#LRN").value;
+            const birthdate = document.querySelector("#birthdate").value;
+            const male = document.querySelector("#male");
+            const female = document.querySelector("#female");
+            
+            if (male.checked) {
+                gender = 'm';
+            } else if (female.checked) {
+                gender = 'f';
+            }
+            console.log({
+                firstname, lastname, middlename, email, province, city, barangay, gender, LRN, birthdate
+            });
+            try {
+                let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/user/create_student.php',{
+                    firstname, lastname, middlename, email, province, city, barangay, gender, LRN, birthdate
+                });
+                let data = res.data;
+                console.log(data);
+            } catch (e) {
+                console.log(e);
+            }
+
+        });
     </script>
 </body>
 </html>

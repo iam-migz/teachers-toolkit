@@ -12,7 +12,6 @@
 // update school
 ({
     "id": "5",
-    "address": "",
     "barangay": "",
     "city": "",
     "province": "",

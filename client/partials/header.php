@@ -21,7 +21,7 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="../mdb/js/mdb.min.js"></script>
 
-<link rel="stylesheet" href="./header.css">
+<!-- <link rel="stylesheet" href="./header.css"> -->
 <style>
     body{
         background: #87ceeb3d;
@@ -68,7 +68,7 @@
                     <i class="fas fa-plus-circle"></i>Create Account</a>
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-4">
                     <a class="dropdown-item" href="./create_teacher.php">Teacher Account</a>
-                    <a class="dropdown-item" href="#">Student Account</a>
+                    <a class="dropdown-item" href="./create_student.php">Student Account</a>
                 </div>
             </li>
             <li class="nav-item dropdown">

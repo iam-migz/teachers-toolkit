@@ -22,6 +22,7 @@
     $data = json_decode(file_get_contents("php://input"));
 
     if ( 
+        !isset($data->school_id) ||
         !isset($data->password) ||
         !isset($data->firstname) ||
         !isset($data->lastname) ||
@@ -38,12 +39,10 @@
     $user->access = 3;
     $user_id = $user->create();
         
-    // Create school
-    $school_id = $school->create();
 
     // Create admin
     $admin->user_id = $user_id;
-    $admin->school_id = $school_id;
+    $admin->school_id = $data->school_id;
     $admin->firstname = $data->firstname;
     $admin->lastname = $data->lastname;
     $admin->middlename = $data->middlename;

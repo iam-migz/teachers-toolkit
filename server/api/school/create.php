@@ -1,7 +1,7 @@
 <?php
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
-    header('Access-Control-Allow-Methods: PUT');
+    header('Access-Control-Allow-Methods: POST');
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     include_once '../../config/Database.php';
@@ -20,7 +20,6 @@
     $data = json_decode(file_get_contents("php://input"));
 
     if ( 
-        !isset($data->id) ||
         !isset($data->barangay) ||
         !isset($data->city) ||
         !isset($data->province) ||
@@ -35,8 +34,7 @@
         return;
     }
 
-    // Update school
-    $school->id = $data->id;
+    // Create school
     $school->barangay = $data->barangay;
     $school->city = $data->city;
     $school->province = $data->province;
@@ -47,13 +45,13 @@
     $school->principal_mn = $data->principal_mn;
     $school->school_name = $data->school_name;
 
-    if ($school->update()) {
+    if ($school_id = $school->create()) {
         echo json_encode(
-            array('result' => 1, 'message' => 'school updated')
+            array('result' => 1, 'school_id' => $school_id)
         );
     } else {
         echo json_encode(
-            array('result' => 0, 'message' => 'failed to update')
+            array('result' => 0, 'message' => 'failed to create school')
         );
     }
 

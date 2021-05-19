@@ -120,59 +120,15 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group radio_btns">
-                <div class="form-row">
-                    <div class="col-8">
-                        <input id="text" class="form-control" type="password" placeholder="Enter Graduate Course" name="grad_course" required>
-                    </div>
-                    <div class="col">
-                        <label class="mb-0 ml-2" for="material-url">Gender: </label>
-                        <div class="form-check form-check-inline">
-                            <input type="radio" class="form-check-input" id="male" name="gender">
-                            <label class="form-check-label" for="male">Male</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input type="radio" class="form-check-input" id="female" name="gender">
-                            <label class="form-check-label" for="female">Female</label>
-                        </div>
-                    </div>
-                </div>  
-            </div>
+
             <div class="form-group">
-                <input id="pnum" class="form-control" type="number" placeholder="Enter Phone Number" name="pnum" required>
+                <input class="form-control" type="email" placeholder="Enter Email" name="email" id="email" required>
             </div>
+
             <div class="form-group">
-                <input id="password" class="form-control" type="password" placeholder="Enter Password" name="pword" required>
+                <input class="form-control" type="number" placeholder="Enter Phone Number" name="phone_no" id="phone_no" required>
             </div>
-            <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker" inline="true">
-                <input placeholder="Select date" type="text" id="example" class="form-control">
-                <label for="example">Enter Birthdate</label>
-                <i class="fas fa-calendar input-prefix"></i>
-            </div>
-            <!--Account Type-->
-            <h5 class="mt-3" style="text-align: center;">Account Type</h5>
-            <div id="message" style="text-align: center;">
-                you will automatically be assigned as subject teacher.<br>
-                <b><i>Select your special role, click the role of your choice</i></b>
-            </div>
-            <div class="container">
-                <div class="flex-cont">
-                    <div class="acc-type" id="adv_yes">
-                        <h4>Advisor</h4>
-                        <img src="../images/advisor.jpg" alt="" style="height: 150px; width: 100%;">
-                        <p class="unselectable">
-                            Class advisors have access to the grade and attendance of the students and create report cards.
-                        </p>
-                    </div>
-                    <div class="acc-type" id="adm_yes">
-                        <h4>Admin</h4>
-                        <img src="../images/admin.png" alt="" style="height: 150px; width: 100%;">
-                        <p class="unselectable">
-                            School administrator is in charge of registering the school 
-                        </p>
-                    </div>
-                </div>
-            </div>
+
             <div id="error-msg"></div>
             <div class="modal-footer">
                 <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify">Register</button>
@@ -180,9 +136,30 @@
         </div>
     </form>
         
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         $('.datepicker').datepicker({
             inline: true
+        });
+
+        document.querySelector("#submit").addEventListener("click", async (x) => {
+            x.preventDefault();
+            const firstname = document.querySelector("#firstname").value;
+            const lastname = document.querySelector("#lastname").value;
+            const middlename = document.querySelector("#middlename").value;
+            const phone_no = document.querySelector("#phone_no").value;
+            const email = document.querySelector("#email").value;
+
+            try {
+                let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/user/create_teacher.php',{
+                    firstname, lastname, middlename, phone_no, email
+                });
+                let data = res.data;
+                console.log(data);
+            } catch (e) {
+                console.log(e);
+            }
+
         });
     </script>
 </body>
