@@ -25,13 +25,6 @@
             margin: 0;
             margin-bottom: 5%;
         }
-        .title{
-            margin: 50px auto;
-            text-align: center;
-        }
-        .title img{
-            width: 560px;
-        }
         .register-container{
             padding-top: 10%; 
             background-color: white;
@@ -43,7 +36,6 @@
         }
         .register-title{
             text-align: center;
-            margin-bottom: 30px;
         }
         .display-4{
             font-size: 40px;
@@ -104,59 +96,62 @@
     
     <form>
         <div class="register-container">    
-
             <div class="register-title">
-                <h1 class="display-4">Create Teacher</h1>
+                <h1 class="display-4">Create Section</h1>
             </div>
             <div class="form-group">
-                <div class="form-row">
-                    <div class="col">
-                        <input id="firstname" class="form-control" type="text" placeholder="Enter First Name" name="firstname" required>
-                    </div>
-                    <div class="col">
-                        <input id="middlename" class="form-control" type="text" placeholder="Enter Middle Name" name="middlename" required>
-                    </div>
-                    <div class="col">
-                        <input id="lastname" class="form-control" type="text" placeholder="Enter Last Name" name="lastname" required>
-                    </div>
+                <div class="md-form">
+                    <input type="text" id="sec_name" name="sec_name" placeholder="Enter Section Name" class="form-control">
                 </div>
             </div>
 
             <div class="form-group">
-                <input class="form-control" type="email" placeholder="Enter Email" name="email" id="email" required>
-            </div>
-
-            <div class="form-group">
-                <input class="form-control" type="number" placeholder="Enter Phone Number" name="phone_no" id="phone_no" required>
+                
+                <div class="form-row">
+                    <div class="col">
+                        <select class="mdb-select md-form colorful-select dropdown-primary">
+                            <option value="Academic Track" selected disabled>Academic Track</option>
+                            <option value="Technical Vocational Livelihood (TVL) Track">Technical Vocational Livelihood (TVL) Track</option>
+                            <option value="General Academic Strand (GAS)">General Academic Strand (GAS)</option>
+                            <option value="Science, Technology, Engineering and Mathematics (STEM) Strand">Science, Technology, Engineering and Mathematics (STEM) Strand</option>
+                            <option value="Accountancy, Business and Management (ABM) Strand">Accountancy, Business and Management (ABM) Strand</option>
+                        </select>
+                        <label class="mdb-main-label">Select Strand</label>
+                        
+                    </div>
+                    <div class="col">
+                        <select class="mdb-select md-form colorful-select dropdown-primary">
+                            <option value="Grade Year" selected disabled>Grade Year</option>
+                            <option value="Grade 11">11</option>
+                            <option value="Grade 12">12</option>
+                        </select>
+                        <label class="mdb-main-label">Select Grade Year</label>
+                    </div>
+                </div>
             </div>
 
             <div id="error-msg"></div>
             <div class="modal-footer">
-                <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify">Register</button>
+                <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify">Create Section</button>
             </div>
         </div>
     </form>
-    <!-- TOAST -->
-    <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute; top: 80px; right: 40px;">
-        <div class="toast-header">
-            <strong class="mr-auto">Notification</strong>
-            <small>Teachers Toolkit</small>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="toast-body">
-            Teacher Account Successfully Created.
-        </div> 
-    </div>
-
+        
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
-
-     
-
-        $('.datepicker').datepicker({
-            inline: true
+        //Range
+        $(document).ready(function() {
+            const $valueSpan = $('.valueSpan2');
+            const $value = $('#num_hours');
+            $valueSpan.html($value.val());
+            $value.on('input change', () => {
+                $valueSpan.html($value.val());
+            });
+        });
+        
+        //Select
+        $(document).ready(function() {
+            $('.mdb-select').materialSelect();
         });
 
         document.querySelector("#submit").addEventListener("click", async (x) => {
@@ -172,21 +167,6 @@
                     firstname, lastname, middlename, phone_no, email
                 });
                 let data = res.data;
-                if (res.data.result) {
-                    document.querySelector("#firstname").value = '';
-                    document.querySelector("#lastname").value = '';
-                    document.querySelector("#middlename").value = '';
-                    document.querySelector("#phone_no").value = '';
-                    document.querySelector("#email").value = '';
-                    var option = {
-                        animation: true,
-                        delay: 3500
-                    };   
-                    var toastHTMLElement = document.getElementById("EpicToast");
-                    var toastElement = new bootstrap.Toast(toastHTMLElement, option);
-                    toastElement.show();
-
-                }
                 console.log(data);
             } catch (e) {
                 console.log(e);

@@ -59,8 +59,8 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-graduation-cap"></i>Academic</a>
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-4">
-                    <a class="dropdown-item" href="#">Create Subject</a>
-                    <a class="dropdown-item" href="#">Create Section</a>
+                    <a class="dropdown-item" href="./create_subject.php">Create Subject</a>
+                    <a class="dropdown-item" href="./create_section.php">Create Section</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
