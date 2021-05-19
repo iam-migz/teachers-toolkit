@@ -73,4 +73,11 @@
             return false;
         }
 
+        public function read(){
+            $query = "SELECT * FROM students";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            return $stmt;
+        }
+
     }

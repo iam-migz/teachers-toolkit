@@ -90,7 +90,7 @@
                         <h4 class="font-weight-bold card-title">Add School Year</h4>
                         <p class="card-text">Adding days or hours would be ineffective. It might be beneficial to rethink 
                             our school year philosophy in a systematic manner.</p>
-                        <a class="btn btn-dark-green btn_proceed">Proceed</a>
+                        <a class="btn btn-dark-green btn_proceed" href="./add_school_year.php">Proceed</a>
                     </div>
                 </div>
                 <!--Card Narrow End-->
