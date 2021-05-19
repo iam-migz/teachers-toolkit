@@ -27,7 +27,8 @@
         background: #87ceeb3d;
     }
     .navbar-brand{
-        margin-left: 50%;
+        margin-left: 10%;
+        font-weight: 400;
     }
     .navbar-collapse{
         margin-right: 5%;
@@ -48,7 +49,7 @@
 </style>
 <!--Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark default-color sticky-top">
-    <b><a class="navbar-brand" href="./home.php">Teachers Toolkit</a></b>
+    <a class="navbar-brand" href="./home.php">Teachers Toolkit</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" 
         aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
