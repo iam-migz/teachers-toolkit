@@ -13,6 +13,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- MDBootstrap Cards Extended Pro  -->
+    <link href="../mdb/css/addons-pro/cards-extended.min.css" rel="stylesheet">
     <title>Document</title>
     <style>
         .container{
@@ -30,7 +32,7 @@
     <?php include '../partials/header.php'; ?>
     
     <div class="container">
-        <h2>Accounts and School Year Lists</h2>
+        <h2>Account Catalog</h2>
         <div class="row mt-4">
             <div class="col-lg-4 mt-1 box_card"> 
                 <div class="card card-cascade wider">
@@ -45,15 +47,62 @@
                     </div>
                 </div>
             </div> 
-            <div class="col-lg-4 mt-1 box_card"> 
-                <div class="card card-cascade wider">
-                    <div class="view view-cascade gradient-card-header blue-gradient">
-                        <h2 class="card-header-title text-center">School Year</h2>
-                        <p class="mb-0"><i class="fas fa-calendar mr-2"></i>Current Academic Year: 2021-2022</p>
+        </div>
+        <hr>
+        <h2>School Year Lists</h2>
+        <div class="row mt-4">
+            <div class="col-md-6 mb-4"> 
+                <div class="card">
+                    <div class="card-image" style="background-image: url(../images/school_year.png); background-repeat: no-repeat; background-size: cover;">
+                        <a href="#">
+                            <div class="text-white d-flex h-100 mask aqua-gradient-rgba">
+                                <div class="first-content align p-3">
+                                    <h3 class="card-title" style="font-weight: 400">Academic Year</h3>
+                                    <p class="lead mb-0">August 2020 - May 2021</p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="card-body card-body-cascade text-center">
-                        <a href="#!" class="blue-text d-flex flex-row-reverse p-2">
-                            <h5 class="waves-effect waves-light">View<i class="fas fa-angle-double-right ml-2"></i></h5>
+                </div>
+            </div> 
+            <div class="col-md-6 mb-4"> 
+                <div class="card">
+                    <div class="card-image" style="background-image: url(../images/school_year.png); background-repeat: no-repeat; background-size: cover;">
+                        <a href="#">
+                            <div class="text-white d-flex h-100 mask aqua-gradient-rgba">
+                                <div class="first-content align p-3">
+                                    <h3 class="card-title" style="font-weight: 400">Academic Year</h3>
+                                    <p class="lead mb-0">August 2021 - May 2022</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>  
+            <div class="col-md-6 mb-4"> 
+                <div class="card">
+                    <div class="card-image" style="background-image: url(../images/school_year.png); background-repeat: no-repeat; background-size: cover;">
+                        <a href="#">
+                            <div class="text-white d-flex h-100 mask aqua-gradient-rgba">
+                                <div class="first-content align p-3">
+                                    <h3 class="card-title" style="font-weight: 400">Academic Year</h3>
+                                    <p class="lead mb-0">August 2022 - May 2023</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-md-6 mb-4"> 
+                <div class="card">
+                    <div class="card-image" style="background-image: url(../images/school_year.png); background-repeat: no-repeat; background-size: cover;">
+                        <a href="#">
+                            <div class="text-white d-flex h-100 mask aqua-gradient-rgba">
+                                <div class="first-content align p-3">
+                                    <h3 class="card-title" style="font-weight: 400">Academic Year</h3>
+                                    <p class="lead mb-0">August 2023 - May 2024</p>
+                                </div>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -73,7 +122,7 @@
                         <h4 class="font-weight-bold card-title">Edit School Info</h4>
                         <p class="card-text">Administrators of schools and districts can conveniently 
                             edit their school or district profiles using the Admin Portal.</p>
-                        <a class="btn btn-dark-green btn_proceed">Proceed</a>
+                        <a class="btn btn-dark-green btn_proceed" href="./edit_school.php">Proceed</a>
                     </div>
                 </div>
                 <!--Card Narrow End-->
