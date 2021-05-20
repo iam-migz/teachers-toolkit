@@ -120,7 +120,7 @@
             <div class="form-group">
                 <div class="form-row">
                     <div class="col-7">
-                        <select class="mdb-select md-form colorful-select dropdown-primary" id="advisor_id">
+                        <select class="mdb-select md-form colorful-select dropdown-primary"  searchable="Search Advisor.." id="advisor_id">
                         <option value="Advisors" disabled selected>Advisors</option>
                         <!-- data from db -->
                         </select>
@@ -141,7 +141,7 @@
                 
                 <div class="form-row">
                     <div class="col">
-                        <select class="mdb-select md-form colorful-select dropdown-primary" id="strand">
+                        <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Strand.." id="strand">
                             <option value="Strand Course" disabled selected>Strand Course</option>
                             <option value="Humanities and Social Sciences">Humanities and Social Sciences</option>
                             <option value="Science, Technology, Engineering and Mathematics">Science, Technology, Engineering and Mathematics</option>
