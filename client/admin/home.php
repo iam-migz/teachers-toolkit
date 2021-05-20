@@ -39,7 +39,7 @@
                         <p class="mb-0"><i class="fas fa-user-check mr-2"></i>Teachers and Students</p>
                     </div>
                     <div class="card-body card-body-cascade text-center">
-                        <a href="#!" class="blue-text d-flex flex-row-reverse p-2">
+                        <a href="viewTeachers_Students.php" class="blue-text d-flex flex-row-reverse p-2">
                             <h5 class="waves-effect waves-light">View<i class="fas fa-angle-double-right ml-2"></i></h5>
                         </a>
                     </div>
