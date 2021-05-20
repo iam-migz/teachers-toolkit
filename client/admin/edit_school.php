@@ -30,7 +30,12 @@
         .view-container{
             margin: 2% 2% 4% 2%;
         }
+        #error-msg{
+            position: absolute;
+            color: red;
+        }
     </style>
+
 </head>
 <body>
     <!--Main Header-->
@@ -44,101 +49,108 @@
                     <table id="paginationFirstLast" class="table table-striped" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th class="th-sm">#</th>
-                                <th class="th-sm">School Name</th>
-                                <th class="th-sm">School Address</th>
-                                <th class="th-sm">Postal Code</th>
-                                <th class="th-sm">Country</th>
-                                <th class="th-sm">School Principal</th>
+                                <th class="th-sm">school name</th>
+                                <th class="th-sm">barangay</th>
+                                <th class="th-sm">city</th>
+                                <th class="th-sm">province</th>
+                                <th class="th-sm">country</th>
+                                <th class="th-sm">postal code</th>
+                                <th class="th-sm">principal firstname</th>
+                                <th class="th-sm">principal middlename</th>
+                                <th class="th-sm">principal lastname</th>
                                 <th class="th-sm">Save</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1</td>
-                                <td contenteditable="true">University of Lapu-Lapu</td>
-                                <td contenteditable="true">Province Barangay City</td>
-                                <td contenteditable="true">21046</td>
-                                <td contenteditable="true">Philippines</td>
-                                <td contenteditable="true">Domingo, Carda Mi</td>
-                                <td><button type="button" class="btn btn-blue btn-sm m-0" style="width: 100%;">Save</button></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td contenteditable="true">University of Science and Social</td>
-                                <td contenteditable="true">Province Barangay City</td>
-                                <td contenteditable="true">71287</td>
-                                <td contenteditable="true">Philippines</td>
-                                <td contenteditable="true">Jacome, Luis San</td>
-                                <td><button type="button" class="btn btn-blue btn-sm m-0" style="width: 100%;">Save</button></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td contenteditable="true">Techonology and English School</td>
-                                <td contenteditable="true">Province Barangay City</td>
-                                <td contenteditable="true">88237</td>
-                                <td contenteditable="true">Philppines</td>
-                                <td contenteditable="true">Foreign, Mill Lee</td>
-                                <td><button type="button" class="btn btn-blue btn-sm m-0" style="width: 100%;">Save</button></td>
+                                <td contenteditable="true" id="school_name"></td>
+                                <td contenteditable="true" id="barangay"></td>
+                                <td contenteditable="true" id="city"></td>
+                                <td contenteditable="true" id="province"></td>
+                                <td contenteditable="true" id="country"></td>
+                                <td contenteditable="true" id="postal_code"></td>
+                                <td contenteditable="true" id="principal_fn"></td>
+                                <td contenteditable="true" id="principal_mn"></td>
+                                <td contenteditable="true" id="principal_ln"></td>
+                                <td><button type="button" class="btn btn-blue btn-sm m-0" style="width: 100%;" id="btn_submit">Save</button></td>
                             </tr>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th class="th-sm">#</th>
-                                <th class="th-sm">School Name</th>
-                                <th class="th-sm">School Address</th>
-                                <th class="th-sm">Postal Code</th>
-                                <th class="th-sm">Country</th>
-                                <th class="th-sm">School Principal</th>
-                                <th class="th-sm">Save</th>
-                            </tr>
-                        </tfoot>
+                        <div id="error-msg"></div>
                     </table>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- TOAST -->
-    <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute; top: 80px; right: 40px;">
-        <div class="toast-header">
-            <strong class="mr-auto">Notification</strong>
-            <small>Teachers Toolkit</small>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="toast-body">
-            School Information Successfully Updated.
-        </div> 
-    </div>
 
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../mdb/js/addons/datatables2.min.js"></script>
     <!-- DataTables Select JS -->
     <script src="../mdb/js/addons/datatables-select2.min.js" type="text/javascript"></script>
-        
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#paginationFirstLast').DataTable({
-                "pagingType": "first_last_numbers"
-            }); 
-            $('#paginationFirstLast_wrapper').find('label').each(function () {
-                $(this).parent().append($(this).children());
-            });
-            $('#paginationFirstLast_wrapper .dataTables_filter').find('input').each(function () {
-                const $this = $(this);
-                $this.attr("placeholder", "Search..");
-                $this.removeClass('form-control-sm');
-                $this.addClass('w-75');
-            });
-            $('#paginationFirstLast_wrapper .dataTables_length').addClass('d-flex flex-row');
-            $('#paginationFirstLast_wrapper .dataTables_filter').addClass('md-form mt-3');
-            $('#paginationFirstLast_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm mt-3');
-            $('#paginationFirstLast_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
-            $('#paginationFirstLast_wrapper .mdb-select').materialSelect();
-            $('#paginationFirstLast_wrapper .dataTables_filter').find('label').remove();
-        });
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        const school_id = <?php echo $_SESSION['school_id']; ?>;
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/school/read_one.php?id=${school_id}`)
+            .then(res => {
+                
+                const school = res.data;
+                console.log(school);
+
+                const barangay = document.querySelector("#barangay");
+                const city = document.querySelector("#city");
+                const province = document.querySelector("#province");
+                const country = document.querySelector("#country");
+                const postal_code = document.querySelector("#postal_code");
+                const principal_fn = document.querySelector("#principal_fn");
+                const principal_ln = document.querySelector("#principal_ln");
+                const principal_mn = document.querySelector("#principal_mn");
+                const school_name = document.querySelector("#school_name");
+
+                barangay.innerHTML = school.barangay;
+                city.innerHTML = school.city;
+                province.innerHTML = school.province;
+                country.innerHTML = school.country;
+                postal_code.innerHTML = school.postal_code;
+                principal_fn.innerHTML = school.principal_fn;
+                principal_ln.innerHTML = school.principal_ln;
+                principal_mn.innerHTML = school.principal_mn;
+                school_name.innerHTML = school.school_name;
+
+            })
+            .catch(err => console.log(err));
+
+            const btn_submit = document.querySelector("#btn_submit");
+            btn_submit.onclick = function(){
+                console.log('hey iggy');
+                const barangay = document.querySelector("#barangay").innerHTML;
+                const city = document.querySelector("#city").innerHTML;
+                const province = document.querySelector("#province").innerHTML;
+                const country = document.querySelector("#country").innerHTML;
+                const postal_code = document.querySelector("#postal_code").innerHTML;
+                const principal_fn = document.querySelector("#principal_fn").innerHTML;
+                const principal_ln = document.querySelector("#principal_ln").innerHTML;
+                const principal_mn = document.querySelector("#principal_mn").innerHTML;
+                const school_name = document.querySelector("#school_name").innerHTML;
+                const errorDiv = document.querySelector("#error-msg");
+
+                if (barangay == '' || city == '' || province == '' || country == '' || postal_code == '' || principal_fn == '' || principal_ln == '' || principal_mn == '' || school_name == ''){
+                    errorDiv.innerHTML = "Please complete the form";
+                    return;
+                }
+
+                axios.put('http://localhost/teachers-toolkit-app/server/api/school/update.php', {
+                    'id': school_id, barangay, city, province, country, postal_code, principal_fn,  principal_ln,  principal_mn, school_name 
+                })
+                    .then(res => {
+                        if (res.data.result) {
+                            location.reload();
+                        }
+                    })
+                    .catch(err => console.log(err));
+
+            }
     </script>
+
 </body>
 </html>

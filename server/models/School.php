@@ -76,7 +76,6 @@
 
             $stmt = $this->conn->prepare($query);
 
-            $this->address = htmlspecialchars(strip_tags($this->address));
             $this->city = htmlspecialchars(strip_tags($this->city));
             $this->province = htmlspecialchars(strip_tags($this->province));
             $this->country = htmlspecialchars(strip_tags($this->country));
@@ -104,5 +103,17 @@
             printf("Error updating school: %s.\n", $stmt->error);
             return false;
         }
+
+
+        public function read_one(){
+            $query = "SELECT * FROM schools WHERE id = :id LIMIT 0,1";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(":id", $this->id);
+            $stmt->execute();
+            return $stmt;
+        }
+
+
+
 
     }
