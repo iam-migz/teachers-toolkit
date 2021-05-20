@@ -52,6 +52,7 @@
     if ($admin->create()) {
         session_start();
         $_SESSION['user_id'] = $user_id;
+        $_SESSION['school_id'] = $admin->school_id;
         $_SESSION['account_id'] = $admin->id;
         $_SESSION['access'] = 3;
         echo json_encode(

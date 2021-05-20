@@ -22,6 +22,7 @@
     if ( 
         !isset($data->firstname) ||
         !isset($data->lastname) ||
+        !isset($data->school_id) ||
         !isset($data->middlename) ||
         !isset($data->email) ||
         !isset($data->province) ||
@@ -42,6 +43,7 @@
         
     // Create student
     $student->user_id = $user_id;
+    $student->school_id = $data->school_id;
     $student->firstname = $data->firstname;
     $student->lastname = $data->lastname;
     $student->middlename = $data->middlename;
@@ -55,10 +57,6 @@
     $student->birthdate =$data->birthdate;
     
     if ($student->create()) {
-        session_start();
-        $_SESSION['user_id'] = $user_id;
-        $_SESSION['account_id'] = $student->id;
-        $_SESSION['access'] = 1;
         echo json_encode(
             array('result' => 1, 'message' => 'success')
         );

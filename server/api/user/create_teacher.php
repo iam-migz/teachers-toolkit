@@ -20,6 +20,7 @@
     $data = json_decode(file_get_contents("php://input"));
 
     if ( 
+        !isset($data->school_id) ||
         !isset($data->firstname) ||
         !isset($data->lastname) ||
         !isset($data->middlename) ||
@@ -37,6 +38,7 @@
         
     // Create teacher
     $teacher->user_id = $user_id;
+    $teacher->school_id = $data->school_id;
     $teacher->firstname = $data->firstname;
     $teacher->lastname = $data->lastname;
     $teacher->middlename = $data->middlename;
@@ -45,10 +47,6 @@
 
 
     if ($teacher->create()) {
-        session_start();
-        $_SESSION['user_id'] = $user_id;
-        $_SESSION['account_id'] = $teacher->id;
-        $_SESSION['access'] = 2;
         echo json_encode(
             array('result' => 1, 'message' => 'successfully created teacher')
         );

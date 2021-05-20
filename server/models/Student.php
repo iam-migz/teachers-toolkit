@@ -5,6 +5,11 @@
         public $id;
         public $section_id;
         public $user_id;
+
+        public $school_id;
+        public $continuing;
+        public $completed;
+
         public $firstname;
         public $lastname;
         public $middlename;
@@ -26,6 +31,7 @@
                     user_id = :user_id, 
                     firstname = :firstname,
                     lastname = :lastname,
+                    school_id = :school_id,
                     middlename = :middlename,
                     email = :email,
                     province = :province,
@@ -38,6 +44,7 @@
             $stmt = $this->conn->prepare($query);
 
             $this->user_id = htmlspecialchars(strip_tags($this->user_id));
+            $this->school_id = htmlspecialchars(strip_tags($this->school_id));
             $this->firstname = htmlspecialchars(strip_tags($this->firstname));
             $this->lastname = htmlspecialchars(strip_tags($this->lastname));
             $this->middlename = htmlspecialchars(strip_tags($this->middlename));
@@ -52,6 +59,7 @@
 
 
             $stmt->bindParam(':user_id', $this->user_id);
+            $stmt->bindParam(':school_id', $this->school_id);
             $stmt->bindParam(':firstname', $this->firstname);
             $stmt->bindParam(':lastname', $this->lastname);
             $stmt->bindParam(':middlename', $this->middlename);

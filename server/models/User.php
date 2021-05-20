@@ -8,6 +8,10 @@
         public $password;
         public $access;
 
+        // for login
+        public $account_id;
+        public $school_id;
+
         public function __construct($db){
             $this->conn = $db;
         }
@@ -52,15 +56,17 @@
                 } else if ($this->access == 3) {
                     $user_table = "admins";
                 }
-                // get the id
+                // get the account_id, school_id 
                 $stmt->closeCursor();
-                $query = "SELECT id FROM ".$user_table." WHERE user_id = :id LIMIT 0, 1";
+                $query = "SELECT id, school_id FROM ".$user_table." WHERE user_id = :id LIMIT 0, 1";
                 $stmt = $this->conn->prepare($query);
                 $stmt->bindParam(':id', $this->id);
                 $stmt->execute();
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                return $row['id'];
+                $this->account_id = $row['id'];
+                $this->school_id = $row['school_id'];
+                return true;
             } else {
                 return false;
             }

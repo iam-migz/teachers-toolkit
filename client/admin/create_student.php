@@ -161,6 +161,7 @@
 
         document.querySelector("#submit").addEventListener("click", async (x) => {
             x.preventDefault();
+            const school_id = <?php echo $_SESSION['school_id']; ?>;
             const firstname = document.querySelector("#firstname").value;
             const lastname = document.querySelector("#lastname").value;
             const middlename = document.querySelector("#middlename").value;
@@ -181,7 +182,7 @@
             }
             try {
                 let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/user/create_student.php',{
-                    firstname, lastname, middlename, email, province, city, barangay, gender, LRN, birthdate
+                    school_id, firstname, lastname, middlename, email, province, city, barangay, gender, LRN, birthdate
                 });
                 let data = res.data;
                 if (res.data.result) {

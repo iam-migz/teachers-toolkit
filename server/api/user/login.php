@@ -25,11 +25,12 @@
     $user->id = $data->id;
     $user->password = $data->password;
 
-    if ($acc_id = $user->login()) {
+    if ($user->login()) {
         
         session_start();
         $_SESSION['user_id'] = $user->id;
-        $_SESSION['account_id'] = $acc_id;
+        $_SESSION['account_id'] = $user->account_id;
+        $_SESSION['school_id'] = $user->school_id;
         $_SESSION['access'] = $user->access;
 
         if ($user->access == 1 ){

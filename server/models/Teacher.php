@@ -9,6 +9,8 @@
         public $middlename;
         public $phone_no;
         public $email;
+        public $continuing;
+        public $school_id;
 
 
         public function __construct($db){
@@ -19,6 +21,7 @@
             $query = "INSERT INTO teachers 
                 SET 
                     user_id = :user_id, 
+                    school_id = :school_id, 
                     firstname = :firstname,
                     lastname = :lastname,
                     middlename = :middlename,
@@ -28,6 +31,7 @@
             $stmt = $this->conn->prepare($query);
 
             $this->user_id = htmlspecialchars(strip_tags($this->user_id));
+            $this->school_id = htmlspecialchars(strip_tags($this->school_id));
             $this->firstname = htmlspecialchars(strip_tags($this->firstname));
             $this->lastname = htmlspecialchars(strip_tags($this->lastname));
             $this->middlename = htmlspecialchars(strip_tags($this->middlename));
@@ -37,6 +41,7 @@
 
 
             $stmt->bindParam(':user_id', $this->user_id);
+            $stmt->bindParam(':school_id', $this->school_id);
             $stmt->bindParam(':firstname', $this->firstname);
             $stmt->bindParam(':lastname', $this->lastname);
             $stmt->bindParam(':middlename', $this->middlename);
@@ -49,7 +54,7 @@
             }
 
             // print error if something goes wrong
-            printf("Error Creating Student: %s.\n", $stmt->error);
+            printf("Error Creating Teacher: %s.\n", $stmt->error);
             return false;
         }
 
