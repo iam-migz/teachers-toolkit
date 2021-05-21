@@ -51,7 +51,7 @@
                     <!--Teacher List-->
                     <div class="tab-pane fade show active" id="pills-teachList" role="tabpanel">
                         <div class="table-responsive-sm table-responsive-md table-responsive-lg">
-                            <table id="dt-teacher-checkbox" class="table" cellspacing="0" width="100%">
+                            <table id="dt-teacher-checkbox" class="table table-sm" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -73,7 +73,7 @@
                     <!--Student List-->
                     <div class="tab-pane fade" id="pills-studList" role="tabpanel" aria-labelledby="pills-studList-tab">
                         <div class="table-responsive-sm table-responsive-md">
-                            <table id="dt-student-checkbox" class="table" cellspacing="0" width="100%">
+                            <table id="dt-student-checkbox" class="table table-sm" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -152,7 +152,7 @@
             });
             $('#dt-teacher-checkbox_wrapper .dataTables_length').addClass('d-flex flex-row');
             $('#dt-teacher-checkbox_wrapper .dataTables_filter').addClass('md-form mt-3');
-            $('#dt-teacher-checkbox_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm mt-3');
+            $('#dt-teacher-checkbox_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
             $('#dt-teacher-checkbox_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
             $('#dt-teacher-checkbox_wrapper .mdb-select').materialSelect();
             $('#dt-teacher-checkbox_wrapper .dataTables_filter').find('label').remove();
@@ -205,7 +205,7 @@
             });
             $('#dt-student-checkbox_wrapper .dataTables_length').addClass('d-flex flex-row');
             $('#dt-student-checkbox_wrapper .dataTables_filter').addClass('md-form mt-3');
-            $('#dt-student-checkbox_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm mt-3');
+            $('#dt-student-checkbox_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
             $('#dt-student-checkbox_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
             $('#dt-student-checkbox_wrapper .mdb-select').materialSelect();
             $('#dt-student-checkbox_wrapper .dataTables_filter').find('label').remove();
