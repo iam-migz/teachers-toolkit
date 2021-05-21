@@ -25,7 +25,7 @@
 
     <div class="container">
         <div class="row mt-5 d-flex justify-content-center">
-            <div class="col-lg-4 mt-1 mr-5 box_card"> 
+            <div class="col-lg-4 mt-1 mr-4 ml-4 box_card"> 
                 <h2 class="text-center">Create Account</h2>
                 <div class="card testimonial-card">
                     <div class="card-up purple-gradient lighten-1"></div>
@@ -42,7 +42,7 @@
                 </div>
             </div>
             
-            <div class="col-lg-4 mt-1 box_card">
+            <div class="col-lg-4 mt-1 mr-4 ml-4 box_card">
                 <h2 class="text-center">Create Account</h2>
                 <div class="card testimonial-card">
                     <div class="card-up peach-gradient lighten-1"></div>

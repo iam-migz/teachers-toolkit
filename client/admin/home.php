@@ -24,7 +24,7 @@
             width: 97%;
         }
         .box_card{
-            margin-bottom: 2%;
+            margin-bottom: 5%;
         }
     </style>
 </head>
