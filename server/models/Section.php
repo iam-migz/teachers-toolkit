@@ -4,6 +4,7 @@
 
         // Admin Properties
         public $id;
+        public $school_year_id;
         public $advisor_id;
         public $section_name;
         public $strand;
@@ -17,6 +18,7 @@
         public function create(){
             $query = "INSERT INTO sections 
                 SET 
+                    school_year_id = :school_year_id,
                     advisor_id = :advisor_id,
                     section_name = :section_name, 
                     strand = :strand,
@@ -25,12 +27,14 @@
 
             $stmt = $this->conn->prepare($query);
 
+            $this->school_year_id = htmlspecialchars(strip_tags($this->school_year_id));
             $this->advisor_id = htmlspecialchars(strip_tags($this->advisor_id));
             $this->section_name = htmlspecialchars(strip_tags($this->section_name));
             $this->strand = htmlspecialchars(strip_tags($this->strand));
             $this->track = htmlspecialchars(strip_tags($this->track));
             $this->grade = htmlspecialchars(strip_tags($this->grade));
 
+            $stmt->bindParam(':school_year_id', $this->school_year_id);
             $stmt->bindParam(':advisor_id', $this->advisor_id);
             $stmt->bindParam(':section_name', $this->section_name);
             $stmt->bindParam(':strand', $this->strand);

@@ -45,6 +45,42 @@
             color: red;
         }
     </style>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const school_id = <?php echo $_SESSION['school_id']; ?>;
+
+    // set teachers
+    axios.get(`http://localhost/teachers-toolkit-app/server/api/teacher/read.php?school_id=${school_id}`)
+        .then(res => {
+            if (res.data.result == 0) {
+                return;
+            }
+            let teachers = res.data.data;
+            console.log(teachers);
+            const select = document.querySelector("#teacher");
+            for(teach of teachers) {
+                select.options[select.options.length] = new Option(teach.firstname+' '+teach.lastname, teach.id); 
+            }
+
+        })
+        .catch(err => console.log(err));
+
+    // set sections
+    // axios.get(`http://localhost/teachers-toolkit-app/server/api/teacher/read.php?school_id=${school_id}`)
+    //     .then(res => {
+    //         if (res.data.result == 0) {
+    //             return;
+    //         }
+    //         let teachers = res.data.data;
+    //         console.log(teachers);
+    //         const select = document.querySelector("#teacher");
+    //         for(teach of teachers) {
+    //             select.options[select.options.length] = new Option(teach.firstname+' '+teach.lastname, teach.id); 
+    //         }
+
+    //     })
+    //     .catch(err => console.log(err));
+</script>
 </head>
 <body>
     <!--Main Header-->

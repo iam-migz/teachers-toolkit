@@ -119,7 +119,10 @@
             $('.mdb-select').materialSelect();
         });
         
-
+        // get sy_id from query params
+        const urlParams = new URLSearchParams(window.location.search);
+        const sy_id = urlParams.get('sy_id');
+        console.log('sy_id :>> ', sy_id);
 
         document.querySelector("#submit").addEventListener("click", async (x) => {
             x.preventDefault();
@@ -132,9 +135,11 @@
                 errDiv.innerHTML = "Please Complete the form";
                 return;
             }
+
+
             try {
                 let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/subject/create.php',{
-                    subject_name, semester, hours
+                    'school_year_id': sy_id, subject_name, semester, hours
                 });
                 let data = res.data;
                 if (res.data.result) {

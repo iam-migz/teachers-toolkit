@@ -5,45 +5,41 @@
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     include_once '../../config/Database.php';
-    include_once '../../models/Section.php';
+    include_once '../../models/Subject_Assignment.php';
 
     // Instantiate a DB & connect
     $database = new Database();
     $db = $database->connect();
 
     // Instantiate model
-    $section = new Section($db);
+    $subject_assignment = new Subject_Assignment($db);
 
     // Get raw posted data
     $data = json_decode(file_get_contents("php://input"));
 
     if ( 
-        !isset($data->school_year_id) ||
-        !isset($data->advisor_id) ||
-        !isset($data->section_name) ||
-        !isset($data->strand) ||
-        !isset($data->track) ||
-        !isset($data->grade) 
+        !isset($data->section_id) ||
+        !isset($data->subject_id) ||
+        !isset($data->teacher_id) ||
+        !isset($data->school_year_id) 
     ){
         echo json_encode( array("result" => 0, "message" => "incomplete data") );
         return;
     }
 
-    // Update section
-    $section->school_year_id = $data->school_year_id;
-    $section->advisor_id = $data->advisor_id;
-    $section->section_name = $data->section_name;
-    $section->strand = $data->strand;
-    $section->track = $data->track;
-    $section->grade = $data->grade;
+    // Update school
+    $subject_assignment->section_id = $data->section_id;
+    $subject_assignment->subject_id = $data->subject_id;
+    $subject_assignment->teacher_id = $data->teacher_id;
+    $subject_assignment->school_year_id = $data->school_year_id;
 
-    if ($section->create()) {
+    if ($subject_assignment->create()) {
         echo json_encode(
-            array('result' => 1, 'message' => 'section create')
+            array('result' => 1, 'message' => 'subject assignment created')
         );
     } else {
         echo json_encode(
-            array('result' => 0, 'message' => 'failed to create section')
+            array('result' => 0, 'message' => 'failed to create subject assignment')
         );
     }
 

@@ -18,6 +18,7 @@
     $data = json_decode(file_get_contents("php://input"));
 
     if ( 
+        !isset($data->school_year_id) ||
         !isset($data->subject_name) ||
         !isset($data->semester) ||
         !isset($data->hours) 
@@ -26,7 +27,7 @@
         return;
     }
 
-    // Update school
+    $subject->school_year_id = $data->school_year_id;
     $subject->subject_name = $data->subject_name;
     $subject->semester = $data->semester;
     $subject->hours = $data->hours;
