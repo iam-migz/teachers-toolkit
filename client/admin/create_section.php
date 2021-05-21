@@ -91,12 +91,14 @@
     </style>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-    axios.get('http://localhost/teachers-toolkit-app/server/api/teacher/read.php')
+    const school_id = <?php echo $_SESSION['school_id']; ?>;
+    axios.get(`http://localhost/teachers-toolkit-app/server/api/teacher/read.php?school_id=${school_id}`)
         .then(res => {
             if (res.data.result == 0) {
                 return;
             }
             let teachers = res.data.data;
+            console.log(teachers);
             const select = document.querySelector("#advisor_id");
             for(teach of teachers) {
                 select.options[select.options.length] = new Option(teach.firstname+' '+teach.lastname, teach.id); 

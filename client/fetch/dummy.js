@@ -72,7 +72,7 @@
     "sy_end":""
 });
 
-// school record
+// subject assignment
 ({
     "section_id": "",
     "subject_id": "",
