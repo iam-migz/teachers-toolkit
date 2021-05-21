@@ -40,7 +40,7 @@
         margin-right: 10%;
     }
     .nav-item{
-        font-size: 18px;
+        font-size: 19px;
         margin-right: 5%;
     }
     @media screen and (max-width: 990px) {
@@ -62,22 +62,22 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
+            <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-graduation-cap"></i>Academic</a>
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-4">
                     <a class="dropdown-item" href="../create_subject.php">Create Subject</a>
                     <a class="dropdown-item" href="../create_section.php">Create Section</a>
                 </div>
-            </li>
-            <!-- <li class="nav-item dropdown">
+            </li> -->
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-plus-circle"></i>Create Account</a>
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-4">
-                    <a class="dropdown-item" href="./create_teacher.php">Teacher Account</a>
-                    <a class="dropdown-item" href="./create_student.php">Student Account</a>
+                    <a class="dropdown-item" href="../create_teacher.php"><img src="../../images/teacher.png" class="pr-3" style="height: 40px" alt="teacher">Teacher Account</a>
+                    <a class="dropdown-item" href="../create_student.php"><img src="../../images/student.png" class="pr-3" style="height: 40px" alt="student">Student Account</a>
                 </div>
-            </li> -->
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user"></i><?php echo $_SESSION['user_id']; ?></a>

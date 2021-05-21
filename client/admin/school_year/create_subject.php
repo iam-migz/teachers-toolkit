@@ -17,12 +17,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
-        body, html{ min-height: 100%; }
         body{
-            background-image: url(../images/sample.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            margin: 0;
             margin-bottom: 5%;
         }
         .register-container{
@@ -53,7 +48,7 @@
 </head>
 <body>
     <!--Main Header-->
-    <?php include '../partials/header.php'; ?>
+    <?php include 'header.php'; ?>
     
     <form>
         <div class="register-container">    
@@ -88,7 +83,7 @@
             <div id="error-msg"></div>
             <div class="modal-footer">
                 <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify">Create Subject</button>
-                <a class="btn btn-blue submit-modify ml-1" href="school_year/sy_home.php" role="button">Cancel</a>
+                <a class="btn btn-blue submit-modify ml-1" href="../school_year/sy_home.php" role="button">Cancel</a>
             </div>
         </div>
     </form>
