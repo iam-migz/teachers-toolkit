@@ -52,10 +52,10 @@
         </div>
         <hr>
         <h2>Administrative Tasks</h2>
-        <div class="row mt-4">
+        <div class="row mt-2">
             <div class="col-lg-4 mt-1 box_card"> 
                 <!--Card Narrow-->
-                <div class="card card-cascade narrower" style="max-width: 22rem;">
+                <div class="card card-cascade narrower mt-5">
                     <div class="view view-cascade overlay">
                         <img class="card-img-top" src="../images/school.jpg" alt="Card image cap">
                         <a><div class="mask rgba-white-slight"></div></a>
@@ -72,7 +72,7 @@
             
             <div class="col-lg-4 mt-1 box_card mb-5">
                 <!--Card Narrow-->
-                <div class="card card-cascade narrower" style="max-width: 22rem;">
+                <div class="card card-cascade narrower mt-5">
                     <div class="view view-cascade overlay">
                         <img class="card-img-top" src="../images/school2.jpg" alt="Card image cap">
                         <a><div class="mask rgba-white-slight"></div></a>
