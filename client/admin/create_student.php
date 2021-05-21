@@ -43,7 +43,7 @@
         }
         .submit-modify{
             font-size: 20px;
-            width: 100%;
+            width: 48%;
             padding: 11px;
             border-radius: 10px;
         }
@@ -136,7 +136,8 @@
             
             <div id="error-msg"></div>
             <div class="modal-footer">
-                <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify">Register</button>
+                <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify mr-1">Create</button>
+                <a class="btn btn-blue submit-modify ml-1" href="school_year/sy_home.php" role="button">Cancel</a>
             </div>
         </div>
     </form>

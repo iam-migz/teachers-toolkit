@@ -20,19 +20,8 @@
     <link href="../mdb/css/addons/datatables-select2.min.css" rel="stylesheet">
 
     <style>
-        body, html{ min-height: 100%; }
-        body{
-            background-image: url(../images/sample.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            margin: 0;
-            margin-bottom: 5%;
-        }
         .view-container{
             margin: 2% 2% 4% 2%;
-        }
-        .return{
-            width: 100%;
         }
     </style>
 </head>
@@ -63,7 +52,6 @@
                 <hr>
                 <!-- Tab panes -->
                 <div class="tab-content" id="pills-tabContent">
-                <a href="home.php" class="btn btn-blue btn-m m-0 return" role="button">Return</a>
                     <!--Teacher List-->
                     <div class="tab-pane fade show active" id="pills-teachList" role="tabpanel">
                         <div class="table-responsive-sm table-responsive-md table-responsive-lg">
@@ -100,7 +88,6 @@
                                         <th class="th-sm">Address</th>
                                         <th class="th-sm">Gender</th>
                                         <th class="th-sm">Gender</th>
-
                                     </tr>
                                 </thead>
                                 <tbody id="student_field">
@@ -157,6 +144,23 @@
                     selector: 'td:first-child'
                 }
             });
+
+            //teacher
+            $('#dt-teacher-checkbox_wrapper').find('label').each(function () {
+                $(this).parent().append($(this).children());
+            });
+            $('#dt-teacher-checkbox_wrapper .dataTables_filter').find('input').each(function () {
+                const $this = $(this);
+                $this.attr("placeholder", "Search..");
+                $this.removeClass('form-control-sm');
+                $this.addClass('w-75');
+            });
+            $('#dt-teacher-checkbox_wrapper .dataTables_length').addClass('d-flex flex-row');
+            $('#dt-teacher-checkbox_wrapper .dataTables_filter').addClass('md-form mt-3');
+            $('#dt-teacher-checkbox_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm mt-3');
+            $('#dt-teacher-checkbox_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
+            $('#dt-teacher-checkbox_wrapper .mdb-select').materialSelect();
+            $('#dt-teacher-checkbox_wrapper .dataTables_filter').find('label').remove();
         })
         .catch(err => console.log(err));
 
@@ -193,13 +197,8 @@
                     selector: 'td:first-child'
                 }
             });
-        })
-        .catch(err => console.log(err));
-
-
-        $(document).ready(function(){
+            
             //student
-
             $('#dt-student-checkbox_wrapper').find('label').each(function () {
                 $(this).parent().append($(this).children());
             });
@@ -215,26 +214,8 @@
             $('#dt-student-checkbox_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
             $('#dt-student-checkbox_wrapper .mdb-select').materialSelect();
             $('#dt-student-checkbox_wrapper .dataTables_filter').find('label').remove();
-
-            //teacher
-
-            $('#dt-teacher-checkbox_wrapper').find('label').each(function () {
-                $(this).parent().append($(this).children());
-            });
-            $('#dt-teacher-checkbox_wrapper .dataTables_filter').find('input').each(function () {
-                const $this = $(this);
-                $this.attr("placeholder", "Search");
-                $this.removeClass('form-control-sm');
-                $this.addClass('w-75');
-            });
-            $('#dt-teacher-checkbox_wrapper .dataTables_length').addClass('d-flex flex-row');
-            $('#dt-teacher-checkbox_wrapper .dataTables_filter').addClass('md-form mt-3');
-            $('#dt-teacher-checkbox_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm mt-3');
-            $('#dt-teacher-checkbox_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
-            $('#dt-teacher-checkbox_wrapper .mdb-select').materialSelect();
-            $('#dt-teacher-checkbox_wrapper .dataTables_filter').find('label').remove();
-        });
-
+        })
+        .catch(err => console.log(err));
  
     </script>
 </body>
