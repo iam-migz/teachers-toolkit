@@ -94,7 +94,7 @@
             <div id="error-msg"></div>
             <div class="modal-footer">
                 <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify mr-1">Create</button>
-                <a class="btn btn-blue submit-modify ml-1" href="school_year/sy_home.php" role="button">Cancel</a>
+                <a class="btn btn-blue submit-modify ml-1" href="home.php" role="button">Cancel</a>
             </div>
         </div>
     </form>

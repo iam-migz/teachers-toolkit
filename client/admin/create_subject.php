@@ -42,51 +42,12 @@
         }
         .submit-modify{
             font-size: 20px;
-            width: 100%;
+            width: 48%;
             padding: 11px;
             border-radius: 10px;
         }
-        .return-login{
-            font-size: 23px;
-            margin: 0 auto;
-            display: block;
-            text-align: center;
-        }
         #error-msg {
             color: red;
-        }
-        .radio_btns{
-            text-align: center;
-        }
-
-        .flex-cont {
-            margin-left: 20%;
-            margin-right: 20%;
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-            margin-bottom: 30px;
-        }
-        .acc-type{
-            height: 300px;
-            width: 47%;
-            background: #d5d5d5;
-            padding: 5px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .acc-type h4{
-            text-align: center;
-        }
-        #message {
-            color: grey;
-            font-size: 0.9em;
-        }
-        .acc-selected {
-            background: #4fccff;
-            transform: scale(1.01);
-            box-shadow: 1px 1px 1px grey; 
         }
     </style>
 </head>
@@ -127,6 +88,7 @@
             <div id="error-msg"></div>
             <div class="modal-footer">
                 <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify">Create Subject</button>
+                <a class="btn btn-blue submit-modify ml-1" href="school_year/sy_home.php" role="button">Cancel</a>
             </div>
         </div>
     </form>
