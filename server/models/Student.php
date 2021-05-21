@@ -82,8 +82,12 @@
         }
 
         public function read(){
-            $query = "SELECT * FROM students";
+            $query = "SELECT * FROM students WHERE school_id = :school_id AND continuing = 1 AND completed IS NULL";
             $stmt = $this->conn->prepare($query);
+
+            $this->school_id = htmlspecialchars(strip_tags($this->school_id));
+            $stmt->bindParam(':school_id', $this->school_id);
+
             $stmt->execute();
             return $stmt;
         }

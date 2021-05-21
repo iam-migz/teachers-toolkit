@@ -71,44 +71,16 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th class="th-sm">Full Name</th>
+                                        <th class="th-sm">id</th>
+                                        <th class="th-sm">Name</th>
                                         <th class="th-sm">Phone Number</th>
                                         <th class="th-sm">Email Address</th>
-                                        <th class="th-sm">Remove</th>
+                                        <th class="th-sm">Edit</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td>Reyes, Miguel Gomez</td>
-                                        <td>09263281762</td>
-                                        <td>miguel123@gmail.com</td>
-                                        <td><button type="button" class="btn btn-red btn-sm m-0">Remove</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>Riller, Sam Hill</td>
-                                        <td>09334477545</td>
-                                        <td>same113@gmail.com</td>
-                                        <td><button type="button" class="btn btn-red btn-sm m-0">Remove</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>Foreign, Mill Lee</td>
-                                        <td>09992784325</td>
-                                        <td>foreign123@gmail.com</td>
-                                        <td><button type="button" class="btn btn-red btn-sm m-0">Remove</button></td>
-                                    </tr>
+                                <tbody id="teacher_field">
+                                <!-- data from db -->
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th></th>
-                                        <th>Full Name</th>
-                                        <th>Phone Number</th>
-                                        <th>Email Address</th>
-                                        <th>Remove</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -121,59 +93,19 @@
                                 <thead>
                                     <tr>
                                         <th></th>
+                                        <th class="th-sm">id</th>
+                                        <th class="th-sm">Name</th>
                                         <th class="th-sm">LRN</th>
-                                        <th class="th-sm">Full Name</th>
                                         <th class="th-sm">Email Address</th>
                                         <th class="th-sm">Address</th>
                                         <th class="th-sm">Gender</th>
-                                        <th class="th-sm">Age</th>
-                                        <th class="th-sm">Remove</th>
+                                        <th class="th-sm">Gender</th>
+
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td>1910</td>
-                                        <td>Reyes, Miguel Gomez</td>
-                                        <td>miguel123@gmail.com</td>
-                                        <td>Provine Barangay City</td>
-                                        <td>Male</td>
-                                        <td>20</td>
-                                        <td><button type="button" class="btn btn-red btn-sm m-0">Remove</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>2392</td>
-                                        <td>Mendoza, Dhony Sil</td>
-                                        <td>dhony123@gmail.com</td>
-                                        <td>Provine Barangay City</td>
-                                        <td>Male</td>
-                                        <td>21</td>
-                                        <td><button type="button" class="btn btn-red btn-sm m-0">Remove</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>1888</td>
-                                        <td>Cruz, Stacy Lim</td>
-                                        <td>stacy009@gmail.com</td>
-                                        <td>Provine Barangay City</td>
-                                        <td>Female</td>
-                                        <td>19</td>
-                                        <td><button type="button" class="btn btn-red btn-sm m-0">Remove</button></td>
-                                    </tr>
+                                <tbody id="student_field">
+                                <!-- data from db -->
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th></th>
-                                        <th>LRN</th>
-                                        <th>Full Name</th>
-                                        <th>Email Address</th>
-                                        <th>Address</th>
-                                        <th>Gender</th>
-                                        <th>Age</th>
-                                        <th>Remove</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -188,10 +120,62 @@
     <script type="text/javascript" src="../mdb/js/addons/datatables2.min.js"></script>
     <!-- DataTables Select JS -->
     <script src="../mdb/js/addons/datatables-select2.min.js" type="text/javascript"></script>
-    
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function(){
-            //Teacher
+
+    const school_id = <?php echo $_SESSION['school_id']; ?>;
+    
+    axios.get(`http://localhost/teachers-toolkit-app/server/api/teacher/read.php?school_id=${school_id}`)
+        .then(res => {
+            const teacher = res.data.data;
+            console.log(teacher);
+            const insert_to = document.querySelector("#teacher_field");
+            teacher.forEach(teach => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td></td>
+                    <td>${teach.id}</td>
+                    <td>${teach.firstname} ${teach.middlename} ${teach.lastname}</td>
+                    <td>${teach.phone_no}</td>
+                    <td>${teach.email}</td>
+                    <td><button type="button" class="btn btn-success btn-sm m-0">Edit</button></td>
+                `;
+                insert_to.appendChild(tr);
+            });
+            $('#dt-teacher-checkbox').dataTable({
+                columnDefs: [{
+                    orderable: false,
+                    className: 'select-checkbox select-checkbox-all',
+                    targets: 0
+                }],
+                select: {
+                    style: 'teacher',
+                    selector: 'td:first-child'
+                }
+            });
+        })
+        .catch(err => console.log(err));
+
+    axios.get(`http://localhost/teachers-toolkit-app/server/api/student/read.php?school_id=${school_id}`)
+        .then(res => {
+            const students = res.data.data;
+            console.log('students', students);
+            const insert_to = document.querySelector("#student_field");
+            students.forEach(stud => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                        <td></td>
+                        <td>${stud.user_id}</td>
+                        <td>${stud.firstname} ${stud.middlename} ${stud.lastname}</td>
+                        <td>7878</td>
+                        <td>${stud.email}</td>
+                        <td>${stud.barangay}, ${stud.city}, ${stud.province}</td>
+                        <td>${stud.gender}</td>
+                        <td><button type="button" class="btn btn-success btn-sm m-0">Edit</button></td>
+                `;
+                insert_to.appendChild(tr);
+            });
             $('#dt-student-checkbox').dataTable({
                 columnDefs: [{
                     orderable: false,
@@ -203,6 +187,13 @@
                     selector: 'td:first-child'
                 }
             });
+        })
+        .catch(err => console.log(err));
+
+
+        $(document).ready(function(){
+            //student
+
             $('#dt-student-checkbox_wrapper').find('label').each(function () {
                 $(this).parent().append($(this).children());
             });
@@ -219,18 +210,8 @@
             $('#dt-student-checkbox_wrapper .mdb-select').materialSelect();
             $('#dt-student-checkbox_wrapper .dataTables_filter').find('label').remove();
 
-            //Student
-            $('#dt-teacher-checkbox').dataTable({
-                columnDefs: [{
-                    orderable: false,
-                    className: 'select-checkbox select-checkbox-all',
-                    targets: 0
-                }],
-                select: {
-                    style: 'teacher',
-                    selector: 'td:first-child'
-                }
-            });
+            //teacher
+
             $('#dt-teacher-checkbox_wrapper').find('label').each(function () {
                 $(this).parent().append($(this).children());
             });
@@ -247,6 +228,8 @@
             $('#dt-teacher-checkbox_wrapper .mdb-select').materialSelect();
             $('#dt-teacher-checkbox_wrapper .dataTables_filter').find('label').remove();
         });
+
+ 
     </script>
 </body>
 </html>

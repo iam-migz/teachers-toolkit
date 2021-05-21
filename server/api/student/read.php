@@ -12,6 +12,14 @@
     // Instantiate object
     $student = new Student($db);
 
+    if ( !isset($_GET['school_id']) ){
+        echo json_encode(
+            array('result' => 0, 'message' => 'missing id')
+        );
+        return;
+    }
+
+    $student->school_id = $_GET['school_id'];
     $result = $student->read();
     $num = $result->rowCount();
 
@@ -25,7 +33,14 @@
                 'user_id' =>  $user_id,
                 'firstname' => $firstname,
                 'lastname' => $lastname,
-                'middlename' => $middlename
+                'middlename' => $middlename,
+                'email' => $email,
+                'province' => $province,
+                'city' => $city,
+                'barangay' => $barangay,
+                'gender' => $gender,
+                'LRN' => $LRN,
+                'birthdate' => $birthdate,
             );
             array_push($students_arr['data'], $student_item);
         }

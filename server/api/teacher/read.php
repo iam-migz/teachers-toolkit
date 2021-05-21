@@ -12,6 +12,15 @@
     // Instantiate object
     $teacher = new Teacher($db);
 
+    if ( !isset($_GET['school_id']) ){
+        echo json_encode(
+            array('result' => 0, 'message' => 'missing id')
+        );
+        return;
+    }
+
+
+    $teacher->school_id = $_GET['school_id'];
     $result = $teacher->read();
     $num = $result->rowCount();
 
@@ -25,7 +34,9 @@
                 'id' =>  $id,
                 'firstname' => $firstname,
                 'lastname' => $lastname,
-                'middlename' => $middlename
+                'middlename' => $middlename,
+                'email' => $email,
+                'phone_no' => $phone_no
             );
             array_push($teachers_arr['data'], $teacher_item);
         }
