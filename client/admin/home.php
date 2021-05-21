@@ -50,63 +50,8 @@
         </div>
         <hr>
         <h2>School Year Lists</h2>
-        <div class="row mt-4">
-            <div class="col-md-6 mb-4"> 
-                <div class="card">
-                    <div class="card-image" style="background-image: url(../images/school_year.png); background-repeat: no-repeat; background-size: cover;">
-                        <a href="#">
-                            <div class="text-white d-flex h-100 mask aqua-gradient-rgba">
-                                <div class="first-content align p-3">
-                                    <h3 class="card-title" style="font-weight: 400">Academic Year</h3>
-                                    <p class="lead mb-0">August 2020 - May 2021</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div> 
-            <div class="col-md-6 mb-4"> 
-                <div class="card">
-                    <div class="card-image" style="background-image: url(../images/school_year.png); background-repeat: no-repeat; background-size: cover;">
-                        <a href="#">
-                            <div class="text-white d-flex h-100 mask aqua-gradient-rgba">
-                                <div class="first-content align p-3">
-                                    <h3 class="card-title" style="font-weight: 400">Academic Year</h3>
-                                    <p class="lead mb-0">August 2021 - May 2022</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>  
-            <div class="col-md-6 mb-4"> 
-                <div class="card">
-                    <div class="card-image" style="background-image: url(../images/school_year.png); background-repeat: no-repeat; background-size: cover;">
-                        <a href="#">
-                            <div class="text-white d-flex h-100 mask aqua-gradient-rgba">
-                                <div class="first-content align p-3">
-                                    <h3 class="card-title" style="font-weight: 400">Academic Year</h3>
-                                    <p class="lead mb-0">August 2022 - May 2023</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div> 
-            <div class="col-md-6 mb-4"> 
-                <div class="card">
-                    <div class="card-image" style="background-image: url(../images/school_year.png); background-repeat: no-repeat; background-size: cover;">
-                        <a href="#">
-                            <div class="text-white d-flex h-100 mask aqua-gradient-rgba">
-                                <div class="first-content align p-3">
-                                    <h3 class="card-title" style="font-weight: 400">Academic Year</h3>
-                                    <p class="lead mb-0">August 2023 - May 2024</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div> 
+        <div class="row mt-4" id="sy_list">
+            <!-- data from db -->
         </div>
         <hr>
         <h2>Administrative Tasks</h2>
@@ -146,6 +91,46 @@
             </div> 
         </div>
     </div>
-        
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const school_id = <?php echo $_SESSION['school_id']; ?>;
+    axios.get(`http://localhost/teachers-toolkit-app/server/api/school_year/read.php?school_id=${school_id}`)
+        .then(res => {
+            if (res.data.result == 0) {
+                return;
+            }
+            const sy = res.data.data;
+            const sy_list = document.querySelector('#sy_list');
+            console.log(sy);
+            sy.forEach(elem => {
+                const date_start = new Date(elem.sy_start);
+                const date_end = new Date(elem.sy_end);
+
+                const month_start = date_start.toLocaleString('default', { month: 'long' });
+                const month_end = date_end.toLocaleString('default', { month: 'long' });
+
+                const div = document.createElement('div');
+                div.classList.add('col-md-6')
+                div.classList.add('mb-4')
+                div.innerHTML = `
+                    <div class="card">
+                        <div class="card-image" style="background-image: url('../images/school_year.png'); background-repeat: no-repeat; background-size: cover;">
+                            <a href="./school_year/sy_home.php?sy_id=${elem.id}">
+                                <div class="text-white d-flex h-100 mask aqua-gradient-rgba">
+                                    <div class="first-content align p-3">
+                                        <h3 class="card-title" style="font-weight: 400">Academic Year</h3>
+                                        <p class="lead mb-0">${month_start} ${date_start.getFullYear()} - ${month_end} ${date_end.getFullYear()}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                sy_list.appendChild(div);
+            });
+
+        })
+        .catch(err => console.log(err));
+</script>
 </body>
 </html>

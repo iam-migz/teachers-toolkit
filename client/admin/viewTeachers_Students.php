@@ -128,6 +128,9 @@
     
     axios.get(`http://localhost/teachers-toolkit-app/server/api/teacher/read.php?school_id=${school_id}`)
         .then(res => {
+            if (res.data.result == 0) {
+                return;
+            }
             const teacher = res.data.data;
             console.log(teacher);
             const insert_to = document.querySelector("#teacher_field");
@@ -159,6 +162,9 @@
 
     axios.get(`http://localhost/teachers-toolkit-app/server/api/student/read.php?school_id=${school_id}`)
         .then(res => {
+            if (res.data.result == 0) {
+                return;
+            }
             const students = res.data.data;
             console.log('students', students);
             const insert_to = document.querySelector("#student_field");

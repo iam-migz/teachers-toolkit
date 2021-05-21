@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2021 at 05:19 AM
+-- Generation Time: May 21, 2021 at 04:06 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -57,13 +57,6 @@ CREATE TABLE `schools` (
   `school_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `schools`
---
-
-INSERT INTO `schools` (`id`, `barangay`, `city`, `province`, `country`, `postal_code`, `principal_fn`, `principal_ln`, `principal_mn`, `school_name`) VALUES
-(29, 'nasipit', 'cebu', 'cebu city', 'philippines', 6315, 'loreta', 'garcia', 'ambot', 'university of san carlos');
-
 -- --------------------------------------------------------
 
 --
@@ -102,7 +95,7 @@ CREATE TABLE `sections` (
   `advisor_id` int(11) DEFAULT NULL,
   `section_name` varchar(100) NOT NULL,
   `strand` varchar(100) NOT NULL,
-  `track` varchar(50) NOT NULL,
+  `track` varchar(100) NOT NULL,
   `grade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -116,6 +109,9 @@ CREATE TABLE `students` (
   `id` int(5) NOT NULL,
   `user_id` int(11) NOT NULL,
   `section_id` int(5) DEFAULT NULL,
+  `school_id` int(11) NOT NULL,
+  `continuing` tinyint(4) NOT NULL DEFAULT 1,
+  `completed` date DEFAULT NULL,
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `middlename` varchar(100) NOT NULL,
@@ -150,6 +146,8 @@ CREATE TABLE `subjects` (
 CREATE TABLE `teachers` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `school_id` int(11) NOT NULL,
+  `continuing` tinyint(4) NOT NULL DEFAULT 1,
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `middlename` varchar(100) NOT NULL,
@@ -244,13 +242,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `schools`
 --
 ALTER TABLE `schools`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `school_records`
@@ -262,37 +260,37 @@ ALTER TABLE `school_records`
 -- AUTO_INCREMENT for table `school_years`
 --
 ALTER TABLE `school_years`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1046;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1083;
 
 --
 -- Constraints for dumped tables

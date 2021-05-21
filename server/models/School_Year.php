@@ -37,5 +37,13 @@
             return false;
         }
 
+        public function read(){
+            $query = "SELECT * FROM school_years WHERE school_id = :school_id";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(":school_id", $this->school_id);
+            $stmt->execute();
+            return $stmt;
+        }
+
 
     }

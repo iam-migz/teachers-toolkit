@@ -93,6 +93,9 @@
 <script>
     axios.get('http://localhost/teachers-toolkit-app/server/api/teacher/read.php')
         .then(res => {
+            if (res.data.result == 0) {
+                return;
+            }
             let teachers = res.data.data;
             const select = document.querySelector("#advisor_id");
             for(teach of teachers) {

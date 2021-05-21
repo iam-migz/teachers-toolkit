@@ -3,14 +3,14 @@
     header('Content-Type: application/json');
 
     include_once '../../config/Database.php';
-    include_once '../../models/Teacher.php';
+    include_once '../../models/School_Year.php';
 
     // Instantiate a DB & connect
     $database = new Database();
     $db = $database->connect();
 
     // Instantiate object
-    $teacher = new Teacher($db);
+    $school_year = new School_Year($db);
 
     if ( !isset($_GET['school_id']) ){
         echo json_encode(
@@ -20,27 +20,24 @@
     }
 
 
-    $teacher->school_id = $_GET['school_id'];
-    $result = $teacher->read();
+    $school_year->school_id = $_GET['school_id'];
+    $result = $school_year->read();
     $num = $result->rowCount();
 
     if ($num > 0) {
-        $teachers_arr = array();
-        $teachers_arr['data'] = array();
+        $sy_arr = array();
+        $sy_arr['data'] = array();
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
-            $teacher_item = array(
+            $sy_item = array(
                 'id' =>  $id,
-                'firstname' => $firstname,
-                'lastname' => $lastname,
-                'middlename' => $middlename,
-                'email' => $email,
-                'phone_no' => $phone_no
+                'sy_start' => $sy_start,
+                'sy_end' => $sy_end
             );
-            array_push($teachers_arr['data'], $teacher_item);
+            array_push($sy_arr['data'], $sy_item);
         }
-        echo json_encode($teachers_arr);
+        echo json_encode($sy_arr);
     } else {
         echo json_encode(
             array('result' => 0, 'message' => 'No teachers Found')

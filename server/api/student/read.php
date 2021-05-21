@@ -47,6 +47,6 @@
         echo json_encode($students_arr);
     } else {
         echo json_encode(
-            array('message' => 'No students Found')
+            array('result' => 0, 'message' => 'No students Found')
         );
     } 
