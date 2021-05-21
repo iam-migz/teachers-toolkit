@@ -20,20 +20,16 @@
     <link href="../mdb/css/addons/datatables-select2.min.css" rel="stylesheet">
 
     <style>
-        .view-container{
-            margin: 2% 2% 4% 2%;
-        }
     </style>
 </head>
 <body>
     <!--Main Header-->
     <?php include '../partials/header.php'; ?>
 
-    <div class="view-container">
+    <div class="container mt-5">
         <div class="card">
-            <div class="card-body">
                 <!-- Nav Pills -->
-                <ul class="nav md-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+                <ul class="nav md-pills nav-justified" id="pills-tab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="pills-teachList-tab" data-toggle="pill" href="#pills-teachList" role="tab" aria-controls="pills-teachList" aria-selected="false">
                         <span class="nav-link_text">
@@ -51,7 +47,7 @@
                 <!--End of Nav Pills-->
                 <hr>
                 <!-- Tab panes -->
-                <div class="tab-content" id="pills-tabContent">
+                <div class="pl-3 pr-3 pb-0 pt-0 tab-content" id="pills-tabContent">
                     <!--Teacher List-->
                     <div class="tab-pane fade show active" id="pills-teachList" role="tabpanel">
                         <div class="table-responsive-sm table-responsive-md table-responsive-lg">
@@ -59,7 +55,7 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th class="th-sm">id</th>
+                                        <th class="th-sm">Teacher Id</th>
                                         <th class="th-sm">Name</th>
                                         <th class="th-sm">Phone Number</th>
                                         <th class="th-sm">Email Address</th>
@@ -81,13 +77,13 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th class="th-sm">id</th>
+                                        <th class="th-sm">Student ID</th>
                                         <th class="th-sm">Name</th>
                                         <th class="th-sm">LRN</th>
                                         <th class="th-sm">Email Address</th>
                                         <th class="th-sm">Address</th>
                                         <th class="th-sm">Gender</th>
-                                        <th class="th-sm">Gender</th>
+                                        <th class="th-sm">Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody id="student_field">
@@ -99,7 +95,6 @@
                     <!--End of Student Lists-->
 
                 </div> <!--End of Tab Panels-->
-            </div>
         </div>
     </div>
 

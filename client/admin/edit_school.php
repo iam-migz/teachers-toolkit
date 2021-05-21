@@ -46,18 +46,18 @@
             <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Edit School Information</h3>
             <div class="card-body">
                 <div class="table-responsive-sm table-responsive-md table-responsive-lg">
-                    <table id="paginationFirstLast" class="table table-striped" cellspacing="0" width="100%">
+                    <table id="paginationFirstLast" class="table table-striped table-bordered" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th class="th-sm">school name</th>
-                                <th class="th-sm">barangay</th>
-                                <th class="th-sm">city</th>
-                                <th class="th-sm">province</th>
-                                <th class="th-sm">country</th>
-                                <th class="th-sm">postal code</th>
-                                <th class="th-sm">principal firstname</th>
-                                <th class="th-sm">principal middlename</th>
-                                <th class="th-sm">principal lastname</th>
+                                <th class="th-sm">School name</th>
+                                <th class="th-sm">Barangay</th>
+                                <th class="th-sm">City</th>
+                                <th class="th-sm">Province</th>
+                                <th class="th-sm">Country</th>
+                                <th class="th-sm">Postal Code</th>
+                                <th class="th-sm">Principal First Name</th>
+                                <th class="th-sm">Principal Middle Name</th>
+                                <th class="th-sm">Principal Last Name</th>
                                 <th class="th-sm">Save</th>
                             </tr>
                         </thead>

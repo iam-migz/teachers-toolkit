@@ -23,9 +23,6 @@
         .btn_proceed{
             width: 97%;
         }
-        .box_card{
-            margin-bottom: 5%;
-        }
     </style>
 </head>
 <body>
@@ -34,7 +31,7 @@
     <div class="container">
         <h2>Account Catalog</h2>
         <div class="row mt-4">
-            <div class="col-lg-4 mt-1 box_card"> 
+            <div class="col-lg-4 mt-1 box_card mb-4"> 
                 <div class="card card-cascade wider">
                     <div class="view view-cascade gradient-card-header blue-gradient">
                         <h2 class="card-header-title text-center">Account Management</h2>
@@ -73,7 +70,7 @@
                 <!--Card Narrow End-->
             </div> 
             
-            <div class="col-lg-4 mt-1 box_card">
+            <div class="col-lg-4 mt-1 box_card mb-5">
                 <!--Card Narrow-->
                 <div class="card card-cascade narrower" style="max-width: 22rem;">
                     <div class="view view-cascade overlay">

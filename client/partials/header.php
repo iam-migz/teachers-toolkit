@@ -34,12 +34,13 @@
     .navbar-brand{
         margin-left: 10%;
         font-weight: 400;
+        font-size: 23px;
     }
     .navbar-collapse{
         margin-right: 10%;
     }
     .nav-item{
-        font-size: 18px;
+        font-size: 19px;
         margin-right: 5%;
     }
     @media screen and (max-width: 990px) {

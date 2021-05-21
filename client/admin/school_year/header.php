@@ -34,6 +34,7 @@
     .navbar-brand{
         margin-left: 10%;
         font-weight: 400;
+        font-size: 23px;
     }
     .navbar-collapse{
         margin-right: 10%;

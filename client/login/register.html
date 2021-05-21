@@ -26,12 +26,11 @@
         color: red;
     }
     .title{
-        margin: 50px auto;
+        margin: 20px auto;
         text-align: center;
     }
     .title img{
-        width: 300px;
-        height: 100px;
+        width: 560px;
     }
     input[type=text], input[type=email], input[type=password]{
         width: 100%;
@@ -44,10 +43,10 @@
     .container  {
         background: white;
         width: 700px;
-        height: 500px;
+        height: 420px;
         padding: 10px;
         position: relative;
-        border-radius: 10px;
+        border-radius: 5px;
         box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 20%);
         overflow: hidden;
     }
@@ -86,10 +85,9 @@
     #progress {
         position: absolute;
         height: 100%;
-        width: 200px;
+        width: 50%;
         background: linear-gradient(to right, #ff105f, #ffad06);
-        transition: 0.5s;
-        
+        transition: 0.5s;   
     }
     #progress::after {
         content: '';
@@ -143,7 +141,7 @@
                 <input id="password" class="form-control" type="password" placeholder="Enter Password" name="pword" required>
             </div>
             <div id="error-msg"></div>
-            <button type="button" class="btn btn-primary" id="next">Next</button>
+            <button type="button" class="btn btn-primary " id="next">Next</button>
         </form>
 
         <form id="form2">
