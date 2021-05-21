@@ -15,11 +15,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- MDBootstrap Datatables  -->
-    <link href="../mdb/css/addons/datatables2.min.css" rel="stylesheet">
-    <!-- DataTables Select CSS -->
-    <link href="../mdb/css/addons/datatables-select2.min.css" rel="stylesheet">
+    <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
 
     <style>
+        table.dataTable thead .sorting:after,
+        table.dataTable thead .sorting:before,
+        table.dataTable thead .sorting_asc:after,
+        table.dataTable thead .sorting_asc:before,
+        table.dataTable thead .sorting_asc_disabled:after,
+        table.dataTable thead .sorting_asc_disabled:before,
+        table.dataTable thead .sorting_desc:after,
+        table.dataTable thead .sorting_desc:before,
+        table.dataTable thead .sorting_desc_disabled:after,
+        table.dataTable thead .sorting_desc_disabled:before {
+        bottom: .5em;
+        }
     </style>
 </head>
 <body>
@@ -51,10 +61,9 @@
                     <!--Teacher List-->
                     <div class="tab-pane fade show active" id="pills-teachList" role="tabpanel">
                         <div class="table-responsive-sm table-responsive-md table-responsive-lg">
-                            <table id="dt-teacher-checkbox" class="table table-sm" cellspacing="0" width="100%">
+                            <table id="teacher_table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th></th>
                                         <th class="th-sm">Teacher Id</th>
                                         <th class="th-sm">Name</th>
                                         <th class="th-sm">Phone Number</th>
@@ -73,10 +82,9 @@
                     <!--Student List-->
                     <div class="tab-pane fade" id="pills-studList" role="tabpanel" aria-labelledby="pills-studList-tab">
                         <div class="table-responsive-sm table-responsive-md">
-                            <table id="dt-student-checkbox" class="table table-sm" cellspacing="0" width="100%">
+                            <table id="student_table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th></th>
                                         <th class="th-sm">Student ID</th>
                                         <th class="th-sm">Name</th>
                                         <th class="th-sm">LRN</th>
@@ -98,12 +106,10 @@
         </div>
     </div>
 
-    <!-- MDBootstrap Datatables  -->
-    <script type="text/javascript" src="../mdb/js/addons/datatables2.min.js"></script>
-    <!-- DataTables Select JS -->
-    <script src="../mdb/js/addons/datatables-select2.min.js" type="text/javascript"></script>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- MDBootstrap Datatables  -->
+    <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
     <script type="text/javascript">
 
     const school_id = <?php echo $_SESSION['school_id']; ?>;
@@ -119,43 +125,32 @@
             teacher.forEach(teach => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td></td>
                     <td>${teach.id}</td>
                     <td>${teach.firstname} ${teach.middlename} ${teach.lastname}</td>
                     <td>${teach.phone_no}</td>
                     <td>${teach.email}</td>
-                    <td><button type="button" class="btn btn-success btn-sm m-0">Edit</button></td>
+                    <td><a href="edit_teacher.php?teach_id=${teach.id}" class="btn btn-green btn-sm m-0" style="width: 100%;" role="button">Edit</a></td>
                 `;
                 insert_to.appendChild(tr);
             });
-            $('#dt-teacher-checkbox').dataTable({
-                columnDefs: [{
-                    orderable: false,
-                    className: 'select-checkbox select-checkbox-all',
-                    targets: 0
-                }],
-                select: {
-                    style: 'teacher',
-                    selector: 'td:first-child'
-                }
-            });
+            $('#teacher_table').DataTable();
+            $('.dataTables_length').addClass('bs-select');
 
             //teacher
-            $('#dt-teacher-checkbox_wrapper').find('label').each(function () {
+            $('#teacher_table_wrapper').find('label').each(function () {
                 $(this).parent().append($(this).children());
             });
-            $('#dt-teacher-checkbox_wrapper .dataTables_filter').find('input').each(function () {
+            $('#teacher_table_wrapper .dataTables_filter').find('input').each(function () {
                 const $this = $(this);
                 $this.attr("placeholder", "Search..");
                 $this.removeClass('form-control-sm');
-                $this.addClass('w-75');
             });
-            $('#dt-teacher-checkbox_wrapper .dataTables_length').addClass('d-flex flex-row');
-            $('#dt-teacher-checkbox_wrapper .dataTables_filter').addClass('md-form mt-3');
-            $('#dt-teacher-checkbox_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
-            $('#dt-teacher-checkbox_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
-            $('#dt-teacher-checkbox_wrapper .mdb-select').materialSelect();
-            $('#dt-teacher-checkbox_wrapper .dataTables_filter').find('label').remove();
+            $('#teacher_table_wrapper .dataTables_length').addClass('d-flex flex-row');
+            $('#teacher_table_wrapper .dataTables_filter').addClass('md-form mt-3');
+            $('#teacher_table_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
+            $('#teacher_table_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
+            $('#teacher_table_wrapper .mdb-select').materialSelect();
+            $('#teacher_table_wrapper .dataTables_filter').find('label').remove();
         })
         .catch(err => console.log(err));
 
@@ -170,45 +165,34 @@
             students.forEach(stud => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                        <td></td>
                         <td>${stud.user_id}</td>
                         <td>${stud.firstname} ${stud.middlename} ${stud.lastname}</td>
                         <td>7878</td>
                         <td>${stud.email}</td>
                         <td>${stud.barangay}, ${stud.city}, ${stud.province}</td>
                         <td>${stud.gender}</td>
-                        <td><button type="button" class="btn btn-success btn-sm m-0">Edit</button></td>
+                        <td><a href="edit_student.php?stud_id=${stud.user_id}" class="btn btn-green btn-sm m-0" style="width: 100%;" role="button">Edit</a></td>
                 `;
                 insert_to.appendChild(tr);
             });
-            $('#dt-student-checkbox').dataTable({
-                columnDefs: [{
-                    orderable: false,
-                    className: 'select-checkbox select-checkbox-all',
-                    targets: 0
-                }],
-                select: {
-                    style: 'student',
-                    selector: 'td:first-child'
-                }
-            });
+            $('#student_table').DataTable();
+            $('.dataTables_length').addClass('bs-select');
             
             //student
-            $('#dt-student-checkbox_wrapper').find('label').each(function () {
+            $('#student_table_wrapper').find('label').each(function () {
                 $(this).parent().append($(this).children());
             });
-            $('#dt-student-checkbox_wrapper .dataTables_filter').find('input').each(function () {
+            $('#student_table_wrapper .dataTables_filter').find('input').each(function () {
                 const $this = $(this);
                 $this.attr("placeholder", "Search..");
                 $this.removeClass('form-control-sm');
-                $this.addClass('w-75');
             });
-            $('#dt-student-checkbox_wrapper .dataTables_length').addClass('d-flex flex-row');
-            $('#dt-student-checkbox_wrapper .dataTables_filter').addClass('md-form mt-3');
-            $('#dt-student-checkbox_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
-            $('#dt-student-checkbox_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
-            $('#dt-student-checkbox_wrapper .mdb-select').materialSelect();
-            $('#dt-student-checkbox_wrapper .dataTables_filter').find('label').remove();
+            $('#student_table_wrapper .dataTables_length').addClass('d-flex flex-row');
+            $('#student_table_wrapper .dataTables_filter').addClass('md-form mt-3');
+            $('#student_table_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
+            $('#student_table_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
+            $('#student_table_wrapper .mdb-select').materialSelect();
+            $('#student_table_wrapper .dataTables_filter').find('label').remove();
         })
         .catch(err => console.log(err));
  

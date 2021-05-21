@@ -37,7 +37,7 @@
                         <hr>
                         <p><i class="fas fa-quote-left"></i> Refers to an area of knowledge that is studied in school 
                         that called a learning tool or the criteria by which we learn.</p>
-                        <a type="button" id="create_subject" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                        <a type="button" href="create_subject.php" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                         <hr>
                         <p><i class="fas fa-quote-left"></i> Any of the more or less distinct parts into 
                         which something is or may be divided or from which it is made up.</p>
-                        <a type="button" id="create_section" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                        <a type="button" href="create_section.php" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                         <hr>
                         <p><i class="fas fa-quote-left"></i> Assign a time for a job, you decide it will be done during that time. 
                         Appoint a post to make to teachers hold their roles.</p>
-                        <a type="button" id="assign_subject" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                        <a type="button" href="assign_subject.php" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -96,28 +96,7 @@
 
     </div>
 
-<script type="text/javascript">
-
-    // get sy_id from query params
-    const urlParams = new URLSearchParams(window.location.search);
-    const sy_id = urlParams.get('sy_id');
-    console.log('sy_id :>> ', sy_id);
-
-    const create_section = document.querySelector("#create_section");
-    const create_subject = document.querySelector("#create_subject");
-    const assign_subject = document.querySelector("#assign_subject");
-    create_section.addEventListener("click", (x) => {
-        x.preventDefault();
-        location.href = `./create_section.php?sy_id=${sy_id}`;
-    })
-    create_subject.addEventListener("click", (x) => {
-        x.preventDefault();
-        location.href = `./create_subject.php?sy_id=${sy_id}`;
-    })
-    assign_subject.addEventListener("click", (x) => {
-        x.preventDefault();
-        location.href = `./assign_subject.php?sy_id=${sy_id}`;
-    })
-</script>
+    <script type="text/javascript">
+    </script>
 </body>
 </html>

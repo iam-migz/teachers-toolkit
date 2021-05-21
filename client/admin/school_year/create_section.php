@@ -47,8 +47,7 @@
     </style>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-    const school_id = <?php echo $_SESSION['school_id']; ?>;
-    axios.get(`http://localhost/teachers-toolkit-app/server/api/teacher/read.php?school_id=${school_id}`)
+    axios.get('http://localhost/teachers-toolkit-app/server/api/teacher/read.php')
         .then(res => {
             if (res.data.result == 0) {
                 return;
@@ -166,9 +165,6 @@
             $('.mdb-select').materialSelect();
         });
 
-
-
-
         document.querySelector("#submit").addEventListener("click", async (x) => {
             x.preventDefault();
 
@@ -183,16 +179,11 @@
                 errDiv.innerHTML = "Please Complete the form";
                 return;
             }
-            // get sy_id from query params
-            const urlParams = new URLSearchParams(window.location.search);
-            const sy_id = urlParams.get('sy_id');
-            console.log('sy_id :>> ', sy_id);
-                
-            try {
 
+            try {
                 console.log({advisor_id, section_name, strand, track, grade});
                 let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/section/create.php',{
-                    'school_year_id': sy_id, advisor_id, section_name, strand, track, grade
+                    advisor_id, section_name, strand, track, grade
                 });
                 let data = res.data;
                 if (res.data.result) {

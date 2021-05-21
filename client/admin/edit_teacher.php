@@ -14,7 +14,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
     <style>
         body{
             margin-bottom: 5%;
@@ -23,7 +22,7 @@
             padding-top: 10%; 
             background-color: white;
             margin: 2% auto;
-            width: 900px;
+            width: 66%;
             border: 1px solid #ccc;
             border-radius: 4px;
             padding: 10px 20px;
@@ -48,46 +47,55 @@
 </head>
 <body>
     <!--Main Header-->
-    <?php include 'header.php'; ?>
-
+    <?php include '../partials/header.php'; ?>
+    
     <form>
         <div class="register-container">    
+
             <div class="register-title">
-                <h1 class="display-4">Assign Subject</h1>
+                <h1 class="display-4">Update Teacher</h1>
+            </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        <input id="firstname" class="form-control" type="text" placeholder="Update First Name" name="firstname" required>
+                    </div>
+                    <div class="col">
+                        <input id="middlename" class="form-control" type="text" placeholder="Update Middle Name" name="middlename" required>
+                    </div>
+                    <div class="col">
+                        <input id="lastname" class="form-control" type="text" placeholder="Update Last Name" name="lastname" required>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
-                <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Section.." id="section">
-                    <option value="Section Class" selected disabled>Section Class</option>
-                    <!-- data -->
-                </select>
-                <label class="mdb-main-label">Select Section</label>
+                <input class="form-control" type="email" placeholder="Update Email" name="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <input class="form-control" type="number" placeholder="Update Phone Number" name="phone_no" id="phone_no" required>
             </div>
             
             <div class="form-group">
-                <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Subject.." id="subject">
-                    <option value="School Subject" selected disabled>School Subject</option>
-                    <!-- data -->
-                </select>
-                <label class="mdb-main-label">Select Subject</label>
-            </div>
-            
-            <div class="form-group">
-                <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Teacher.." id="teacher">
-                    <option value="Subject Teacher" selected disabled>Subject Teacher</option>
-                    <!-- data -->
-                </select>
-                <label class="mdb-main-label">Select Teacher</label>
+                <label class="">Continuing Status:</label>
+                <div class="switch">
+                    <label class="text-center">
+                        Status: 0
+                        <input type="checkbox">
+                        <span class="lever"></span> 
+                        Status: 1
+                    </label>
+                </div>
             </div>
 
             <div id="error-msg"></div>
             <div class="modal-footer">
-                <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify">Assign</button>
-                <a class="btn btn-blue submit-modify ml-1" href="../school_year/sy_home.php" role="button">Cancel</a>
+                <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify mr-1">Update</button>
+                <a class="btn btn-blue submit-modify ml-1" href="viewTeachers_Students.php" role="button">Cancel</a>
             </div>
         </div>
     </form>
-
     <!-- TOAST -->
     <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute; top: 80px; right: 40px;">
         <div class="toast-header">
@@ -98,14 +106,12 @@
             </button>
         </div>
         <div class="toast-body">
-            Subject Successfully Assigned.
+            Teacher Account Successfully Updated.
         </div> 
     </div>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('.mdb-select').materialSelect();
-        });
 
     </script>
 </body>

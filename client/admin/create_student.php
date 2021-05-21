@@ -24,7 +24,7 @@
             padding-top: 10%; 
             background-color: white;
             margin: 2% auto;
-            width: 900px;
+            width: 66%;
             border: 1px solid #ccc;
             border-radius: 4px;
             padding: 10px 20px;
