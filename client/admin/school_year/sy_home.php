@@ -75,11 +75,26 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="col-lg-5 mt-4 mr-0 ml-0 box_card">
+                <h2 class="text-center">View Assigned Subjects</h2>
+                <div class="card testimonial-card">
+                    <div class="card-up aqua-gradient lighten-1"></div>
+                    <div class="avatar mx-auto white">
+                        <img src="../../images/view.png" class="rounded-circle" alt="woman avatar">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">View Designate Tasks</h4>
+                        <hr>
+                        <p><i class="fas fa-quote-left"></i> View a datatable to monitor assigned teachers in order to manage and organize advisors at the university.</p>
+                        <a type="button" href="view_assigned_sub.php" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     </div>
-    <!-- Card -->
 
 <script type="text/javascript">
 
