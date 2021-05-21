@@ -74,8 +74,8 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-plus-circle"></i>Create Account</a>
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-4">
-                    <a class="dropdown-item" href="../create_teacher.php">Teacher Account</a>
-                    <a class="dropdown-item" href="../create_student.php">Student Account</a>
+                    <a class="dropdown-item" href="../create_teacher.php"><img src="../../images/teacher.png" class="pr-3" style="height: 40px" alt="teacher">Teacher Account</a>
+                    <a class="dropdown-item" href="../create_student.php"><img src="../../images/student.png" class="pr-3" style="height: 40px" alt="student">Student Account</a>
                 </div>
             </li>
             <li class="nav-item dropdown">

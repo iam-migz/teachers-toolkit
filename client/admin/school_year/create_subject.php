@@ -31,7 +31,6 @@
         }
         .register-title{
             text-align: center;
-            margin-bottom: 30px;
         }
         .display-4{
             font-size: 40px;
@@ -49,43 +48,46 @@
 </head>
 <body>
     <!--Main Header-->
-    <?php include '../partials/header.php'; ?>
+    <?php include 'header.php'; ?>
     
     <form>
         <div class="register-container">    
-
             <div class="register-title">
-                <h1 class="display-4">Create Teacher</h1>
+                <h1 class="display-4">Create Subject</h1>
             </div>
             <div class="form-group">
-                <div class="form-row">
-                    <div class="col">
-                        <input id="firstname" class="form-control" type="text" placeholder="Enter First Name" name="firstname" required>
-                    </div>
-                    <div class="col">
-                        <input id="middlename" class="form-control" type="text" placeholder="Enter Middle Name" name="middlename" required>
-                    </div>
-                    <div class="col">
-                        <input id="lastname" class="form-control" type="text" placeholder="Enter Last Name" name="lastname" required>
-                    </div>
+                <div class="md-form">
+                    <input type="text" id="subject_name" name="subject_name" placeholder="Enter Subject Name" class="form-control">
                 </div>
             </div>
 
             <div class="form-group">
-                <input class="form-control" type="email" placeholder="Enter Email" name="email" id="email" required>
+                <select class="mdb-select md-form colorful-select dropdown-primary" id="semester">
+                    <option value="Course Semester" selected disabled>Course Semester</option>
+                    <option value="1st Semester">1st Semester</option>
+                    <option value="2nd Semester">2nd Semester</option>
+                </select>
+                <label class="mdb-main-label">Select Semester</label>
             </div>
 
             <div class="form-group">
-                <input class="form-control" type="number" placeholder="Enter Phone Number" name="phone_no" id="phone_no" required>
+                <label for="">Number of Hours:</label>
+                <div class="d-flex justify-content-center">
+                    <div class="w-75">
+                        <input type="range" class="custom-range" id="hours" min="1" max="80">
+                    </div>
+                    <span class="font-weight-bold text-primary ml-2 valueSpan2"></span>
+                </div>
             </div>
 
             <div id="error-msg"></div>
             <div class="modal-footer">
-                <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify mr-1">Create</button>
-                <a class="btn btn-blue submit-modify ml-1" href="home.php" role="button">Cancel</a>
+                <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify">Create Subject</button>
+                <a class="btn btn-blue submit-modify ml-1" href="../school_year/sy_home.php" role="button">Cancel</a>
             </div>
         </div>
     </form>
+
     <!-- TOAST -->
     <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute; top: 80px; right: 40px;">
         <div class="toast-header">
@@ -96,39 +98,49 @@
             </button>
         </div>
         <div class="toast-body">
-            Teacher Account Successfully Created.
+            Subject Successfully Created.
         </div> 
     </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
-
-     
-
-        $('.datepicker').datepicker({
-            inline: true
+        //Range
+        $(document).ready(function() {
+            const $valueSpan = $('.valueSpan2');
+            const $value = $('#hours');
+            $valueSpan.html($value.val());
+            $value.on('input change', () => {
+                $valueSpan.html($value.val());
+            });
         });
+        
+        //Select
+        $(document).ready(function() {
+            $('.mdb-select').materialSelect();
+        });
+        
+
 
         document.querySelector("#submit").addEventListener("click", async (x) => {
             x.preventDefault();
-            const school_id = <?php echo $_SESSION['school_id']; ?>;
-            const firstname = document.querySelector("#firstname").value;
-            const lastname = document.querySelector("#lastname").value;
-            const middlename = document.querySelector("#middlename").value;
-            const phone_no = document.querySelector("#phone_no").value;
-            const email = document.querySelector("#email").value;
+            const subject_name = document.querySelector("#subject_name").value;
+            const semester = document.querySelector("#semester").value;
+            const hours = document.querySelector("#hours").value;
+            const errDiv = document.querySelector("#error-msg");
 
+            if (subject_name == '' || semester == '' || hours == '') {
+                errDiv.innerHTML = "Please Complete the form";
+                return;
+            }
             try {
-                let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/user/create_teacher.php',{
-                    school_id, firstname, lastname, middlename, phone_no, email
+                let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/subject/create.php',{
+                    subject_name, semester, hours
                 });
                 let data = res.data;
                 if (res.data.result) {
-                    document.querySelector("#firstname").value = '';
-                    document.querySelector("#lastname").value = '';
-                    document.querySelector("#middlename").value = '';
-                    document.querySelector("#phone_no").value = '';
-                    document.querySelector("#email").value = '';
+                    document.querySelector("#subject_name").value = '';
+                    document.querySelector("#hours").value = '';
+                    errDiv.innerHTML = "";
                     var option = {
                         animation: true,
                         delay: 3500

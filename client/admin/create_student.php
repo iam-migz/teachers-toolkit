@@ -17,12 +17,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
-        body, html{ min-height: 100%; }
         body{
-            background-image: url(../images/sample.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            margin: 0;
             margin-bottom: 5%;
         }
         .register-container{
