@@ -73,18 +73,31 @@
                         </thead>
                         <tbody id="insert_to">
                             <tr>
-                                <th scope="row">
+                                <td scope="row">
                                     <input class="form-check-input" type="checkbox" id="add_stud">
                                     <label class="form-check-label" for="add_stud" class="label-table"></label>
+                                </td>
+                                <td>1927</td>
+                                    <td>Hill, Grace</td>
+                                    <td>19273</td>
+                                    <td>grace@gmail.com</td>
+                                    <td>barangay, province, city</td>
+                                <td>F</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <input class="form-check-input" type="checkbox" id="2">
+                                    <label class="form-check-label" for="2" class="label-table"></label>
                                 </th>
                                 <td>1927</td>
-                                <td>Hill, Grace</td>
-                                <td>19273</td>
-                                <td>grace@gmail.com</td>
-                                <td>barangay, province, city</td>
+                                    <td>Hill, Grace</td>
+                                    <td>19273</td>
+                                    <td>grace@gmail.com</td>
+                                    <td>barangay, province, city</td>
                                 <td>F</td>
                             </tr>
                         </tbody>
+                        <div id="count">No Rows Selected</div>
                     </table>
                 </div>
                 <button type="button" class="btn btn-outline-success btn-rounded btn-sm waves-effect"><i class="fas fa-cogs pr-2"
@@ -117,15 +130,34 @@
             //select
             $('.mdb-select').materialSelect();
 
-            //datatable search
+            //datatable checkbox
             $('#assign_stud').DataTable({
-                columnDefs: [ {
+                columnDefs: [{
                     targets: 0,
-                    orderable: false
+                    orderable: false,
                 }],
                 order:  [[ 1, "asc"]]
             });
-            $('.dataTables_length').addClass('bs-select');
+
+            $("input[type='checkbox']").on("change", function(){
+                let checkedcount = $("input[type='checkbox']:checked").length;
+                let count = document.getElementById('count');
+
+                if(!checkedcount){
+                    count.innerHTML = "No Rows Selected";
+                } else if(checkedcount > 1){
+                    count.innerHTML = checkedcount + " Rows Selected";
+                } else{
+                    count.innerHTML = checkedcount + " Row Selected";               
+                }
+
+            });
+
+            $(document).on('change', '.chk', function() {
+            var result = countChecked($('#myTable'), '.chk');
+            $('#checked').html(result.checked);
+            $('#total').html(result.total);
+            });
 
             //add classes
             $('#assign_stud_wrapper').find('label').each(function () {
