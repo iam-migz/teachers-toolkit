@@ -81,10 +81,8 @@
                 <label class="">Continuing Status:</label>
                 <div class="switch">
                     <label class="text-center">
-                        Status: 0
-                        <input type="checkbox">
+                        <input type="checkbox" id="continuing">
                         <span class="lever"></span> 
-                        Status: 1
                     </label>
                 </div>
             </div>
@@ -112,6 +110,65 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
+
+        const firstname = document.querySelector("#firstname");
+        const middlename = document.querySelector("#middlename");
+        const lastname = document.querySelector("#lastname");
+        const email = document.querySelector("#email");
+        const phone_no = document.querySelector("#phone_no");
+        const continuing = document.querySelector("#continuing");
+
+
+        // get teacher_id from query params
+        const urlParams = new URLSearchParams(window.location.search);
+        const teacher_id = urlParams.get('teacher_id');
+        console.log('teacher_id :>> ', teacher_id);
+
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/teacher/read_one.php?id=${teacher_id}`)
+            .then(res => {
+                if (res.data.result == 0) {
+                    return;
+                }
+                let teacher = res.data.data[0];
+                console.log(teacher);
+                firstname.value = teacher.firstname;
+                middlename.value = teacher.middlename;
+                lastname.value = teacher.lastname;
+                email.value = teacher.email;
+                phone_no.value = teacher.phone_no;
+                continuing.checked = (teacher.continuing == '1') ? 1 : 0;
+
+            })
+            .catch(err => console.log(err));
+
+        const errorDiv = document.querySelector("#error-msg");
+        document.querySelector("#submit").addEventListener("click", (x) => {
+            x.preventDefault();
+            if (firstname.value == '' || middlename.value == '' || lastname.value == '' || email.value == '' || phone_no.value == ''){
+                errorDiv.innerHTML = "please complete the form";
+                return;
+            }
+
+            let continue_val = continuing.checked ? 1 : 0;
+            axios.put('http://localhost/teachers-toolkit-app/server/api/teacher/update.php', {
+                "id": teacher_id,
+                "firstname": firstname.value,
+                "lastname": lastname.value,
+                "middlename": middlename.value,
+                "phone_no": phone_no.value,
+                "email": email.value,
+                "continuing": continue_val
+            })
+            .then(res => {
+                if (res.data.result) {
+                    location.reload();
+                } else {
+                    errorDiv.innerHTML = res.data.message;
+                }
+            })
+            .catch(err => console.log(err));
+
+        });
 
     </script>
 </body>

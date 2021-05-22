@@ -30,6 +30,7 @@
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
             $student_item = array(
+                'id' =>  $id,
                 'user_id' =>  $user_id,
                 'firstname' => $firstname,
                 'lastname' => $lastname,

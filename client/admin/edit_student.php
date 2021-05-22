@@ -124,10 +124,8 @@
                         <label>Continuing Status:</label>
                         <div class="switch">
                             <label class="text-center">
-                                Status: 0
-                                <input type="checkbox">
+                                <input type="checkbox" id="continuing">
                                 <span class="lever"></span> 
-                                Status: 1
                             </label>
                         </div>
                     </div>
@@ -135,10 +133,8 @@
                         <label>Completed Status:</label>
                         <div class="switch">
                             <label class="text-center">
-                                Status: 0
-                                <input type="checkbox">
+                                <input type="checkbox" id="completed">
                                 <span class="lever"></span> 
-                                Status: 1
                             </label>
                         </div>
                     </div>
@@ -169,6 +165,112 @@
         
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
+
+        const firstname = document.querySelector("#firstname");       
+        const lastname = document.querySelector("#lastname");
+        const middlename = document.querySelector("#middlename");
+        const email = document.querySelector("#email");
+        const province = document.querySelector("#province");
+        const city = document.querySelector("#city");
+        const barangay = document.querySelector("#barangay");
+        const LRN = document.querySelector("#LRN");
+        const birthdate = document.querySelector("#birthdate");
+
+        const continuing = document.querySelector("#continuing");
+        const completed = document.querySelector("#completed");
+
+        const male = document.querySelector("#male");
+        const female = document.querySelector("#female");
+        let gender;
+
+
+
+        // get student_id from query params
+        const urlParams = new URLSearchParams(window.location.search);
+        const student_id = urlParams.get('student_id');
+        console.log('student_id :>> ', student_id);
+
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/student/read_one.php?id=${student_id}`)
+            .then(res => {
+                if (res.data.result == 0) {
+                    return;
+                }
+                let student = res.data.data[0];
+                console.log(student);
+                firstname.value = student.firstname;
+                middlename.value = student.middlename;
+                lastname.value = student.lastname;
+                email.value = student.email;
+                LRN.value = student.LRN;
+                city.value = student.city;
+                province.value = student.province;
+                barangay.value = student.barangay;
+                birthdate.value = student.birthdate;
+                continuing.checked = (student.continuing == '1') ? 1 : 0;
+                completed.checked = (student.completed == '1') ? 1 : 0;
+
+            })
+            .catch(err => console.log(err));
+
+        const errorDiv = document.querySelector("#error-msg");
+        document.querySelector("#submit").addEventListener("click", (x) => {
+            x.preventDefault();
+
+            if (male.checked) {
+                gender = 'm'    ;
+            } else if (female.checked) {
+                gender = 'f';
+            }
+            let continue_val = continuing.checked ? 1 : 0;
+            let completed_val = completed.checked ? 1 : 0;
+
+            console.log({
+                "id": student_id,
+                "continuing": continue_val,
+                "completed": completed_val,
+                "firstname": firstname.value,
+                "lastname": lastname.value,
+                "middlename": middlename.value,
+                "email": email.value,
+                "province": province.value,
+                "city": city.value,
+                "barangay": barangay.value,
+                "gender": gender,
+                "LRN": LRN.value,
+                "birthdate": birthdate.value
+            });
+            if (firstname.value == '' || middlename.value == '' || lastname.value == '' || email.value == '' || 
+                province.value == '' || city.value == '' || barangay.value == '' || LRN.value == '' ){
+                errorDiv.innerHTML = "please complete the form";
+                return;
+            }
+
+
+            axios.put('http://localhost/teachers-toolkit-app/server/api/student/update.php', {
+                "id": student_id,
+                "continuing": continue_val,
+                "completed": completed_val,
+                "firstname": firstname.value,
+                "lastname": lastname.value,
+                "middlename": middlename.value,
+                "email": email.value,
+                "province": province.value,
+                "city": city.value,
+                "barangay": barangay.value,
+                "gender": gender,
+                "LRN": LRN.value,
+                "birthdate": birthdate.value
+            })
+            .then(res => {
+                if (res.data.result) {
+                    location.reload();
+                } else {
+                    errorDiv.innerHTML = res.data.message;
+                }
+            })
+            .catch(err => console.log(err));
+
+        });
 
     </script>
 </body>

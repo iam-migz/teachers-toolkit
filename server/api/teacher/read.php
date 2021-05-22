@@ -32,6 +32,7 @@
             extract($row);
             $teacher_item = array(
                 'id' =>  $id,
+                'user_id' =>  $user_id,
                 'firstname' => $firstname,
                 'lastname' => $lastname,
                 'middlename' => $middlename,

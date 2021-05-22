@@ -125,11 +125,11 @@
             teacher.forEach(teach => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${teach.id}</td>
+                    <td>${teach.user_id}</td>
                     <td>${teach.firstname} ${teach.middlename} ${teach.lastname}</td>
                     <td>${teach.phone_no}</td>
                     <td>${teach.email}</td>
-                    <td><a href="edit_teacher.php?teach_id=${teach.id}" class="btn btn-green btn-sm m-0" style="width: 100%;" role="button">Edit</a></td>
+                    <td><a href="edit_teacher.php?teacher_id=${teach.id}" class="btn btn-green btn-sm m-0" style="width: 100%;" role="button">Edit</a></td>
                 `;
                 insert_to.appendChild(tr);
             });
@@ -171,7 +171,7 @@
                         <td>${stud.email}</td>
                         <td>${stud.barangay}, ${stud.city}, ${stud.province}</td>
                         <td>${stud.gender}</td>
-                        <td><a href="edit_student.php?stud_id=${stud.user_id}" class="btn btn-green btn-sm m-0" style="width: 100%;" role="button">Edit</a></td>
+                        <td><a href="edit_student.php?student_id=${stud.id}" class="btn btn-green btn-sm m-0" style="width: 100%;" role="button">Edit</a></td>
                 `;
                 insert_to.appendChild(tr);
             });
