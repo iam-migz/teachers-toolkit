@@ -148,7 +148,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         // $('.datepicker').datepicker();
-
+        const errorDiv = document.querySelector("#error-msg");
         document.querySelector("#submit").addEventListener("click", async (x) => {
             x.preventDefault();
             const school_id = <?php echo $_SESSION['school_id']; ?>;
@@ -170,6 +170,13 @@
             } else if (female.checked) {
                 gender = 'f';
             }
+
+            if (firstname == '' || middlename == '' || lastname == '' || email == '' || 
+                province == '' || city == '' || barangay == '' || LRN == '' ){
+                errorDiv.innerHTML = "please complete the form";
+                return;
+            }
+
             try {
                 let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/user/create_student.php',{
                     school_id, firstname, lastname, middlename, email, province, city, barangay, gender, LRN, birthdate
