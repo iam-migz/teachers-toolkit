@@ -34,7 +34,7 @@
 </head>
 <body>
     <!--Main Header-->
-    <?php include '../partials/header.php'; ?>
+    <?php include '../partials/header_admin.php'; ?>
 
     <div class="container mt-5">
         <div class="card">

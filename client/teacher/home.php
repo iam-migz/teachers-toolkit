@@ -1,3 +1,12 @@
+<?php 
+        session_start();
+        if(isset($_SESSION['access']) && $_SESSION['access'] == 2){
+
+        }else{
+            // header("location: ../login/login.html");
+        }
+        // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +16,6 @@
     <title>Document</title>
 </head>
 <body>
-    Welcome to teacher home page!
-    <br>
-    <a href="../login/logout.php">logout</a>
+    <?php include '../partials/header_teacher.php'; ?>
 </body>
 </html>

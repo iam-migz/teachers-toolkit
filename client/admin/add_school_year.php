@@ -61,7 +61,7 @@
 </head>
 <body>
     <!--Main Header-->
-    <?php include '../partials/header.php'; ?>
+    <?php include '../partials/header_admin.php'; ?>
     
     <form>
         <div class="register-container">    

@@ -26,7 +26,7 @@
     </style>
 </head>
 <body>
-    <?php include '../partials/header.php'; ?>
+    <?php include '../partials/header_admin.php'; ?>
     
     <div class="container">
         <h2>Account Catalog</h2>
