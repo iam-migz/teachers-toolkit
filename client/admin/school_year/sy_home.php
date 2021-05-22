@@ -16,6 +16,16 @@
     <title>Document</title>
 
     <style>
+    .gradient-custom-assigned_stud{
+        background: #f6d365;
+        background: -webkit-linear-gradient(to right, rgba(235, 187, 167, 0.5), rgba(207, 199, 248, 1));
+        background: linear-gradient(to right, rgba(235, 187, 167, 0.5), rgba(207, 199, 248, 1))
+    }
+    .gradient-custom-view_sub{
+        background: #f6d365;
+        background: -webkit-linear-gradient(to right, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 1));
+        background: linear-gradient(to right, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 1))
+    }
     </style>
 </head>
 <body>
@@ -79,7 +89,7 @@
             <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
                 <h2 class="text-center">View Assigned Subjects</h2>
                 <div class="card testimonial-card">
-                    <div class="card-up aqua-gradient lighten-1"></div>
+                    <div class="card-up gradient-custom-view_sub lighten-1"></div>
                     <div class="avatar mx-auto white">
                         <img src="../../images/view.png" class="rounded-circle" alt="woman avatar">
                     </div>
@@ -107,6 +117,22 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
+                <h2 class="text-center">View Assigned Students</h2>
+                <div class="card testimonial-card">
+                    <div class="card-up gradient-custom-assigned_stud lighten-1"></div>
+                    <div class="avatar mx-auto white">
+                        <img src="../../images/view_assigned_stud.png" class="rounded-circle" alt="woman avatar">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">View Appointed Students</h4>
+                        <hr>
+                        <p><i class="fas fa-quote-left"></i> View students who are assigned to their particular sections in todays school year academic.</p>
+                        <a type="button" id="view_assigned_stud" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -128,6 +154,7 @@
         const assign_subject = document.querySelector("#assign_subject");
         const view_assigned_sub = document.querySelector("#view_assigned_sub");
         const assign_stud = document.querySelector("#assign_stud");
+        const view_assigned_stud = document.querySelector("#view_assigned_stud");
 
         create_section.addEventListener("click", (x) => {
             x.preventDefault();
@@ -150,6 +177,11 @@
         assign_stud.addEventListener("click", (x) => {
             x.preventDefault();
             location.href = `assign_student.php?sy_id=${sy_id}`;
+        })
+
+        view_assigned_stud.addEventListener("click", (x) => {
+            x.preventDefault();
+            location.href = `./view_assigned_stud.php?sy_id=${sy_id}`;
         })
 </script>
 

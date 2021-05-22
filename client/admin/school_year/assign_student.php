@@ -59,7 +59,7 @@
                     Student List
                 </h5>
                 <div class="table-responsive-sm table-responsive-md table-responsive-lg mt-0">
-                    <table id="assign_stud" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                    <table id="assign_stud" class="table table-sm" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th></th>
@@ -73,7 +73,10 @@
                         </thead>
                         <tbody id="insert_to">
                             <tr>
-                                <td></td>
+                                <th scope="row">
+                                    <input class="form-check-input" type="checkbox" id="add_stud">
+                                    <label class="form-check-label" for="add_stud" class="label-table"></label>
+                                </th>
                                 <td>1927</td>
                                 <td>Hill, Grace</td>
                                 <td>19273</td>
@@ -110,20 +113,21 @@
     <script src="../../mdb/js/addons/datatables-select2.min.js" type="text/javascript"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function(){
+            //select
             $('.mdb-select').materialSelect();
 
-            $('#assign_stud').dataTable({
-                columnDefs: [{
-                    orderable: false,
-                    className: 'select-checkbox',
-                    targets: 0
+            //datatable search
+            $('#assign_stud').DataTable({
+                columnDefs: [ {
+                    targets: 0,
+                    orderable: false
                 }],
-                select: {
-                    style: 'os',
-                    selector: 'td:first-child'
-                }
+                order:  [[ 1, "asc"]]
             });
+            $('.dataTables_length').addClass('bs-select');
+
+            //add classes
             $('#assign_stud_wrapper').find('label').each(function () {
                 $(this).parent().append($(this).children());
             });
