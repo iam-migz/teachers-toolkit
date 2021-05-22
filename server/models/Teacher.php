@@ -68,4 +68,53 @@
             $stmt->execute();
             return $stmt;
         }
+
+        public function read_one() {
+            $query = "SELECT * FROM teachers WHERE id = :id LIMIT 0,1";
+            $stmt = $this->conn->prepare($query);
+
+            $this->id = htmlspecialchars(strip_tags($this->id));
+            $stmt->bindParam(':id', $this->id);
+
+            $stmt->execute();
+            return $stmt;
+        }
+
+        public function update(){
+            $query = "UPDATE teachers 
+                SET 
+                    continuing = :continuing,
+                    firstname = :firstname,
+                    lastname = :lastname,
+                    middlename = :middlename,
+                    phone_no = :phone_no,
+                    email = :email
+                WHERE 
+                    id = :id";
+
+            $stmt = $this->conn->prepare($query);
+
+            $this->continuing = htmlspecialchars(strip_tags($this->continuing));
+            $this->firstname = htmlspecialchars(strip_tags($this->firstname));
+            $this->lastname = htmlspecialchars(strip_tags($this->lastname));
+            $this->middlename = htmlspecialchars(strip_tags($this->middlename));
+            $this->phone_no = htmlspecialchars(strip_tags($this->phone_no));
+            $this->email = htmlspecialchars(strip_tags($this->email));
+
+            $stmt->bindParam(':id', $this->id);
+            $stmt->bindParam(':continuing', $this->continuing);
+            $stmt->bindParam(':firstname', $this->firstname);
+            $stmt->bindParam(':lastname', $this->lastname);
+            $stmt->bindParam(':middlename', $this->middlename);
+            $stmt->bindParam(':phone_no', $this->phone_no);
+            $stmt->bindParam(':email', $this->email);
+
+            if ($stmt->execute()) {
+                return true;
+            }
+
+            // print error if something goes wrong
+            printf("Error Updating Teacher: %s.\n", $stmt->error);
+            return false;
+        }
     }
