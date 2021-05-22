@@ -67,24 +67,6 @@
     <script type="text/javascript" src="../../mdb/js/addons/datatables.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#view_assigned').DataTable();
-            $('.dataTables_length').addClass('bs-select');
-            $('#view_assigned_wrapper').find('label').each(function () {
-                $(this).parent().append($(this).children());
-            });
-            $('#view_assigned_wrapper .dataTables_filter').find('input').each(function () {
-                const $this = $(this);
-                $this.attr("placeholder", "Search..");
-                $this.removeClass('form-control-sm');
-            });
-            $('#view_assigned_wrapper .dataTables_length').addClass('d-flex flex-row');
-            $('#view_assigned_wrapper .dataTables_filter').addClass('md-form mt-3');
-            $('#view_assigned_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
-            $('#view_assigned_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
-            $('#view_assigned_wrapper .mdb-select').materialSelect();
-            $('#view_assigned_wrapper .dataTables_filter').find('label').remove();
-        });
 
         // get sy_id from query params
         const urlParams = new URLSearchParams(window.location.search);
@@ -109,7 +91,22 @@
                     <td>${elem.teacher_name}</td>`;
                     insert_to.appendChild(tr);
                 });
-                
+                $('#view_assigned').DataTable();
+                $('.dataTables_length').addClass('bs-select');
+                $('#view_assigned_wrapper').find('label').each(function () {
+                    $(this).parent().append($(this).children());
+                });
+                $('#view_assigned_wrapper .dataTables_filter').find('input').each(function () {
+                    const $this = $(this);
+                    $this.attr("placeholder", "Search..");
+                    $this.removeClass('form-control-sm');
+                });
+                $('#view_assigned_wrapper .dataTables_length').addClass('d-flex flex-row');
+                $('#view_assigned_wrapper .dataTables_filter').addClass('md-form mt-3');
+                $('#view_assigned_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
+                $('#view_assigned_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
+                $('#view_assigned_wrapper .mdb-select').materialSelect();
+                $('#view_assigned_wrapper .dataTables_filter').find('label').remove();  
             })
             .catch(err => console.log(err));
 

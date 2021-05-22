@@ -76,7 +76,7 @@
                 </div>
             </div>
             
-            <div class="col-lg-5 mt-4 mr-0 ml-0 box_card">
+            <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
                 <h2 class="text-center">View Assigned Subjects</h2>
                 <div class="card testimonial-card">
                     <div class="card-up aqua-gradient lighten-1"></div>
@@ -88,6 +88,22 @@
                         <hr>
                         <p><i class="fas fa-quote-left"></i> View a datatable to monitor assigned teachers in order to manage and organize advisors at the university.</p>
                         <a type="button" id="view_assigned_sub" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
+                <h2 class="text-center">Student Section Assign</h2>
+                <div class="card testimonial-card">
+                    <div class="card-up blue-gradient lighten-1"></div>
+                    <div class="avatar mx-auto white">
+                        <img src="../../images/stud_assign.png" class="rounded-circle" alt="woman avatar">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Appoint Students</h4>
+                        <hr>
+                        <p><i class="fas fa-quote-left"></i> Assign Students with their respective sections and organize each sessions by the Admin.</p>
+                        <a type="button" id="assign_stud" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -111,6 +127,7 @@
         const create_subject = document.querySelector("#create_subject");
         const assign_subject = document.querySelector("#assign_subject");
         const view_assigned_sub = document.querySelector("#view_assigned_sub");
+        const assign_stud = document.querySelector("#assign_stud");
 
         create_section.addEventListener("click", (x) => {
             x.preventDefault();
@@ -128,6 +145,11 @@
         view_assigned_sub.addEventListener("click", (x) => {
             x.preventDefault();
             location.href = `./view_assigned_sub.php?sy_id=${sy_id}`;
+        })
+
+        assign_stud.addEventListener("click", (x) => {
+            x.preventDefault();
+            location.href = `assign_student.php?sy_id=${sy_id}`;
         })
 </script>
 

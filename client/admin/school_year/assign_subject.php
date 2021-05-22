@@ -58,6 +58,7 @@
 
             <div class="form-group">
                 <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Section.." id="section">
+                <option value="Grade Section" disabled selected>Grade Section</option>
                     <!-- data -->
                 </select>
                 <label class="mdb-main-label">Select Section</label>
@@ -65,6 +66,7 @@
             
             <div class="form-group">
                 <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Subject.." id="subject">
+                <option value="Subject Class" disabled selected>Subject Class</option>
                     <!-- data -->
                 </select>
                 <label class="mdb-main-label">Select Subject</label>
@@ -72,6 +74,7 @@
             
             <div class="form-group">
                 <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Teacher.." id="teacher">
+                <option value="Class Teacher" disabled selected>Class Teacher</option>
                     <!-- data -->
                 </select>
                 <label class="mdb-main-label">Select Teacher</label>
