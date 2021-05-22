@@ -139,6 +139,7 @@
                 order:  [[ 1, "asc"]]
             });
 
+            //row count
             $("input[type='checkbox']").on("change", function(){
                 let checkedcount = $("input[type='checkbox']:checked").length;
                 let count = document.getElementById('count');
@@ -151,12 +152,6 @@
                     count.innerHTML = checkedcount + " Row Selected";               
                 }
 
-            });
-
-            $(document).on('change', '.chk', function() {
-            var result = countChecked($('#myTable'), '.chk');
-            $('#checked').html(result.checked);
-            $('#total').html(result.total);
             });
 
             //add classes

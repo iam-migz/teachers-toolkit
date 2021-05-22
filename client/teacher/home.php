@@ -19,7 +19,6 @@
             margin-top: 4%;
         }
         .view{
-            height: 30px;
         }
         .align-self-end a {
             transform: translateY(-23px); 
