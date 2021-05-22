@@ -73,10 +73,10 @@
                         </thead>
                         <tbody id="insert_to">
                             <tr>
-                                <td scope="row">
-                                    <input class="form-check-input" type="checkbox" id="add_stud">
-                                    <label class="form-check-label" for="add_stud" class="label-table"></label>
-                                </td>
+                                <th scope="row">
+                                    <input class="form-check-input" type="checkbox" id="1">
+                                    <label class="form-check-label" for="1" class="label-table"></label>
+                                </th>
                                 <td>1927</td>
                                     <td>Hill, Grace</td>
                                     <td>19273</td>
@@ -97,11 +97,19 @@
                                 <td>F</td>
                             </tr>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <button type="button" class="btn btn-rounded btn-outline-success btn-block btn-md waves-effect m-auto">
+                                        <i class="fas fa-plus" aria-hidden="true"></i>
+                                            Add Student
+                                    </button>
+                                </td>
+                            </tr>
+                        </tfoot>
                         <div id="count">No Rows Selected</div>
                     </table>
                 </div>
-                <button type="button" class="btn btn-outline-success btn-rounded btn-sm waves-effect"><i class="fas fa-cogs pr-2"
-                aria-hidden="true"></i>Assign</button>
             </div>
         </div>
     </div>
@@ -116,7 +124,7 @@
             </button>
         </div>
         <div class="toast-body">
-            Subject Successfully Assigned to Section.
+            Subject Successfully Assigned to a Section.
         </div> 
     </div>
 

@@ -13,11 +13,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <!-- MDBootstrap Datatables  -->
-    <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">    
-    <!-- DataTables Select CSS -->
-    <link href="../mdb/css/addons/datatables-select2.min.css" rel="stylesheet">
+    <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
+    <title>Document</title>
     <style>
         .container{
             background-color: white;
@@ -47,14 +45,11 @@
                 <a class="nav-link" data-toggle="tab" href="#edit_sub" role="tab">Edit Subject</a>
             </li>
         </ul>
-        <div class="tab-content">
+        <div class="tab-content mb-4">
             <!--Panel Add Student-->
             <div class="tab-pane fade in show active" id="add_stud" role="tabpanel">
-                <h5 class="text-center text-uppercase py-4 mt-0 mb-0">
-                    Student List
-                </h5>
                 <div class="table-responsive-sm table-responsive-md table-responsive-lg mt-0">
-                    <table id="add_stud" class="table table-sm" cellspacing="0" width="100%">
+                    <table id="add_stud_table" class="table table-sm" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th></th>
@@ -68,10 +63,10 @@
                         </thead>
                         <tbody id="insert_to">
                             <tr>
-                                <td scope="row">
-                                    <input class="form-check-input" type="checkbox" id="add_stud">
-                                    <label class="form-check-label" for="add_stud" class="label-table"></label>
-                                </td>
+                                <th scope="row">
+                                    <input class="form-check-input" type="checkbox" id="1">
+                                    <label class="form-check-label" for="1" class="label-table"></label>
+                                </th>
                                 <td>1927</td>
                                     <td>Hill, Grace</td>
                                     <td>19273</td>
@@ -92,6 +87,16 @@
                                 <td>F</td>
                             </tr>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <button type="button" class="btn btn-rounded btn-outline-success btn-block btn-md waves-effect m-auto">
+                                        <i class="fas fa-plus" aria-hidden="true"></i>
+                                         Add Student
+                                    </button>
+                                </td>
+                            </tr>
+                        </tfoot>
                         <div id="count">No Rows Selected</div>
                     </table>
                 </div>
@@ -120,25 +125,14 @@
         </div>
 
     </div>
+    <!-- MDBootstrap Datatables  -->
+    <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#add_stud_table').DataTable();
+            $('.dataTables_length').addClass('bs-select');
 
-     <!-- MDBootstrap Datatables  -->
-     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
-    <!-- DataTables Select JS -->
-    <script src="../mdb/js/addons/datatables-select2.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            //select
-            $('.mdb-select').materialSelect();
-
-            //datatable checkbox
-            $('#add_stud').DataTable({
-                columnDefs: [{
-                    targets: 0,
-                    orderable: false,
-                }],
-                order:  [[ 1, "asc"]]
-            });
-
+            //row count
             $("input[type='checkbox']").on("change", function(){
                 let checkedcount = $("input[type='checkbox']:checked").length;
                 let count = document.getElementById('count');
@@ -153,29 +147,7 @@
 
             });
 
-            $(document).on('change', '.chk', function() {
-            var result = countChecked($('#myTable'), '.chk');
-            $('#checked').html(result.checked);
-            $('#total').html(result.total);
-            });
-
-            //add classes
-            $('#add_stud_wrapper').find('label').each(function () {
-                $(this).parent().append($(this).children());
-            });
-            $('#add_stud_wrapper .dataTables_filter').find('input').each(function () {
-                const $this = $(this);
-                $this.attr("placeholder", "Search..");
-                $this.removeClass('form-control-sm');
-            });
-            $('#add_stud_wrapper .dataTables_length').addClass('d-flex flex-row');
-            $('#add_stud_wrapper .dataTables_filter').addClass('md-form mt-3');
-            $('#add_stud_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
-            $('#add_stud_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
-            $('#add_stud_wrapper .mdb-select').materialSelect();
-            $('#add_stud_wrapper .dataTables_filter').find('label').remove();  
         });
-
     </script>
 </body>
 </html>
