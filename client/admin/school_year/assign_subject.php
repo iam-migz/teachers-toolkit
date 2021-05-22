@@ -58,7 +58,6 @@
 
             <div class="form-group">
                 <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Section.." id="section">
-                    <option value="Section Class" selected disabled>Section Class</option>
                     <!-- data -->
                 </select>
                 <label class="mdb-main-label">Select Section</label>
@@ -66,7 +65,6 @@
             
             <div class="form-group">
                 <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Subject.." id="subject">
-                    <option value="School Subject" selected disabled>School Subject</option>
                     <!-- data -->
                 </select>
                 <label class="mdb-main-label">Select Subject</label>
@@ -74,7 +72,6 @@
             
             <div class="form-group">
                 <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Teacher.." id="teacher">
-                    <option value="Subject Teacher" selected disabled>Subject Teacher</option>
                     <!-- data -->
                 </select>
                 <label class="mdb-main-label">Select Teacher</label>
@@ -98,13 +95,100 @@
             </button>
         </div>
         <div class="toast-body">
-            Subject Successfully Assigned.
+            Subject Successfully Assigned to Section.
         </div> 
     </div>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.mdb-select').materialSelect();
+        });
+        const school_id = <?php echo $_SESSION['school_id']; ?>;
+        
+        // get sy_id from query params
+        const urlParams = new URLSearchParams(window.location.search);
+        const sy_id = urlParams.get('sy_id');
+        console.log('sy_id :>> ', sy_id);
+
+
+        // set teachers
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/teacher/read.php?school_id=${school_id}`)
+            .then(res => {
+                if (res.data.result == 0) {
+                    return;
+                }
+                let teachers = res.data.data;
+                console.log('teachers ', teachers);
+                const select = document.querySelector("#teacher");
+                for(teach of teachers) {
+                    select.options[select.options.length] = new Option(teach.firstname+' '+teach.lastname, teach.id); 
+                }
+
+            })
+            .catch(err => console.log(err));
+
+        // set subjects
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/subject/read.php?school_year_id=${sy_id}`)
+            .then(res => {
+                let subjects = res.data.data;
+                console.log('subjects', subjects);
+                const select = document.querySelector("#subject");
+                for(sub of subjects) {
+                    select.options[select.options.length] = new Option(sub.subject_name, sub.id); 
+                }
+            })
+            .catch(err => console.log(err));
+
+            
+        // set sections
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/section/read.php?school_year_id=${sy_id}`)
+            .then(res => {
+                let sections = res.data.data;
+                console.log('sections', sections);
+                const select = document.querySelector("#section");
+                for(sec of sections) {
+                    select.options[select.options.length] = new Option(sec.section_name, sec.id); 
+                }
+            })
+            .catch(err => console.log(err));
+
+        const submit = document.querySelector("#submit");
+        submit.addEventListener("click", (x) => {
+            x.preventDefault();
+            const section = document.querySelector("#section");
+            const subject = document.querySelector("#subject");
+            const teacher = document.querySelector("#teacher");
+            const errorDiv = document.querySelector("#error-msg");
+
+            if ( section.value == '' || subject.value == '' || teacher.value == '') {
+                errorDiv.innerHTML = "Please complete form";
+                return;
+            }
+
+            axios.post('http://localhost/teachers-toolkit-app/server/api/subject_assignment/create.php',
+                {
+                    'section_id': section.value,
+                    'subject_id': subject.value,
+                    'teacher_id': teacher.value 
+                })
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.result) {
+                        errorDiv.innerHTML = "";
+                        var option = {
+                            animation: true,
+                            delay: 3500
+                        };   
+                        var toastHTMLElement = document.getElementById("EpicToast");
+                        var toastElement = new bootstrap.Toast(toastHTMLElement, option);
+                        toastElement.show();
+                    } else {
+                        errorDiv.innerHTML = res.data.message;
+                    }
+                })
+                .catch(err => console.log(err));
+
         });
 
     </script>

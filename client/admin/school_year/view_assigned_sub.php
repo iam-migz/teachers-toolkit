@@ -55,25 +55,7 @@
                                 <th class="th-sm">Assigned Teacher</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Dalton</td>
-                                <td>11</td>
-                                <td>Immersion</td>
-                                <td>Mendez, Dana Too</td>
-                            </tr>
-                            <tr>
-                                <td>Winters</td>
-                                <td>12</td>
-                                <td>Algebra</td>
-                                <td>Halton, Clary Go</td>
-                            </tr>
-                            <tr>
-                                <td>Nikola</td>
-                                <td>12</td>
-                                <td>Analytical Thinking</td>
-                                <td>Dixon, Cherry Mil</td>
-                            </tr>
+                        <tbody id="insert_to">
                         </tbody>
                     </table>
                 </div>
@@ -83,6 +65,7 @@
 
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../../mdb/js/addons/datatables.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#view_assigned').DataTable();
@@ -102,6 +85,36 @@
             $('#view_assigned_wrapper .mdb-select').materialSelect();
             $('#view_assigned_wrapper .dataTables_filter').find('label').remove();
         });
+
+        // get sy_id from query params
+        const urlParams = new URLSearchParams(window.location.search);
+        const sy_id = urlParams.get('sy_id');
+        console.log('sy_id :>> ', sy_id);
+
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/subject_assignment/read.php?school_year_id=${sy_id}`)
+            .then(res => {
+                if (res.data.result == 0) {
+                    // display no data found
+                    return;
+                }
+                let data = res.data.data;
+                const insert_to = document.querySelector("#insert_to");
+                console.log(data);
+                data.forEach(elem => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                    <td>${elem.section_name}</td>
+                    <td>${elem.grade}</td>
+                    <td>${elem.subject_name}</td>
+                    <td>${elem.teacher_name}</td>`;
+                    insert_to.appendChild(tr);
+                });
+                
+            })
+            .catch(err => console.log(err));
+
+
+
     </script>
 </body>
 </html>

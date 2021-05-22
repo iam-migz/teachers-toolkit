@@ -87,7 +87,7 @@
                         <h4 class="card-title">View Designate Tasks</h4>
                         <hr>
                         <p><i class="fas fa-quote-left"></i> View a datatable to monitor assigned teachers in order to manage and organize advisors at the university.</p>
-                        <a type="button" href="view_assigned_sub.php" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                        <a type="button" id="view_assigned_sub" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
@@ -102,10 +102,16 @@
         const urlParams = new URLSearchParams(window.location.search);
         const sy_id = urlParams.get('sy_id');
         console.log('sy_id :>> ', sy_id);
+        
+        if (sy_id == null || sy_id == '') {
+            location.href = `../home.php`;
+        }
 
         const create_section = document.querySelector("#create_section");
         const create_subject = document.querySelector("#create_subject");
         const assign_subject = document.querySelector("#assign_subject");
+        const view_assigned_sub = document.querySelector("#view_assigned_sub");
+
         create_section.addEventListener("click", (x) => {
             x.preventDefault();
             location.href = `./create_section.php?sy_id=${sy_id}`;
@@ -117,6 +123,11 @@
         assign_subject.addEventListener("click", (x) => {
             x.preventDefault();
             location.href = `./assign_subject.php?sy_id=${sy_id}`;
+        })
+
+        view_assigned_sub.addEventListener("click", (x) => {
+            x.preventDefault();
+            location.href = `./view_assigned_sub.php?sy_id=${sy_id}`;
         })
 </script>
 

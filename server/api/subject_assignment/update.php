@@ -21,8 +21,7 @@
         !isset($data->id) ||
         !isset($data->section_id) ||
         !isset($data->subject_id) ||
-        !isset($data->teacher_id) ||
-        !isset($data->school_year_id) 
+        !isset($data->teacher_id) 
     ){
         echo json_encode( array("result" => 0, "message" => "incomplete data") );
         return;
@@ -33,7 +32,6 @@
     $subject_assignment->section_id = $data->section_id;
     $subject_assignment->subject_id = $data->subject_id;
     $subject_assignment->teacher_id = $data->teacher_id;
-    $subject_assignment->school_year_id = $data->school_year_id;
 
     if ($subject_assignment->update()) {
         echo json_encode(

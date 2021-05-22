@@ -68,4 +68,16 @@
             return false;
         }
 
+
+        public function read(){
+            $query = "SELECT * FROM subjects WHERE school_year_id = :school_year_id";
+            $stmt = $this->conn->prepare($query);
+
+            $this->school_year_id = htmlspecialchars(strip_tags($this->school_year_id));
+            $stmt->bindParam(':school_year_id', $this->school_year_id);
+
+            $stmt->execute();
+            return $stmt;
+        }
+
     }
