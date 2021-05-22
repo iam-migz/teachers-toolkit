@@ -181,11 +181,15 @@
                 errDiv.innerHTML = "Please Complete the form";
                 return;
             }
+            // get sy_id from query params
+            const urlParams = new URLSearchParams(window.location.search);
+            const sy_id = urlParams.get('sy_id');
+            console.log('sy_id :>> ', sy_id);
 
             try {
                 console.log({advisor_id, section_name, strand, track, grade});
                 let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/section/create.php',{
-                    advisor_id, section_name, strand, track, grade
+                    'school_year_id': sy_id, advisor_id, section_name, strand, track, grade
                 });
                 let data = res.data;
                 if (res.data.result) {
