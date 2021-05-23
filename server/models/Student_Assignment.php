@@ -46,21 +46,23 @@
             return $stmt;
         }
 
-        public function read_assigned(){
-            $query = "SELECT 	sec.section_name, sec.grade,  sub.subject_name, CONCAT(t.firstname,' ',t.lastname,' ',t.middlename) as teacher_name
-                      FROM 	    subject_assignments sa, subjects sub, teachers t, sections sec
-                      WHERE 	sa.section_id IN (SELECT id FROM sections WHERE sections.school_year_id = :school_year_id) AND 
-                                sub.id = sa.subject_id AND 
-                                t.id = sa.teacher_id AND
-                                sec.id = sa.section_id";
+        public function read_by_section(){
+            $query = "SELECT    stud.id, sec.section_name, stud.LRN, CONCAT(stud.firstname, ' ', stud.middlename, ' ', stud.lastname) as student_name
+                      FROM 	    student_assignments sa, sections sec, students stud
+                      WHERE 	sa.section_id = :section_id AND 
+                                sa.section_id = sec.id AND
+                                sa.student_id = stud.id";
+
             $stmt = $this->conn->prepare($query);
 
-            $this->school_year_id = htmlspecialchars(strip_tags($this->school_year_id));
-            $stmt->bindParam(':school_year_id', $this->school_year_id);
+            $this->section_id = htmlspecialchars(strip_tags($this->section_id));
+            $stmt->bindParam(':section_id', $this->section_id);
 
             $stmt->execute();
             return $stmt;
         }
+
+
 
 
     }

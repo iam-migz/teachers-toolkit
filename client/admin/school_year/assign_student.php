@@ -50,7 +50,6 @@
             <div class="card-body">
                 <div class="form-group mb-0">
                     <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Section.." id="section">
-                    <option value="Section Class" disabled selected>Section Class</option>
                         <!-- data -->
                     </select>
                     <label class="mdb-main-label">Select Section</label>
@@ -66,41 +65,23 @@
                                 <th class="th-sm">Student ID</th>
                                 <th class="th-sm">Name</th>
                                 <th class="th-sm">LRN</th>
-                                <th class="th-sm">Email Address</th>
-                                <th class="th-sm">Address</th>
-                                <th class="th-sm">Gender</th>
                             </tr>
                         </thead>
                         <tbody id="insert_to">
-                            <tr>
+                            <!-- <tr>
                                 <th scope="row">
                                     <input class="form-check-input" type="checkbox" id="1">
                                     <label class="form-check-label" for="1" class="label-table"></label>
                                 </th>
                                 <td>1927</td>
-                                    <td>Hill, Grace</td>
-                                    <td>19273</td>
-                                    <td>grace@gmail.com</td>
-                                    <td>barangay, province, city</td>
-                                <td>F</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <input class="form-check-input" type="checkbox" id="2">
-                                    <label class="form-check-label" for="2" class="label-table"></label>
-                                </th>
-                                <td>1927</td>
-                                    <td>Hill, Grace</td>
-                                    <td>19273</td>
-                                    <td>grace@gmail.com</td>
-                                    <td>barangay, province, city</td>
-                                <td>F</td>
-                            </tr>
+                                <td>Hill, Grace</td>
+                                <td>19273</td>
+                            </tr> -->
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="7">
-                                    <button type="button" class="btn btn-rounded btn-outline-success btn-block btn-md waves-effect m-auto">
+                                <td colspan="4">
+                                    <button type="button" id="submit" class="btn btn-rounded btn-outline-success btn-block btn-md waves-effect m-auto">
                                         <i class="fas fa-plus" aria-hidden="true"></i>
                                             Add Student
                                     </button>
@@ -178,6 +159,66 @@
             $('#assign_stud_wrapper .mdb-select').materialSelect();
             $('#assign_stud_wrapper .dataTables_filter').find('label').remove();  
         });
+
+                // get sy_id from query params
+                const urlParams = new URLSearchParams(window.location.search);
+        const sy_id = urlParams.get('sy_id');
+        console.log('sy_id :>> ', sy_id);
+
+        // set sections
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/section/read.php?school_year_id=${sy_id}`)
+            .then(res => {
+                let sections = res.data.data;
+                console.log('sections', sections);
+                const select = document.querySelector("#section");
+                for(sec of sections) {
+                    select.options[select.options.length] = new Option(sec.section_name, sec.id); 
+                }
+            })
+            .catch(err => console.log(err));
+
+
+        axios.get('http://localhost/teachers-toolkit-app/server/api/student_assignment/read_unassigned.php')
+            .then(res => {
+                if (res.data.result == 0) {
+                    return;
+                }
+                const unassigned = res.data.data;
+                console.log('unassigned', unassigned);
+                const insert_to = document.querySelector("#insert_to");
+
+                unassigned.forEach((stud, index) => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <th scope="row">
+                            <input class="form-check-input" type="checkbox" id="${index+1}" value="${stud.id}">
+                            <label class="form-check-label" for="${index+1}" class="label-table"></label>
+                        </th>
+                        <td>${stud.id}</td>
+                        <td>${stud.name}</td>
+                        <td>${stud.LRN}</td>`;
+                    insert_to.appendChild(tr);
+                });
+
+            })
+            .catch(err => console.log(err))
+
+            $('#submit').on("click", function(){
+                const inputs = document.querySelectorAll('input[type="checkbox"]:checked');
+                inputs.forEach(input => {
+                    axios.post(`http://localhost/teachers-toolkit-app/server/api/student_assignment/create.php`, {
+                        'section_id': $("#section").val(), 
+                        'student_id': input.value
+                    })
+                        .then(res => console.log(res.data))
+                        .catch(err => console.log(err))
+                    
+                })
+                location.reload();
+            })
+
+
+
 
     </script>
 </body>
