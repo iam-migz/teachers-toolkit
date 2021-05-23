@@ -18,17 +18,6 @@
         .container{
             margin-top: 4%;
         }
-        .view{
-        }
-        .align-self-end a {
-            transform: translateY(-23px); 
-        }
-        .card{
-            height: 89%;
-        }
-        .card-body{
-            transform: translateY(-26px); 
-        }
     </style>
 </head>
 <body>
@@ -43,18 +32,13 @@
                     <div class="view overlay">
                         <img class="card-img-top" src="../images/work.jpg" alt="Card image cap">
                     </div>
-                    <div class="align-self-end">
-                        <a href="" class="btn-floating btn-action ml-auto red darken-1"><i class="fas fa-trash"></i></a>
-                        <a href="view_subject.php" class="btn-floating btn-action ml-auto mr-4 teal darken-1"><i class="fas fa-book-open"></i></a>
-                    </div>
+                    <a href="view_subject.php" class="btn-floating btn-action ml-auto mr-4 teal darken-1"><i class="fas fa-book-open"></i></a>
                     <div class="card-body">
-                        <h4 class="card-title">Introduction to Programming</h4>
+                        <h4 class="card-title mt-2">Introduction to Programming</h4>
                         <p class="card-text"><i class="far fa-clock"></i> Class Schedule: 9:00AM - 11:00AM</p>
                         <hr>
                         <p class="card-subtitle font-weight-normal" style="color: grey;"><i class="fas fa-archive"></i> Class Section: Tesla</p>
-                        <div class="d-flex justify-content-between living-coral-text">
-                            <p class="card-text font-small"><i class="fas fa-stamp"></i> 1st Semester S.Y 2021 - 2022</p>
-                        </div>
+                        <p class="card-text font-small"><i class="fas fa-stamp"></i> 1st Semester S.Y 2021 - 2022</p>
                     </div>
                 </div>
             </div> 
@@ -64,38 +48,32 @@
                     <div class="view overlay">
                         <img class="card-img-top" src="../images/work.jpg" alt="Card image cap">
                     </div>
-                    <div class="align-self-end">
-                        <a href="" class="btn-floating btn-action ml-auto red darken-1"><i class="fas fa-trash"></i></a>
-                        <a href="view_subject.php" class="btn-floating btn-action ml-auto mr-4 teal darken-1"><i class="fas fa-book-open"></i></a>
-                    </div>
+                    <a href="view_subject.php" class="btn-floating btn-action ml-auto mr-4 teal darken-1"><i class="fas fa-book-open"></i></a>
                     <div class="card-body">
-                        <h4 class="card-title">Information Management II</h4>
+                        <h4 class="card-title mt-2">Information Management II</h4>
                         <p class="card-text"><i class="far fa-clock"></i> Class Schedule: 4:00PM - 6:30PM</p>
                         <hr>
                         <p class="card-subtitle font-weight-normal" style="color: grey;"><i class="fas fa-archive"></i> Class Section: Darwin</p>
                         <p class="card-text font-small"><i class="fas fa-stamp"></i> 1st Semester S.Y 2021 - 2022</p>
                     </div>
                 </div>
-            </div>
+            </div> 
 
             <div class="col-lg-4 mt-1 box_card mb-4">
                 <div class="card">
                     <div class="view overlay">
                         <img class="card-img-top" src="../images/work.jpg" alt="Card image cap">
                     </div>
-                    <div class="align-self-end">
-                        <a href="" class="btn-floating btn-action ml-auto red darken-1"><i class="fas fa-trash"></i></a>
-                        <a href="view_subject.php" class="btn-floating btn-action ml-auto mr-4 teal darken-1"><i class="fas fa-book-open"></i></a>
-                    </div>
+                    <a href="view_subject.php" class="btn-floating btn-action ml-auto mr-4 teal darken-1"><i class="fas fa-book-open"></i></a>
                     <div class="card-body">
-                        <h4 class="card-title">Marketing</h4>
+                        <h4 class="card-title mt-2">Marketing</h4>
                         <p class="card-text"><i class="far fa-clock"></i> Class Schedule: 1:00PM - 3:30PM</p>
                         <hr>
                         <p class="card-subtitle font-weight-normal" style="color: grey;"><i class="fas fa-archive"></i> Class Section: Hawking</p>
                         <p class="card-text font-small"><i class="fas fa-stamp"></i> 1st Semester S.Y 2021 - 2022</p>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 

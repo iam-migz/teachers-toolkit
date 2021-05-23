@@ -49,7 +49,8 @@
             </h3>
             <div class="card-body">
                 <div class="form-group mb-0">
-                    <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Section.." id="section">
+                    <select class="mdb-select md-form colorful-select dropdown-primary " searchable="Search Section.." id="section">
+                    <option value="Grade Section" disabled selected>Grade Section</option>
                         <!-- data -->
                     </select>
                     <label class="mdb-main-label">Select Section</label>
@@ -76,9 +77,9 @@
                         <tfoot>
                             <tr>
                                 <td colspan="3">
-                                    <button type="button" id="submit" class="btn btn-rounded btn-outline-success btn-block btn-md waves-effect m-auto">
-                                        <i class="fas fa-plus" aria-hidden="true"></i>
-                                            View Students
+                                    <button type="button" id="submit" class="btn btn-rounded btn-outline-primary btn-block btn-md waves-effect m-auto">
+                                    <i class="far fa-eye pr-2" aria-hidden="true"></i>
+                                             View Students
                                     </button>
                                 </td>
                             </tr>
@@ -113,30 +114,23 @@
             //select
             $('.mdb-select').materialSelect();
 
-            //datatable checkbox
-            $('#assign_stud').DataTable({
-                columnDefs: [{
-                    targets: 0,
-                    orderable: false,
-                }],
-                order:  [[ 1, "asc"]]
-            });
-
-            //add classes
-            $('#assign_stud_wrapper').find('label').each(function () {
-                $(this).parent().append($(this).children());
-            });
-            $('#assign_stud_wrapper .dataTables_filter').find('input').each(function () {
-                const $this = $(this);
-                $this.attr("placeholder", "Search..");
-                $this.removeClass('form-control-sm');
-            });
-            $('#assign_stud_wrapper .dataTables_length').addClass('d-flex flex-row');
-            $('#assign_stud_wrapper .dataTables_filter').addClass('md-form mt-3');
-            $('#assign_stud_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
-            $('#assign_stud_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
-            $('#assign_stud_wrapper .mdb-select').materialSelect();
-            $('#assign_stud_wrapper .dataTables_filter').find('label').remove();  
+            // $('#assign_stud').DataTable();
+            // $('.dataTables_length').addClass('bs-select');
+            // //add classes
+            // $('#assign_stud_wrapper').find('label').each(function () {
+            //     $(this).parent().append($(this).children());
+            // });
+            // $('#assign_stud_wrapper .dataTables_filter').find('input').each(function () {
+            //     const $this = $(this);
+            //     $this.attr("placeholder", "Search..");
+            //     $this.removeClass('form-control-sm');
+            // });
+            // $('#assign_stud_wrapper .dataTables_length').addClass('d-flex flex-row');
+            // $('#assign_stud_wrapper .dataTables_filter').addClass('md-form mt-3');
+            // $('#assign_stud_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
+            // $('#assign_stud_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
+            // $('#assign_stud_wrapper .mdb-select').materialSelect();
+            // $('#assign_stud_wrapper .dataTables_filter').find('label').remove();
         });
 
         // get sy_id from query params
@@ -159,7 +153,7 @@
 
         // set student
 
-            $('#submit').on("click", function(){
+            $('#submit').on("click",function(){
                 
                 const section_id = $("#section").val()
                 axios.get(`http://localhost/teachers-toolkit-app/server/api/student_assignment/read_by_section.php?section_id=${section_id}`)
@@ -179,7 +173,7 @@
                                 <td>${stud.LRN}</td>`;
                             insert_to.appendChild(tr);
                         });
-
+                        
                     })
                     .catch(err => console.log(err))
             })

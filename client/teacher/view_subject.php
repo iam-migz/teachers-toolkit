@@ -29,20 +29,24 @@
 <body>
     <?php include '../partials/header_teacher.php'; ?>
 
-    <h3 class="display-4 text-center mt-4 mb-0">View Subject</h3>
+    <h3 class="text-center mt-4 mb-0">
+        "Subject Name"
+        <a type="button" href="home.php" class="btn-floating blue">
+            <i class="far fa-hand-point-left" aria-hidden="true"></i>
+        </a>
+    </h3>
     <div class="container mt-4">
         <ul class="nav md-pills nav-justified pills-success-color-dark mb-4">
             <li class="nav-item pl-0">
-                <a class="nav-link active " data-toggle="tab" href="#add_stud" role="tab">Add Student</a>
+                <a class="nav-link active " data-toggle="tab" href="#add_stud" role="tab">
+                <i class="fas fa-user-graduate mr-2 fa-lg"></i>
+                
+                Your Students</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#stud_list" role="tab">Student List</a>
-            </li>
-            <li class="nav-item pr-0">
-                <a class="nav-link" data-toggle="tab" href="#view_grades" role="tab">View Grades</a>
-            </li>
-            <li class="nav-item pr-0">
-                <a class="nav-link" data-toggle="tab" href="#edit_sub" role="tab">Edit Subject</a>
+            <li class="nav-item pl-0">
+                <a class="nav-link" data-toggle="tab" href="#view_grades" role="tab">
+                <i class="fas fa-star mr-2 fa-lg"></i>
+                View Grades</a>
             </li>
         </ul>
         <div class="tab-content mb-4">
@@ -52,7 +56,6 @@
                     <table id="add_stud_table" class="table table-sm" cellspacing="0" width="100%">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th class="th-sm">Student ID</th>
                                 <th class="th-sm">Name</th>
                                 <th class="th-sm">LRN</th>
@@ -63,64 +66,73 @@
                         </thead>
                         <tbody id="insert_to">
                             <tr>
-                                <th scope="row">
-                                    <input class="form-check-input" type="checkbox" id="1">
-                                    <label class="form-check-label" for="1" class="label-table"></label>
-                                </th>
                                 <td>1927</td>
-                                    <td>Hill, Grace</td>
-                                    <td>19273</td>
-                                    <td>grace@gmail.com</td>
-                                    <td>barangay, province, city</td>
+                                <td>Hill, Grace</td>
+                                <td>19273</td>
+                                <td>grace@gmail.com</td>
+                                <td>barangay, province, city</td>
                                 <td>F</td>
                             </tr>
                             <tr>
-                                <th scope="row">
-                                    <input class="form-check-input" type="checkbox" id="2">
-                                    <label class="form-check-label" for="2" class="label-table"></label>
-                                </th>
                                 <td>1927</td>
-                                    <td>Hill, Grace</td>
-                                    <td>19273</td>
-                                    <td>grace@gmail.com</td>
-                                    <td>barangay, province, city</td>
+                                <td>Hill, Grace</td>
+                                <td>19273</td>
+                                <td>grace@gmail.com</td>
+                                <td>barangay, province, city</td>
                                 <td>F</td>
                             </tr>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="7">
-                                    <button type="button" class="btn btn-rounded btn-outline-success btn-block btn-md waves-effect m-auto">
-                                        <i class="fas fa-plus" aria-hidden="true"></i>
-                                         Add Student
-                                    </button>
-                                </td>
-                            </tr>
-                        </tfoot>
-                        <div id="count">No Rows Selected</div>
                     </table>
                 </div>
             </div>
             <!--Panel Student List-->
-            <div class="tab-pane fade" id="stud_list" role="tabpanel">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-                reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-                porro voluptate odit minima.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-                reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-                porro voluptate odit minima.</p>
-            </div>
-            <!--Panel View Grades-->
             <div class="tab-pane fade" id="view_grades" role="tabpanel">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-                reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-                porro voluptate odit minima.</p>
-            </div>
-            <!--Panel Edit Sub-->
-            <div class="tab-pane fade" id="edit_sub" role="tabpanel">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil odit magnam minima, soluta doloribus
-                reiciendis molestiae placeat unde eos molestias. Quisquam aperiam, pariatur. Tempora, placeat ratione
-                porro voluptate odit minima.</p>
+                <div class="row mt-0 mb-0 d-flex justify-content-center">
+
+                    <div class="col-lg-5 mt-2 mb-3 ml-4 mr-4 box_card"> 
+                        <div class="card indigo lighten-3">
+                            <div class="card-body pb-0">
+                                <h2 class="card-title font-weight-bold">
+                                    <i class="fas fa-graduation-cap pl-5 fa-2x"></i>
+                                    First Quarter
+                                </h2>
+                                <div class="d-flex justify-content-between">
+                                    <p class="card-subtitle font-weight-normal">1st Semester</p>
+                                    <p class="card-subtitle font-small">S.Y 2021 - 2022</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="card-body pt-0 align-self-end">
+                            <button type="button" class="btn btn-rounded btn-block btn-mdb-color darken-2">
+                                <i class="fas fa-search pr-1" aria-hidden="true"></i>
+                                Review
+                            </button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="col-lg-5 mt-2 mb-3 ml-4 mr-4 box_card">
+                        <div class="card indigo lighten-3">
+                            <div class="card-body pb-0">
+                                <h2 class="card-title font-weight-bold">
+                                    <i class="fas fa-graduation-cap pl-5 fa-2x"></i>
+                                    First Quarter
+                                </h2>
+                                <div class="d-flex justify-content-between">
+                                    <p class="card-subtitle font-weight-normal">1st Semester</p>
+                                    <p class="card-subtitle font-small">S.Y 2021 - 2022</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="card-body pt-0 align-self-end">
+                            <button type="button" class="btn btn-rounded btn-block btn-mdb-color darken-2">
+                                <i class="fas fa-search pr-1" aria-hidden="true"></i>
+                                Review
+                            </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -131,21 +143,6 @@
         $(document).ready(function () {
             $('#add_stud_table').DataTable();
             $('.dataTables_length').addClass('bs-select');
-
-            //row count
-            $("input[type='checkbox']").on("change", function(){
-                let checkedcount = $("input[type='checkbox']:checked").length;
-                let count = document.getElementById('count');
-
-                if(!checkedcount){
-                    count.innerHTML = "No Rows Selected";
-                } else if(checkedcount > 1){
-                    count.innerHTML = checkedcount + " Rows Selected";
-                } else{
-                    count.innerHTML = checkedcount + " Row Selected";               
-                }
-
-            });
 
         });
     </script>
