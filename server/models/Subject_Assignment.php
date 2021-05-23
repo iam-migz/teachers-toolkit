@@ -44,7 +44,7 @@
                 $stmt->bindParam(':teacher_id', $this->teacher_id);
 
                 if ($stmt->execute()) {
-                    return true;
+                    return $this->conn->lastInsertId();
                 }
             }
             
