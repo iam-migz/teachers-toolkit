@@ -71,11 +71,9 @@
                         <label for="q_asses">QUARTERLY ASSESSMENT</label>
                         <input type="text" id="q_asses" name="q_asses" style="width: 40px; margin: 0 auto" class="q_input form-control form-control-sm">
                     </th>
-                    <th rowspan="3" style='width: 1%;'>Initial Grade</th>
-                    <th rowspan="3" style='width: 1%;'>Quarterly Grade</th>
+                    <th rowspan="3" style='width: 1%;' class="pb-5">Initial Grade</th>
+                    <th rowspan="3" style='width: 1%;' class="pb-5">Quarterly Grade</th>
                 </tr>
-            </thead>
-            <tbody id="insert_to">
                 <!--1st row-->
                 <tr>
                     <td></td>
@@ -108,33 +106,39 @@
                 <tr>
                     <td></td>
                     <td style="font-size:10px;" class="font-weight-normal">HIGHEST<br>POSSIBLE SCORE</td>
-                    <?php
-                        for ($row=0; $row < 10; $row++) { 
-                            echo "
-                            <td>
-                                <input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'>
-                            </td>";
-                        }
-                    ?>
-                    <td></td>
+                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td id="total_written"></td>
                     <td>100.00</td>
                     <td>40%</td>
-                    <?php
-                        for ($row=0; $row < 10; $row++) { 
-                            echo "
-                            <td>
-                                <input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'>
-                            </td>";
-                        }
-                    ?>
-                    <td></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td id="total_perfomance"></td>
                     <td>100.00</td>
                     <td>40%</td>
-                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 43px' class='form-control form-control-sm form-control-plaintext'></td>
                     <td>100.00</td>
                     <td>40%</td>
                 </tr>
-
+            </thead>
+            <!-- DATA BODY -->
+            <tbody id="insert_to">
                 <!--3rd row-->
                 <tr>
                     <td class="table-active"></td>
@@ -151,10 +155,43 @@
                 <tr>
                     <td>1.</td>
                     <td>Donald, John Fla</td>
-                    <td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td>
-                    <td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td>
-                    <td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td>
-                    <td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td>
+
+                    <!--Written Works-->
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td id="data_work_stud"></td>
+                    <td id="data_work_ps"></td>
+                    <td id="data_work_ws"></td>
+
+                    <!--Perfomance Task-->
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td id="data_pt_stud"></td>
+                    <td id="data_pt_ps"></td>
+                    <td id="data_pt_ws"></td>
+
+                    <!--Quarterly Assessment-->
+                    <td><input type='text' style='width: 43px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td id="data_qa_ps"></td>
+                    <td id="data_qa_ws"></td>
+                    <td id="init_grade"></td>
+                    <td id="quar_grade"></td>
                 </tr>
                 
                 <!--4th row-->
@@ -173,10 +210,43 @@
                 <tr>
                     <td>1.</td>
                     <td>Hill, Grace Kate</td>
-                    <td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td>
-                    <td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td>
-                    <td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td>
-                    <td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td>
+                    
+                    <!--Written Works-->
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td id="data_work_stud"></td>
+                    <td id="data_work_ps"></td>
+                    <td id="data_work_ws"></td>
+
+                    <!--Perfomance Task-->
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td id="data_pt_stud"></td>
+                    <td id="data_pt_ps"></td>
+                    <td id="data_pt_ws"></td>
+
+                    <!--Quarterly Assessment-->
+                    <td><input type='text' style='width: 43px' class='form-control form-control-sm form-control-plaintext'></td>
+                    <td id="data_qa_ps"></td>
+                    <td id="data_qa_ws"></td>
+                    <td id="init_grade"></td>
+                    <td id="quar_grade"></td>
                 </tr>
 
             </tbody>
