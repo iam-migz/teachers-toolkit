@@ -24,6 +24,9 @@
         .btn_proceed{
             width: 97%;
         }
+        .table{
+            transform: scale(0.95);
+        }
     </style>
 </head>
 <body>
@@ -47,6 +50,11 @@
                 <a class="nav-link" data-toggle="tab" href="#view_grades" role="tab">
                 <i class="fas fa-star mr-2 fa-lg"></i>
                 View Grades</a>
+            </li>
+            <li class="nav-item pl-0">
+                <a class="nav-link" data-toggle="tab" href="#attendance" role="tab">
+                <i class="fas fa-calendar-check mr-2 fa-lg"></i>
+                Attendance</a>
             </li>
         </ul>
         <div class="tab-content mb-4">
@@ -85,7 +93,7 @@
                     </table>
                 </div>
             </div>
-            <!--Panel Student List-->
+            <!--Panel View Grades-->
             <div class="tab-pane fade" id="view_grades" role="tabpanel">
                 <div class="row mt-0 mb-0 d-flex justify-content-center">
 
@@ -103,10 +111,10 @@
                             </div>
                             <hr>
                             <div class="card-body pt-0 align-self-end">
-                            <button type="button" class="btn btn-rounded btn-block btn-mdb-color darken-2">
+                            <a href="q1_grade.php" role="button" class="btn btn-rounded btn-block btn-mdb-color darken-2">
                                 <i class="fas fa-search pr-1" aria-hidden="true"></i>
                                 Review
-                            </button>
+                            </a>
                             </div>
                         </div>
                     </div>
@@ -116,22 +124,43 @@
                             <div class="card-body pb-0">
                                 <h2 class="card-title font-weight-bold">
                                     <i class="fas fa-graduation-cap pl-5 fa-2x"></i>
-                                    First Quarter
+                                    Second Quarter
                                 </h2>
                                 <div class="d-flex justify-content-between">
-                                    <p class="card-subtitle font-weight-normal">1st Semester</p>
+                                    <p class="card-subtitle font-weight-normal">2nd Semester</p>
                                     <p class="card-subtitle font-small">S.Y 2021 - 2022</p>
                                 </div>
                             </div>
                             <hr>
                             <div class="card-body pt-0 align-self-end">
-                            <button type="button" class="btn btn-rounded btn-block btn-mdb-color darken-2">
+                            <a href="q2_grade.php" role="button" class="btn btn-rounded btn-block btn-mdb-color darken-2">
                                 <i class="fas fa-search pr-1" aria-hidden="true"></i>
                                 Review
-                            </button>
+                            </a>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <!--Panel Attendance-->
+            <div class="tab-pane fade in show active" id="attendance" role="tabpanel">
+                <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mt-0 ml-1 mr-1 table_con" style="background-color: white;">
+                    <table id="view_grade" class="table table-sm table-bordered" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="insert_to">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
