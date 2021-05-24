@@ -109,7 +109,7 @@
                     <td></td>
                     <td style="font-size:10px;" class="font-weight-normal">HIGHEST<br>POSSIBLE SCORE</td>
                     <?php
-                        for ($row=0; $row < 10; $row++) { 
+                        for ($row=0; $row < 10; $row++) {
                             echo "
                             <td>
                                 <input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'>

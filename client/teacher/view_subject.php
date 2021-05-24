@@ -34,7 +34,7 @@
 
     <h3 class="text-center mt-4 mb-0">
         "Subject Name"
-        <a type="button" href="home.php" class="btn-floating blue">
+        <a type="button" href="subject_lists.php" class="btn-floating blue">
             <i class="far fa-hand-point-left" aria-hidden="true"></i>
         </a>
     </h3>
@@ -51,11 +51,11 @@
                 <i class="fas fa-star mr-2 fa-lg"></i>
                 View Grades</a>
             </li>
-            <li class="nav-item pl-0">
+            <!-- <li class="nav-item pl-0">
                 <a class="nav-link" data-toggle="tab" href="#attendance" role="tab">
                 <i class="fas fa-calendar-check mr-2 fa-lg"></i>
                 Attendance</a>
-            </li>
+            </li> -->
         </ul>
         <div class="tab-content mb-4">
             <!--Panel Add Student-->
@@ -143,7 +143,7 @@
                 </div>
             </div>
             <!--Panel Attendance-->
-            <div class="tab-pane fade" id="attendance" role="tabpanel">
+            <!-- <div class="tab-pane fade" id="attendance" role="tabpanel">
                 <div class="jumbotron card card-image" style="background-image: url(../images/forgot-bg.jpg);">
                     <div class="text-white text-center py-3 px-2 pb-0">
                         <div>
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
     </div>
