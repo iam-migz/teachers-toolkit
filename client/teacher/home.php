@@ -24,57 +24,26 @@
     <?php include '../partials/header_teacher.php'; ?>
 
     <div class="container">
-        <h2>University of San Carlos</h2>
-        <p class="lead">Certified Advisor</p>
-        <div class="row mt-4">
-            <div class="col-lg-4 mt-1 box_card mb-4">
+        <h2>School Year Lists</h2>
+        <p class="lead">Records</p>
+        <div class="row mt-4" id="sy_list">
+            <div class="col-md-6 mt-1 mb-4 box_card"> 
                 <div class="card">
-                    <div class="view overlay">
-                        <img class="card-img-top" src="../images/work.jpg" alt="Card image cap">
-                    </div>
-                    <a href="view_subject.php" class="btn-floating btn-action ml-auto mr-4 teal darken-1"><i class="fas fa-book-open"></i></a>
-                    <div class="card-body">
-                        <h4 class="card-title mt-2">Introduction to Programming</h4>
-                        <p class="card-text"><i class="far fa-clock"></i> Class Schedule: 9:00AM - 11:00AM</p>
-                        <hr>
-                        <p class="card-subtitle font-weight-normal" style="color: grey;"><i class="fas fa-archive"></i> Class Section: Tesla</p>
-                        <p class="card-text font-small"><i class="fas fa-stamp"></i> 1st Semester S.Y 2021 - 2022</p>
+                    <div class="card-image" style="background-image: url('../images/school_year.png'); background-repeat: no-repeat; background-size: cover;">
+                        <a href="subject_lists.php">
+                            <div class="text-white d-flex h-100 mask aqua-gradient-rgba">
+                                <div class="first-content align p-3">
+                                    <h3 class="card-title" style="font-weight: 400">Academic Year</h3>
+                                    <p class="lead mb-0">August 2020 - June 2021</p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
-            </div> 
-            
-            <div class="col-lg-4 mt-1 box_card mb-4">
-                <div class="card">
-                    <div class="view overlay">
-                        <img class="card-img-top" src="../images/work.jpg" alt="Card image cap">
-                    </div>
-                    <a href="view_subject.php" class="btn-floating btn-action ml-auto mr-4 teal darken-1"><i class="fas fa-book-open"></i></a>
-                    <div class="card-body">
-                        <h4 class="card-title mt-2">Information Management II</h4>
-                        <p class="card-text"><i class="far fa-clock"></i> Class Schedule: 4:00PM - 6:30PM</p>
-                        <hr>
-                        <p class="card-subtitle font-weight-normal" style="color: grey;"><i class="fas fa-archive"></i> Class Section: Darwin</p>
-                        <p class="card-text font-small"><i class="fas fa-stamp"></i> 1st Semester S.Y 2021 - 2022</p>
-                    </div>
-                </div>
-            </div> 
-
-            <div class="col-lg-4 mt-1 box_card mb-4">
-                <div class="card">
-                    <div class="view overlay">
-                        <img class="card-img-top" src="../images/work.jpg" alt="Card image cap">
-                    </div>
-                    <a href="view_subject.php" class="btn-floating btn-action ml-auto mr-4 teal darken-1"><i class="fas fa-book-open"></i></a>
-                    <div class="card-body">
-                        <h4 class="card-title mt-2">Marketing</h4>
-                        <p class="card-text"><i class="far fa-clock"></i> Class Schedule: 1:00PM - 3:30PM</p>
-                        <hr>
-                        <p class="card-subtitle font-weight-normal" style="color: grey;"><i class="fas fa-archive"></i> Class Section: Hawking</p>
-                        <p class="card-text font-small"><i class="fas fa-stamp"></i> 1st Semester S.Y 2021 - 2022</p>
-                    </div>
-                </div>
-            </div> 
+            </div>
         </div>
+        <hr>
+
     </div>
 
     <script>
