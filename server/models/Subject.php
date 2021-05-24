@@ -80,4 +80,15 @@
             return $stmt;
         }
 
+        public function read_one(){
+            $query = "SELECT * FROM subjects WHERE id = :id";
+            $stmt = $this->conn->prepare($query);
+
+            $this->id = htmlspecialchars(strip_tags($this->id));
+            $stmt->bindParam(':id', $this->id);
+
+            $stmt->execute();
+            return $stmt;
+        }
+
     }

@@ -45,5 +45,13 @@
             return $stmt;
         }
 
+        public function read_one(){
+            $query = "SELECT * FROM school_years WHERE id = :id LIMIT 0, 1";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(":id", $this->id);
+            $stmt->execute();
+            return $stmt;
+        }
+
 
     }

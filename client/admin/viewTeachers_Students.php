@@ -167,7 +167,7 @@
                 tr.innerHTML = `
                         <td>${stud.user_id}</td>
                         <td>${stud.firstname} ${stud.middlename} ${stud.lastname}</td>
-                        <td>7878</td>
+                        <td>${stud.LRN}</td>
                         <td>${stud.email}</td>
                         <td>${stud.barangay}, ${stud.city}, ${stud.province}</td>
                         <td>${stud.gender}</td>

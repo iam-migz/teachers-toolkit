@@ -97,18 +97,21 @@
         }
 
 
-        public function read_by_teacher_lastest_sy(){
-            $query = "SELECT 	sec.section_name, sec.grade, sub.subject_name, CONCAT(teach.firstname,' ',teach.lastname,' ',teach.middlename) as teacher_name
-                      FROM 	    subject_assignments sa, subjects sub, sections sec, teachers teach
-                      WHERE 	sa.subject_id IN (SELECT id FROM subjects sub WHERE sub.school_year_id = (SELECT id FROM `school_years` ORDER BY id DESC LIMIT 0,1)) 
-                                AND sa.teacher_id = :teacher_id 
-                                AND teach.id = sa.teacher_id
-                                AND sec.id = sa.section_id 
-                                AND sub.id = sa.subject_id";
+        public function read_teacher_subjects(){
+            $query = "SELECT    sa.id, sub.id as subject_id, sub.subject_name, sub.semester, sub.hours, sec.section_name, sec.id as section_id, sec.strand, sec.track, sec.grade
+                      FROM      subject_assignments sa, subjects sub, sections sec
+                      WHERE     sa.subject_id IN (SELECT id FROM subjects sub WHERE sub.school_year_id = :school_year_id)
+                                AND sa.teacher_id = :teacher_id
+                                AND sa.section_id = sec.id
+                                AND sa.subject_id = sub.id";
 
             $stmt = $this->conn->prepare($query);
+
             $this->teacher_id = htmlspecialchars(strip_tags($this->teacher_id));
             $stmt->bindParam(':teacher_id', $this->teacher_id);
+
+            $this->school_year_id = htmlspecialchars(strip_tags($this->school_year_id));
+            $stmt->bindParam(':school_year_id', $this->school_year_id);
 
             $stmt->execute();
             return $stmt;

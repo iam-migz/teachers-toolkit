@@ -27,13 +27,17 @@
         .table{
             transform: scale(0.95);
         }
+        #subject_name {
+            text-transform: capitalize;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
     <?php include '../partials/header_teacher.php'; ?>
 
     <h3 class="text-center mt-4 mb-0">
-        "Subject Name"
+        <span id="subject_name"></span>
         <a type="button" href="subject_lists.php" class="btn-floating blue">
             <i class="far fa-hand-point-left" aria-hidden="true"></i>
         </a>
@@ -73,7 +77,7 @@
                             </tr>
                         </thead>
                         <tbody id="insert_to">
-                            <tr>
+                            <!-- <tr>
                                 <td>1927</td>
                                 <td>Hill, Grace</td>
                                 <td>19273</td>
@@ -88,7 +92,7 @@
                                 <td>grace@gmail.com</td>
                                 <td>barangay, province, city</td>
                                 <td>F</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -158,12 +162,57 @@
     </div>
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#add_stud_table').DataTable();
-            $('.dataTables_length').addClass('bs-select');
 
-        });
+        // get sy_id from query params
+        const urlParams = new URLSearchParams(window.location.search);
+        const subject_assignment_id = urlParams.get('subject_assignment_id');
+        const subject_id = urlParams.get('subject_id');
+        const section_id = urlParams.get('section_id');
+        
+        if (subject_assignment_id == null || subject_id == null) {
+            location.href = './home.php';
+        }
+
+        // get students
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/student_assignment/read_by_section.php?section_id=${section_id}`)
+            .then(res => {
+                if (res.data.result == 0){
+                    return;
+                }
+                const students = res.data.data;
+                const insert_to = document.querySelector("#insert_to");
+                students.forEach(stud => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${stud.id}</td>
+                        <td>${stud.student_name}</td>
+                        <td>${stud.LRN}</td>
+                        <td>${stud.email}</td>
+                        <td>${stud.address}</td>
+                        <td>${stud.gender}</td>
+                    `;
+                    insert_to.appendChild(tr);
+                });
+                console.log('students :>> ', students);
+                
+                $('#add_stud_table').DataTable();
+                $('.dataTables_length').addClass('bs-select');
+            })
+            .catch(err => console.log(err));
+
+        // get subject
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/subject/read_one.php?id=${subject_id}`)
+            .then(res => {
+                if (res.data.result == 0){
+                    return;
+                }
+                const subject = res.data;
+                $("#subject_name").html(subject.subject_name);
+                console.log('subject :>> ', subject);
+            })
+            .catch(err => console.log(err));
     </script>
 </body>
 </html>

@@ -12,7 +12,7 @@
     // Instantiate object
     $subject_assignment = new Subject_Assignment($db);
 
-    if ( !isset($_GET['teacher_id']) ){
+    if ( !isset($_GET['teacher_id']) || !isset($_GET['school_year_id'])  ){
         echo json_encode(
             array('result' => 0, 'message' => 'missing id')
         );
@@ -21,7 +21,8 @@
 
 
     $subject_assignment->teacher_id = $_GET['teacher_id'];
-    $result = $subject_assignment->read_by_teacher_lastest_sy();
+    $subject_assignment->school_year_id = $_GET['school_year_id'];
+    $result = $subject_assignment->read_teacher_subjects();
     $num = $result->rowCount();
 
     if ($num > 0) {
@@ -31,10 +32,16 @@
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
             $item = array(
-                'section_name' =>  $section_name,
-                'grade' => $grade,
+                'subject_assignment_id' =>  $id,
+                'subject_id' =>  $subject_id,
                 'subject_name' => $subject_name,
-                'teacher_name' => $teacher_name
+                'semester' => $semester,
+                'hours' => $hours,
+                'section_name' => $section_name,
+                'strand' => $strand,
+                'track' => $track,
+                'section_id' => $section_id,
+                'grade' => $grade
             );
             array_push($arr['data'], $item);
         }

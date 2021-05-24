@@ -34,7 +34,10 @@
                 'id' =>  $id,
                 'section_name' =>  $section_name,
                 'LRN' =>  $LRN,
-                'student_name' => $student_name
+                'student_name' => $student_name,
+                'email' => $email,
+                'gender' => $gender,
+                'address' => $address
             );
             array_push($arr['data'], $item);
         }
