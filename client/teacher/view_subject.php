@@ -143,24 +143,14 @@
                 </div>
             </div>
             <!--Panel Attendance-->
-            <div class="tab-pane fade in show active" id="attendance" role="tabpanel">
-                <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mt-0 ml-1 mr-1 table_con" style="background-color: white;">
-                    <table id="view_grade" class="table table-sm table-bordered" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="insert_to">
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="tab-pane fade" id="attendance" role="tabpanel">
+                <div class="jumbotron card card-image" style="background-image: url(../images/forgot-bg.jpg);">
+                    <div class="text-white text-center py-3 px-2 pb-0">
+                        <div>
+                            <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Attendance at the meeting is mandatory.</strong></h2>
+                            <a href="stud_attend.php"class="btn btn-outline-white btn-rounded btn-lg"><i class="far fa-edit left"></i> Review Attendance Rate</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
