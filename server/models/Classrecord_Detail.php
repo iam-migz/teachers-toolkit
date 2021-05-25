@@ -33,6 +33,8 @@
         public $hp9;
         public $hp10;
 
+        public $hq1;
+
         public function __construct($db){
             $this->conn = $db;
         }
@@ -84,6 +86,7 @@
                         hp8 = :hp8,   
                         hp9 = :hp9,   
                         hp10 = :hp10,   
+                        hq1 = :hq1
                     WHERE 
                         id = :id";
             $stmt = $this->conn->prepare($query);
@@ -92,6 +95,7 @@
             $this->performance_weight = htmlspecialchars(strip_tags($this->performance_weight));
             $this->quarterly_weight = htmlspecialchars(strip_tags($this->quarterly_weight));
 
+            $this->hw1 = htmlspecialchars(strip_tags($this->hw1));
             $this->hw2 = htmlspecialchars(strip_tags($this->hw2));
             $this->hw3 = htmlspecialchars(strip_tags($this->hw3));
             $this->hw4 = htmlspecialchars(strip_tags($this->hw4));
@@ -113,27 +117,35 @@
             $this->hp9 = htmlspecialchars(strip_tags($this->hp9));
             $this->hp10 = htmlspecialchars(strip_tags($this->hp10));
 
-            $stmt->bindParam(':w1', $this->w1);
-            $stmt->bindParam(':w2', $this->w2);
-            $stmt->bindParam(':w3', $this->w3);
-            $stmt->bindParam(':w4', $this->w4);
-            $stmt->bindParam(':w5', $this->w5);
-            $stmt->bindParam(':w6', $this->w6);
-            $stmt->bindParam(':w7', $this->w7);
-            $stmt->bindParam(':w8', $this->w8);
-            $stmt->bindParam(':w9', $this->w9);
-            $stmt->bindParam(':w10', $this->w10);
+            $this->hq1 = htmlspecialchars(strip_tags($this->hq1));
 
-            $stmt->bindParam(':p1', $this->p1);
-            $stmt->bindParam(':p2', $this->p2);
-            $stmt->bindParam(':p3', $this->p3);
-            $stmt->bindParam(':p4', $this->p4);
-            $stmt->bindParam(':p5', $this->p5);
-            $stmt->bindParam(':p6', $this->p6);
-            $stmt->bindParam(':p7', $this->p7);
-            $stmt->bindParam(':p8', $this->p8);
-            $stmt->bindParam(':p9', $this->p9);
-            $stmt->bindParam(':p10', $this->p10);
+            $stmt->bindParam(':written_weight', $this->written_weight);
+            $stmt->bindParam(':performance_weight', $this->performance_weight);
+            $stmt->bindParam(':quarterly_weight', $this->quarterly_weight);
+            
+            $stmt->bindParam(':hw1', $this->hw1);
+            $stmt->bindParam(':hw2', $this->hw2);
+            $stmt->bindParam(':hw3', $this->hw3);
+            $stmt->bindParam(':hw4', $this->hw4);
+            $stmt->bindParam(':hw5', $this->hw5);
+            $stmt->bindParam(':hw6', $this->hw6);
+            $stmt->bindParam(':hw7', $this->hw7);
+            $stmt->bindParam(':hw8', $this->hw8);
+            $stmt->bindParam(':hw9', $this->hw9);
+            $stmt->bindParam(':hw10', $this->hw10);
+
+            $stmt->bindParam(':hp1', $this->hp1);
+            $stmt->bindParam(':hp2', $this->hp2);
+            $stmt->bindParam(':hp3', $this->hp3);
+            $stmt->bindParam(':hp4', $this->hp4);
+            $stmt->bindParam(':hp5', $this->hp5);
+            $stmt->bindParam(':hp6', $this->hp6);
+            $stmt->bindParam(':hp7', $this->hp7);
+            $stmt->bindParam(':hp8', $this->hp8);
+            $stmt->bindParam(':hp9', $this->hp9);
+            $stmt->bindParam(':hp10', $this->hp10);
+
+            $stmt->bindParam(':hq1', $this->hq1);
 
             $stmt->bindParam(':id', $this->id);
 
@@ -144,6 +156,25 @@
             printf("Error updating Classrecord: %s.\n", $stmt->error);
             return false;
 
+        }
+
+        public function read_by_subject_assignment($subject_assignment_id, $quarter){
+            $query = "SELECT 	crd.written_weight, crd.performance_weight, crd.quarterly_weight, crd.id,
+                                hw1, hw2, hw3, hw4, hw5, hw6, hw7, hw8, hw9, hw10, 
+                                hp1, hp2, hp3, hp4, hp5, hp6, hp7, hp8, hp9, hp10, hq1
+                      FROM 	    subject_data sd, classrecord_details crd	
+                      WHERE 	sd.subject_assignment_id = :subject_assignment_id
+                                AND sd.id = crd.subject_data_id
+                                AND crd.quarter = :quarter
+                      LIMIT     0,1";
+            
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(':subject_assignment_id', $subject_assignment_id);
+            $stmt->bindParam(':quarter', $quarter);
+            $stmt->execute();
+
+            return $stmt;
         }
 
     }

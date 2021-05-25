@@ -115,7 +115,7 @@
                             </div>
                             <hr>
                             <div class="card-body pt-0 align-self-end">
-                            <a href="q1_grade.php" role="button" class="btn btn-rounded btn-block btn-mdb-color darken-2">
+                            <a href="#" onclick="linkTo(1, event)" role="button" class="btn btn-rounded btn-block btn-mdb-color darken-2">
                                 <i class="fas fa-search pr-1" aria-hidden="true"></i>
                                 Review
                             </a>
@@ -137,7 +137,7 @@
                             </div>
                             <hr>
                             <div class="card-body pt-0 align-self-end">
-                            <a href="q2_grade.php" role="button" class="btn btn-rounded btn-block btn-mdb-color darken-2">
+                            <a href="#" onclick="linkTo(2, event)" role="button" class="btn btn-rounded btn-block btn-mdb-color darken-2">
                                 <i class="fas fa-search pr-1" aria-hidden="true"></i>
                                 Review
                             </a>
@@ -173,6 +173,15 @@
         
         if (subject_assignment_id == null || subject_id == null) {
             location.href = './home.php';
+        }
+
+        function linkTo(num, event){
+            event.preventDefault();
+            if (num == 1) {
+                location.href = `./q1_grade.php?subject_assignment_id=${subject_assignment_id}`;
+            } else if (num == 2) {
+                location.href = `./q2_grade.php?subject_assignment_id=${subject_assignment_id}`;
+            }
         }
 
         // get students
@@ -211,8 +220,13 @@
                 const subject = res.data;
                 $("#subject_name").html(subject.subject_name);
                 console.log('subject :>> ', subject);
+
+
             })
             .catch(err => console.log(err));
+
+
+
     </script>
 </body>
 </html>

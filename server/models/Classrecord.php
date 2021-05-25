@@ -101,7 +101,9 @@
             $this->p8 = htmlspecialchars(strip_tags($this->p8));
             $this->p9 = htmlspecialchars(strip_tags($this->p9));
             $this->p10 = htmlspecialchars(strip_tags($this->p10));
+
             $this->q1 = htmlspecialchars(strip_tags($this->q1));
+            $this->id = htmlspecialchars(strip_tags($this->id));
             
             $stmt->bindParam(':w1', $this->w1);
             $stmt->bindParam(':w2', $this->w2);
@@ -113,6 +115,7 @@
             $stmt->bindParam(':w8', $this->w8);
             $stmt->bindParam(':w9', $this->w9);
             $stmt->bindParam(':w10', $this->w10);
+            
             $stmt->bindParam(':p1', $this->p1);
             $stmt->bindParam(':p2', $this->p2);
             $stmt->bindParam(':p3', $this->p3);
@@ -123,6 +126,7 @@
             $stmt->bindParam(':p8', $this->p8);
             $stmt->bindParam(':p9', $this->p9);
             $stmt->bindParam(':p10', $this->p10);
+
             $stmt->bindParam(':q1', $this->q1);
             $stmt->bindParam(':id', $this->id);
 
@@ -135,8 +139,24 @@
 
         }
 
-        public function read_by_subject_assignment(){
+        public function read_by_subject_assignment($subject_assignment_id, $quarter){
+            $query = "SELECT 	CONCAT(stud.lastname, ', ', stud.middlename, ' ', stud.firstname) as student_name, stud.gender,
+                                cr.w1, cr.w2, cr.w4, cr.w3, cr.w5, cr.w6, cr.w7, cr.w8, cr.w9, cr.w10,
+                                cr.p1, cr.p2, cr.p4, cr.p3, cr.p5, cr.p6, cr.p7, cr.p8, cr.p9, cr.p10,
+                                cr.q1, cr.id as classrecord_id, cr.subject_data_id
+                      FROM 	    subject_data sd, students stud, classrecords cr
+                      WHERE 	sd.subject_assignment_id = :subject_assignment_id
+                                AND sd.student_id = stud.id
+                                AND sd.id = cr.subject_data_id
+                                AND cr.quarter = :quarter";
+            
+            $stmt = $this->conn->prepare($query);
 
+            $stmt->bindParam(':subject_assignment_id', $subject_assignment_id);
+            $stmt->bindParam(':quarter', $quarter);
+            $stmt->execute();
+
+            return $stmt;
         }
 
     }
