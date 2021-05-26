@@ -60,6 +60,11 @@
                 <i class="fas fa-calendar-check mr-2 fa-lg"></i>
                 Attendance</a>
             </li> -->
+            <li class="nav-item pl-0">
+                <a class="nav-link" data-toggle="tab" href="#report_events" role="tab">
+                <i class="fas fa-star mr-2 fa-lg"></i>
+                Report Events</a>
+            </li>
         </ul>
         <div class="tab-content mb-4">
             <!--Panel Add Student-->
@@ -101,7 +106,7 @@
             <div class="tab-pane fade" id="view_grades" role="tabpanel">
                 <div class="row mt-0 mb-0 d-flex justify-content-center">
 
-                    <div class="col-lg-5 mt-2 mb-3 ml-4 mr-4 box_card"> 
+                    <div class="col-lg-5 mt-2 mb-3 mr-4 box_card"> 
                         <div class="card indigo lighten-3">
                             <div class="card-body pb-0">
                                 <h2 class="card-title font-weight-bold">
@@ -123,7 +128,7 @@
                         </div>
                     </div>
                 
-                    <div class="col-lg-5 mt-2 mb-3 ml-4 mr-4 box_card">
+                    <div class="col-lg-5 mt-2 mb-3 ml-4 box_card">
                         <div class="card indigo lighten-3">
                             <div class="card-body pb-0">
                                 <h2 class="card-title font-weight-bold">
@@ -157,6 +162,16 @@
                     </div>
                 </div>
             </div> -->
+            <div class="tab-pane fade" id="report_events" role="tabpanel">
+                <div class="jumbotron card card-image" style="background-image: url(../images/forgot-bg.jpg);">
+                    <div class="text-white text-center py-3 px-2 pb-0">
+                        <div>
+                            <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Access the ongoing performance of your organization.</strong></h2>
+                            <a href="report_data.php"class="btn btn-outline-white btn-rounded btn-lg"><i class="far fa-edit left"></i> Review Report Data</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

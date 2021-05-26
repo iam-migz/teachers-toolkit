@@ -143,7 +143,10 @@
                         <a href="view_subject.php?subject_assignment_id=${sub.subject_assignment_id}&subject_id=${sub.subject_id}&section_id=${sub.section_id}" class="btn-floating btn-action ml-auto mr-4 teal darken-1"><i class="fas fa-book-open"></i></a>
                         <div class="card-body">
                             <h4 class="card-title mt-2">${sub.subject_name}</h4>
-                            <p class="card-text"><i class="far fa-clock"></i> Semester: ${sub.semester}, Hours: ${sub.hours}</p>
+                            <div class="d-flex justify-content-between living-coral-text text-muted">
+                                <p class="card-subtitle font-small"><i class="far fa-calendar-check"></i> Semester: ${sub.semester}</p>
+                                <p class="card-subtitle font-small"><i class="far fa-clock"></i> Hours: ${sub.hours}</p>
+                            </div>
                             <hr>
                             <p class="card-subtitle font-weight-normal" style="color: grey;"><i class="fas fa-archive"></i> Class Section: ${sub.section_name}</p>
                         </div>
