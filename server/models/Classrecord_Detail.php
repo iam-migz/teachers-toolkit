@@ -4,7 +4,7 @@
 
         // Properties
         public $id;
-        public $subject_data_id;
+        public $subject_assignment_id;
         public $quarter;
 
         public $written_weight;
@@ -43,12 +43,12 @@
 
             $query = "INSERT INTO classrecord_details
                       SET 
-                        subject_data_id = :subject_data_id,
+                        subject_assignment_id = :subject_assignment_id,
                         quarter = :quarter";
 
             $stmt = $this->conn->prepare($query);
 
-            $stmt->bindParam(':subject_data_id', $this->subject_data_id);
+            $stmt->bindParam(':subject_assignment_id', $this->subject_assignment_id);
             $stmt->bindParam(':quarter', $this->quarter);
             
 
@@ -162,9 +162,8 @@
             $query = "SELECT 	crd.written_weight, crd.performance_weight, crd.quarterly_weight, crd.id,
                                 hw1, hw2, hw3, hw4, hw5, hw6, hw7, hw8, hw9, hw10, 
                                 hp1, hp2, hp3, hp4, hp5, hp6, hp7, hp8, hp9, hp10, hq1
-                      FROM 	    subject_data sd, classrecord_details crd	
-                      WHERE 	sd.subject_assignment_id = :subject_assignment_id
-                                AND sd.id = crd.subject_data_id
+                      FROM 	    classrecord_details crd	
+                      WHERE 	crd.subject_assignment_id = :subject_assignment_id
                                 AND crd.quarter = :quarter
                       LIMIT     0,1";
             

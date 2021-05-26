@@ -73,12 +73,12 @@
         
         // create classrecord detail for this subject_data
         // quarter 1
-        $classrecord_detail->subject_data_id = $subject_data->id;
+        $classrecord_detail->subject_assignment_id = $subject_assignment->id;
         $classrecord_detail->quarter = 1;
         $classrecord_detail->create(); 
 
         // quarter 2
-        $classrecord_detail->subject_data_id = $subject_data->id;
+        $classrecord_detail->subject_assignment_id = $subject_assignment->id;
         $classrecord_detail->quarter = 2;
         $classrecord_detail->create(); 
 
