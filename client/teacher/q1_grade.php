@@ -42,6 +42,25 @@
         .q_input{
             transform: translateY(-20%);
         }
+
+        /* hide handle bar number input */
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+           -moz-appearance: textfield;
+        }
+
+        input[type=number] {
+            background: #eaeaea;
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
@@ -61,15 +80,15 @@
                     <th>LEARNERS'<br>NAME</th>
                     <th colspan="13" class="text-center pb-0">
                         <label for="written_weight" class="w_label">WRITTEN WORKS</label>
-                        <input type="text" id="written_weight" name="written_weight" style="width: 40px; margin: 0 auto" class="t_input form-control form-control-sm">
+                        <input type="number" id="written_weight" name="written_weight" style="width: 40px; margin: 0 auto" class="t_input form-control form-control-sm">
                     </th>
                     <th colspan="13" class="text-center pb-0">
                         <label for="performance_weight" class="p_label">PERFORMANCE TASKS</label>
-                        <input type="text" id="performance_weight" name="performance_weight" style="width: 40px; margin: 0 auto" class="p_input form-control form-control-sm">
+                        <input type="number" id="performance_weight" name="performance_weight" style="width: 40px; margin: 0 auto" class="p_input form-control form-control-sm">
                     </th>
                     <th colspan="3" class="text-center pb-0">
                         <label for="quarterly_weight">QUARTERLY ASSESSMENT</label>
-                        <input type="text" id="quarterly_weight" name="quarterly_weight" style="width: 40px; margin: 0 auto" class="q_input form-control form-control-sm">
+                        <input type="number" id="quarterly_weight" name="quarterly_weight" style="width: 40px; margin: 0 auto" class="q_input form-control form-control-sm">
                     </th>
                     <th rowspan="3" style='width: 1%;' class="pb-5">Initial Grade</th>
                     <th rowspan="3" style='width: 1%;' class="pb-5">Quarterly Grade</th>
@@ -106,33 +125,33 @@
                 <tr id="classrecord_detail">
                     <td></td>
                     <td style="font-size:10px;" class="font-weight-normal">HIGHEST<br>POSSIBLE SCORE</td>
-                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
-                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
-                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
-                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
-                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
-                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
-                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
-                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
-                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
-                    <td><input type='text' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='number' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='number' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='number' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='number' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='number' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='number' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='number' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='number' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='number' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
+                    <td><input type='number' style='width: 20px;' class='form-control form-control-sm form-control-plaintext highestWritten'></td>
                     <td id="crd_total_written"></td>
                     <td id="crd_ps_written">100.00</td>
                     <td id="crd_ws_written">40%</td>
-                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
-                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
-                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
-                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
-                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
-                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
-                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
-                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
-                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
-                    <td><input type='text' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='number' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='number' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='number' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='number' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='number' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='number' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='number' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='number' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='number' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
+                    <td><input type='number' style='width: 20px' class='form-control form-control-sm form-control-plaintext highestPerformance'></td>
                     <td id="crd_total_performance"></td>
                     <td id="crd_ps_performance">100.00</td>
                     <td id="crd_ws_performance"></td>
-                    <td><input type='text' style='width: 43px' class='form-control form-control-sm form-control-plaintext highestQuarterly'></td>
+                    <td><input type='number' style='width: 43px' class='form-control form-control-sm form-control-plaintext highestQuarterly'></td>
                     <td id="crd_ps_quarterly">100.00</td>
                     <td id="crd_ws_quarterly">40%</td>
                 </tr>
@@ -290,7 +309,7 @@
                 const performance_WS = (performance_PS * (Number(crd.performance_weight)/100)).toFixed(2);
 
                 const quarterly_total = Number(stud.q1);
-                const quarterly_PS = crd.hq1 ? (quarterly_total/Number(crd.hq1) * 100).toFixed(2) : 0;
+                const quarterly_PS = Number(crd.hq1) ? (quarterly_total/Number(crd.hq1) * 100).toFixed(2) : 0;
                 const quarterly_WS = (quarterly_PS * (Number(crd.quarterly_weight)/100)).toFixed(2);
 
                 let initial_grade = (Number(written_WS) + Number(performance_WS) + Number(quarterly_WS)).toFixed(2);
@@ -304,37 +323,37 @@
                     <td>${stud.student_name}</td>
 
                     <!--Written Works-->
-                    <td><input type='text' value="${stud.w1}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
-                    <td><input type='text' value="${stud.w2}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
-                    <td><input type='text' value="${stud.w3}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
-                    <td><input type='text' value="${stud.w4}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
-                    <td><input type='text' value="${stud.w5}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
-                    <td><input type='text' value="${stud.w6}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
-                    <td><input type='text' value="${stud.w7}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
-                    <td><input type='text' value="${stud.w8}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
-                    <td><input type='text' value="${stud.w9}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
-                    <td><input type='text' value="${stud.w10}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
+                    <td><input type='number' value="${stud.w1}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
+                    <td><input type='number' value="${stud.w2}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
+                    <td><input type='number' value="${stud.w3}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
+                    <td><input type='number' value="${stud.w4}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
+                    <td><input type='number' value="${stud.w5}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
+                    <td><input type='number' value="${stud.w6}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
+                    <td><input type='number' value="${stud.w7}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
+                    <td><input type='number' value="${stud.w8}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
+                    <td><input type='number' value="${stud.w9}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
+                    <td><input type='number' value="${stud.w10}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
                     <td>${written_total}</td>
                     <td>${written_PS}</td>
                     <td>${written_WS}</td>
 
                     <!--Perfomance Task-->
-                    <td><input type='text' value="${stud.p1}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
-                    <td><input type='text' value="${stud.p2}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
-                    <td><input type='text' value="${stud.p3}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
-                    <td><input type='text' value="${stud.p4}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
-                    <td><input type='text' value="${stud.p5}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
-                    <td><input type='text' value="${stud.p6}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
-                    <td><input type='text' value="${stud.p7}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
-                    <td><input type='text' value="${stud.p8}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
-                    <td><input type='text' value="${stud.p9}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
-                    <td><input type='text' value="${stud.p10}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
+                    <td><input type='number' value="${stud.p1}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
+                    <td><input type='number' value="${stud.p2}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
+                    <td><input type='number' value="${stud.p3}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
+                    <td><input type='number' value="${stud.p4}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
+                    <td><input type='number' value="${stud.p5}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
+                    <td><input type='number' value="${stud.p6}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
+                    <td><input type='number' value="${stud.p7}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
+                    <td><input type='number' value="${stud.p8}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
+                    <td><input type='number' value="${stud.p9}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
+                    <td><input type='number' value="${stud.p10}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
                     <td>${performance_total}</td>
                     <td>${performance_PS}</td>
                     <td>${performance_WS}</td>
 
                     <!--Quarterly Assessment-->
-                    <td><input type='text' value="${stud.q1}" style='width: 43px' class='form-control form-control-sm form-control-plaintext quarterly_data'></td>
+                    <td><input type='number' value="${stud.q1}" style='width: 43px' class='form-control form-control-sm form-control-plaintext quarterly_data'></td>
                     <td>${quarterly_PS}</td>
                     <td>${quarterly_WS}</td>
                     <td>${initial_grade}</td>
@@ -469,16 +488,15 @@
                 "hp10": highestPerformance[9].value
             };
 
-            // console.log(classrecord_detail);
-
-
 
             try {
-                // let res = await axios.put('http://localhost/teachers-toolkit-app/server/api/classrecord_detail/update.php',  classrecord_detail );
-                // console.log(res.data);
+
+                // update crd
+                let res = await axios.put('http://localhost/teachers-toolkit-app/server/api/classrecord_detail/update.php',  classrecord_detail );
+                console.log(res.data);
 
 
-                // update api
+                // update cr
                 const trs = document.querySelectorAll('[data-cr_id]');
                 let array = [];
                 let item;
@@ -514,6 +532,8 @@
                     let res = await axios.put('http://localhost/teachers-toolkit-app/server/api/classrecord/update.php', item);
                     console.log(res.data);
                 });
+
+                location.reload();
 
             } catch (e) {
                 console.log(e);
