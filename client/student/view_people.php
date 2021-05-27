@@ -39,33 +39,27 @@
     <div class="container mt-5">
         <div class="card">
             <h2 class="text-center mt-4 mb-0">
-                <span id="strand_name">Technical-Vocational-Livelihood</span>
-                <!-- <a type="button" href="subject_lists.php" class="btn-floating blue">
+                <span id="strand_name">People</span>
+                <a type="button" href="subject_lists.php" class="btn-floating blue">
                     <i class="far fa-hand-point-left" aria-hidden="true"></i>
-                </a> -->
-                <p class="font-small">(Effective SY: 2018 - 2019)</p>
+                </a>
             </h2>
             <div class="card-body">
                 <div class="table-responsive-sm table-responsive-md table-responsive-lg">
-                    <table id="grading_table" class="table table-sm table-hover" cellspacing="0" cellpadding="0" width="100%">
+                    <table id="view_people" class="table table-sm table-hover" cellspacing="0" cellpadding="0" width="100%">
                         <thead>
                             <tr>
-                                <td style="border: none;" class="th-sm stud_name_set" colspan="4">1101, Stacy Cruz</th>
-                            </tr>
-                            <tr>
-                                <th class="th-sm">Subject Course</th>
-                                <th class="th-sm">First Quarter</th>
-                                <th class="th-sm">Second Quarter</th>
-                                <th class="th-sm">Final</th>
+                                <th class="th-sm">Student ID</th>
+                                <th class="th-sm">Name</th>
+                                <th class="th-sm">LRN</th>
+                                <th class="th-sm">Email Address</th>
+                                <th class="th-sm">Address</th>
+                                <th class="th-sm">Gender</th>
                             </tr>
                         </thead>
                         <tbody id="student_field">
                             <!-- data from db -->
                             <tr>
-                                <td>Analytics</td>
-                                <td>20</td>
-                                <td>20</td>
-                                <td>20</td>
                             </tr>
                         </tbody>
                     </table>
@@ -78,15 +72,8 @@
     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
     <script>
     $(document).ready(function () {
-        $('#grading_table').DataTable({
-            "bLengthChange": false,
-            "searching": false,
-            "bPaginate": false,
-            "bInfo": false,
-            "ordering": false
-        });
+        $('#view_people').DataTable();
         $('.dataTables_length').addClass('bs-select');
     });
     </script>
 </body>
-</html>
