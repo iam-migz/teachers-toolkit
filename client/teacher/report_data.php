@@ -62,7 +62,7 @@
             <div class="tab-pane fade in show active" id="highest_grade" role="tabpanel">
                 <div class="table-responsive-sm table-responsive-md table-responsive-lg mt-0">
                     <h2 class="text-center mt-0 mb-4 pt-0">
-                        Top 10 Students
+                        Students
                     </h2>
                     <table id="highest" class="table table-sm" cellspacing="0" width="100%">
                         <thead>
@@ -101,7 +101,7 @@
             <div class="tab-pane fade" id="lowest_grade" role="tabpanel">
                 <div class="table-responsive-sm table-responsive-md table-responsive-lg mt-0">
                     <h2 class="text-center mt-0 mb-4 pt-0">
-                        Top 10 Students
+                        Students
                     </h2>
                     <table id="lowest" class="table table-sm" cellspacing="0" width="100%">
                         <thead>

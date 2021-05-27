@@ -189,9 +189,10 @@
             </tbody>
         </table>
     </div>
-    <button type="button" class="btn btn-primary" onclick="update()">Button</button>
+    <button type="button" class="btn btn-primary" onclick="update()">Update</button>
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
+    <script src="../grades/Grade.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
 
@@ -207,8 +208,8 @@
             // set classrecord detail
             let res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/classrecord_detail/read_by_subject_assignment.php?subject_assignment_id=${subject_assignment_id}&quarter=1`);
             let crd = res.data;
-            crd.total_written = Number(crd.hw1) + Number(crd.hw2) + Number(crd.hw3) + Number(crd.hw4) + Number(crd.hw5) + Number(crd.hw6) + Number(crd.hw7) + Number(crd.hw8) + Number(crd.hw9) + Number(crd.hw10);
-            crd.total_performance = Number(crd.hp1) + Number(crd.hp2) + Number(crd.hp3) + Number(crd.hp4) + Number(crd.hp5) + Number(crd.hp6) + Number(crd.hp7) + Number(crd.hp8) + Number(crd.hp9) + Number(crd.hp10);
+            crd.total_highest_written = Number(crd.hw1) + Number(crd.hw2) + Number(crd.hw3) + Number(crd.hw4) + Number(crd.hw5) + Number(crd.hw6) + Number(crd.hw7) + Number(crd.hw8) + Number(crd.hw9) + Number(crd.hw10);
+            crd.total_highest_performance = Number(crd.hp1) + Number(crd.hp2) + Number(crd.hp3) + Number(crd.hp4) + Number(crd.hp5) + Number(crd.hp6) + Number(crd.hp7) + Number(crd.hp8) + Number(crd.hp9) + Number(crd.hp10);
             setClassrecordDetail(crd);
 
 
@@ -282,11 +283,11 @@
             document.querySelector("body").dataset.crd_id = crd.id;
 
 
-            $("#crd_total_written").html(crd.total_written);
+            $("#crd_total_written").html(crd.total_highest_written);
             $("#crd_ps_written").html(100);
             $("#crd_ws_written").html(crd.written_weight+"%");
 
-            $("#crd_total_performance").html(crd.total_performance);
+            $("#crd_total_performance").html(crd.total_highest_performance);
             $("#crd_ps_performance").html(100);
             $("#crd_ws_performance").html(crd.performance_weight+"%");
 
@@ -300,20 +301,8 @@
         function setClassrecord(insert_to, students, crd) {
             
             students.forEach((stud, index) => {
-                const written_total = Number(stud.w1) + Number(stud.w2) + Number(stud.w3) + Number(stud.w4) + Number(stud.w5) + Number(stud.w6) + Number(stud.w7) + Number(stud.w8) + Number(stud.w9) + Number(stud.w10);
-                const written_PS = crd.total_written ? (written_total/crd.total_written * 100).toFixed(2) : 0;
-                const written_WS = (written_PS * (Number(crd.written_weight)/100)).toFixed(2);
 
-                const performance_total = Number(stud.p1) + Number(stud.p2) + Number(stud.p3) + Number(stud.p4) + Number(stud.p5) + Number(stud.p6) + Number(stud.p7) + Number(stud.p8) + Number(stud.p9) + Number(stud.p10);
-                const performance_PS = crd.total_performance ? (performance_total/crd.total_performance * 100).toFixed(2) : 0;
-                const performance_WS = (performance_PS * (Number(crd.performance_weight)/100)).toFixed(2);
-
-                const quarterly_total = Number(stud.q1);
-                const quarterly_PS = Number(crd.hq1) ? (quarterly_total/Number(crd.hq1) * 100).toFixed(2) : 0;
-                const quarterly_WS = (quarterly_PS * (Number(crd.quarterly_weight)/100)).toFixed(2);
-
-                let initial_grade = (Number(written_WS) + Number(performance_WS) + Number(quarterly_WS)).toFixed(2);
-                const final = transmutation_table(initial_grade);
+                const grade = calculateGrade(stud, crd);
 
                 const tr = document.createElement('tr');
                 tr.classList.add('cr_data');
@@ -333,9 +322,9 @@
                     <td><input type='number' value="${stud.w8}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
                     <td><input type='number' value="${stud.w9}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
                     <td><input type='number' value="${stud.w10}" style='width: 20px' class='form-control form-control-sm form-control-plaintext written_data'></td>
-                    <td>${written_total}</td>
-                    <td>${written_PS}</td>
-                    <td>${written_WS}</td>
+                    <td>${grade.written_total.toFixed(2)}</td>
+                    <td>${grade.written_PS.toFixed(2)}</td>
+                    <td>${grade.written_WS.toFixed(2)}</td>
 
                     <!--Perfomance Task-->
                     <td><input type='number' value="${stud.p1}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
@@ -348,111 +337,21 @@
                     <td><input type='number' value="${stud.p8}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
                     <td><input type='number' value="${stud.p9}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
                     <td><input type='number' value="${stud.p10}" style='width: 20px' class='form-control form-control-sm form-control-plaintext performance_data'></td>
-                    <td>${performance_total}</td>
-                    <td>${performance_PS}</td>
-                    <td>${performance_WS}</td>
+                    <td>${grade.performance_total.toFixed(2)}</td>
+                    <td>${grade.performance_PS.toFixed(2)}</td>
+                    <td>${grade.performance_WS.toFixed(2)}</td>
 
                     <!--Quarterly Assessment-->
                     <td><input type='number' value="${stud.q1}" style='width: 43px' class='form-control form-control-sm form-control-plaintext quarterly_data'></td>
-                    <td>${quarterly_PS}</td>
-                    <td>${quarterly_WS}</td>
-                    <td>${initial_grade}</td>
-                    <td>${final}</td>
+                    <td>${grade.quarterly_PS.toFixed(2)}</td>
+                    <td>${grade.quarterly_WS.toFixed(2)}</td>
+                    <td>${grade.initial_grade.toFixed(2)}</td>
+                    <td>${grade.final.toFixed(2)}</td>
                 `;
                 insert_to.insertAdjacentElement('afterend', tr);
                 })
         }
 
-        function transmutation_table(initial_grade){
-            let transmuted_grade;
-
-            if(initial_grade == 100){
-                transmuted_grade = 100;
-            } else if (initial_grade < 99.99 && initial_grade > 98.40){
-                transmuted_grade = 99;
-            }  else if (initial_grade < 98.39 && initial_grade > 96.80){
-                transmuted_grade = 98;
-            }  else if (initial_grade < 96.79 && initial_grade > 95.20){
-                transmuted_grade = 97;
-            }  else if (initial_grade < 95.19 && initial_grade > 93.60){
-                transmuted_grade = 96;
-            }  else if (initial_grade < 93.59 && initial_grade > 92.00){
-                transmuted_grade = 95;
-            }  else if (initial_grade < 91.99 && initial_grade > 90.40){
-                transmuted_grade = 94;
-            } else if (initial_grade < 88.80 && initial_grade > 90.39){
-                transmuted_grade = 93;
-            } else if (initial_grade < 87.20 && initial_grade > 88.79){
-                transmuted_grade = 92;
-            } else if (initial_grade < 87.19 && initial_grade > 85.60){
-                transmuted_grade = 91;
-            } else if (initial_grade < 85.59 && initial_grade > 84.000){
-                transmuted_grade = 90;
-            } else if (initial_grade < 83.99 && initial_grade > 82.40){
-                transmuted_grade = 89;
-            } else if (initial_grade < 82.39 && initial_grade > 80.80){
-                transmuted_grade = 88;
-            } else if (initial_grade < 80.79 && initial_grade > 79.20){
-                transmuted_grade = 87;
-            } else if (initial_grade < 79.19 && initial_grade > 77.60){
-                transmuted_grade = 86;
-            } else if (initial_grade < 77.59 && initial_grade > 76.00){
-                transmuted_grade = 85;
-            } else if (initial_grade < 75.99 && initial_grade > 74.40){
-                transmuted_grade = 84;
-            } else if (initial_grade < 74.39 && initial_grade > 72.80){
-                transmuted_grade = 83;
-            } else if (initial_grade < 72.79 && initial_grade > 71.20){
-                transmuted_grade = 82;
-            } else if (initial_grade < 71.19 && initial_grade > 69.60){
-                transmuted_grade = 81;
-            } else if (initial_grade < 69.59 && initial_grade > 68.00){
-                transmuted_grade = 80;
-            } else if (initial_grade < 67.99 && initial_grade > 66.40){
-                transmuted_grade = 79;
-            } else if (initial_grade < 66.39 && initial_grade > 64.80){
-                transmuted_grade = 78;
-            } else if (initial_grade < 64.79 && initial_grade > 63.20){
-                transmuted_grade = 77;
-            } else if (initial_grade < 63.19 && initial_grade > 61.60){
-                transmuted_grade = 76;
-            } else if (initial_grade < 61.59 && initial_grade > 60.00){
-                transmuted_grade = 75;
-            } else if (initial_grade < 59.99 && initial_grade > 56.00){
-                transmuted_grade = 74;
-            } else if (initial_grade < 55.99 && initial_grade > 52.00){
-                transmuted_grade = 73;
-            } else if (initial_grade < 51.99 && initial_grade > 48.00){
-                transmuted_grade = 72;
-            } else if (initial_grade < 47.99 && initial_grade > 44.00){
-                transmuted_grade = 71;
-            } else if (initial_grade < 43.99 && initial_grade > 40.00){
-                transmuted_grade = 70;
-            } else if (initial_grade < 39.99 && initial_grade > 36.00){
-                transmuted_grade = 69;
-            } else if (initial_grade < 35.99 && initial_grade > 32.00){
-                transmuted_grade = 68;
-            } else if (initial_grade < 31.99 && initial_grade > 28.00){
-                transmuted_grade = 67;
-            } else if (initial_grade < 27.99 && initial_grade > 24.00){
-                transmuted_grade = 66;
-            } else if (initial_grade < 23.99 && initial_grade > 16.00){
-                transmuted_grade = 65;
-            } else if (initial_grade < 19.99 && initial_grade > 20.00){
-                transmuted_grade = 64;
-            } else if (initial_grade < 15.99 && initial_grade > 12.00){
-                transmuted_grade = 63;
-            } else if (initial_grade < 11.99 && initial_grade > 8.00){
-                transmuted_grade = 62;
-            } else if (initial_grade < 7.99 && initial_grade > 4.00){
-                transmuted_grade = 61;
-            } else if (initial_grade < 3.99 && initial_grade > 0){
-                transmuted_grade = 60;
-            } else {
-                transmuted_grade = 0;
-            }
-            return transmuted_grade
-        }
 
         async function update(){
 

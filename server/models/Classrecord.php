@@ -138,7 +138,7 @@
             return false;
 
         }
-
+        // reads all grades of the student of a single subject
         public function read_by_subject_assignment($subject_assignment_id, $quarter){
             $query = "SELECT 	CONCAT(stud.lastname, ', ', stud.middlename, ' ', stud.firstname) as student_name, stud.gender,
                                 cr.w1, cr.w2, cr.w4, cr.w3, cr.w5, cr.w6, cr.w7, cr.w8, cr.w9, cr.w10,
@@ -153,6 +153,41 @@
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindParam(':subject_assignment_id', $subject_assignment_id);
+            $stmt->bindParam(':quarter', $quarter);
+            $stmt->execute();
+
+            return $stmt;
+        }
+
+        // reads all the grades of each subjects of a single student
+        public function read_student_grades($student_id, $quarter){
+            $query = "SELECT 	stud.id as student_id, CONCAT(stud.lastname, ', ', stud.firstname, ' ', stud.middlename) as student_name,
+                                sec.section_name, sec.strand, sec.track, sec.grade, sub.subject_name,
+                                cr.w1, cr.w2, cr.w4, cr.w3, cr.w5, cr.w6, cr.w7, cr.w8, cr.w9, cr.w10,
+                                cr.p1, cr.p2, cr.p4, cr.p3, cr.p5, cr.p6, cr.p7, cr.p8, cr.p9, cr.p10,
+                                cr.q1
+
+                      FROM 	    students stud, 
+                                sections sec, 
+                                subjects sub, 
+                                subject_assignments, 
+                                student_assignments, 
+                                subject_data,
+                                classrecords cr
+                      WHERE 	
+                                stud.id = :student_id AND 
+                                stud.id = student_assignments.student_id AND 
+                                student_assignments.section_id = sec.id AND 
+                                sec.id = subject_assignments.section_id AND 
+                                sub.id = subject_assignments.subject_id AND 
+                                subject_data.subject_assignment_id = subject_assignments.id AND 
+                                subject_data.student_id = stud.id AND 
+                                subject_data.id = cr.subject_data_id AND 
+                                cr.quarter = :quarter";
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(':student_id', $student_id);
             $stmt->bindParam(':quarter', $quarter);
             $stmt->execute();
 

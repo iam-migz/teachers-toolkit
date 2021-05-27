@@ -53,7 +53,7 @@
             <li class="nav-item pl-0">
                 <a class="nav-link" data-toggle="tab" href="#view_grades" role="tab">
                 <i class="fas fa-star mr-2 fa-lg"></i>
-                View Grades</a>
+                Grades</a>
             </li>
             <!-- <li class="nav-item pl-0">
                 <a class="nav-link" data-toggle="tab" href="#attendance" role="tab">
@@ -115,7 +115,6 @@
                                 </h2>
                                 <div class="d-flex justify-content-between">
                                     <p class="card-subtitle font-weight-normal">1st Semester</p>
-                                    <p class="card-subtitle font-small">S.Y 2021 - 2022</p>
                                 </div>
                             </div>
                             <hr>
@@ -137,7 +136,6 @@
                                 </h2>
                                 <div class="d-flex justify-content-between">
                                     <p class="card-subtitle font-weight-normal">2nd Semester</p>
-                                    <p class="card-subtitle font-small">S.Y 2021 - 2022</p>
                                 </div>
                             </div>
                             <hr>
