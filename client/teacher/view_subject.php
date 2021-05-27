@@ -165,7 +165,7 @@
                     <div class="text-white text-center py-3 px-2 pb-0">
                         <div>
                             <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Access the ongoing performance of your organization.</strong></h2>
-                            <a href="report_data.php"class="btn btn-outline-white btn-rounded btn-lg"><i class="far fa-edit left"></i> Review Report Data</a>
+                            <a href="#" onclick="linkTo(3, event)" class="btn btn-outline-white btn-rounded btn-lg"><i class="far fa-edit left"></i> Review Report Data</a>
                         </div>
                     </div>
                 </div>
@@ -194,6 +194,8 @@
                 location.href = `./q1_grade.php?subject_assignment_id=${subject_assignment_id}`;
             } else if (num == 2) {
                 location.href = `./q2_grade.php?subject_assignment_id=${subject_assignment_id}`;
+            } else if (num == 3) {
+                location.href = `./report_data.php?subject_assignment_id=${subject_assignment_id}`; 
             }
         }
 

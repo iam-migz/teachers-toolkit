@@ -69,10 +69,7 @@
                             <tr>
                                 <th class="th-sm">Student ID</th>
                                 <th class="th-sm">Name</th>
-                                <th class="th-sm">LRN</th>
-                                <th class="th-sm">Email Address</th>
-                                <th class="th-sm">Address</th>
-                                <th class="th-sm">Gender</th>
+                                <th class="th-sm">Grade</th>
                             </tr>
                         </thead>
                         <tbody id="insert_to">
@@ -80,17 +77,6 @@
                                 <td>1927</td>
                                 <td>Hill, Grace</td>
                                 <td>19273</td>
-                                <td>grace@gmail.com</td>
-                                <td>barangay, province, city</td>
-                                <td>F</td>
-                            </tr>
-                            <tr>
-                                <td>1927</td>
-                                <td>Hill, Grace</td>
-                                <td>19273</td>
-                                <td>grace@gmail.com</td>
-                                <td>barangay, province, city</td>
-                                <td>F</td>
                             </tr>
                         </tbody>
                     </table>
@@ -108,10 +94,7 @@
                             <tr>
                                 <th class="th-sm">Student ID</th>
                                 <th class="th-sm">Name</th>
-                                <th class="th-sm">LRN</th>
-                                <th class="th-sm">Email Address</th>
-                                <th class="th-sm">Address</th>
-                                <th class="th-sm">Gender</th>
+                                <th class="th-sm">Grade</th>
                             </tr>
                         </thead>
                         <tbody id="insert_to">
@@ -119,17 +102,6 @@
                                 <td>1927</td>
                                 <td>Hill, Grace</td>
                                 <td>19273</td>
-                                <td>grace@gmail.com</td>
-                                <td>barangay, province, city</td>
-                                <td>F</td>
-                            </tr>
-                            <tr>
-                                <td>1927</td>
-                                <td>Hill, Grace</td>
-                                <td>19273</td>
-                                <td>grace@gmail.com</td>
-                                <td>barangay, province, city</td>
-                                <td>F</td>
                             </tr>
                         </tbody>
                     </table>
@@ -144,6 +116,7 @@
     </div>
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#highest').DataTable({
@@ -161,6 +134,9 @@
 
             $('.dataTables_length').addClass('bs-select');
         });
+
+    
+
     </script>
 </body>
 </html>

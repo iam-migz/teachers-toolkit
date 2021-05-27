@@ -1,6 +1,5 @@
 function calculateGrade (stud, crd) {
-    console.log('hello from function');
-
+    
     let written_scores = [stud.w1, stud.w2, stud.w3, stud.w4, stud.w5, stud.w6, stud.w7, stud.w8, stud.w9, stud.w10];
     let performance_scores = [stud.p1, stud.p2, stud.p3, stud.p4, stud.p5, stud.p6, stud.p7, stud.p8, stud.p9, stud.p10];
     let quarterly_score = Number(stud.q1);
