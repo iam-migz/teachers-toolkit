@@ -66,7 +66,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link nav_simple" href="#">
+                <a class="nav-link nav_simple" href="../student/view_people.php">
                 <i class="fas fa-users"></i>View People</a>
             </li>
             <li class="nav-item dropdown">
