@@ -104,9 +104,9 @@
             </div>
             <!--Panel View Grades-->
             <div class="tab-pane fade" id="view_grades" role="tabpanel">
-                <div class="row mt-0 mb-0 d-flex justify-content-center">
+                <div class="row mt-0 mb-0">
 
-                    <div class="col-lg-5 mt-2 mb-3 mr-4 box_card"> 
+                    <div class="col-lg-6 mt-2 mb-3 box_card"> 
                         <div class="card indigo lighten-3">
                             <div class="card-body pb-0">
                                 <h2 class="card-title font-weight-bold">
@@ -127,7 +127,7 @@
                         </div>
                     </div>
                 
-                    <div class="col-lg-5 mt-2 mb-3 ml-4 box_card">
+                    <div class="col-lg-6 mt-2 mb-3 box_card">
                         <div class="card indigo lighten-3">
                             <div class="card-body pb-0">
                                 <h2 class="card-title font-weight-bold">
@@ -144,6 +144,19 @@
                                 <i class="fas fa-search pr-1" aria-hidden="true"></i>
                                 Review
                             </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 mt-2 mb-3 box_card">
+                        <div class="card card-cascade">
+                            <div class="view view-cascade gradient-card-header blue-gradient">
+                                <h2 class="card-header-title mb-3">Summary of Quarterly Grades</h2>
+                                <p class="card-header-subtitle mb-0">Review Summarized Grades of your students
+                                    <a type="button" href="summary_grades.php" class="btn-floating cyan">
+                                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                    </a>
+                                </p>
                             </div>
                         </div>
                     </div>
