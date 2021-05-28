@@ -138,7 +138,7 @@
                 }
             })
             .catch(err => console.log(err));
-
+        console.log('sy_id :>> ', sy_id);
         const school_id = <?php echo $_SESSION['school_id']; ?>;
         axios.get(`http://localhost/teachers-toolkit-app/server/api/student_assignment/read_unassigned.php?school_year_id=${sy_id}`)
             .then(res => {

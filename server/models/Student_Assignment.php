@@ -44,7 +44,7 @@
                                                               sec.id = student_assignments.section_id AND 
                                                               stud.id = student_assignments.student_id)";
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':school_year_id', $this->school_year_id);
+            $stmt->bindParam(':school_year_id', $school_year_id);
             $stmt->execute();
             return $stmt;
         }
