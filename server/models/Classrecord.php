@@ -165,7 +165,7 @@
                                 sec.section_name, sec.strand, sec.track, sec.grade, sub.subject_name,
                                 cr.w1, cr.w2, cr.w4, cr.w3, cr.w5, cr.w6, cr.w7, cr.w8, cr.w9, cr.w10,
                                 cr.p1, cr.p2, cr.p4, cr.p3, cr.p5, cr.p6, cr.p7, cr.p8, cr.p9, cr.p10,
-                                cr.q1
+                                cr.q1, subject_data.subject_assignment_id, cr.quarter
 
                       FROM 	    students stud, 
                                 sections sec, 

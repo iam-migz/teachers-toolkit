@@ -36,6 +36,8 @@
                 'track' => $track,
                 'grade' => $grade,
                 'subject_name' => $subject_name,
+                'subject_assignment_id' => $subject_assignment_id,
+                'quarter' => $quarter,
                 'w1' => $w1,
                 'w2' => $w2,
                 'w3' => $w3,
