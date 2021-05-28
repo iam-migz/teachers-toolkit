@@ -12,14 +12,14 @@
     // Instantiate object
     $classrecord = new Classrecord($db);
 
-    if ( !isset($_GET['student_id']) || !isset($_GET['quarter'])  ){
+    if ( !isset($_GET['student_id'])  ){
         echo json_encode(
             array('result' => 0, 'message' => 'missing id')
         );
         return;
     }
 
-    $result = $classrecord->read_student_grades($_GET['student_id'], $_GET['quarter']);
+    $result = $classrecord->read_student_grades($_GET['student_id']);
     $num = $result->rowCount();
 
     if ($num > 0) {
@@ -29,13 +29,11 @@
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
             $item = array(
-                'student_id' =>  $student_id,
-                'student_name' =>  $student_name,
-                'section_name' => $section_name,
-                'strand' => $strand,
-                'track' => $track,
-                'grade' => $grade,
                 'subject_name' => $subject_name,
+                'sy_start' => $sy_start,
+                'sy_end' => $sy_end,
+                'sy_id' => $sy_id,
+                'semester' => $semester,
                 'subject_assignment_id' => $subject_assignment_id,
                 'quarter' => $quarter,
                 'w1' => $w1,

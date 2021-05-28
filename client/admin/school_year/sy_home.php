@@ -26,6 +26,9 @@
         background: -webkit-linear-gradient(to right, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 1));
         background: linear-gradient(to right, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 1))
     }
+    .title{
+        font-size:22px;
+    }
     </style>
 </head>
 <body>
@@ -36,7 +39,7 @@
     <div class="container">
         <div class="row mt-4 mb-5 d-flex justify-content-center">
             <div class="col-lg-4 mt-4 mr-0 ml-0 box_card"> 
-                <h2 class="text-center">Create Subject</h2>
+                <h2 class="text-center title">Create  a Subject</h2>
                 <div class="card testimonial-card">
                     <div class="card-up purple-gradient lighten-1"></div>
                     <div class="avatar mx-auto white">
@@ -53,7 +56,7 @@
             </div>
             
             <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
-                <h2 class="text-center">Create Section</h2>
+                <h2 class="text-center title">Create a Section</h2>
                 <div class="card testimonial-card">
                     <div class="card-up peach-gradient lighten-1"></div>
                     <div class="avatar mx-auto white">
@@ -70,40 +73,7 @@
             </div>
 
             <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
-                <h2 class="text-center">Assign Subjects</h2>
-                <div class="card testimonial-card">
-                    <div class="card-up aqua-gradient lighten-1"></div>
-                    <div class="avatar mx-auto white">
-                        <img src="../../images/assign.png" class="rounded-circle" alt="woman avatar">
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">Designate Tasks</h4>
-                        <hr>
-                        <p><i class="fas fa-quote-left"></i> Assign a time for a job, you decide it will be done during that time. 
-                        Appoint a post to make to teachers hold their roles.</p>
-                        <a type="button" id="assign_subject" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
-                <h2 class="text-center">View Assigned Subjects</h2>
-                <div class="card testimonial-card">
-                    <div class="card-up gradient-custom-view_sub lighten-1"></div>
-                    <div class="avatar mx-auto white">
-                        <img src="../../images/view.png" class="rounded-circle" alt="woman avatar">
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">View Designate Tasks</h4>
-                        <hr>
-                        <p><i class="fas fa-quote-left"></i> View a datatable to monitor assigned teachers in order to manage and organize advisors at the university.</p>
-                        <a type="button" id="view_assigned_sub" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
-                <h2 class="text-center">Student Section Assign</h2>
+                <h2 class="text-center title">Assign Student to Section</h2>
                 <div class="card testimonial-card">
                     <div class="card-up blue-gradient lighten-1"></div>
                     <div class="avatar mx-auto white">
@@ -119,7 +89,44 @@
             </div>
 
             <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
-                <h2 class="text-center">View Assigned Students</h2>
+                <h2 class="text-center title">Assign Subject to Section</h2>
+                <div class="card testimonial-card">
+                    <div class="card-up aqua-gradient lighten-1"></div>
+                    <div class="avatar mx-auto white">
+                        <img src="../../images/assign.png" class="rounded-circle" alt="woman avatar">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Designate Tasks</h4>
+                        <hr>
+                        <p><i class="fas fa-quote-left"></i> Assign a time for a job, you decide it will be done during that time. 
+                        Appoint a post to make to teachers hold their roles.</p>
+                        <a type="button" id="assign_subject" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+
+            
+
+
+            <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
+                <h2 class="text-center title">View Section Subjects</h2>
+                <div class="card testimonial-card">
+                    <div class="card-up gradient-custom-view_sub lighten-1"></div>
+                    <div class="avatar mx-auto white">
+                        <img src="../../images/view.png" class="rounded-circle" alt="woman avatar">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">View Designate Tasks</h4>
+                        <hr>
+                        <p><i class="fas fa-quote-left"></i> View a datatable to monitor assigned teachers in order to manage and organize advisors at the university.</p>
+                        <a type="button" id="view_assigned_sub" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
+                <h2 class="text-center title">Students in Section</h2>
                 <div class="card testimonial-card">
                     <div class="card-up gradient-custom-assigned_stud lighten-1"></div>
                     <div class="avatar mx-auto white">

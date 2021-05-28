@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2021 at 06:55 PM
+-- Generation Time: May 28, 2021 at 06:30 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -83,12 +83,16 @@ CREATE TABLE `classrecords` (
 --
 
 INSERT INTO `classrecords` (`id`, `subject_data_id`, `quarter`, `w1`, `w2`, `w3`, `w4`, `w5`, `w6`, `w7`, `w8`, `w9`, `w10`, `p1`, `p2`, `p3`, `p4`, `p5`, `p6`, `p7`, `p8`, `p9`, `p10`, `q1`) VALUES
-(3, 11, 1, 12, 15, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10),
-(4, 11, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(5, 12, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(6, 12, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(7, 13, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(8, 13, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(9, 14, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(10, 14, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(11, 15, 1, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2),
+(12, 15, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(13, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(14, 16, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(15, 17, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(16, 17, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(17, 18, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(18, 18, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -98,7 +102,7 @@ INSERT INTO `classrecords` (`id`, `subject_data_id`, `quarter`, `w1`, `w2`, `w3`
 
 CREATE TABLE `classrecord_details` (
   `id` int(11) NOT NULL,
-  `subject_data_id` int(11) NOT NULL,
+  `subject_assignment_id` int(11) NOT NULL,
   `quarter` int(11) NOT NULL,
   `written_weight` int(11) NOT NULL DEFAULT 0,
   `performance_weight` int(11) NOT NULL DEFAULT 0,
@@ -130,11 +134,13 @@ CREATE TABLE `classrecord_details` (
 -- Dumping data for table `classrecord_details`
 --
 
-INSERT INTO `classrecord_details` (`id`, `subject_data_id`, `quarter`, `written_weight`, `performance_weight`, `quarterly_weight`, `hw1`, `hw2`, `hw3`, `hw4`, `hw5`, `hw6`, `hw7`, `hw8`, `hw9`, `hw10`, `hp1`, `hp2`, `hp3`, `hp4`, `hp5`, `hp6`, `hp7`, `hp8`, `hp9`, `hp10`, `hq1`) VALUES
-(2, 12, 1, 40, 1, 21, 15, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20),
-(3, 12, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(4, 13, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(5, 13, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+INSERT INTO `classrecord_details` (`id`, `subject_assignment_id`, `quarter`, `written_weight`, `performance_weight`, `quarterly_weight`, `hw1`, `hw2`, `hw3`, `hw4`, `hw5`, `hw6`, `hw7`, `hw8`, `hw9`, `hw10`, `hp1`, `hp2`, `hp3`, `hp4`, `hp5`, `hp6`, `hp7`, `hp8`, `hp9`, `hp10`, `hq1`) VALUES
+(8, 23, 1, 40, 40, 20, 10, 15, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10),
+(9, 23, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(10, 24, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(11, 24, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(14, 26, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(15, 26, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -180,7 +186,8 @@ CREATE TABLE `school_years` (
 --
 
 INSERT INTO `school_years` (`id`, `school_id`, `sy_start`, `sy_end`) VALUES
-(8, 31, '2021-05-21', '2021-05-30');
+(8, 31, '2021-05-21', '2021-05-30'),
+(9, 31, '2022-01-28', '2023-06-06');
 
 -- --------------------------------------------------------
 
@@ -203,8 +210,8 @@ CREATE TABLE `sections` (
 --
 
 INSERT INTO `sections` (`id`, `school_year_id`, `advisor_id`, `section_name`, `strand`, `track`, `grade`) VALUES
-(11, 8, 25, 'curie', 'Information and Communications Technology', 'Technical-Vocational-Livelihood', 11),
-(12, 8, 25, 'lee', 'Information and Communications Technology', 'Technical-Vocational-Livelihood', 12);
+(13, 8, 25, 'lee', 'Information and Communications Technology', 'Technical-Vocational-Livelihood', 12),
+(14, 9, 25, 'shakespeare', 'Humanities and Social Sciences', 'Academic', 12);
 
 -- --------------------------------------------------------
 
@@ -235,9 +242,9 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `user_id`, `school_id`, `continuing`, `completed`, `firstname`, `lastname`, `middlename`, `email`, `province`, `city`, `barangay`, `gender`, `LRN`, `birthdate`) VALUES
-(18, 1085, 31, 1, 0, 'jose', 'mari', 'chan', 'jose@gmail.com', 'bohol', 'ubay', 'banrgay', 'm', 129301, '2021-06-22'),
-(20, 1087, 31, 1, 0, 'miguel', 'reyes', 'angel', 'mareyes2132@gmail.com', 'cebu city', 'cebu', 'nasipit', 'm', 412, '2021-05-21'),
-(21, 1088, 31, 1, 0, 'errol', 'spence', 'senerpida', 'erol@2wer', 'cebu city', 'city', 'nasipit', 'm', 41241, '2021-05-17');
+(22, 1089, 31, 1, 0, 'miguel', 'reyes', 'romuga', 'mareyes2132@gmail.com', 'cebu city', 'cebu', 'nasipit', 'm', 19101192, '2021-05-27'),
+(23, 1090, 31, 1, 0, 'jose ', 'montero', 'chan', 'jose@montero.com', 'bohol', 'ubay', 'pangpang', 'm', 72010, '2021-05-18'),
+(24, 1091, 31, 1, 0, 'von', 'sarabosing', 's', 'von@sarabos', 'bohol', 'ubay', 'son-oc', 'm', 4214, '2021-05-30');
 
 -- --------------------------------------------------------
 
@@ -256,9 +263,9 @@ CREATE TABLE `student_assignments` (
 --
 
 INSERT INTO `student_assignments` (`id`, `student_id`, `section_id`) VALUES
-(12, 18, 11),
-(13, 20, 12),
-(14, 21, 11);
+(15, 22, 13),
+(16, 23, 13),
+(17, 22, 14);
 
 -- --------------------------------------------------------
 
@@ -279,8 +286,9 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`id`, `school_year_id`, `subject_name`, `semester`, `hours`) VALUES
-(15, 8, 'science', 1, 41),
-(16, 8, 'animation', 2, 80);
+(17, 8, 'Animation', 1, 80),
+(18, 8, 'Programming', 2, 80),
+(20, 9, 'Entreprenuership', 2, 41);
 
 -- --------------------------------------------------------
 
@@ -300,8 +308,9 @@ CREATE TABLE `subject_assignments` (
 --
 
 INSERT INTO `subject_assignments` (`id`, `section_id`, `subject_id`, `teacher_id`) VALUES
-(20, 11, 15, 25),
-(21, 12, 16, 25);
+(23, 13, 17, 25),
+(24, 13, 18, 25),
+(26, 14, 20, 25);
 
 -- --------------------------------------------------------
 
@@ -320,9 +329,11 @@ CREATE TABLE `subject_data` (
 --
 
 INSERT INTO `subject_data` (`id`, `subject_assignment_id`, `student_id`) VALUES
-(11, 20, 18),
-(12, 20, 21),
-(13, 21, 20);
+(14, 23, 22),
+(15, 23, 23),
+(16, 24, 22),
+(17, 24, 23),
+(18, 26, 22);
 
 -- --------------------------------------------------------
 
@@ -368,10 +379,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `password`, `access`) VALUES
 (1083, '$2y$10$o4FL214eg29FaSaU5p2sFOg42VqaUzpT2XrtUIxdF33pfBI8NSPE2', '3'),
 (1084, '$2y$10$bCUPzxpjI0CUfo9C1DSqeu25i8faV20ElS7IRsWu6aizDWxs1Vk1a', '2'),
-(1085, '$2y$10$84ys69itaUR5RNuUpZi1gObGOfjzKRf...ig5Jyz4KpkEyJILGnza', '1'),
-(1086, '$2y$10$VzFmKSYcyhzPvH6u9SV/P.CL1aYjXIv6mh3a7uzzUBoCS4QX6qAM.', '1'),
-(1087, '$2y$10$RUAZIW4CbpvbH4amCGXVsOblBIJc.rSK9nw9sMhN40ZllfTZnl4nO', '1'),
-(1088, '$2y$10$x0uUKeumTqdD7kuUhyLtyeQEfe6m6vloZHPWXLVojVdEyxfTJ0b0m', '1');
+(1089, '$2y$10$gmzXenMC05pZDyeHml4hjuQNVGv1SCV27U9U9ODDFLqKBGPLNYdNe', '1'),
+(1090, '$2y$10$B2o6l9qg5MRqfC0S5kghbeHGHQbGBgjp4jH7k2huRW651H1YBYoHu', '1'),
+(1091, '$2y$10$j6WHXta7ChLw.WpgwKdWgu37poTCPZYW0SmO2O.ZBcnLUbj8Y14t.', '1');
 
 --
 -- Indexes for dumped tables
@@ -397,7 +407,7 @@ ALTER TABLE `classrecords`
 --
 ALTER TABLE `classrecord_details`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `crd_subject_data_fk` (`subject_data_id`);
+  ADD KEY `crd_subject_assignment_fk` (`subject_assignment_id`);
 
 --
 -- Indexes for table `schools`
@@ -485,13 +495,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `classrecords`
 --
 ALTER TABLE `classrecords`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `classrecord_details`
 --
 ALTER TABLE `classrecord_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `schools`
@@ -503,43 +513,43 @@ ALTER TABLE `schools`
 -- AUTO_INCREMENT for table `school_years`
 --
 ALTER TABLE `school_years`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `student_assignments`
 --
 ALTER TABLE `student_assignments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `subject_assignments`
 --
 ALTER TABLE `subject_assignments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `subject_data`
 --
 ALTER TABLE `subject_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `teachers`
@@ -551,7 +561,7 @@ ALTER TABLE `teachers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1089;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1092;
 
 --
 -- Constraints for dumped tables
@@ -574,7 +584,7 @@ ALTER TABLE `classrecords`
 -- Constraints for table `classrecord_details`
 --
 ALTER TABLE `classrecord_details`
-  ADD CONSTRAINT `crd_subject_data_fk` FOREIGN KEY (`subject_data_id`) REFERENCES `subject_data` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `crd_subject_assignment_fk` FOREIGN KEY (`subject_assignment_id`) REFERENCES `subject_assignments` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `school_years`

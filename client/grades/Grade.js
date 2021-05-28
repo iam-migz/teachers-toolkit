@@ -39,10 +39,11 @@ function calculateGrade (stud, crd) {
         initial_grade,
         final
     }
-    console.log('grade :>> ', grade);
     return grade;
 
 }
+
+
 
 function transmutation_table(initial_grade){
     let transmuted_grade;
@@ -131,3 +132,4 @@ function transmutation_table(initial_grade){
     } 
     return transmuted_grade;
 }
+

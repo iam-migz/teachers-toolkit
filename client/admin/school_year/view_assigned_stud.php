@@ -42,7 +42,7 @@
     <div class="container mt-4 mb-5">
         <div class="card">
             <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
-                Student Section Assign
+                view students by section
                 <a type="button" href="../school_year/sy_home.php" class="btn-floating blue">
                     <i class="far fa-hand-point-left" aria-hidden="true"></i>
                 </a>
