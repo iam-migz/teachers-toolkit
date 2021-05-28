@@ -12,9 +12,16 @@
     // Instantiate object
     $student_assignment = new Student_Assignment($db);
 
+    if ( !isset($_GET['school_year_id']) ){
+        echo json_encode(
+            array('result' => 0, 'message' => 'missing school_year_id')
+        );
+        return;
+    }
 
 
-    $result = $student_assignment->read_unassigned();
+
+    $result = $student_assignment->read_unassigned($_GET['school_year_id']);
     $num = $result->rowCount();
 
     if ($num > 0) {

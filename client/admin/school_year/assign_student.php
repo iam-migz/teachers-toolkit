@@ -140,7 +140,7 @@
             .catch(err => console.log(err));
 
         const school_id = <?php echo $_SESSION['school_id']; ?>;
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/student/read.php?school_id=${school_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/student_assignment/read_unassigned.php?school_year_id=${sy_id}`)
             .then(res => {
                 if (res.data.result == 0) {
                     $('#assign_stud').DataTable({
@@ -179,7 +179,7 @@
                             <label class="form-check-label" for="${index+1}" class="label-table"></label>
                         </th>
                         <td>${stud.id}</td>
-                        <td>${stud.firstname} ${stud.middlename} ${stud.lastname}</td>
+                        <td>${stud.name}</td>
                         <td>${stud.LRN}</td>`;
                     insert_to.appendChild(tr);
                 });

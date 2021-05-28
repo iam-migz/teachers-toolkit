@@ -35,13 +35,16 @@
             return false;
         }
 
-        public function read_unassigned(){
+        public function read_unassigned($school_year_id){
             $query = "SELECT    stud.id, CONCAT(stud.firstname,' ',stud.middlename,' ',stud.lastname) as name, stud.LRN
-                      FROM 	    students stud
-                      WHERE 	stud.id NOT IN (SELECT student_id FROM student_assignments) AND
-                                stud.continuing = 1 AND
-                                stud.completed = 0";
+                      FROM      students stud
+                      WHERE     stud.id NOT IN      (SELECT    stud.id
+                                                    FROM 	  students stud, sections sec, student_assignments 
+                                                    WHERE 	  sec.school_year_id = :school_year_id AND 
+                                                              sec.id = student_assignments.section_id AND 
+                                                              stud.id = student_assignments.student_id)";
             $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':school_year_id', $this->school_year_id);
             $stmt->execute();
             return $stmt;
         }
