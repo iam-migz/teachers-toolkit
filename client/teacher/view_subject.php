@@ -153,7 +153,7 @@
                             <div class="view view-cascade gradient-card-header blue-gradient">
                                 <h2 class="card-header-title mb-3">Summary of Quarterly Grades</h2>
                                 <p class="card-header-subtitle mb-0">Review Summarized Grades of your students
-                                    <a type="button" href="summary_grades.php" class="btn-floating cyan">
+                                    <a type="button" href="#" onclick="linkTo(4, event)" class="btn-floating cyan">
                                         <i class="fas fa-chevron-right" aria-hidden="true"></i>
                                     </a>
                                 </p>
@@ -209,6 +209,8 @@
                 location.href = `./q2_grade.php?subject_assignment_id=${subject_assignment_id}`;
             } else if (num == 3) {
                 location.href = `./report_data.php?subject_assignment_id=${subject_assignment_id}`; 
+            } else if (num == 4) {
+                location.href = `./summary_grades.php?subject_assignment_id=${subject_assignment_id}&subject_id=${subject_id}`; 
             }
         }
 
