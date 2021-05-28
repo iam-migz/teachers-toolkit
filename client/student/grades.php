@@ -183,7 +183,7 @@
                     q2_crd.total_highest_written = Number(q2_crd.hw1) + Number(q2_crd.hw2) + Number(q2_crd.hw3) + Number(q2_crd.hw4) + Number(q2_crd.hw5) + Number(q2_crd.hw6) + Number(q2_crd.hw7) + Number(q2_crd.hw8) + Number(q2_crd.hw9) + Number(q2_crd.hw10);
                     q2_crd.total_highest_performance = Number(q2_crd.hp1) + Number(q2_crd.hp2) + Number(q2_crd.hp3) + Number(q2_crd.hp4) + Number(q2_crd.hp5) + Number(q2_crd.hp6) + Number(q2_crd.hp7) + Number(q2_crd.hp8) + Number(q2_crd.hp9) + Number(q2_crd.hp10);
 
-
+                    
                     // calculate grade
                     console.log('index :>> ', index);
                     q1_grade = calculateGrade(grade11_sem1[index], q1_crd)
