@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2021 at 06:30 AM
+-- Generation Time: May 29, 2021 at 04:18 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -38,13 +38,6 @@ CREATE TABLE `admins` (
   `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `admins`
---
-
-INSERT INTO `admins` (`id`, `user_id`, `school_id`, `firstname`, `lastname`, `middlename`, `phone_no`, `email`) VALUES
-(27, 1083, 31, 'miguel', 'reyes', 'romuga', 424124124, 'mareyes2132@gmail.com');
-
 -- --------------------------------------------------------
 
 --
@@ -77,22 +70,6 @@ CREATE TABLE `classrecords` (
   `p10` int(11) NOT NULL DEFAULT 0,
   `q1` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `classrecords`
---
-
-INSERT INTO `classrecords` (`id`, `subject_data_id`, `quarter`, `w1`, `w2`, `w3`, `w4`, `w5`, `w6`, `w7`, `w8`, `w9`, `w10`, `p1`, `p2`, `p3`, `p4`, `p5`, `p6`, `p7`, `p8`, `p9`, `p10`, `q1`) VALUES
-(9, 14, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(10, 14, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(11, 15, 1, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2),
-(12, 15, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(13, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(14, 16, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(15, 17, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(16, 17, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(17, 18, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(18, 18, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -130,18 +107,6 @@ CREATE TABLE `classrecord_details` (
   `hq1` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `classrecord_details`
---
-
-INSERT INTO `classrecord_details` (`id`, `subject_assignment_id`, `quarter`, `written_weight`, `performance_weight`, `quarterly_weight`, `hw1`, `hw2`, `hw3`, `hw4`, `hw5`, `hw6`, `hw7`, `hw8`, `hw9`, `hw10`, `hp1`, `hp2`, `hp3`, `hp4`, `hp5`, `hp6`, `hp7`, `hp8`, `hp9`, `hp10`, `hq1`) VALUES
-(8, 23, 1, 40, 40, 20, 10, 15, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10),
-(9, 23, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(10, 24, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(11, 24, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(14, 26, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(15, 26, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -161,13 +126,6 @@ CREATE TABLE `schools` (
   `school_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `schools`
---
-
-INSERT INTO `schools` (`id`, `barangay`, `city`, `province`, `country`, `postal_code`, `principal_fn`, `principal_ln`, `principal_mn`, `school_name`) VALUES
-(31, 'nasipit', 'cebu', 'cebu city', 'philippines', 6315, 'loreta', 'garcia', 'ambot', 'university of san carlos');
-
 -- --------------------------------------------------------
 
 --
@@ -180,14 +138,6 @@ CREATE TABLE `school_years` (
   `sy_start` date NOT NULL,
   `sy_end` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `school_years`
---
-
-INSERT INTO `school_years` (`id`, `school_id`, `sy_start`, `sy_end`) VALUES
-(8, 31, '2021-05-21', '2021-05-30'),
-(9, 31, '2022-01-28', '2023-06-06');
 
 -- --------------------------------------------------------
 
@@ -204,14 +154,6 @@ CREATE TABLE `sections` (
   `track` varchar(100) NOT NULL,
   `grade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `sections`
---
-
-INSERT INTO `sections` (`id`, `school_year_id`, `advisor_id`, `section_name`, `strand`, `track`, `grade`) VALUES
-(13, 8, 25, 'lee', 'Information and Communications Technology', 'Technical-Vocational-Livelihood', 12),
-(14, 9, 25, 'shakespeare', 'Humanities and Social Sciences', 'Academic', 12);
 
 -- --------------------------------------------------------
 
@@ -237,15 +179,6 @@ CREATE TABLE `students` (
   `birthdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `students`
---
-
-INSERT INTO `students` (`id`, `user_id`, `school_id`, `continuing`, `completed`, `firstname`, `lastname`, `middlename`, `email`, `province`, `city`, `barangay`, `gender`, `LRN`, `birthdate`) VALUES
-(22, 1089, 31, 1, 0, 'miguel', 'reyes', 'romuga', 'mareyes2132@gmail.com', 'cebu city', 'cebu', 'nasipit', 'm', 19101192, '2021-05-27'),
-(23, 1090, 31, 1, 0, 'jose ', 'montero', 'chan', 'jose@montero.com', 'bohol', 'ubay', 'pangpang', 'm', 72010, '2021-05-18'),
-(24, 1091, 31, 1, 0, 'von', 'sarabosing', 's', 'von@sarabos', 'bohol', 'ubay', 'son-oc', 'm', 4214, '2021-05-30');
-
 -- --------------------------------------------------------
 
 --
@@ -257,15 +190,6 @@ CREATE TABLE `student_assignments` (
   `student_id` int(11) NOT NULL,
   `section_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `student_assignments`
---
-
-INSERT INTO `student_assignments` (`id`, `student_id`, `section_id`) VALUES
-(15, 22, 13),
-(16, 23, 13),
-(17, 22, 14);
 
 -- --------------------------------------------------------
 
@@ -281,15 +205,6 @@ CREATE TABLE `subjects` (
   `hours` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `subjects`
---
-
-INSERT INTO `subjects` (`id`, `school_year_id`, `subject_name`, `semester`, `hours`) VALUES
-(17, 8, 'Animation', 1, 80),
-(18, 8, 'Programming', 2, 80),
-(20, 9, 'Entreprenuership', 2, 41);
-
 -- --------------------------------------------------------
 
 --
@@ -303,15 +218,6 @@ CREATE TABLE `subject_assignments` (
   `teacher_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `subject_assignments`
---
-
-INSERT INTO `subject_assignments` (`id`, `section_id`, `subject_id`, `teacher_id`) VALUES
-(23, 13, 17, 25),
-(24, 13, 18, 25),
-(26, 14, 20, 25);
-
 -- --------------------------------------------------------
 
 --
@@ -323,17 +229,6 @@ CREATE TABLE `subject_data` (
   `subject_assignment_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `subject_data`
---
-
-INSERT INTO `subject_data` (`id`, `subject_assignment_id`, `student_id`) VALUES
-(14, 23, 22),
-(15, 23, 23),
-(16, 24, 22),
-(17, 24, 23),
-(18, 26, 22);
 
 -- --------------------------------------------------------
 
@@ -353,13 +248,6 @@ CREATE TABLE `teachers` (
   `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `teachers`
---
-
-INSERT INTO `teachers` (`id`, `user_id`, `school_id`, `continuing`, `firstname`, `lastname`, `middlename`, `phone_no`, `email`) VALUES
-(25, 1084, 31, 1, 'kio', 'riki', 'reyes', 92841042, 'best@gmail.com');
-
 -- --------------------------------------------------------
 
 --
@@ -371,17 +259,6 @@ CREATE TABLE `users` (
   `password` varchar(256) NOT NULL,
   `access` enum('1','2','3') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `password`, `access`) VALUES
-(1083, '$2y$10$o4FL214eg29FaSaU5p2sFOg42VqaUzpT2XrtUIxdF33pfBI8NSPE2', '3'),
-(1084, '$2y$10$bCUPzxpjI0CUfo9C1DSqeu25i8faV20ElS7IRsWu6aizDWxs1Vk1a', '2'),
-(1089, '$2y$10$gmzXenMC05pZDyeHml4hjuQNVGv1SCV27U9U9ODDFLqKBGPLNYdNe', '1'),
-(1090, '$2y$10$B2o6l9qg5MRqfC0S5kghbeHGHQbGBgjp4jH7k2huRW651H1YBYoHu', '1'),
-(1091, '$2y$10$j6WHXta7ChLw.WpgwKdWgu37poTCPZYW0SmO2O.ZBcnLUbj8Y14t.', '1');
 
 --
 -- Indexes for dumped tables
