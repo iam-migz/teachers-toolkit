@@ -2,12 +2,6 @@
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
 
-    include_once '../../config/Database.php';
-
-    // Instantiate a DB & connect
-    $database = new Database();
-    $db = $database->connect();
-
     if ( !isset($_GET['student_id']) ){
         echo json_encode(
             array('result' => 0, 'message' => 'missing id')

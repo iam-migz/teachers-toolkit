@@ -95,5 +95,20 @@
             return $stmt;
         }
 
+        public function read_advisor(){
+            $query = "SELECT 	*
+            FROM 	sections sec
+            WHERE 	sec.advisor_id = (SELECT id FROM teachers WHERE id = :advisor_id)
+                    AND sec.school_year_id = :school_year_id";
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(':advisor_id', $this->advisor_id);
+            $stmt->bindParam(':school_year_id', $this->school_year_id);
+
+            $stmt->execute();
+            return $stmt;
+        }
+
 
     }
