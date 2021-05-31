@@ -91,4 +91,17 @@
             return $stmt;
         }
 
+        public function read_by_section($section_id){
+            $query = "SELECT 	*
+                      FROM 	    subjects sub
+                      WHERE 	sub.id IN 
+                                    (SELECT sa.subject_id FROM subject_assignments sa WHERE sa.section_id = :section_id)";
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(':section_id', $section_id);
+
+            $stmt->execute();
+            return $stmt;
+        }
+
     }
