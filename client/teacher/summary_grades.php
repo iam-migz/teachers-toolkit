@@ -98,7 +98,6 @@
             bInfo: false,
             ordering: false,
             searching: false
-
         });
         $('.dataTables_length').addClass('bs-select');
 

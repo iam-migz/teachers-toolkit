@@ -29,7 +29,7 @@
 
     <div class="container">
         <h2 id="school_name"></h2>
-        <p class="lead">Teacher</p>
+        <p class="lead mb-0">Teacher</p>
         <p class="lead" id="sy_div"></p>
 
         <div class="row mt-4" id="insert_to">
@@ -82,6 +82,26 @@
                 </div>
             </div>  -->
         </div>
+        <hr>
+        <h2>Advisory Task</h2>
+        <div class="row mt-4" id="insert_to">
+            <div class="col-lg-12 mt-1 box_card mb-5">
+                <div class="card">
+                    <div class="card-image" style="background-image: url('../images/advisory.jpg'); background-repeat: no-repeat; background-size: cover;">
+                        <a href="advisor_task.php">
+                            <div class="text-white d-flex h-100 purple-gradient-rgba">
+                                <div class="first-content align p-3">
+                                    <h3 class="card-title" style="font-weight: 400">Consultative</h3>
+                                    <p class="lead mb-0">This includes your students, generated report card and your advised subjects</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
