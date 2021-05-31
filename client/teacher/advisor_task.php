@@ -41,7 +41,7 @@
             </li>
             <li class="nav-item pl-0">
                 <a class="nav-link" data-toggle="tab" href="#subject_lists" role="tab">
-                <i class="fas fa-star mr-2 fa-lg"></i>
+                <i class="fas fa-book mr-2 fa-lg"></i>
                 Your Subjects</a>
             </li>
             <li class="nav-item pl-0">
