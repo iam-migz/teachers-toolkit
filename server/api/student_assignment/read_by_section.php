@@ -32,6 +32,7 @@
             extract($row);
             $item = array(
                 'id' =>  $id,
+                'user_id' =>  $user_id,
                 'section_name' =>  $section_name,
                 'LRN' =>  $LRN,
                 'student_name' => $student_name,

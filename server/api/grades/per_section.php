@@ -34,4 +34,5 @@
         $student_grade = json_decode($response, true);
         array_push($array, $student_grade);
     }
-    print_r($array);
+    // print_r($array);
+    print_r($students);

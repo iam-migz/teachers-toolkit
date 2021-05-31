@@ -67,14 +67,14 @@
                         </thead>
                         <tbody id="insert_to_students">
                             <!-- DATA -->
-                            <tr>
+                            <!-- <tr>
                                 <td>1098</td>
                                 <td>Mendoza, Dhony Mark Dupio</td>
                                 <td>19102710</td>
                                 <td>DhonyMark@gmail.com</td>
                                 <td>Province, Barangay, City</td>
                                 <td>M</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -92,11 +92,11 @@
                         </thead>
                         <tbody id="insert_to_subjects">
                             <!-- DATA -->
-                            <tr>
+                            <!-- <tr>
                                 <td>View of Analytics</td>
                                 <td>1st Semester</td>
                                 <td>20</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -119,23 +119,56 @@
     </div>
 
     <!-- MDBootstrap Datatables  -->
-    <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#your_students').DataTable({
-                ordering: false,
-                bLengthChange: false,
-                bPaginate: false,
-                bInfo: false,
-            });
-            $('#your_subjects').DataTable({
-                ordering: false,
-                bLengthChange: false,
-                bPaginate: false,
-                bInfo: false,
-            });
-            $('.dataTables_length').addClass('bs-select');
-        });
+    
+     
+
+        // get section_id from query params
+        const urlParams = new URLSearchParams(window.location.search);
+        const section_id = urlParams.get('section_id');
+
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/student_assignment/read_by_section.php?section_id=${section_id}`)
+            .then(res => {
+                let students = res.data.data;
+                console.log('students :>> ', students);
+                const insert_to = document.querySelector("#insert_to_students");
+                let tr
+                students.forEach(stud => {
+                    tr = document.createElement('tr') 
+                    tr.innerHTML = `
+                        <td>${stud.user_id}</td>
+                        <td>${stud.student_name}</td>
+                        <td>${stud.LRN}</td>
+                        <td>${stud.email}</td>
+                        <td>${stud.address}</td>
+                        <td>${stud.gender}</td>
+                    `
+                    insert_to.appendChild(tr)
+                })
+            })
+            .catch(err => console.log(err))
+
+
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/subject/read_by_section.php?section_id=${section_id}`)
+            .then(res => {
+                let subjects = res.data.data;
+                console.log('subjects :>> ', subjects);
+                const insert_to = document.querySelector("#insert_to_subjects");
+                let tr
+                subjects.forEach(sub => {
+                    tr = document.createElement('tr') 
+                    tr.innerHTML = `
+                        <td>${sub.subject_name}</td>
+                        <td>Semester ${sub.semester}</td>
+                        <td>${sub.hours} Hours</td>
+                    `
+                    insert_to.appendChild(tr)
+                })
+            })
+            .catch(err => console.log(err))
+
+
     </script>
 
 </body>
