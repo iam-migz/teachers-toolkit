@@ -233,6 +233,7 @@
             res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/classrecord/read_by_subject_assignment.php?subject_assignment_id=${subject_assignment_id}&quarter=2`);
             if(res.data.result == 0) return;
             let students = res.data.data;
+            students = students.filter(stud => stud.quarter == 2)
             console.log('students :>> ', students);
 
             // divide by gender
