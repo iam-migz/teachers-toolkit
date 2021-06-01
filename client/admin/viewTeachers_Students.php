@@ -3,9 +3,8 @@
         if(isset($_SESSION['access']) && $_SESSION['access'] == 3){
 
         }else{
-            // header("location: ../login/login.html");
+            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
         }
-        // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
