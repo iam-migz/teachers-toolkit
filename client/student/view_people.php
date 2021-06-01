@@ -39,9 +39,6 @@
         <div class="card">
             <h2 class="text-center mt-4 mb-0">
                 <span id="strand_name">People</span>
-                <a type="button" href="subject_lists.php" class="btn-floating blue">
-                    <i class="far fa-hand-point-left" aria-hidden="true"></i>
-                </a>
             </h2>
             <div class="card-body">
                 <div class="table-responsive-sm table-responsive-md table-responsive-lg">

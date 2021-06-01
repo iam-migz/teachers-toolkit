@@ -67,9 +67,6 @@
 
     <h3 class="text-center mt-4 mb-0">
         Second Quarter Grade Sheet
-        <a type="button" href="view_subject.php" class="btn-floating blue">
-            <i class="far fa-hand-point-left" aria-hidden="true"></i>
-        </a>
     </h3>
     <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mt-0 ml-1 mr-1 table_con" style="background-color: white;">
         <table id="view_grade" class="table table-sm table-bordered" cellspacing="0">

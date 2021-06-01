@@ -27,9 +27,6 @@
 
     <h3 class="text-center mt-4 mb-0">
         Advisory Task
-        <a type="button" href="subject_lists.php" class="btn-floating blue">
-            <i class="far fa-hand-point-left" aria-hidden="true"></i>
-        </a>
     </h3>
     <div class="container mt-4">
         <ul class="nav md-pills nav-justified pills-success-color-dark mb-4">
