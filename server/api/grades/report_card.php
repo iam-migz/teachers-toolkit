@@ -82,48 +82,63 @@ foreach($students as $stud) {
     // insert sem1
 
     // subject 1
-    $cloneWorksheet->setCellValue('A8', $sem1[0]['subject_name'] ?? "");
-    $cloneWorksheet->setCellValue('B8', $sem1[0]['hours'] ?? "");
-    $cloneWorksheet->setCellValue('C8', $sem1[0]['final_grade'] ?? "");
-    $cloneWorksheet->setCellValue('D8', $sem1[1]['final_grade'] ?? "");
-    $cloneWorksheet->setCellValue('E8', ($sem1[0]['final_grade'] + $sem1[1]['final_grade'])/2 ?? "");
+    if (isset($sem1[0])){
+        $cloneWorksheet->setCellValue('A8', $sem1[0]['subject_name'] ?? "");
+        $cloneWorksheet->setCellValue('B8', $sem1[0]['hours'] ?? "");
+        $cloneWorksheet->setCellValue('C8', $sem1[0]['final_grade'] ?? "");
+        $cloneWorksheet->setCellValue('D8', $sem1[1]['final_grade'] ?? "");
+        $cloneWorksheet->setCellValue('E8', ($sem1[0]['final_grade'] + $sem1[1]['final_grade'])/2 ?? "");
+    }
+
 
     // subject 2
-    $cloneWorksheet->setCellValue('A9', $sem1[2]['subject_name'] ?? "");
-    $cloneWorksheet->setCellValue('B9', $sem1[2]['hours'] ?? "");
-    $cloneWorksheet->setCellValue('C9', $sem1[2]['final_grade'] ?? "");
-    $cloneWorksheet->setCellValue('D9', $sem1[3]['final_grade'] ?? "");
-    $cloneWorksheet->setCellValue('E9', ($sem1[2]['final_grade'] + $sem1[3]['final_grade'])/2 ?? "");
+    if (isset($sem1[2])) {
+        $cloneWorksheet->setCellValue('A9', $sem1[2]['subject_name'] ?? "");
+        $cloneWorksheet->setCellValue('B9', $sem1[2]['hours'] ?? "");
+        $cloneWorksheet->setCellValue('C9', $sem1[2]['final_grade'] ?? "");
+        $cloneWorksheet->setCellValue('D9', $sem1[3]['final_grade'] ?? "");
+        $cloneWorksheet->setCellValue('E9', ($sem1[2]['final_grade'] + $sem1[3]['final_grade'])/2 ?? "");
+    }
+
 
     // subject 3
-    $cloneWorksheet->setCellValue('A10', $sem1[4]['subject_name'] ?? "");
-    $cloneWorksheet->setCellValue('B10', $sem1[4]['hours'] ?? "");
-    $cloneWorksheet->setCellValue('C10', $sem1[4]['final_grade'] ?? "");
-    $cloneWorksheet->setCellValue('D10', $sem1[5]['final_grade'] ?? "");
-    $cloneWorksheet->setCellValue('E10', ($sem1[4]['final_grade'] + $sem1[5]['final_grade'])/2 ?? "");
+    if (isset($sem1[4])){
+        $cloneWorksheet->setCellValue('A10', $sem1[4]['subject_name'] ?? "");
+        $cloneWorksheet->setCellValue('B10', $sem1[4]['hours'] ?? "");
+        $cloneWorksheet->setCellValue('C10', $sem1[4]['final_grade'] ?? "");
+        $cloneWorksheet->setCellValue('D10', $sem1[5]['final_grade'] ?? "");
+        $cloneWorksheet->setCellValue('E10', ($sem1[4]['final_grade'] + $sem1[5]['final_grade'])/2 ?? "");    
+    }
 
     // insert sem2
 
     // subject 1
-    $cloneWorksheet->setCellValue('A25', $sem2[0]['subject_name'] ?? "");
-    $cloneWorksheet->setCellValue('B25', $sem2[0]['hours'] ?? "");
-    $cloneWorksheet->setCellValue('C25', $sem2[0]['final_grade'] ?? "");
-    $cloneWorksheet->setCellValue('D25', $sem2[1]['final_grade'] ?? "");
-    $cloneWorksheet->setCellValue('E25', ($sem2[0]['final_grade'] + $sem2[1]['final_grade'])/2 ?? "");
+    if (isset($sem2[0])){
+        $cloneWorksheet->setCellValue('A25', $sem2[0]['subject_name'] ?? "");
+        $cloneWorksheet->setCellValue('B25', $sem2[0]['hours'] ?? "");
+        $cloneWorksheet->setCellValue('C25', $sem2[0]['final_grade'] ?? "");
+        $cloneWorksheet->setCellValue('D25', $sem2[1]['final_grade'] ?? "");
+        $cloneWorksheet->setCellValue('E25', ($sem2[0]['final_grade'] + $sem2[1]['final_grade'])/2 ?? "");    
+    }
 
     // subject 2
-    $cloneWorksheet->setCellValue('A26', $sem2[2]['subject_name'] ?? "");
-    $cloneWorksheet->setCellValue('B26', $sem2[2]['hours'] ?? "");
-    $cloneWorksheet->setCellValue('C26', $sem2[2]['final_grade'] ?? "");
-    $cloneWorksheet->setCellValue('D26', $sem2[3]['final_grade'] ?? "");
-    $cloneWorksheet->setCellValue('E26', ($sem2[2]['final_grade'] + $sem2[3]['final_grade'])/2 ?? "");
+    if (isset($sem2[2])){
+        $cloneWorksheet->setCellValue('A26', $sem2[2]['subject_name'] ?? "");
+        $cloneWorksheet->setCellValue('B26', $sem2[2]['hours'] ?? "");
+        $cloneWorksheet->setCellValue('C26', $sem2[2]['final_grade'] ?? "");
+        $cloneWorksheet->setCellValue('D26', $sem2[3]['final_grade'] ?? "");
+        $cloneWorksheet->setCellValue('E26', ($sem2[2]['final_grade'] + $sem2[3]['final_grade'])/2 ?? "");    
+    }
 
     // subject 3
-    $cloneWorksheet->setCellValue('A27', $sem2[4]['subject_name'] ?? "");
-    $cloneWorksheet->setCellValue('B27', $sem2[4]['hours'] ?? "");
-    $cloneWorksheet->setCellValue('C27', $sem2[4]['final_grade'] ?? "");
-    $cloneWorksheet->setCellValue('D27', $sem2[5]['final_grade'] ?? "");
-    $cloneWorksheet->setCellValue('E27', ($sem2[4]['final_grade'] + $sem2[5]['final_grade'])/2 ?? "");
+    if (isset($sem2[4])){
+        $cloneWorksheet->setCellValue('A27', $sem2[4]['subject_name'] ?? "");
+        $cloneWorksheet->setCellValue('B27', $sem2[4]['hours'] ?? "");
+        $cloneWorksheet->setCellValue('C27', $sem2[4]['final_grade'] ?? "");
+        $cloneWorksheet->setCellValue('D27', $sem2[5]['final_grade'] ?? "");
+        $cloneWorksheet->setCellValue('E27', ($sem2[4]['final_grade'] + $sem2[5]['final_grade'])/2 ?? "");
+    }
+
     $spreadsheet->addSheet($cloneWorksheet);
 }
 
