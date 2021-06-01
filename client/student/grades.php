@@ -32,9 +32,9 @@
 <body>
     <?php include '../partials/header_student.php'; ?>
 
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <div class="card">
-            <h2 class="text-center mt-4 mb-0">
+            <h2 class="text-center mt-4 mb-4">
                 <span id="strand_name"></span>
                 Grade of <span id="student_name"></span>
             </h2>
@@ -43,7 +43,7 @@
                 <!-- grade 11 -->
                 <thead class="thead-dark">
                     <tr>
-                        <th colspan="4">Grade 11 First Semester</th>
+                        <th colspan="4" class="font-weight-bold">Grade 11 First Semester</th>
                     </tr>
                     <tr>
                         <th scope="col">Subject</th>
@@ -58,7 +58,7 @@
 
                 <thead class="thead-dark">
                     <tr>
-                        <th colspan="4">Grade 11 Second Semester</th>
+                        <th colspan="4" class="font-weight-bold">Grade 11 Second Semester</th>
                     </tr>
                     <tr>
                         <th scope="col">Subject</th>
@@ -75,7 +75,7 @@
                 <!-- grade 12 -->
                 <thead class="thead-dark">
                     <tr>
-                        <th colspan="4">Grade 12 First Semester</th>
+                        <th colspan="4" class="font-weight-bold">Grade 12 First Semester</th>
                     </tr>
                     <tr>
                         <th scope="col">Subject</th>
@@ -90,7 +90,7 @@
 
                 <thead class="thead-dark">
                     <tr>
-                        <th colspan="4">Grade 12 Second Semester</th>
+                        <th colspan="4" class="font-weight-bold">Grade 12 Second Semester</th>
                     </tr>
                     <tr>
                         <th scope="col">Subject</th>
