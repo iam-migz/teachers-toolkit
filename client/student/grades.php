@@ -35,7 +35,8 @@
     <div class="container mt-5">
         <div class="card">
             <h2 class="text-center mt-4 mb-0">
-                <span id="strand_name">Technical-Vocational-Livelihood</span>
+                <span id="strand_name"></span>
+                Grade of <span id="student_name"></span>
             </h2>
             <table class="table">
 
@@ -125,7 +126,12 @@
 
             try {
 
-                let res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/grades/student_grades.php?student_id=${student_id}`)
+                let res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/student/read_one.php?id=${student_id}`)
+                let this_student = res.data.data[0];
+                console.log('this_student :>> ', this_student);
+                $("#student_name").html(this_student.firstname +" " +this_student.middlename + " "+this_student.lastname)
+
+                res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/grades/student_grades.php?student_id=${student_id}`)
                 let student_data = res.data;
                 console.log('student_data :>> ', student_data);
 

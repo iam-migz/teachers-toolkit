@@ -59,6 +59,9 @@
             background: #eaeaea;
             text-align: center;
         }
+        #subject_name {
+            font-style: italic;
+        }
 
     </style>
 </head>
@@ -66,7 +69,9 @@
     <?php include '../partials/header_teacher.php'; ?>
 
     <h3 class="text-center mt-4 mb-0">
-        First Quarter Grade Sheet
+        First Quarter Grade Sheet <br>
+        <span id="subject_name"></span>
+        
     </h3>
     <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mt-0 ml-1 mr-1 table_con" style="background-color: white;">
         <table id="view_grade" class="table table-sm table-bordered" cellspacing="0">
@@ -195,10 +200,26 @@
     document.addEventListener("DOMContentLoaded", async () => { 
         const urlParams = new URLSearchParams(window.location.search);
         const subject_assignment_id = urlParams.get('subject_assignment_id');
+        const subject_id = urlParams.get('subject_id');
 
         if (subject_assignment_id == null) {
             location.href = './home.php';
         }
+
+        // get subject
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/subject/read_one.php?id=${subject_id}`)
+            .then(res => {
+                if (res.data.result == 0){
+                    return;
+                }
+                const subject = res.data;
+                $("#subject_name").html(subject.subject_name);
+                console.log('subject :>> ', subject);
+
+
+            })
+            .catch(err => console.log(err));
+
 
         try {
             // set classrecord detail

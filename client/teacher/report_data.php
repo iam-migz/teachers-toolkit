@@ -36,7 +36,8 @@
     <?php include '../partials/header_teacher.php'; ?>
 
     <h3 class="text-center mt-4 mb-0">
-        Report Data
+        Report Data <br>
+        <span id="subject_name"></span>
     </h3>
     <div class="container mt-4">
         <ul class="nav md-pills nav-justified pills-success-color-dark mb-4">
@@ -123,6 +124,18 @@
             if (subject_assignment_id == null) {
                 location.href = './home.php';
             }
+
+            // get subject
+            axios.get(`http://localhost/teachers-toolkit-app/server/api/subject/read_one.php?id=${subject_id}`)
+                .then(res => {
+                    if (res.data.result == 0){
+                        return;
+                    }
+                    const subject = res.data;
+                    $("#subject_name").html(subject.subject_name);
+                    console.log('subject :>> ', subject);
+                })
+                .catch(err => console.log(err));
 
             try {
                 // ---------------------quarter 1

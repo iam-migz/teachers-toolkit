@@ -200,11 +200,11 @@
         function linkTo(num, event){
             event.preventDefault();
             if (num == 1) {
-                location.href = `./q1_grade.php?subject_assignment_id=${subject_assignment_id}`;
+                location.href = `./q1_grade.php?subject_assignment_id=${subject_assignment_id}&subject_id=${subject_id}`;
             } else if (num == 2) {
-                location.href = `./q2_grade.php?subject_assignment_id=${subject_assignment_id}`;
+                location.href = `./q2_grade.php?subject_assignment_id=${subject_assignment_id}&subject_id=${subject_id}`;
             } else if (num == 3) {
-                location.href = `./report_data.php?subject_assignment_id=${subject_assignment_id}`; 
+                location.href = `./report_data.php?subject_assignment_id=${subject_assignment_id}&subject_id=${subject_id}`; 
             } else if (num == 4) {
                 location.href = `./summary_grades.php?subject_assignment_id=${subject_assignment_id}&subject_id=${subject_id}`; 
             }
