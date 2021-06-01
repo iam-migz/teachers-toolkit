@@ -50,7 +50,7 @@
         }
 
         public function read_by_section(){
-            $query = "SELECT    stud.id, stud.user_id, sec.section_name, stud.LRN, CONCAT(stud.firstname, ' ', stud.middlename, ' ', stud.lastname) as student_name, stud.email, stud.gender, CONCAT(stud.barangay, ' ', stud.city, ' ', stud.province) as address
+            $query = "SELECT    stud.id, stud.user_id, stud.birthdate, sec.section_name, sec.id as section_id, stud.school_id, stud.LRN, CONCAT(stud.firstname, ' ', stud.middlename, ' ', stud.lastname) as student_name, stud.email, stud.gender, CONCAT(stud.barangay, ' ', stud.city, ' ', stud.province) as address
                       FROM 	    student_assignments sa, sections sec, students stud
                       WHERE 	sa.section_id = :section_id AND 
                                 sa.section_id = sec.id AND

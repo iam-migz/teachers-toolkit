@@ -102,14 +102,14 @@
                 </div>
             </div>
             <!--Panel Report Card-->
-            <div class="tab-pane fade" id="report_card" role="tabpanel">
+            <div class="tab-pane fade" id="report_card" role="tabpanel" onclick="reportCard()">
                 <div class="card card-image mb-3" style="background-image: url(../images/gradient.jpg);">
                     <div class="text-white text-center rgba-stylish-strong py-5 px-4">
                         <div class="py-5">
-                            <h2 class="card-title h2 my-2 py-1">Generated Report Card</h2>
+                            <h2 class="card-title h2 my-2 py-1">Generate Report Card</h2>
                             <p class="mb-4 pb-2 px-md-5 mx-md-5">Teachers can use report cards to communicate with students' 
                                 parents about their academic achievement and general school activities.</p>
-                            <a class="btn btn-rounded btn-outline-warning"><i class="fas fa-clone left"></i> Evaluate</a>
+                            <a class="btn btn-rounded btn-outline-warning"><i class="fas fa-clone left"></i> Generate</a>
                         </div>
                     </div>
                 </div>
@@ -168,6 +168,9 @@
             })
             .catch(err => console.log(err))
 
+        function reportCard(){
+            location.href = `http://localhost/teachers-toolkit-app/server/api/grades/report_card.php?section_id=${section_id}`
+        }
 
     </script>
 

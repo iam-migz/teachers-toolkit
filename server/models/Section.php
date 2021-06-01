@@ -88,8 +88,17 @@
             $query = "SELECT * FROM sections WHERE school_year_id = :school_year_id";
             $stmt = $this->conn->prepare($query);
 
-            $this->school_year_id = htmlspecialchars(strip_tags($this->school_year_id));
             $stmt->bindParam(':school_year_id', $this->school_year_id);
+
+            $stmt->execute();
+            return $stmt;
+        }
+
+        public function read_one(){
+            $query = "SELECT * FROM sections WHERE id = :id";
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(':id', $this->id);
 
             $stmt->execute();
             return $stmt;

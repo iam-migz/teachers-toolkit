@@ -162,7 +162,7 @@
         // reads all the grades of each subjects of a single student
         public function read_student_grades($student_id){
 
-            $query = "SELECT 	sub.subject_name, sub.semester, subject_data.subject_assignment_id, cr.quarter, sy.sy_start, sy.sy_end, sy.id as sy_id,
+            $query = "SELECT 	sub.subject_name, sub.hours, sub.semester, subject_data.subject_assignment_id, cr.quarter, sy.sy_start, sy.sy_end, sy.id as sy_id,
                                 cr.w1, cr.w2, cr.w4, cr.w3, cr.w5, cr.w6, cr.w7, cr.w8, cr.w9, cr.w10,
                                 cr.p1, cr.p2, cr.p4, cr.p3, cr.p5, cr.p6, cr.p7, cr.p8, cr.p9, cr.p10,
                                 cr.q1
