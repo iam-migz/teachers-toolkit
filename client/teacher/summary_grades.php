@@ -30,6 +30,9 @@
         .stud_name_set{
             font-size: 18px;
         }
+        #subject_name {
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -38,6 +41,7 @@
     <div class="container mt-5">
         <div class="card">
             <h2 class="text-center mt-4 mb-0">
+                Summary Grades <br>
                 <span id="subject_name"></span>
                 <p class="font-small" id="semester"></p>
             </h2>
@@ -54,28 +58,6 @@
                         </thead>
                         <tbody id="student_field">
                             <!-- DATA -->
-                            <!-- MALES -->
-                            <tr id="boys">
-                                <th disabled class="table-active">Male</td>
-                                <?php
-                                    for ($row=0; $row < 3; $row++) { 
-                                        echo "<th disabled class='table-active'>";
-                                    }
-                                ?>
-                            </tr>
-                            
-                            <!--  Data -->
-
-                            <!-- FEMALES -->
-                            <tr id="girls">
-                                <th disabled class="table-active">Female</th>
-                                <?php
-                                    for ($row=0; $row < 3; $row++) { 
-                                        echo "<th disabled class='table-active'>";
-                                    }
-                                ?>
-                            </tr>
-                            <!--  Data -->
                         </tbody>
                     </table>
                 </div>
@@ -91,14 +73,6 @@
     <script>
 
     document.addEventListener("DOMContentLoaded", async () => { 
-        $('#grading_table').DataTable({
-            bLengthChange: false,
-            bPaginate: false,
-            bInfo: false,
-            ordering: false,
-            searching: false
-        });
-        $('.dataTables_length').addClass('bs-select');
 
         const urlParams = new URLSearchParams(window.location.search);
         const subject_assignment_id = urlParams.get('subject_assignment_id');
@@ -124,83 +98,39 @@
             }
             $('#semester').html(str)
 
-            // ---------------------quarter 1
-            // classrecord detail
-            res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/classrecord_detail/read_by_subject_assignment.php?subject_assignment_id=${subject_assignment_id}&quarter=1`);
-            let q1_crd = res.data;
-            q1_crd.total_highest_written = Number(q1_crd.hw1) + Number(q1_crd.hw2) + Number(q1_crd.hw3) + Number(q1_crd.hw4) + Number(q1_crd.hw5) + Number(q1_crd.hw6) + Number(q1_crd.hw7) + Number(q1_crd.hw8) + Number(q1_crd.hw9) + Number(q1_crd.hw10);
-            q1_crd.total_highest_performance = Number(q1_crd.hp1) + Number(q1_crd.hp2) + Number(q1_crd.hp3) + Number(q1_crd.hp4) + Number(q1_crd.hp5) + Number(q1_crd.hp6) + Number(q1_crd.hp7) + Number(q1_crd.hp8) + Number(q1_crd.hp9) + Number(q1_crd.hp10);
-            console.log('q1_crd :>> ', q1_crd);
+            res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/grades/subject_grades.php?subject_assignment_id=${subject_assignment_id}`)
+            let grades = res.data
+            console.log('grades :>> ', grades);
 
-            // classrecord
-            res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/classrecord/read_by_subject_assignment.php?subject_assignment_id=${subject_assignment_id}&quarter=1`);
-            let q1_scores = res.data.data;
-            console.log('q1_scores :>> ', q1_scores);
+            // insert 
+            const grades_insert_to = document.querySelector("#student_field");
+            insertToTable(grades, grades_insert_to);
 
 
-            // -------------------quarter 2
-            // classrecord detail
-            res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/classrecord_detail/read_by_subject_assignment.php?subject_assignment_id=${subject_assignment_id}&quarter=2`);
-            let q2_crd = res.data;
-            q2_crd.total_highest_written = Number(q2_crd.hw1) + Number(q2_crd.hw2) + Number(q2_crd.hw3) + Number(q2_crd.hw4) + Number(q2_crd.hw5) + Number(q2_crd.hw6) + Number(q2_crd.hw7) + Number(q2_crd.hw8) + Number(q2_crd.hw9) + Number(q2_crd.hw10);
-            q2_crd.total_highest_performance = Number(q2_crd.hp1) + Number(q2_crd.hp2) + Number(q2_crd.hp3) + Number(q2_crd.hp4) + Number(q2_crd.hp5) + Number(q2_crd.hp6) + Number(q2_crd.hp7) + Number(q2_crd.hp8) + Number(q2_crd.hp9) + Number(q2_crd.hp10);
-            console.log('q2_crd :>> ', q2_crd);
-
-            // classrecord
-            res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/classrecord/read_by_subject_assignment.php?subject_assignment_id=${subject_assignment_id}&quarter=2`);
-            let q2_scores = res.data.data;
-            console.log('q2_scores :>> ', q2_scores);
-
-
-            // divide by gender
-            let boys = [], girls = [];
-            q1_scores.forEach((stud, index) => {
-                if (stud.gender == 'm') {
-                    boys.push(stud);
-                } else if (stud.gender == 'f'){
-                    girls.push(stud);
-                }
-            })
-
-            // sort names
-            boys.sort((a, b) => a.student_name.localeCompare(b.student_name))
-            girls.sort((a, b) => a.student_name.localeCompare(b.student_name))
-            console.log('girls :>> ', girls);
-            console.log('boys :>> ', boys);
-
-
-            // insert boys
-            boys = boys.reverse();
-            const boys_insert_to = document.querySelector("#boys");
-            setTable(boys_insert_to, boys, q2_scores, q1_crd);
-
-            // insert girls
-            girls = girls.reverse();
-            const girls_insert_to = document.querySelector("#girls");
-            setTable(girls_insert_to, girls, q2_scores, q2_crd);
 
         } catch(e){
             console.log(e);
         }
     });
 
+    function insertToTable(data, insert_to){
+            let tr
+            data.forEach((elem, index) => {
+                if (elem.quarter == 2){
+                    return
+                }
+                tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${data[index].student_name}</td>
+                    <td>${data[index].final_grade}</td>
+                    <td>${data[index+1].final_grade}</td>
+                    <td>${(data[index].final_grade + data[index+1].final_grade) / 2}</td>
+                `;
+                insert_to.insertAdjacentElement('afterend', tr);
+                
+            })
+        }
 
-    function setTable(insert_to, q1_data, q2_data, crd){
-        let q1_grade, q2_grade, tr
-        q1_data.forEach((stud, index) => {
-
-            q1_grade = calculateGrade(q1_data[index], crd);
-            q2_grade = calculateGrade(q2_data[index], crd);
-            tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${stud.student_name}</td>
-                <td>${q1_grade.final.toFixed(2)}</td>
-                <td>${q2_grade.final.toFixed(2)}</td>
-                <td>${((q1_grade.final+q2_grade.final)/2).toFixed(2)}</td>
-            `;
-            insert_to.insertAdjacentElement('afterend', tr);
-        })
-    }
     </script>
 </body>
 </html>

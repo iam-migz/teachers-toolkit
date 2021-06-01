@@ -139,21 +139,18 @@
 
         }
         // reads all grades of the student of a single subject
-        public function read_by_subject_assignment($subject_assignment_id, $quarter){
+        public function read_by_subject_assignment($subject_assignment_id){
             $query = "SELECT 	CONCAT(stud.lastname, ', ', stud.middlename, ' ', stud.firstname) as student_name, stud.gender,
                                 cr.w1, cr.w2, cr.w4, cr.w3, cr.w5, cr.w6, cr.w7, cr.w8, cr.w9, cr.w10,
                                 cr.p1, cr.p2, cr.p4, cr.p3, cr.p5, cr.p6, cr.p7, cr.p8, cr.p9, cr.p10,
-                                cr.q1, cr.id as classrecord_id, cr.subject_data_id
+                                cr.q1, cr.id as classrecord_id, cr.subject_data_id, cr.quarter, sd.subject_assignment_id
                       FROM 	    subject_data sd, students stud, classrecords cr
                       WHERE 	sd.subject_assignment_id = :subject_assignment_id
                                 AND sd.student_id = stud.id
-                                AND sd.id = cr.subject_data_id
-                                AND cr.quarter = :quarter";
+                                AND sd.id = cr.subject_data_id";
             
             $stmt = $this->conn->prepare($query);
-
             $stmt->bindParam(':subject_assignment_id', $subject_assignment_id);
-            $stmt->bindParam(':quarter', $quarter);
             $stmt->execute();
 
             return $stmt;
