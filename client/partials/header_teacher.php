@@ -68,10 +68,6 @@
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-4">
                     <a class="dropdown-item" href="#">My account</a>
                     <a class="dropdown-item" href="../login/logout.php">Log out</a>
-                    <a class="dropdown-item" href="">access: <?php echo $_SESSION['access']; ?></a>
-                    <a class="dropdown-item" href="">user_id: <?php echo $_SESSION['user_id']; ?></a>
-                    <a class="dropdown-item" href="">account_id: <?php echo $_SESSION['account_id']; ?></a>
-                    <a class="dropdown-item" href="">school_id: <?php echo $_SESSION['school_id']; ?></a>
                 </div>
             </li>
         </ul>
