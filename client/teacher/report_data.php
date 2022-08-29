@@ -3,9 +3,8 @@
         if(isset($_SESSION['access']) && $_SESSION['access'] == 2){
 
         }else{
-            // header("location: ../login/login.html");
+            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
         }
-        // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,10 +36,8 @@
     <?php include '../partials/header_teacher.php'; ?>
 
     <h3 class="text-center mt-4 mb-0">
-        Report Data
-        <a type="button" href="subject_lists.php" class="btn-floating blue">
-            <i class="far fa-hand-point-left" aria-hidden="true"></i>
-        </a>
+        Report Data <br>
+        <span id="subject_name"></span>
     </h3>
     <div class="container mt-4">
         <ul class="nav md-pills nav-justified pills-success-color-dark mb-4">
@@ -116,9 +113,6 @@
 
         document.addEventListener("DOMContentLoaded", async () => { 
 
-
-
-
             const urlParams = new URLSearchParams(window.location.search);
             const subject_assignment_id = urlParams.get('subject_assignment_id');
             const subject_id = urlParams.get('subject_id');
@@ -128,84 +122,63 @@
                 location.href = './home.php';
             }
 
+            // get subject
+            axios.get(`http://localhost/teachers-toolkit-app/server/api/subject/read_one.php?id=${subject_id}`)
+                .then(res => {
+                    if (res.data.result == 0){
+                        return;
+                    }
+                    const subject = res.data;
+                    $("#subject_name").html(subject.subject_name);
+                    console.log('subject :>> ', subject);
+                })
+                .catch(err => console.log(err));
+
             try {
-                // ---------------------quarter 1
-                // classrecord detail
-                res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/classrecord_detail/read_by_subject_assignment.php?subject_assignment_id=${subject_assignment_id}&quarter=1`);
-                let q1_crd = res.data;
-                q1_crd.total_highest_written = Number(q1_crd.hw1) + Number(q1_crd.hw2) + Number(q1_crd.hw3) + Number(q1_crd.hw4) + Number(q1_crd.hw5) + Number(q1_crd.hw6) + Number(q1_crd.hw7) + Number(q1_crd.hw8) + Number(q1_crd.hw9) + Number(q1_crd.hw10);
-                q1_crd.total_highest_performance = Number(q1_crd.hp1) + Number(q1_crd.hp2) + Number(q1_crd.hp3) + Number(q1_crd.hp4) + Number(q1_crd.hp5) + Number(q1_crd.hp6) + Number(q1_crd.hp7) + Number(q1_crd.hp8) + Number(q1_crd.hp9) + Number(q1_crd.hp10);
-                console.log('q1_crd :>> ', q1_crd);
-
-                // classrecord
-                res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/classrecord/read_by_subject_assignment.php?subject_assignment_id=${subject_assignment_id}&quarter=1`);
-                let q1_scores = res.data.data;
-                console.log('q1_scores :>> ', q1_scores);
+                res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/grades/subject_grades.php?subject_assignment_id=${subject_assignment_id}`)
+                let grades = res.data
 
 
-                // -------------------quarter 2
-                // classrecord detail
-                res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/classrecord_detail/read_by_subject_assignment.php?subject_assignment_id=${subject_assignment_id}&quarter=2`);
-                let q2_crd = res.data;
-                q2_crd.total_highest_written = Number(q2_crd.hw1) + Number(q2_crd.hw2) + Number(q2_crd.hw3) + Number(q2_crd.hw4) + Number(q2_crd.hw5) + Number(q2_crd.hw6) + Number(q2_crd.hw7) + Number(q2_crd.hw8) + Number(q2_crd.hw9) + Number(q2_crd.hw10);
-                q2_crd.total_highest_performance = Number(q2_crd.hp1) + Number(q2_crd.hp2) + Number(q2_crd.hp3) + Number(q2_crd.hp4) + Number(q2_crd.hp5) + Number(q2_crd.hp6) + Number(q2_crd.hp7) + Number(q2_crd.hp8) + Number(q2_crd.hp9) + Number(q2_crd.hp10);
-                console.log('q2_crd :>> ', q2_crd);
+                let new_grades = []
+                grades.forEach((elem, index) => {
+                    if (elem.quarter == 2) return
+                    let temp = {}
+                    temp.student_name = grades[index].student_name
+                    temp.q1_grade = grades[index].final_grade
+                    temp.q2_grade = grades[index+1].final_grade
+                    temp.final = (temp.q1_grade + temp.q2_grade)/2
+                    new_grades.push(temp)
+                })
+                console.log('new_grades :>> ', new_grades);
+                
 
-                // classrecord
-                res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/classrecord/read_by_subject_assignment.php?subject_assignment_id=${subject_assignment_id}&quarter=2`);
-                let q2_scores = res.data.data;
-                console.log('q2_scores :>> ', q2_scores);
+                // lowest to highest
+                new_grades.sort(function(a, b){
+                    return a.final - b.final
+                });
 
-                // insert 
-                const insert_to_highest = document.querySelector("#insert_to_highest");
-                setGrades(insert_to_highest, q1_scores, q2_scores, q1_crd);
+                // highest to lowest
+                let high = [...new_grades];
+                high.sort(function(a, b){
+                    return  b.final - a.final
+                });
+                console.log('new_grades :>> ', new_grades);
+                console.log('high :>> ', high);
 
+
+                // insert highest
+                const insert_to_highest = document.querySelector("#insert_to_highest")
+                insertToTable(insert_to_highest, high)
+
+                // insert lowest
+                const insert_to_lowest = document.querySelector("#insert_to_lowest")
+                insertToTable(insert_to_lowest, new_grades)
 
             } catch(e){
                 console.log(e);
             }
         });
 
-
-        function setGrades(insert_to, q1_data, q2_data, crd){
-            let q1_grade, q2_grade, tr
-            let new_data = [], temp = {}
-            q1_data.forEach((stud, index) => {
-
-                temp = {};
-
-                q1_grade = calculateGrade(q1_data[index], crd);
-                q2_grade = calculateGrade(q2_data[index], crd);
-
-                temp.student_name = stud.student_name
-                temp.q1_grade = q1_grade.final
-                temp.q2_grade = q2_grade.final
-                temp.final_grade = (q1_grade.final + q2_grade.final) / 2
-                
-                new_data.push(temp);
-            })
-            
-            // lowest to highest
-            new_data.sort(function(a, b){
-                return a.final_grade - b.final_grade
-            });
-
-            // highest to lowest
-            let high = [...new_data];
-            high.sort(function(a, b){
-                return  b.final_grade - a.final_grade
-            });
-
-            // insert highest
-            const insert_to_highest = document.querySelector("#insert_to_highest")
-            insertToTable(insert_to_highest, high)
-
-            // insert lowest
-            const insert_to_lowest = document.querySelector("#insert_to_lowest")
-            insertToTable(insert_to_lowest, new_data)
-
-
-        }
 
         function insertToTable(insert_to, array) {
             let tr
@@ -215,7 +188,7 @@
                 <td class="td-sm">${data.student_name}</td>
                 <td class="td-sm">${data.q1_grade}</td>
                 <td class="td-sm">${data.q2_grade}</td>
-                <td class="td-sm">${data.final_grade}</td>
+                <td class="td-sm">${data.final}</td>
                 `;
                 insert_to.appendChild(tr)
             })

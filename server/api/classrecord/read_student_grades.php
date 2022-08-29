@@ -34,6 +34,7 @@
                 'sy_end' => $sy_end,
                 'sy_id' => $sy_id,
                 'semester' => $semester,
+                'hours' => $hours,
                 'subject_assignment_id' => $subject_assignment_id,
                 'quarter' => $quarter,
                 'w1' => $w1,

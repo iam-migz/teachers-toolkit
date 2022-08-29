@@ -12,14 +12,14 @@
     // Instantiate object
     $classrecord = new Classrecord($db);
 
-    if ( !isset($_GET['subject_assignment_id']) || !isset($_GET['quarter'])  ){
+    if ( !isset($_GET['subject_assignment_id']) ){
         echo json_encode(
             array('result' => 0, 'message' => 'missing id')
         );
         return;
     }
 
-    $result = $classrecord->read_by_subject_assignment($_GET['subject_assignment_id'], $_GET['quarter']);
+    $result = $classrecord->read_by_subject_assignment($_GET['subject_assignment_id']);
     $num = $result->rowCount();
 
     if ($num > 0) {
@@ -31,6 +31,8 @@
             $item = array(
                 'student_name' =>  $student_name,
                 'gender' =>  $gender,
+                'quarter' => $quarter,
+                'subject_assignment_id' => $subject_assignment_id,
                 'classrecord_id' => $classrecord_id,
                 'subject_data_id' => $subject_data_id,
                 'w1' => $w1,

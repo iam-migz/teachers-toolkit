@@ -3,9 +3,8 @@
         if(isset($_SESSION['access']) && $_SESSION['access'] == 2){
 
         }else{
-            // header("location: ../login/login.html");
+            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
         }
-        // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,9 +36,6 @@
 
     <h3 class="text-center mt-4 mb-0">
         Student Attendance Sheet
-        <a type="button" href="view_subject.php" class="btn-floating blue">
-            <i class="far fa-hand-point-left" aria-hidden="true"></i>
-        </a>
     </h3>
     <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mt-0 ml-1 mr-1 table_con" style="background-color: white;">
         <table id="attendance" class="table table-sm table-bordered text-center" cellspacing="0">

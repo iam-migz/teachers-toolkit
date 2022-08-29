@@ -32,7 +32,11 @@
             extract($row);
             $item = array(
                 'id' =>  $id,
+                'user_id' =>  $user_id,
+                'section_id' =>  $section_id,
+                'school_id' =>  $school_id,
                 'section_name' =>  $section_name,
+                'birthdate' =>  $birthdate,
                 'LRN' =>  $LRN,
                 'student_name' => $student_name,
                 'email' => $email,

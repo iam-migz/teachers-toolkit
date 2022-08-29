@@ -3,9 +3,8 @@
         if(isset($_SESSION['access']) && $_SESSION['access'] == 2){
 
         }else{
-            // header("location: ../login/login.html");
+            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
         }
-        // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +28,7 @@
 
     <div class="container">
         <h2 id="school_name"></h2>
-        <p class="lead">Teacher</p>
+        <p class="lead mb-0">Teacher</p>
         <p class="lead" id="sy_div"></p>
 
         <div class="row mt-4" id="insert_to">
@@ -82,6 +81,12 @@
                 </div>
             </div>  -->
         </div>
+        <hr>
+        <!-- advisor -->
+        <div class="row mt-4" id="advisor">
+        </div>
+
+
     </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -168,6 +173,34 @@
                 console.log('school :>> ', school);
             })
             .catch(err => console.log(err));
+
+
+        // set advisory, if teacher account is advisor type
+        axios.get(`http://localhost/teachers-toolkit-app/server/api/section/read_advisor.php?school_year_id=${sy_id}&advisor_id=${teacher_id}`)
+            .then(res => {
+                if (res.data.result == 0) return
+
+                const section = res.data.data[0];
+                console.log('section :>> ', section);
+                const insert_to = document.querySelector("#advisor");
+                insert_to.innerHTML = `
+                <h2>Advisory Task</h2>
+                <div class="col-lg-12 mt-1 box_card mb-5">
+                    <div class="card">
+                        <div class="card-image" style="background-image: url('../images/advisory.jpg'); background-repeat: no-repeat; background-size: cover;">
+                            <a href="advisor_task.php?section_id=${section.id}">
+                                <div class="text-white d-flex h-100 purple-gradient-rgba">
+                                    <div class="first-content align p-3">
+                                        <h3 class="card-title" style="font-weight: 400">Grade ${section.grade} - ${section.section_name}</h3>
+                                        <p class="lead mb-0">${section.track}, ${section.strand}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>`
+            })
+            .catch(err => console.log(err))
 
     </script>
 

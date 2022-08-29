@@ -89,7 +89,7 @@
                     </div>
                     <div class="col">
                         <select class="mdb-select md-form colorful-select dropdown-primary" id="track">
-                            <option value="Academic">Academic</option>
+                            <option value="Academic" disabled selected>Academic</option>
                             <option value="Technical-Vocational-Livelihood">Technical-Vocational-Livelihood</option>
                             <option value="Sports and Arts">Sports and Arts</option>
                         </select>

@@ -3,9 +3,8 @@
         if(isset($_SESSION['access']) && $_SESSION['access'] == 2){
 
         }else{
-            // header("location: ../login/login.html");
+            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
         }
-        // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,9 +37,6 @@
 
     <h3 class="text-center mt-4 mb-0">
         <span id="subject_name"></span>
-        <a type="button" href="subject_lists.php" class="btn-floating blue">
-            <i class="far fa-hand-point-left" aria-hidden="true"></i>
-        </a>
     </h3>
     <div class="container mt-4">
         <ul class="nav md-pills nav-justified pills-success-color-dark mb-4">
@@ -204,11 +200,11 @@
         function linkTo(num, event){
             event.preventDefault();
             if (num == 1) {
-                location.href = `./q1_grade.php?subject_assignment_id=${subject_assignment_id}`;
+                location.href = `./q1_grade.php?subject_assignment_id=${subject_assignment_id}&subject_id=${subject_id}`;
             } else if (num == 2) {
-                location.href = `./q2_grade.php?subject_assignment_id=${subject_assignment_id}`;
+                location.href = `./q2_grade.php?subject_assignment_id=${subject_assignment_id}&subject_id=${subject_id}`;
             } else if (num == 3) {
-                location.href = `./report_data.php?subject_assignment_id=${subject_assignment_id}`; 
+                location.href = `./report_data.php?subject_assignment_id=${subject_assignment_id}&subject_id=${subject_id}`; 
             } else if (num == 4) {
                 location.href = `./summary_grades.php?subject_assignment_id=${subject_assignment_id}&subject_id=${subject_id}`; 
             }
