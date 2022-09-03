@@ -1,46 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Teacher's Toolkit</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
-    
-    <link rel="icon" href="../images/tk.png" type="image/gif" sizes="16x16">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
 
-<style>
-    body, html{ min-height: 100%; }
-    body{
+    <link rel="icon" href="../images/tk.png" type="image/gif" sizes="16x16" />
+
+    <style>
+      body,
+      html {
+        min-height: 100%;
+      }
+      body {
         background-image: url(../images/sample.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         margin: 0;
         margin-bottom: 5%;
         /* overflow: hidden; */
-    }
-    #error-msg, #error-msg2 {
+      }
+      #error-msg,
+      #error-msg2 {
         color: red;
-    }
-    .title{
+      }
+      .title {
         margin: 20px auto;
         text-align: center;
-    }
-    .title img{
+      }
+      .title img {
         width: 560px;
-    }
-    input[type=text], input[type=email], input[type=password]{
+      }
+      input[type='text'],
+      input[type='email'],
+      input[type='password'] {
         width: 100%;
         padding: 10px 15px;
         border-radius: 5px;
         border: 1px solid #ccc;
         box-sizing: border-box;
         display: inline-block;
-    }
-    .container  {
+      }
+      .container {
         background: white;
         width: 700px;
         height: 420px;
@@ -49,24 +72,24 @@
         border-radius: 5px;
         box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 20%);
         overflow: hidden;
-    }
+      }
 
-    form {
+      form {
         position: absolute;
         width: 680px;
         transition: 0.5s;
-    }
-    #form2{
+      }
+      #form2 {
         left: 1120px;
-    }
-    #next {
+      }
+      #next {
         text-align: center;
         position: relative;
         left: 45%;
         display: block;
-    }
+      }
 
-    .step-row {
+      .step-row {
         width: 360px;
         height: 40px;
         margin: 0 auto;
@@ -75,21 +98,21 @@
         box-shadow: 0 -1px 5px -1px #000;
         position: relative;
         margin-bottom: 10px;
-    }
-    .step-col{
+      }
+      .step-col {
         width: 180px;
-        text-align: center; 
+        text-align: center;
         color: #333;
         position: relative;
-    }
-    #progress {
+      }
+      #progress {
         position: absolute;
         height: 100%;
         width: 50%;
         background: linear-gradient(to right, #ff105f, #ffad06);
-        transition: 0.5s;   
-    }
-    #progress::after {
+        transition: 0.5s;
+      }
+      #progress::after {
         content: '';
         height: 0;
         width: 0;
@@ -99,192 +122,332 @@
         right: -20px;
         top: 0;
         border-left: 20px solid #ffad06;
-    }
-</style>
-</head>
-<body>
+      }
+    </style>
+  </head>
+  <body>
     <div class="title">
-        <a href="../index.html"><img src="../images/Toolkit.png" alt="Teachers Toolkit"></a>
+      <a href="../index.html"
+        ><img src="../images/Toolkit.png" alt="Teachers Toolkit"
+      /></a>
     </div>
-    
-  
+
     <div class="container">
-        <div class="step-row">
-            <div id="progress"></div>
-            <div class="step-col"><small>Create Admin Account</small></div>
-            <div class="step-col"><small>Create School</small></div>
+      <div class="step-row">
+        <div id="progress"></div>
+        <div class="step-col"><small>Create Admin Account</small></div>
+        <div class="step-col"><small>Create School</small></div>
+      </div>
+      <form id="form1">
+        <div>
+          <h1 class="display-4" style="font-size: 36px; text-align: center">
+            Admin Register
+          </h1>
         </div>
-        <form id="form1">
-            <div>
-                <h1 class="display-4" style="font-size: 36px; text-align: center;">Admin Register</h1>
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col">
+              <input
+                id="firstname"
+                class="form-control"
+                type="text"
+                placeholder="Enter First Name"
+                name="firstname"
+                required
+              />
             </div>
-            <div class="form-group">
-                <div class="form-row">
-                    <div class="col">
-                        <input id="firstname" class="form-control" type="text" placeholder="Enter First Name" name="firstname" required>
-                    </div>
-                    <div class="col">
-                        <input id="middlename" class="form-control" type="text" placeholder="Enter Middle Name" name="middlename" required>
-                    </div>
-                    <div class="col">
-                        <input id="lastname" class="form-control" type="text" placeholder="Enter Last Name" name="lastname" required>
-                    </div>
-                </div>
+            <div class="col">
+              <input
+                id="middlename"
+                class="form-control"
+                type="text"
+                placeholder="Enter Middle Name"
+                name="middlename"
+                required
+              />
             </div>
-            <div class="form-group">
-                <input id="pnum" class="form-control" type="number" placeholder="Enter Phone Number" name="pnum" required>
+            <div class="col">
+              <input
+                id="lastname"
+                class="form-control"
+                type="text"
+                placeholder="Enter Last Name"
+                name="lastname"
+                required
+              />
             </div>
-            <div class="form-group">
-                <input id="email" class="form-control" type="email" placeholder="Enter Email Address" name="email" required>
-            </div>
-            <div class="form-group">
-                <input id="password" class="form-control" type="password" placeholder="Enter Password" name="pword" required>
-            </div>
-            <div id="error-msg"></div>
-            <button type="button" class="btn btn-primary " id="next">Next</button>
-        </form>
+          </div>
+        </div>
+        <div class="form-group">
+          <input
+            id="pnum"
+            class="form-control"
+            type="number"
+            placeholder="Enter Phone Number"
+            name="pnum"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            id="email"
+            class="form-control"
+            type="email"
+            placeholder="Enter Email Address"
+            name="email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            id="password"
+            class="form-control"
+            type="password"
+            placeholder="Enter Password"
+            name="pword"
+            required
+          />
+        </div>
+        <div id="error-msg"></div>
+        <button type="button" class="btn btn-primary" id="next">Next</button>
+      </form>
 
-        <form id="form2">
-            <div>
-                <h1 class="display-4" style="font-size: 36px; text-align: center;">Create School</h1>
+      <form id="form2">
+        <div>
+          <h1 class="display-4" style="font-size: 36px; text-align: center">
+            Create School
+          </h1>
+        </div>
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-9">
+              <input
+                id="school_name"
+                class="form-control"
+                type="text"
+                placeholder="Enter School name"
+                required
+              />
             </div>
-            <div class="form-group">
-                <div class="form-row">
-                    <div class="col-9">
-                        <input id="school_name" class="form-control" type="text" placeholder="Enter School name" required>
-                    </div>
-                    <div class="col-3">
-                        <input id="postal_code" class="form-control" type="number" placeholder="Enter postal code" required>
-                    </div>
-                    
-                </div>
+            <div class="col-3">
+              <input
+                id="postal_code"
+                class="form-control"
+                type="number"
+                placeholder="Enter postal code"
+                required
+              />
             </div>
-            <div class="form-group">
-                <div class="form-row">
-                    <div class="col">
-                        <input id="barangay" class="form-control" type="text" placeholder="Enter barangay" required>
-                    </div>
-                    <div class="col">
-                        <input id="city" class="form-control" type="text" placeholder="Enter city" required>
-                    </div>
-                    <div class="col">
-                        <input id="province" class="form-control" type="text" placeholder="Enter province" required>
-                    </div>
-                </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col">
+              <input
+                id="barangay"
+                class="form-control"
+                type="text"
+                placeholder="Enter barangay"
+                required
+              />
             </div>
-            <div class="form-group">
-                <div class="form-row">
-                    <div class="col">
-                        <input id="country" class="form-control" type="text" placeholder="Enter country" required>
-                    </div>
-                </div>
+            <div class="col">
+              <input
+                id="city"
+                class="form-control"
+                type="text"
+                placeholder="Enter city"
+                required
+              />
             </div>
-            <div class="form-group">
-                <div class="form-row">
-                    <div class="col">
-                        <input id="principal_fn" class="form-control" type="text" placeholder="Enter principal firstname" required>
-                    </div>
-                    <div class="col">
-                        <input id="principal_ln" class="form-control" type="text" placeholder="Enter principal lastname" required>
-                    </div>
-                    <div class="col">
-                        <input id="principal_mn" class="form-control" type="text" placeholder="Enter principal middlename" required>
-                    </div>
-                </div>
+            <div class="col">
+              <input
+                id="province"
+                class="form-control"
+                type="text"
+                placeholder="Enter province"
+                required
+              />
             </div>
-          
-            <div id="error-msg2"></div>
-            <button type="button" class="btn btn-primary" id="back">back</button>
-            <button type="button" class="btn btn-primary" id="submit">submit</button>
-        </form>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col">
+              <input
+                id="country"
+                class="form-control"
+                type="text"
+                placeholder="Enter country"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col">
+              <input
+                id="principal_fn"
+                class="form-control"
+                type="text"
+                placeholder="Enter principal firstname"
+                required
+              />
+            </div>
+            <div class="col">
+              <input
+                id="principal_ln"
+                class="form-control"
+                type="text"
+                placeholder="Enter principal lastname"
+                required
+              />
+            </div>
+            <div class="col">
+              <input
+                id="principal_mn"
+                class="form-control"
+                type="text"
+                placeholder="Enter principal middlename"
+                required
+              />
+            </div>
+          </div>
+        </div>
 
+        <div id="error-msg2"></div>
+        <button type="button" class="btn btn-primary" id="back">back</button>
+        <button type="button" class="btn btn-primary" id="submit">
+          submit
+        </button>
+      </form>
     </div>
+  </body>
 
-</body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    const form1 = document.getElementById('form1');
+    const form2 = document.getElementById('form2');
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script>
+    const next = document.getElementById('next');
+    const back = document.getElementById('back');
+    const submit = document.getElementById('submit');
 
-    const form1 = document.getElementById("form1");
-    const form2 = document.getElementById("form2");
-
-    const next = document.getElementById("next");
-    const back = document.getElementById("back");
-    const submit = document.getElementById("submit");
-
-    const progress = document.getElementById("progress");
+    const progress = document.getElementById('progress');
 
     next.onclick = function (e) {
-        e.preventDefault();
-        const firstname = document.querySelector("#firstname").value;
-        const middlename = document.querySelector("#middlename").value;
-        const lastname = document.querySelector("#lastname").value;
+      e.preventDefault();
+      const firstname = document.querySelector('#firstname').value;
+      const middlename = document.querySelector('#middlename').value;
+      const lastname = document.querySelector('#lastname').value;
 
-        const phone_no = document.querySelector("#pnum").value;
-        const email = document.querySelector("#email").value;
-        const password = document.querySelector("#password").value;
-        const errorMsg = document.querySelector("#error-msg");
-        if (firstname == '' || middlename == '' || lastname == '' || phone_no == '' || email == '' || password == '' ) {
-            errorMsg.innerHTML = "Please complete admin form";
-            return;
-        }
-        form1.style.left = "-1120px";
-        form2.style.left = "10px";
-        progress.style.width = "360px";
-    }
+      const phone_no = document.querySelector('#pnum').value;
+      const email = document.querySelector('#email').value;
+      const password = document.querySelector('#password').value;
+      const errorMsg = document.querySelector('#error-msg');
+      if (
+        firstname == '' ||
+        middlename == '' ||
+        lastname == '' ||
+        phone_no == '' ||
+        email == '' ||
+        password == ''
+      ) {
+        errorMsg.innerHTML = 'Please complete admin form';
+        return;
+      }
+      form1.style.left = '-1120px';
+      form2.style.left = '10px';
+      progress.style.width = '360px';
+    };
     back.onclick = function (e) {
-        e.preventDefault();
-        form1.style.left = "10px";
-        form2.style.left = "1120px";
-        progress.style.width = "200px";
-    }
+      e.preventDefault();
+      form1.style.left = '10px';
+      form2.style.left = '1120px';
+      progress.style.width = '200px';
+    };
 
-    submit.onclick = async function  (e) {
-        e.preventDefault();
-        const firstname = document.querySelector("#firstname").value;
-        const middlename = document.querySelector("#middlename").value;
-        const lastname = document.querySelector("#lastname").value;
-        const phone_no = document.querySelector("#pnum").value;
-        const email = document.querySelector("#email").value;
-        const password = document.querySelector("#password").value;
-        const errorMsg2 = document.querySelector("#error-msg2");
+    submit.onclick = async function (e) {
+      e.preventDefault();
+      const firstname = document.querySelector('#firstname').value;
+      const middlename = document.querySelector('#middlename').value;
+      const lastname = document.querySelector('#lastname').value;
+      const phone_no = document.querySelector('#pnum').valueAsNumber;
+      const email = document.querySelector('#email').value;
+      const password = document.querySelector('#password').value;
+      const errorMsg2 = document.querySelector('#error-msg2');
 
-        let school_id;
-        const barangay = document.getElementById("barangay").value;
-        const city = document.getElementById("city").value;
-        const province = document.getElementById("province").value;
-        const country = document.getElementById("country").value;
-        const postal_code = document.getElementById("postal_code").value;
-        const principal_fn = document.getElementById("principal_fn").value;
-        const principal_ln = document.getElementById("principal_ln").value;
-        const principal_mn = document.getElementById("principal_mn").value;
-        const school_name = document.getElementById("school_name").value;
- 
+      let school_id;
+      const barangay = document.getElementById('barangay').value;
+      const city = document.getElementById('city').value;
+      const province = document.getElementById('province').value;
+      const country = document.getElementById('country').value;
+      const postal_code = document.getElementById('postal_code').valueAsNumber;
+      const principal_fn = document.getElementById('principal_fn').value;
+      const principal_ln = document.getElementById('principal_ln').value;
+      const principal_mn = document.getElementById('principal_mn').value;
+      const school_name = document.getElementById('school_name').value;
 
-        // create school
-        try {
-            let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/school/create.php', {
-                barangay, city, province, country, postal_code, principal_fn, principal_ln, principal_mn, school_name
-            });
-            let data = res.data;
-            school_id = data.school_id;
-            if (school_id) {
-                let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/user/create_admin.php', {
-                    firstname, middlename, lastname, phone_no, email, password, school_id
-                });
-                let data = res.data;
-                if (data.result) {
-                    location.href = '../admin/home.php';
-                }
+      //   console.log('admin', {
+      //     firstname,
+      //     middlename,
+      //     lastname,
+      //     phone_no,
+      //     email,
+      //     password,
+      //   });
+      //   console.log('school', {
+      //     barangay,
+      //     city,
+      //     province,
+      //     country,
+      //     postal_code,
+      //     principal_fn,
+      //     principal_ln,
+      //     principal_mn,
+      //     school_name,
+      //   });
+      //   return;
+      // create school
+      try {
+        let res = await axios.post(
+          'http://localhost/teachers-toolkit-app/server/school/create',
+          {
+            barangay,
+            city,
+            province,
+            country,
+            postal_code,
+            principal_fn,
+            principal_ln,
+            principal_mn,
+            school_name,
+          }
+        );
+        let data = res.data;
+        school_id = parseInt(data.school_id);
+        if (school_id) {
+          let res = await axios.post(
+            'http://localhost/teachers-toolkit-app/server/admin/create',
+            {
+              school_id,
+              password,
+              firstname,
+              lastname,
+              middlename,
+              phone_no,
+              email,
             }
-        } catch(e) {
-            console.log(e);
+          );
+          let data = res.data;
+          if (data.result) {
+            location.href = '../admin/home.php';
+          }
         }
-
-
-
-
-
-    }
-</script>
+      } catch (e) {
+        console.log(e);
+      }
+    };
+  </script>
 </html>

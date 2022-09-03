@@ -1,0 +1,5 @@
+1. make a seeder
+2. remove redundancy in server apis
+3. figure out front-end heavy code
+
+4. rename teachers-toolkit-app to teachers-toolkit
