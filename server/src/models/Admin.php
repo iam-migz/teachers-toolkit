@@ -13,9 +13,17 @@ class Admin extends Database
 	}
 
 
-  public function findOne(string $user_id) : array | false
+  public function findOne($id) : array | false
   {
-    $query = 'SELECT * FROM admins WHERE user_id = :user_id LIMIT 0, 1';
+    $query = 'SELECT * FROM admins WHERE id = :id LIMIT 0,1';
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+  public function findByUserId($user_id) : array | false
+  {
+    $query = 'SELECT * FROM admins WHERE user_id = :user_id LIMIT 0,1';
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':user_id', $user_id);
     $stmt->execute();

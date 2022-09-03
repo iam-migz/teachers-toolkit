@@ -1,18 +1,4 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 3){
-
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <?php include '../partials/admin_head.inc.php'; ?>
     <!-- MDBootstrap Datatables  -->
     <link href="../mdb/css/addons/datatables2.min.css" rel="stylesheet">
     <!-- DataTables Select CSS -->
@@ -38,7 +24,7 @@
 </head>
 <body>
     <!--Main Header-->
-    <?php include '../partials/header_admin.php'; ?>
+    <?php include '../partials/admin_nav.inc.php'; ?>
     
     <div class="view-container">
         <div class="card">
@@ -90,10 +76,10 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         const school_id = <?php echo $_SESSION['school_id']; ?>;
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/school/read_one.php?id=${school_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/school/findOne/${school_id}`)
             .then(res => {
                 
-                const school = res.data;
+                const school = res.data.data;
                 console.log(school);
 
                 const barangay = document.querySelector("#barangay");
@@ -138,7 +124,7 @@
                     return;
                 }
 
-                axios.put('http://localhost/teachers-toolkit-app/server/api/school/update.php', {
+                axios.put('http://localhost/teachers-toolkit-app/server/school/update', {
                     'id': school_id, barangay, city, province, country, postal_code, principal_fn,  principal_ln,  principal_mn, school_name 
                 })
                     .then(res => {

@@ -1,18 +1,4 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 3){
-
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <?php include '../partials/admin_head.inc.php'; ?>
     <!-- MDBootstrap Datatables  -->
     <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
 
@@ -32,8 +18,8 @@
     </style>
 </head>
 <body>
-    <!--Main Header-->
-    <?php include '../partials/header_admin.php'; ?>
+    
+    <?php include '../partials/admin_nav.inc.php'; ?>
 
     <div class="container mt-5 mb-5">
         <div class="card">
@@ -113,7 +99,7 @@
 
     const school_id = <?php echo $_SESSION['school_id']; ?>;
     
-    axios.get(`http://localhost/teachers-toolkit-app/server/api/teacher/read.php?school_id=${school_id}`)
+    axios.get(`http://localhost/teachers-toolkit-app/server/teacher/findBySchoolId/${school_id}`)
         .then(res => {
             if (res.data.result == 0) {
                 return;
@@ -153,7 +139,7 @@
         })
         .catch(err => console.log(err));
 
-    axios.get(`http://localhost/teachers-toolkit-app/server/api/student/read.php?school_id=${school_id}`)
+    axios.get(`http://localhost/teachers-toolkit-app/server/student/findBySchoolId/${school_id}`)
         .then(res => {
             if (res.data.result == 0) {
                 return;

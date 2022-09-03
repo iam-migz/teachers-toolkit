@@ -1,141 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Teacher's Toolkit</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
-    <link rel="icon" href="../images/tk.png" type="image/gif" sizes="16x16">
-    
-    <style>
-        body, html{ min-height: 100%; }
-        body{
-            background-image: url(../images/sample.jpg);  
-            background-repeat: no-repeat;
-            background-size: cover;
-            margin: 0;
-        }
-        .title{
-            margin: 50px auto;
-            text-align: center;
-        }
-        .title img{
-            width: 560px;
-        }
-        .login-title{
-            text-align: center;
-        }
-        .display-4{
-            font-size: 40px;
-        }
-        input[type=text], input[type=password]{
-            width: 100%;
-            padding: 10px 15px;
-            border-radius: 5px;
-        }
-        .login-container{
-            background-color: white;
-            margin: 0 auto;
-            width: 500px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            padding: 10px 20px;
-            box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 20%);
-        }
-        .login-modify{
-            font-size: 20px;
-            width: 100%;
-            float: left;
-            padding: 11px;
-            border-radius: 10px;
-        }
-        .return-login{
-            font-size: 23px;
-            margin: 0 auto;
-            display: block;
-            text-align: center;
-        }
-        #error-msg{
-            color: red;
-        }
-    </style>
-</head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
 
-<body>
+    <link rel="icon" href="../images/tk.png" type="image/gif" sizes="16x16" />
+
+    <style>
+      body,
+      html {
+        min-height: 100%;
+      }
+      body {
+        background-image: url(../images/sample.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: 0;
+      }
+      .title {
+        margin: 50px auto;
+        text-align: center;
+      }
+      .title img {
+        width: 560px;
+      }
+      .login-title {
+        text-align: center;
+      }
+      .display-4 {
+        font-size: 40px;
+      }
+      input[type='text'],
+      input[type='password'] {
+        width: 100%;
+        padding: 10px 15px;
+        border-radius: 5px;
+      }
+      .login-container {
+        background-color: white;
+        margin: 0 auto;
+        width: 500px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 10px 20px;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 20%);
+      }
+      .login-modify {
+        font-size: 20px;
+        width: 100%;
+        float: left;
+        padding: 11px;
+        border-radius: 10px;
+      }
+      .return-login {
+        font-size: 23px;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
+      }
+      #error-msg {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
     <div class="title">
-        <a href="../index.html"><img src="../images/Toolkit.png" alt="Teachers Toolkit"></a>
+      <a href="../index.html"
+        ><img src="../images/Toolkit.png" alt="Teachers Toolkit"
+      /></a>
     </div>
     <form method="POST">
-        <div class="login-container">    
-            <div class="login-title">
-                <h1 class="display-4">Login</h1>
-            </div>
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" placeholder="Enter Username" required>
-                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
-            </div>
-            <!--
+      <div class="login-container">
+        <div class="login-title">
+          <h1 class="display-4">Login</h1>
+        </div>
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            aria-describedby="usernameHelp"
+            placeholder="Enter Username"
+            required
+          />
+          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Enter Password"
+            required
+          />
+        </div>
+        <!--
             <div class="form-group">
                 <label for="passcode">Passcode</label>
                 <input type="text" class="form-control form-control-lg" id="code" name="passcode" placeholder="Enter Passcode" required>
             </div>
             -->
-            <div id="error-msg"></div>
-            <div class="modal-footer">
-                <button id="submit_login" type="submit" class="btn btn-success login-modify">Login</button>
-            </div>
-            <span class="return-login">
-                <a href="./forgot.html" class="badge badge-light form-text text-muted">Forgot Password?</a>
-            </span>
+        <div id="error-msg"></div>
+        <div class="modal-footer">
+          <button
+            id="submit_login"
+            type="submit"
+            class="btn btn-success login-modify"
+          >
+            Login
+          </button>
         </div>
+        <span class="return-login">
+          <a href="./forgot.html" class="badge badge-light form-text text-muted"
+            >Forgot Password?</a
+          >
+        </span>
+      </div>
     </form>
-
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        document.querySelector("#submit_login").addEventListener("click", async (x) => {
-            x.preventDefault();
-            const id = document.querySelector("#username").value;
-            const password = document.querySelector("#password").value;
-            const errorMsg = document.querySelector("#error-msg");
+      document
+        .querySelector('#submit_login')
+        .addEventListener('click', async (x) => {
+          x.preventDefault();
+          const id = document.querySelector('#username').value;
+          const password = document.querySelector('#password').value;
+          const errorMsg = document.querySelector('#error-msg');
 
-            if ( id == '' || password == '' ) {
-                errorMsg.innerHTML = "Please complete form";
-                return;
+          if (id == '' || password == '') {
+            errorMsg.innerHTML = 'Please complete form';
+            return;
+          }
+
+          try {
+            let res = await axios.post(
+              'http://localhost/teachers-toolkit-app/server/user/login',
+              {
+                id,
+                password,
+              }
+            );
+            let data = res.data;
+            if (data.result) {
+              if (data.result == 1) {
+                location.href = '../student/home.php';
+              } else if (data.result == 2) {
+                location.href = '../teacher/home.php';
+              } else if (data.result == 3) {
+                location.href = '../admin/home.php';
+              }
+            } else {
+              errorMsg.innerHTML = data.message;
             }
-
-            try {
-                let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/user/login.php', {
-                    id, password
-                });
-                let data = res.data;
-                console.log('data :>> ', data);
-                if (data.result) { 
-                    if (data.result == 1) {
-                        location.href = '../student/home.php';
-                    } else if (data.result == 2) {
-                        location.href = '../teacher/home.php';
-                    } else if (data.result == 3) {
-                        location.href = '../admin/home.php';
-                    }
-                } else {
-                    errorMsg.innerHTML = data.message;
-                }
-            } catch (e) {
-                console.log(e);
+          } catch (e) {
+            if (e.response.data.message) {
+              errorMsg.innerHTML = e.response.data.message;
             }
-
+            console.log(e);
+          }
         });
     </script>
-</body>
+  </body>
 </html>

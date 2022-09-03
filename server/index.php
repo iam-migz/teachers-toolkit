@@ -11,7 +11,8 @@ set_error_handler("src\ErrorHandler::handleError");
 set_exception_handler('src\ErrorHandler::handleException');
 
 header('Content-type: application/json; charset-UTF-8');
-use src\controllers\{UserController, AdminController, SchoolController};
+use src\controllers\{UserController, AdminController, SchoolController, SchoolYearController};
+use src\controllers\{StudentController, TeacherController};
 
 
 // for htdocs
@@ -24,13 +25,38 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
 		$r->addRoute('GET', '/test', UserController::class . '@funBee');
 		$r->addRoute('POST', '/login', UserController::class . '@login');
 	});
+
 	$r->addGroup('/admin', function (FastRoute\RouteCollector $r) {
+		$r->addRoute('GET', '/findOne/{id:\d+}', AdminController::class . '@findOne');
 		$r->addRoute('POST', '/create', AdminController::class . '@create');
 	});
+
 	$r->addGroup('/school', function (FastRoute\RouteCollector $r) {
 		$r->addRoute('POST', '/create', SchoolController::class . '@create');
+		$r->addRoute('GET', '/findOne/{id:\d+}', SchoolController::class . '@findOne');
+		$r->addRoute('PUT', '/update', SchoolController::class . '@update');
 	});
-	
+
+	$r->addGroup('/schoolyear', function (FastRoute\RouteCollector $r) {
+		$r->addRoute('POST', '/create', SchoolYearController::class . '@create');
+		$r->addRoute('GET', '/findOne/{id:\d+}', SchoolYearController::class . '@findOne');
+		$r->addRoute('GET', '/findAll/{id:\d+}', SchoolYearController::class . '@findAll');
+	});
+
+	$r->addGroup('/student', function (FastRoute\RouteCollector $r) {
+		$r->addRoute('GET', '/findOne/{id:\d+}', StudentController::class . '@findOne');
+		$r->addRoute('GET', '/findBySchoolId/{id:\d+}', StudentController::class . '@findBySchoolId');
+		$r->addRoute('POST', '/create', StudentController::class . '@create');
+		$r->addRoute('PUT', '/update', StudentController::class . '@update');
+	});
+
+	$r->addGroup('/teacher', function (FastRoute\RouteCollector $r) {
+		$r->addRoute('GET', '/findOne/{id:\d+}', TeacherController::class . '@findOne');
+		$r->addRoute('GET', '/findBySchoolId/{id:\d+}', TeacherController::class . '@findBySchoolId');
+		$r->addRoute('POST', '/create', TeacherController::class . '@create');
+		$r->addRoute('PUT', '/update', TeacherController::class . '@update');
+	});
+
 });
 
 // Fetch method and URI from somewhere

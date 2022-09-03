@@ -1,18 +1,4 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 3){
-
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <?php include '../partials/admin_head.inc.php'; ?>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
@@ -60,7 +46,7 @@
 </head>
 <body>
     <!--Main Header-->
-    <?php include '../partials/header_admin.php'; ?>
+    <?php include '../partials/admin_nav.inc.php'; ?>
     
     <form>
         <div class="register-container">    
@@ -124,11 +110,10 @@
 
             try {
                 let account_id = <?php echo $_SESSION['account_id']; ?>;
-                let res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/admin/read_one.php?id=${account_id}`);
-                let data = res.data;
-                let school_id = data.school_id;
-
-                res = await axios.post('http://localhost/teachers-toolkit-app/server/api/school_year/create.php',{
+                let res = await axios.get(`http://localhost/teachers-toolkit-app/server/admin/findOne/${account_id}`);
+                let school_id = res.data.data.school_id;
+                
+                res = await axios.post('http://localhost/teachers-toolkit-app/server/schoolyear/create',{
                     school_id, sy_start, sy_end
                 });
                 data = res.data;
@@ -147,6 +132,9 @@
                 console.log(data);
             } catch (e) {
                 console.log(e);
+                if (e.response.data.message) {
+                    errDiv.innerHTML = e.response.data.message;
+                }
             }
 
         });

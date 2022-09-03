@@ -37,7 +37,7 @@ class User extends Database
 		return $this->conn->lastInsertId();
 	}
 
-	public function login(string $id, string $password) : int | false
+	public function login(string $id, string $password) : string | false
 	{
 		$query = 'SELECT * FROM users WHERE id = :id LIMIT 0, 1';
 		$stmt = $this->conn->prepare($query);
@@ -45,6 +45,9 @@ class User extends Database
 		$stmt->execute();
 
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($row === false) {
+			return false;
+		}
 		$access = $row['access'];
 		$hashed_password = $row['password'];
 

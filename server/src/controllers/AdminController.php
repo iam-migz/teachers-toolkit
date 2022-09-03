@@ -1,7 +1,7 @@
 <?php
 
 namespace src\controllers;
-use src\models\{User, Admin, Teacher, Student};
+use src\models\{User, Admin};
 
 class AdminController
 {
@@ -10,6 +10,18 @@ class AdminController
 	{
 		$this->AdminModel = new Admin();
 	}
+
+  public function findOne($id)
+  {
+    $result = $this->AdminModel->findOne((int)$id);
+    if ($result !== false) {
+      echo json_encode(["result" => 1, "data" => $result]);
+      return;
+    }
+    http_response_code(404);
+    echo json_encode(["result" => 0, "message" => "not found"]);
+  }
+
 
   public function create() 
   {

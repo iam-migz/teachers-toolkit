@@ -1,19 +1,5 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 3){
-
-        }else{
-            // header("location: ../login/login.html");
-        }
-        // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <?php include '../../partials/admin_head.inc.php'; ?>
+    
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
@@ -47,8 +33,8 @@
     </style>
 </head>
 <body>
-    <!--Main Header-->
-    <?php include 'header_admin.php'; ?>
+    
+    <?php include '../../partials/admin_nav.inc.php'; ?>
     
     <form>
         <div class="register-container">    

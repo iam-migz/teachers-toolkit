@@ -23,11 +23,11 @@ class UserController
 
 		if ( !isset($data['id']) || !isset($data['password']) ){
 			http_response_code(422);
-			echo json_encode( array("result" => 0, "message" => "incomplete data") );
+			echo json_encode(["result" => 0, "message" => "incomplete data"]);
 			return;
 		}
-
-		if ($access = $this->UserModel->login($data['id'], $data['password'])) {
+		$access = $this->UserModel->login($data['id'], $data['password']);
+		if ($access !== false) {
 			// fetch user account
 			if ($access == 1) {
 				$account = new Student();
@@ -36,15 +36,15 @@ class UserController
 			} elseif ($access == 3) {
 				$account = new Admin();
 			}
-			$account_data = $account->findOne($data['id']);
+			$account_data = $account->findByUserId($data['id']);
+			
+			session_start();
+			$_SESSION['user_id'] = $account_data['user_id'];
+			$_SESSION['account_id'] = $account_data['id'];
+			$_SESSION['school_id'] = $account_data['school_id'];
+			$_SESSION['access'] = $access;
 
-			// session_start();
-			// $_SESSION['user_id'] = $account_data['id'];
-			// $_SESSION['account_id'] = $account_data['account_id'];
-			// $_SESSION['school_id'] = $account_data['school_id'];
-			// $_SESSION['access'] = $account_data['access'];
-
-			echo json_encode(['result' => 1, 'message' => 'logged in']);
+			echo json_encode(['result' => $access, 'message' => 'logged in']);
 		} else {
 			http_response_code(401);
 			echo json_encode(['result' => 0, 'message' => 'incorrect login credentials']);			

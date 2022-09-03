@@ -3,3 +3,4 @@
 3. figure out front-end heavy code
 
 4. rename teachers-toolkit-app to teachers-toolkit
+5. change student and teachers password

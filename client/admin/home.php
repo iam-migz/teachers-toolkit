@@ -1,20 +1,6 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 3){
-
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include '../partials/admin_head.inc.php'; ?>
     <!-- MDBootstrap Cards Extended Pro  -->
     <link href="../mdb/css/addons-pro/cards-extended.min.css" rel="stylesheet">
-    <title>Document</title>
     <style>
         .container{
             margin-top: 4%;
@@ -25,7 +11,7 @@
     </style>
 </head>
 <body>
-    <?php include '../partials/header_admin.php'; ?>
+    <?php include '../partials/admin_nav.inc.php'; ?>
     
     <div class="container">
         <h2>Account Catalog</h2>
@@ -90,7 +76,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     const school_id = <?php echo $_SESSION['school_id']; ?>;
-    axios.get(`http://localhost/teachers-toolkit-app/server/api/school_year/read.php?school_id=${school_id}`)
+    axios.get(`http://localhost/teachers-toolkit-app/server/schoolyear/findAll/${school_id}`)
         .then(res => {
             if (res.data.result == 0) {
                 return;

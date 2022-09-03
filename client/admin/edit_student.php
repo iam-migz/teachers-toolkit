@@ -1,18 +1,4 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 3){
-
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <?php include '../partials/admin_head.inc.php'; ?>
     <style>
         body{
             margin-bottom: 5%;
@@ -49,7 +35,7 @@
 </head>
 <body>
     <!--Main Header-->
-    <?php include '../partials/header_admin.php'; ?>
+    <?php include '../partials/admin_nav.inc.php'; ?>
     
     <form>
         <div class="register-container">    
@@ -189,13 +175,12 @@
         const student_id = urlParams.get('student_id');
         console.log('student_id :>> ', student_id);
 
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/student/read_one.php?id=${student_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/student/findOne/${student_id}`)
             .then(res => {
                 if (res.data.result == 0) {
                     return;
                 }
-                let student = res.data.data[0];
-                console.log(student);
+                let student = res.data.data
                 firstname.value = student.firstname;
                 middlename.value = student.middlename;
                 lastname.value = student.lastname;
@@ -245,7 +230,7 @@
             }
 
 
-            axios.put('http://localhost/teachers-toolkit-app/server/api/student/update.php', {
+            axios.put('http://localhost/teachers-toolkit-app/server/student/update', {
                 "id": student_id,
                 "continuing": continue_val,
                 "completed": completed_val,
