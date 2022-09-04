@@ -1,126 +1,99 @@
-    <?php include '../../partials/admin_head.inc.php'; ?>
+<?php include '../../partials/admin_head.inc.php'; ?>
 
-    <style>
-    .gradient-custom-assigned_stud{
-        background: #f6d365;
-        background: -webkit-linear-gradient(to right, rgba(235, 187, 167, 0.5), rgba(207, 199, 248, 1));
-        background: linear-gradient(to right, rgba(235, 187, 167, 0.5), rgba(207, 199, 248, 1))
-    }
-    .gradient-custom-view_sub{
-        background: #f6d365;
-        background: -webkit-linear-gradient(to right, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 1));
-        background: linear-gradient(to right, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 1))
-    }
-    .title{
-        font-size:22px;
-    }
-    </style>
+<style>
+.gradient-custom-assigned_stud{
+    background: #f6d365;
+    background: -webkit-linear-gradient(to right, rgba(235, 187, 167, 0.5), rgba(207, 199, 248, 1));
+    background: linear-gradient(to right, rgba(235, 187, 167, 0.5), rgba(207, 199, 248, 1))
+}
+.gradient-custom-view_sub{
+    background: #f6d365;
+    background: -webkit-linear-gradient(to right, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 1));
+    background: linear-gradient(to right, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 1))
+}
+.title{
+    font-size:22px;
+}
+</style>
 </head>
 <body>
-    
     <?php include '../../partials/admin_nav.inc.php'; ?>
-
     <div class="container">
-        <div class="row mt-4 mb-5 d-flex justify-content-center">
+        <h1 class="mt-4">School Year 2022</h1>
+        <div class="row mb-5 d-flex justify-content-center">
             <div class="col-lg-4 mt-4 mr-0 ml-0 box_card"> 
-                <h2 class="text-center title">Create  a Subject</h2>
                 <div class="card testimonial-card">
                     <div class="card-up purple-gradient lighten-1"></div>
                     <div class="avatar mx-auto white">
                         <img src="../../images/subject.png" class="rounded-circle" alt="woman avatar">
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">Area of Learning</h4>
-                        <hr>
-                        <p><i class="fas fa-quote-left"></i> Refers to an area of knowledge that is studied in school 
-                        that called a learning tool or the criteria by which we learn.</p>
-                        <a type="button" id="create_subject" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                        <h4 class="card-title">Create a Subject</h4>
+                        <a type="button" id="create_subject" class="btn-floating light-green"><i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
             
             <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
-                <h2 class="text-center title">Create a Section</h2>
                 <div class="card testimonial-card">
                     <div class="card-up peach-gradient lighten-1"></div>
                     <div class="avatar mx-auto white">
                         <img src="../../images/section.png" class="rounded-circle" alt="woman avatar">
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">Individual Course Offering</h4>
-                        <hr>
-                        <p><i class="fas fa-quote-left"></i> Any of the more or less distinct parts into 
-                        which something is or may be divided or from which it is made up.</p>
-                        <a type="button" id="create_section" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                        <h4 class="card-title">Create a Section</h4>
+                        <a type="button" id="create_section" class="btn-floating light-green"><i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
-                <h2 class="text-center title">Assign Student to Section</h2>
                 <div class="card testimonial-card">
                     <div class="card-up blue-gradient lighten-1"></div>
                     <div class="avatar mx-auto white">
                         <img src="../../images/stud_assign.png" class="rounded-circle" alt="woman avatar">
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">Appoint Students</h4>
-                        <hr>
-                        <p><i class="fas fa-quote-left"></i> Assign Students with their respective sections and organize each sessions by the Admin.</p>
-                        <a type="button" id="assign_stud" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                        <h4 class="card-title">Assign Student to Section</h4>
+                        <a type="button" id="assign_stud" class="btn-floating light-green"><i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
-                <h2 class="text-center title">Assign Subject to Section</h2>
                 <div class="card testimonial-card">
                     <div class="card-up aqua-gradient lighten-1"></div>
                     <div class="avatar mx-auto white">
                         <img src="../../images/assign.png" class="rounded-circle" alt="woman avatar">
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">Designate Tasks</h4>
-                        <hr>
-                        <p><i class="fas fa-quote-left"></i> Assign a time for a job, you decide it will be done during that time. 
-                        Appoint a post to make to teachers hold their roles.</p>
-                        <a type="button" id="assign_subject" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                        <h4 class="card-title">Assign Subject to Section</h4>
+                        <a type="button" id="assign_subject" class="btn-floating light-green"><i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
             
-
-            
-
-
             <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
-                <h2 class="text-center title">View Section Subjects</h2>
                 <div class="card testimonial-card">
                     <div class="card-up gradient-custom-view_sub lighten-1"></div>
                     <div class="avatar mx-auto white">
                         <img src="../../images/view.png" class="rounded-circle" alt="woman avatar">
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">View Designate Tasks</h4>
-                        <hr>
-                        <p><i class="fas fa-quote-left"></i> View a datatable to monitor assigned teachers in order to manage and organize advisors at the university.</p>
-                        <a type="button" id="view_assigned_sub" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                        <h4 class="card-title">View Section Subjects</h4>
+                        <a type="button" id="view_assigned_sub" class="btn-floating light-green"><i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-4 mt-4 mr-0 ml-0 box_card">
-                <h2 class="text-center title">Students in Section</h2>
                 <div class="card testimonial-card">
                     <div class="card-up gradient-custom-assigned_stud lighten-1"></div>
                     <div class="avatar mx-auto white">
                         <img src="../../images/view_assigned_stud.png" class="rounded-circle" alt="woman avatar">
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">View Appointed Students</h4>
-                        <hr>
-                        <p><i class="fas fa-quote-left"></i> View students who are assigned to their particular sections in todays school year academic.</p>
-                        <a type="button" id="view_assigned_stud" class="btn-floating light-green"><i class="far fa-hand-point-right" aria-hidden="true"></i></a>
+                        <h4 class="card-title">View Section Students</h4>
+                        <a type="button" id="view_assigned_stud" class="btn-floating light-green"><i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>

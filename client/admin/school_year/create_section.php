@@ -1,40 +1,41 @@
-    <?php include '../../partials/admin_head.inc.php'; ?>
-    
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style>
-        body{
-            margin-bottom: 5%;
-        }
-        .register-container{
-            padding-top: 10%; 
-            background-color: white;
-            margin: 2% auto;
-            width: 66%;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 10px 20px;
-        }
-        .register-title{
-            text-align: center;
-        }
-        .display-4{
-            font-size: 40px;
-        }
-        .submit-modify{
-            font-size: 20px;
-            width: 48%;
-            padding: 11px;
-            border-radius: 10px;
-        }
-        #error-msg {
-            color: red;
-        }
-    </style>
+<?php include '../../partials/admin_head.inc.php'; ?>
+
+<!-- DataTables Select CSS -->
+<link href="../../mdb/css/addons/datatables-select2.min.css" rel="stylesheet">
+
+<style>
+    body{
+        margin-bottom: 5%;
+    }
+    .register-container{
+        padding-top: 10%; 
+        background-color: white;
+        margin: 2% auto;
+        width: 66%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px 20px;
+    }
+    .register-title{
+        text-align: center;
+    }
+    .display-4{
+        font-size: 40px;
+    }
+    .submit-modify{
+        font-size: 20px;
+        width: 48%;
+        padding: 11px;
+        border-radius: 10px;
+    }
+    #error-msg {
+        color: red;
+    }
+</style>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     const school_id = <?php echo $_SESSION['school_id']; ?>;
-    axios.get(`http://localhost/teachers-toolkit-app/server/api/teacher/read.php?school_id=${school_id}`)
+    axios.get(`http://localhost/teachers-toolkit-app/server/teacher/findBySchoolId/${school_id}`)
         .then(res => {
             if (res.data.result == 0) {
                 return;
@@ -68,14 +69,13 @@
                 <div class="form-row">
                     <div class="col-7">
                         <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Advisor.." id="advisor_id">
-                        <option value="Advisors" disabled selected>Advisors</option>
-                        <!-- data from db -->
+                            <!-- data from db -->
                         </select>
                         <label class="mdb-main-label">Select Advisor</label>
                     </div>
                     <div class="col">
                         <select class="mdb-select md-form colorful-select dropdown-primary" id="track">
-                            <option value="Academic" disabled selected>Academic</option>
+                            <option value="Academic" selected>Academic</option>
                             <option value="Technical-Vocational-Livelihood">Technical-Vocational-Livelihood</option>
                             <option value="Sports and Arts">Sports and Arts</option>
                         </select>
@@ -89,7 +89,6 @@
                 <div class="form-row">
                     <div class="col">
                         <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Strand.." id="strand">
-                            <option value="Strand Course" disabled selected>Strand Course</option>
                             <option value="Humanities and Social Sciences">Humanities and Social Sciences</option>
                             <option value="Science, Technology, Engineering and Mathematics">Science, Technology, Engineering and Mathematics</option>
                             <option value="Accountancy, Business and Management">Accountancy, Business and Management</option>
@@ -105,7 +104,6 @@
 
                     <div class="col">
                         <select class="mdb-select md-form colorful-select dropdown-primary" id="grade">
-                            <option value="Grade Year" disabled selected>Grade Year</option>
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select>
@@ -117,7 +115,7 @@
             <div id="error-msg"></div>
             <div class="modal-footer">
                 <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify">Create Section</button>
-                <a class="btn btn-blue submit-modify ml-1" href="sy_home.php" role="button">Cancel</a>
+                <a class="btn btn-grey submit-modify ml-1" href="./sy_home.php?<?php echo $_SERVER['QUERY_STRING'];?>" role="button">Back</a>
             </div>
         </div>
     </form>
@@ -174,7 +172,7 @@
 
             try {
                 console.log({advisor_id, section_name, strand, track, grade});
-                let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/section/create.php',{
+                let res = await axios.post('http://localhost/teachers-toolkit-app/server/section/create',{
                     'school_year_id': sy_id, advisor_id, section_name, strand, track, grade
                 });
                 let data = res.data;

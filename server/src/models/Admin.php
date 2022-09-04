@@ -2,7 +2,8 @@
 namespace src\models;
 use src\Database;
 use PDO;
-class Admin extends Database
+
+class Admin
 {
 	private PDO $conn;
 

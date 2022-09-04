@@ -2,20 +2,11 @@
 namespace src\models;
 use src\Database;
 use PDO;
-class User extends Database
+
+class User
 {
 	// database
 	private PDO $conn;
-
-	// User Properties
-	public $id;
-	public $username;
-	public $password;
-	public $access;
-
-	// for login
-	public $account_id;
-	public $school_id;
 
 	public function __construct()
 	{

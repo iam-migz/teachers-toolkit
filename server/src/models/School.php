@@ -2,7 +2,8 @@
 namespace src\models;
 use src\Database;
 use PDO;
-class School extends Database
+
+class School
 {
 	private PDO $conn;
 

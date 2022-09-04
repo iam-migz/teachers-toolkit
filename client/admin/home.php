@@ -1,18 +1,17 @@
-    <?php include '../partials/admin_head.inc.php'; ?>
-    <!-- MDBootstrap Cards Extended Pro  -->
-    <link href="../mdb/css/addons-pro/cards-extended.min.css" rel="stylesheet">
-    <style>
-        .container{
-            margin-top: 4%;
-        }
-        .btn_proceed{
-            width: 97%;
-        }
-    </style>
+<?php include '../partials/admin_head.inc.php'; ?>
+<!-- MDBootstrap Cards Extended Pro  -->
+<link href="../mdb/css/addons-pro/cards-extended.min.css" rel="stylesheet">
+<style>
+    .container{
+        margin-top: 4%;
+    }
+    .btn_proceed{
+        width: 97%;
+    }
+</style>
 </head>
 <body>
     <?php include '../partials/admin_nav.inc.php'; ?>
-    
     <div class="container">
         <h2>Account Catalog</h2>
         <div class="row mt-4">

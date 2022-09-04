@@ -4,3 +4,7 @@
 
 4. rename teachers-toolkit-app to teachers-toolkit
 5. change student and teachers password
+
+
+caveats:
+1. must assign all students to section to make it work

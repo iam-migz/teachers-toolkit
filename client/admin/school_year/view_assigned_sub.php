@@ -1,26 +1,24 @@
-    <?php include '../../partials/admin_head.inc.php'; ?>
-    <!-- MDBootstrap Datatables  -->
-    <link href="../../mdb/css/addons/datatables.min.css" rel="stylesheet">
+<?php include '../../partials/admin_head.inc.php'; ?>
+<!-- MDBootstrap Datatables  -->
+<link href="../../mdb/css/addons/datatables.min.css" rel="stylesheet">
 
-    <style>
-        table.dataTable thead .sorting:after,
-        table.dataTable thead .sorting:before,
-        table.dataTable thead .sorting_asc:after,
-        table.dataTable thead .sorting_asc:before,
-        table.dataTable thead .sorting_asc_disabled:after,
-        table.dataTable thead .sorting_asc_disabled:before,
-        table.dataTable thead .sorting_desc:after,
-        table.dataTable thead .sorting_desc:before,
-        table.dataTable thead .sorting_desc_disabled:after,
-        table.dataTable thead .sorting_desc_disabled:before {
-        bottom: .5em;
-        }
-    </style>
+<style>
+    table.dataTable thead .sorting:after,
+    table.dataTable thead .sorting:before,
+    table.dataTable thead .sorting_asc:after,
+    table.dataTable thead .sorting_asc:before,
+    table.dataTable thead .sorting_asc_disabled:after,
+    table.dataTable thead .sorting_asc_disabled:before,
+    table.dataTable thead .sorting_desc:after,
+    table.dataTable thead .sorting_desc:before,
+    table.dataTable thead .sorting_desc_disabled:after,
+    table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
+    }
+</style>
 </head>
 <body>
-
     <?php include '../../partials/admin_nav.inc.php'; ?>
-
     <div class="container mt-4">
         <div class="card">
             <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
@@ -41,6 +39,7 @@
                         </tbody>
                     </table>
                 </div>
+                <a class="btn btn-grey submit-modify ml-1" href="./sy_home.php?<?php echo $_SERVER['QUERY_STRING'];?>" role="button">Back</a>
             </div>
         </div>
     </div>
@@ -55,7 +54,7 @@
         const sy_id = urlParams.get('sy_id');
         console.log('sy_id :>> ', sy_id);
 
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/subject_assignment/read.php?school_year_id=${sy_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/subjectassign/findBySYID/${sy_id}`)
             .then(res => {
                 if (res.data.result == 0) {
                     // display no data found

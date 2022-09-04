@@ -3,7 +3,7 @@ namespace src\models;
 use src\Database;
 use PDO;
 
-class SchoolYear extends Database
+class SchoolYear
 {
 	private PDO $conn;
 

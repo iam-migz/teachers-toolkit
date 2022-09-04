@@ -5,7 +5,7 @@
 <style>
     body, html{ min-height: 100%; }
     body{
-        background-image: url(../images/home.jpg);  
+        background-image: url(<?php echo $path; ?>/images/home.jpg);  
         background-repeat: no-repeat;
         background-size: cover;
         margin: 0;

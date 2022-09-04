@@ -1,31 +1,28 @@
-    <?php include '../partials/admin_head.inc.php'; ?>
-    <!-- MDBootstrap Datatables  -->
-    <link href="../mdb/css/addons/datatables2.min.css" rel="stylesheet">
-    <!-- DataTables Select CSS -->
-    <link href="../mdb/css/addons/datatables-select2.min.css" rel="stylesheet">    
-    <style>
-        body, html{ min-height: 100%; }
-        body{
-            background-image: url(../images/sample.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            margin: 0;
-            margin-bottom: 5%;
-        }
-        .view-container{
-            margin: 2% 2% 4% 2%;
-        }
-        #error-msg{
-            position: absolute;
-            color: red;
-        }
-    </style>
-
+<?php include '../partials/admin_head.inc.php'; ?>
+<!-- MDBootstrap Datatables  -->
+<link href="../mdb/css/addons/datatables2.min.css" rel="stylesheet">
+<!-- DataTables Select CSS -->
+<link href="../mdb/css/addons/datatables-select2.min.css" rel="stylesheet">    
+<style>
+    body, html{ min-height: 100%; }
+    body{
+        background-image: url(../images/sample.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: 0;
+        margin-bottom: 5%;
+    }
+    .view-container{
+        margin: 2% 2% 4% 2%;
+    }
+    #error-msg{
+        position: absolute;
+        color: red;
+    }
+</style>
 </head>
 <body>
-    <!--Main Header-->
     <?php include '../partials/admin_nav.inc.php'; ?>
-    
     <div class="view-container">
         <div class="card">
             <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Edit School Information</h3>

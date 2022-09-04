@@ -1,41 +1,38 @@
-    <?php include '../partials/admin_head.inc.php'; ?>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style>
-        body{
-            margin-bottom: 5%;
-        }
-        .register-container{
-            padding-top: 10%; 
-            background-color: white;
-            margin: 2% auto;
-            width: 66%;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 10px 20px;
-        }
-        .register-title{
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .display-4{
-            font-size: 40px;
-        }
-        .submit-modify{
-            font-size: 20px;
-            width: 48%;
-            padding: 11px;
-            border-radius: 10px;
-        }
-        #error-msg {
-            color: red;
-        }
-    </style>
+<?php include '../partials/admin_head.inc.php'; ?>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+    body{
+        margin-bottom: 5%;
+    }
+    .register-container{
+        padding-top: 10%; 
+        background-color: white;
+        margin: 2% auto;
+        width: 66%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px 20px;
+    }
+    .register-title{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .display-4{
+        font-size: 40px;
+    }
+    .submit-modify{
+        font-size: 20px;
+        width: 48%;
+        padding: 11px;
+        border-radius: 10px;
+    }
+    #error-msg {
+        color: red;
+    }
+</style>
 </head>
 <body>
-    <!--Main Header-->
     <?php include '../partials/admin_nav.inc.php'; ?>
-    
     <form>
         <div class="register-container">    
 

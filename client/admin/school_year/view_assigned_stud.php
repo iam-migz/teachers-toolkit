@@ -1,30 +1,28 @@
-    <?php include '../../partials/admin_head.inc.php'; ?>
-    
-    <!-- MDBootstrap Datatables  -->
-    <link href="../../mdb/css/addons/datatables.min.css" rel="stylesheet">    
-    <!-- DataTables Select CSS -->
-    <link href="../../mdb/css/addons/datatables-select2.min.css" rel="stylesheet">
+<?php include '../../partials/admin_head.inc.php'; ?>
+
+<!-- MDBootstrap Datatables  -->
+<link href="../../mdb/css/addons/datatables.min.css" rel="stylesheet">    
+<!-- DataTables Select CSS -->
+<link href="../../mdb/css/addons/datatables-select2.min.css" rel="stylesheet">
 
 
-    <style>
-        table.dataTable thead .sorting:after,
-        table.dataTable thead .sorting:before,
-        table.dataTable thead .sorting_asc:after,
-        table.dataTable thead .sorting_asc:before,
-        table.dataTable thead .sorting_asc_disabled:after,
-        table.dataTable thead .sorting_asc_disabled:before,
-        table.dataTable thead .sorting_desc:after,
-        table.dataTable thead .sorting_desc:before,
-        table.dataTable thead .sorting_desc_disabled:after,
-        table.dataTable thead .sorting_desc_disabled:before {
-        bottom: .5em;
-        }
-    </style>
+<style>
+    table.dataTable thead .sorting:after,
+    table.dataTable thead .sorting:before,
+    table.dataTable thead .sorting_asc:after,
+    table.dataTable thead .sorting_asc:before,
+    table.dataTable thead .sorting_asc_disabled:after,
+    table.dataTable thead .sorting_asc_disabled:before,
+    table.dataTable thead .sorting_desc:after,
+    table.dataTable thead .sorting_desc:before,
+    table.dataTable thead .sorting_desc_disabled:after,
+    table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
+    }
+</style>
 </head>
 <body>
-    
     <?php include '../../partials/admin_nav.inc.php'; ?>
-    
     <div class="container mt-4 mb-5">
         <div class="card">
             <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
@@ -69,10 +67,10 @@
                         </tfoot>
                     </table>
                 </div>
+                <a class="btn btn-grey submit-modify ml-1" href="./sy_home.php?<?php echo $_SERVER['QUERY_STRING'];?>" role="button">Back</a>
             </div>
         </div>
     </div>
-
     <!-- TOAST -->
     <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute; top: 80px; right: 40px;">
         <div class="toast-header">
@@ -122,7 +120,7 @@
         console.log('sy_id :>> ', sy_id);
 
         // set sections
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/section/read.php?school_year_id=${sy_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/section/findBySYID/${sy_id}`)
             .then(res => {
                 let sections = res.data.data;
                 console.log('sections', sections);
@@ -139,7 +137,7 @@
             $('#submit').on("click",function(){
                 
                 const section_id = $("#section").val()
-                axios.get(`http://localhost/teachers-toolkit-app/server/api/student_assignment/read_by_section.php?section_id=${section_id}`)
+                axios.get(`http://localhost/teachers-toolkit-app/server/studentassign/findBySectionId/${section_id}`)
                     .then(res => {
                         if (res.data.result == 0) {
                             return;
