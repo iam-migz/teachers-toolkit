@@ -72,9 +72,9 @@ class SubjectAssignController
     echo json_encode(["result" => 0, "message" => "not found"]);
   }
 
-  public function findTeacherSubjects($id, $syid)
+  public function findTeacherSubjects($id, $sy_id)
   {
-    $result = $this->model->findTeacherSubjects($id, $syid);
+    $result = $this->model->findTeacherSubjects($id, $sy_id);
     if ($result !== false) {
       echo json_encode(["result" => 1, "data" => $result]);
       return;

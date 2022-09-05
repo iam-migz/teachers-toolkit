@@ -122,6 +122,6 @@ class ClassrecordDetail
 		$stmt->bindParam(':quarter', $quarter);
 		$stmt->execute();
 
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 }

@@ -1,28 +1,15 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 1){
+<?php include '../partials/student_head.inc.php'; ?>
 
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- MDBootstrap Cards Extended Pro  -->
-    <link href="../mdb/css/addons-pro/cards-extended.min.css" rel="stylesheet">
-    <title>Document</title>
-    <style>
-        .container{
-            margin-top: 4%;
-        }
-    </style>
+<!-- MDBootstrap Cards Extended Pro  -->
+<link href="../mdb/css/addons-pro/cards-extended.min.css" rel="stylesheet">
+<style>
+    .container{
+        margin-top: 4%;
+    }
+</style>
 </head>
 <body>
-    <?php include '../partials/header_student.php'; ?>
+    <?php include '../partials/student_nav.inc.php'; ?>
 
     <div class="container">
         <h2>University of San Carlos</h2>

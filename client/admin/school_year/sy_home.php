@@ -19,7 +19,7 @@
 <body>
     <?php include '../../partials/admin_nav.inc.php'; ?>
     <div class="container">
-        <h1 class="mt-4">School Year 2022</h1>
+        <h1 class="mt-4">School Year <span id="schoolyear"></span></h1>
         <div class="row mb-5 d-flex justify-content-center">
             <div class="col-lg-4 mt-4 mr-0 ml-0 box_card"> 
                 <div class="card testimonial-card">
@@ -101,13 +101,26 @@
     </div>
 
     </div>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
 
         // get sy_id from query params
         const urlParams = new URLSearchParams(window.location.search);
         const sy_id = urlParams.get('sy_id');
         console.log('sy_id :>> ', sy_id);
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const res = await axios.get(`http://localhost/teachers-toolkit-app/server/schoolyear/findOne/${sy_id}`);
+                if (res.data.result === 1) {
+                    const data = res.data.data;
+                    const year = data.sy_start.split('-')[0];
+                    const sy_span = document.querySelector('#schoolyear');
+                    sy_span.innerText = year;
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        });
         
         if (sy_id == null || sy_id == '') {
             location.href = `../home.php`;

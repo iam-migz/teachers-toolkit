@@ -13,7 +13,7 @@ class Teacher
 		$this->conn = $db->getConnection();
 	}
 
-  public function findByUsedId(string $user_id) : array | false
+  public function findByUserId(string $user_id) : array | false
   {
     $query = 'SELECT * FROM teachers WHERE user_id = :user_id LIMIT 0, 1';
     $stmt = $this->conn->prepare($query);

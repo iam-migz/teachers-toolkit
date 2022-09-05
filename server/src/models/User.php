@@ -28,7 +28,8 @@ class User
 		return $this->conn->lastInsertId();
 	}
 
-	public function login(string $id, string $password) : string | false
+	// -1 = user_id not found, 0 = incorrect password, 1|2|3 = success
+	public function login(string $id, string $password) : int
 	{
 		$query = 'SELECT * FROM users WHERE id = :id LIMIT 0, 1';
 		$stmt = $this->conn->prepare($query);
@@ -37,7 +38,7 @@ class User
 
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		if ($row === false) {
-			return false;
+			return -1;
 		}
 		$access = $row['access'];
 		$hashed_password = $row['password'];
@@ -45,6 +46,6 @@ class User
 		if (password_verify($password, $hashed_password)) {
 			return $access;
 		} 
-		return false;
+		return 0;
 	}
 }

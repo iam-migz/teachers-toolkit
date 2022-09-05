@@ -65,10 +65,16 @@ class StudentController
     }
     $access_level = 1;
 
+
+
+    // clean password
+    $data['firstname'] = strtolower(str_replace(' ', '', $data['firstname']));
+    $data['lastname'] = strtolower(str_replace(' ', '', $data['lastname']));
+
     // create new user
     $UserModel = new User();
-    $student_password = $data['firstname'].$data['lastname'];
-    $user_id = $UserModel->create($student_password, $access_level);
+    $password = $data['firstname'].$data['lastname'];
+    $user_id = $UserModel->create($password, $access_level);
 
     // create student
     $student_id = $this->StudentModel->create(

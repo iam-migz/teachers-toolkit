@@ -50,6 +50,10 @@ class TeacherController
     }
     $access_level = 2;
 
+    // clean password
+    $data['firstname'] = strtolower(str_replace(' ', '', $data['firstname']));
+    $data['lastname'] = strtolower(str_replace(' ', '', $data['lastname']));
+
     // create new user
     $UserModel = new User();
     $password = $data['firstname'].$data['lastname'];

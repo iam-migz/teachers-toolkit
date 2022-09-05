@@ -4,7 +4,9 @@
 
 4. rename teachers-toolkit-app to teachers-toolkit
 5. change student and teachers password
+6. determine/display current sem
 
+add account page
 
 caveats:
 1. must assign all students to section to make it work

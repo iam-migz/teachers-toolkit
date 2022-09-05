@@ -1,42 +1,29 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 2){
-
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- MDBootstrap Cards Extended Pro  -->
-    <link href="../mdb/css/addons-pro/cards-extended.min.css" rel="stylesheet">
-    <!-- MDBootstrap Datatables  -->
-    <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
-    <title>Document</title>
-    <style>
-        .container{
-            margin-top: 4%;
-        }
-        table thead tr th:first-child{
-            width: 40em;
-        }
-        table thead tr th{
-            font-weight: 420;
-        }
-        .stud_name_set{
-            font-size: 18px;
-        }
-        #subject_name {
-            font-style: italic;
-        }
-    </style>
+<?php include '../partials/teacher_head.inc.php';?>
+    
+<!-- MDBootstrap Cards Extended Pro  -->
+<link href="../mdb/css/addons-pro/cards-extended.min.css" rel="stylesheet">
+<!-- MDBootstrap Datatables  -->
+<link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
+<style>
+    .container{
+        margin-top: 4%;
+    }
+    table thead tr th:first-child{
+        width: 40em;
+    }
+    table thead tr th{
+        font-weight: 420;
+    }
+    .stud_name_set{
+        font-size: 18px;
+    }
+    #subject_name {
+        font-style: italic;
+    }
+</style>
 </head>
 <body>
-    <?php include '../partials/header_teacher.php'; ?>
+    <?php include '../partials/teacher_nav.inc.php'; ?>
 
     <div class="container mt-5">
         <div class="card">
@@ -86,9 +73,8 @@
         try {
 
             // read this subject
-            let res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/subject/read_one.php?id=${subject_id}`)
-            let subject = res.data;
-            console.log('subject :>> ', subject);
+            let res = await axios.get(`http://localhost/teachers-toolkit-app/server/subject/findById/${subject_id}`)
+            let subject = res.data.data;
             $('#subject_name').html(subject.subject_name)
             let str
             if (subject.semester == 1) {
@@ -98,16 +84,13 @@
             }
             $('#semester').html(str)
 
-            res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/grades/subject_grades.php?subject_assignment_id=${subject_assignment_id}`)
-            let grades = res.data
+            res = await axios.get(`http://localhost/teachers-toolkit-app/server/grade/getSubjectGrades/${subject_assignment_id}`)
+            let grades = res.data.data
             console.log('grades :>> ', grades);
 
             // insert 
             const grades_insert_to = document.querySelector("#student_field");
             insertToTable(grades, grades_insert_to);
-
-
-
         } catch(e){
             console.log(e);
         }

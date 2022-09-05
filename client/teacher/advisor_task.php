@@ -1,29 +1,16 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 2){
+<?php include '../partials/teacher_head.inc.php';?>
 
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- MDBootstrap Datatables  -->
-    <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
-    <style>
-        .container{
-            background-color: white;
-            margin-top: 4%;
-        }
-    </style>
+<!-- MDBootstrap Datatables  -->
+<link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
+<style>
+    .container{
+        background-color: white;
+        margin-top: 4%;
+    }
+</style>
 </head>
 <body>
-    <?php include '../partials/header_teacher.php'; ?>
+    <?php include '../partials/teacher_nav.inc.php'; ?>
 
     <h3 class="text-center mt-4 mb-0">
         Advisory Task
@@ -124,7 +111,8 @@
         const urlParams = new URLSearchParams(window.location.search);
         const section_id = urlParams.get('section_id');
 
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/student_assignment/read_by_section.php?section_id=${section_id}`)
+        // set students
+        axios.get(`http://localhost/teachers-toolkit-app/server/studentassign/findBySectionId/${section_id}`)
             .then(res => {
                 let students = res.data.data;
                 console.log('students :>> ', students);
@@ -145,8 +133,8 @@
             })
             .catch(err => console.log(err))
 
-
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/subject/read_by_section.php?section_id=${section_id}`)
+        // set subjects
+        axios.get(`http://localhost/teachers-toolkit-app/server/subject/findBySectionId/${section_id}`)
             .then(res => {
                 let subjects = res.data.data;
                 console.log('subjects :>> ', subjects);

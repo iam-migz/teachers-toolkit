@@ -1,6 +1,6 @@
 <?php 
   session_start();
-  if(!isset($_SESSION['access']) || $_SESSION['access'] != 3){
+  if(!isset($_SESSION['access']) && $_SESSION['access'] != 1){
     header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
   }
   $path = '/teachers-toolkit-app/client';
@@ -11,7 +11,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teacher's Toolkit</title>
+  <title>Teachers Toolkit</title>
 
   <!-- favicon -->
   <link rel="icon" href="<?php echo $path; ?>/images/tk.png" type="image/gif" sizes="16x16" />

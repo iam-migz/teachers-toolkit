@@ -27,7 +27,7 @@ class UserController
 			return;
 		}
 		$access = $this->UserModel->login($data['id'], $data['password']);
-		if ($access !== false) {
+		if ($access >= 1) {
 			// fetch user account
 			if ($access == 1) {
 				$account = new Student();
@@ -47,7 +47,13 @@ class UserController
 			echo json_encode(['result' => $access, 'message' => 'logged in']);
 		} else {
 			http_response_code(401);
-			echo json_encode(['result' => 0, 'message' => 'incorrect login credentials']);			
+			if ($access === -1) {
+				echo json_encode(['result' => 0, 'message' => 'id not found']);			
+			} else if ($access === 0){
+				echo json_encode(['result' => 0, 'message' => 'incorrect password']);			
+			} else {
+				echo json_encode(['result' => 0, 'message' => 'something went wrong']);			
+			}
 		}
 	}
 	public function create(string $password, string $access) : bool

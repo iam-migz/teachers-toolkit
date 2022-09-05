@@ -1,34 +1,21 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 2){
+<?php include '../partials/teacher_head.inc.php';?>
 
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .container{
-            margin-top: 4%;
-        }
-        #school_name {
-            text-transform: capitalize;
-            font-style: italic;
-        }
-    </style>
+<style>
+    .container{
+        margin-top: 4%;
+    }
+    #school_name {
+        text-transform: capitalize;
+        font-style: italic;
+    }
+</style>
 </head>
 <body>
-    <?php include '../partials/header_teacher.php'; ?>
+    <?php include '../partials/teacher_nav.inc.php'; ?>
 
     <div class="container">
         <h2 id="school_name"></h2>
-        <p class="lead mb-0">Teacher</p>
+        <p class="lead mb-0">Teacher Task</p>
         <p class="lead" id="sy_div"></p>
 
         <div class="row mt-4" id="insert_to">
@@ -105,9 +92,9 @@
         }
 
         // set school year
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/school_year/read_one.php?id=${sy_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/schoolyear/findOne/${sy_id}`)
             .then(res => {
-                const sy = res.data;
+                const sy = res.data.data;
                 const date_start = new Date(sy.sy_start);
                 const date_end = new Date(sy.sy_end);
 
@@ -123,17 +110,17 @@
 
 
         // set subjects
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/subject_assignment/read_teacher_subjects.php?school_year_id=${sy_id}&teacher_id=${teacher_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/subjectassign/findTeacherSubjects/${teacher_id}/${sy_id}`)
             .then(res => {
                 if (res.data.result == 0 ){
                     return;
                 }
 
                 const subjects = res.data.data;
-                console.log('subjects :>> ', subjects);
                 const insert_to = document.querySelector("#insert_to");
 
                 subjects.forEach(sub => {
+                    console.log('sub', sub)
                     const div = document.createElement('div');
                     div.classList.add('col-lg-4');
                     div.classList.add('mt-1');
@@ -145,7 +132,7 @@
                         <div class="view overlay">
                             <img class="card-img-top" src="../images/work.jpg" alt="Card image cap">
                         </div>
-                        <a href="view_subject.php?subject_assignment_id=${sub.subject_assignment_id}&subject_id=${sub.subject_id}&section_id=${sub.section_id}" class="btn-floating btn-action ml-auto mr-4 teal darken-1"><i class="fas fa-book-open"></i></a>
+                        <a href="view_subject.php?subject_assignment_id=${sub.id}&subject_id=${sub.subject_id}&section_id=${sub.section_id}" class="btn-floating btn-action ml-auto mr-4 teal darken-1"><i class="fas fa-book-open"></i></a>
                         <div class="card-body">
                             <h4 class="card-title mt-2">${sub.subject_name}</h4>
                             <div class="d-flex justify-content-between living-coral-text text-muted">
@@ -166,9 +153,9 @@
 
 
         // set school
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/school/read_one.php?id=${school_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/school/findOne/${school_id}`)
             .then(res => {
-                const school = res.data;
+                const school = res.data.data;
                 $('#school_name').html(school.school_name); 
                 console.log('school :>> ', school);
             })
@@ -176,7 +163,7 @@
 
 
         // set advisory, if teacher account is advisor type
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/section/read_advisor.php?school_year_id=${sy_id}&advisor_id=${teacher_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/section/findByAdvisorIdAndSYID/${teacher_id}/${sy_id}`)
             .then(res => {
                 if (res.data.result == 0) return
 

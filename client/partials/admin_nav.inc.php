@@ -5,7 +5,7 @@
 <style>
     body, html{ min-height: 100%; }
     body{
-        background-image: url(<?php echo $path; ?>/images/home.jpg);  
+        background-image: url('<?php echo $path; ?>/images/home.jpg');  
         background-repeat: no-repeat;
         background-size: cover;
         margin: 0;
@@ -54,10 +54,6 @@
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-4">
                     <a class="dropdown-item" href="#">My account</a>
                     <a class="dropdown-item" href="<?php echo $path; ?>/login/logout.php">Log out</a>
-                    <a class="dropdown-item" href="">access: <?php echo $_SESSION['access']; ?></a>
-                    <a class="dropdown-item" href="">user_id: <?php echo $_SESSION['user_id']; ?></a>
-                    <a class="dropdown-item" href="">account_id: <?php echo $_SESSION['account_id']; ?></a>
-                    <a class="dropdown-item" href="">school_id: <?php echo $_SESSION['school_id']; ?></a>
                 </div>
             </li>
         </ul>

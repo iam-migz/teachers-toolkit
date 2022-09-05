@@ -14,6 +14,7 @@ header('Content-type: application/json; charset-UTF-8');
 use src\controllers\{UserController, AdminController, SchoolController, SchoolYearController};
 use src\controllers\{StudentController, TeacherController, SubjectController, SectionController};
 use src\controllers\{StudentAssignController, SubjectAssignController};
+use src\controllers\{ClassrecordController, ClassrecordDetailController, GradeController};
 
 
 // for htdocs
@@ -85,6 +86,23 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
 		$r->addRoute('GET', '/findBySYID/{id:\d+}', SubjectAssignController::class . '@findBySYID');
 		$r->addRoute('GET', '/findTeacherSubjects/{id:\d+}/{sy_id:\d+}', SubjectAssignController::class . '@findTeacherSubjects');
 	});
+
+	$r->addGroup('/classrecord', function (FastRoute\RouteCollector $r) {
+		$r->addRoute('PUT', '/update', ClassrecordController::class . '@update');
+		$r->addRoute('GET', '/findBySubjectAssignment/{id:\d+}', ClassrecordController::class . '@findBySubjectAssignment');
+		$r->addRoute('GET', '/findStudentGrades/{id:\d+}', ClassrecordController::class . '@findStudentGrades');
+	});
+
+	$r->addGroup('/classrecorddetail', function (FastRoute\RouteCollector $r) {
+		$r->addRoute('PUT', '/update', ClassrecordDetailController::class . '@update');
+		$r->addRoute('GET', '/findBySubjectAssignment/{id:\d+}/{quarter:\d+}', ClassrecordDetailController::class . '@findBySubjectAssignment');
+	});
+
+	$r->addGroup('/grade', function (FastRoute\RouteCollector $r) {
+		$r->addRoute('GET', '/getSubjectGrades/{subject_assignment_id:\d+}', GradeController::class . '@getSubjectGrades');
+		$r->addRoute('GET', '/getStudentGrades/{student_id:\d+}', GradeController::class . '@getStudentGrades');
+	});
+
 
 
 
