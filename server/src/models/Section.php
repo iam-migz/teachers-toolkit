@@ -9,29 +9,22 @@ class Section
 
 	public function __construct()
 	{
-		$db = new Database;
+		$db = new Database();
 		$this->conn = $db->getConnection();
 	}
-	public function create(
-		$school_year_id,
-		$advisor_id,
-		$section_name,
-		$strand,
-		$track,
-		$grade
-	) : bool
+	public function create($school_year_id, $advisor_id, $section_name, $strand, $track, $grade): bool
 	{
 		$query = <<<SQL
-		INSERT INTO 
-			sections 
-		SET 
-			school_year_id = :school_year_id,
-			advisor_id = :advisor_id,
-			section_name = :section_name, 
-			strand = :strand,
-			track = :track,
-			grade = :grade;
-		SQL;
+INSERT INTO 
+	sections 
+SET 
+	school_year_id = :school_year_id,
+	advisor_id = :advisor_id,
+	section_name = :section_name, 
+	strand = :strand,
+	track = :track,
+	grade = :grade;
+SQL;
 
 		$stmt = $this->conn->prepare($query);
 
@@ -45,27 +38,20 @@ class Section
 		return $stmt->execute();
 	}
 
-	public function update(
-		$section_name,
-		$strand,
-		$track,
-		$grade,
-		$id,
-		$advisor_id
-	)
+	public function update($section_name, $strand, $track, $grade, $id, $advisor_id)
 	{
 		$query = <<<SQL
-		UPDATE 
-			sections 
-		SET 
-			advisor_id = :advisor_id, 
-			section_name = :section_name, 
-			strand = :strand,
-			track = :track,
-			grade = :grade
-		WHERE 
-			id = :id;
-		SQL;
+UPDATE 
+	sections 
+SET 
+	advisor_id = :advisor_id, 
+	section_name = :section_name, 
+	strand = :strand,
+	track = :track,
+	grade = :grade
+WHERE 
+	id = :id;
+SQL;
 
 		$stmt = $this->conn->prepare($query);
 
@@ -102,14 +88,14 @@ class Section
 	public function findByAdvisorIdAndSYID($advisor_id, $school_year_id)
 	{
 		$query = <<<SQL
-		SELECT 	
-			*
-		FROM 	
-			sections sec
-		WHERE 	
-			sec.advisor_id = (SELECT id FROM teachers WHERE id = :advisor_id) AND
-			sec.school_year_id = :school_year_id;
-		SQL;
+SELECT 	
+	*
+FROM 	
+	sections sec
+WHERE 	
+	sec.advisor_id = (SELECT id FROM teachers WHERE id = :advisor_id) AND
+	sec.school_year_id = :school_year_id;
+SQL;
 
 		$stmt = $this->conn->prepare($query);
 

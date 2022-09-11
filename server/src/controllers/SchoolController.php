@@ -11,11 +11,11 @@ class SchoolController
 		$this->SchoolModel = new School();
 	}
 
-  public function create() 
-  {
-		$data = (array) json_decode(file_get_contents("php://input"), true);
+	public function create()
+	{
+		$data = (array) json_decode(file_get_contents('php://input'), true);
 
-    if ( 
+		if (
 			!isset($data['barangay']) ||
 			!isset($data['city']) ||
 			!isset($data['province']) ||
@@ -24,12 +24,12 @@ class SchoolController
 			!isset($data['principal_fn']) ||
 			!isset($data['principal_ln']) ||
 			!isset($data['principal_mn']) ||
-			!isset($data['school_name']) 
-    ){
-      http_response_code(422);
-      echo json_encode(["result" => 0, "message" => "incomplete data"]);
-      return;
-    }
+			!isset($data['school_name'])
+		) {
+			http_response_code(422);
+			echo json_encode(['result' => 0, 'message' => 'incomplete data']);
+			return;
+		}
 
 		// create school
 		$school_id = $this->SchoolModel->create(
@@ -41,17 +41,17 @@ class SchoolController
 			$data['principal_fn'],
 			$data['principal_ln'],
 			$data['principal_mn'],
-			$data['school_name'],
+			$data['school_name']
 		);
 
 		echo json_encode(['result' => 1, 'school_id' => $school_id]);
-  }
+	}
 
 	public function update()
 	{
-		$data = (array) json_decode(file_get_contents("php://input"), true);
+		$data = (array) json_decode(file_get_contents('php://input'), true);
 
-    if ( 
+		if (
 			!isset($data['barangay']) ||
 			!isset($data['city']) ||
 			!isset($data['province']) ||
@@ -61,12 +61,12 @@ class SchoolController
 			!isset($data['principal_ln']) ||
 			!isset($data['principal_mn']) ||
 			!isset($data['school_name']) ||
-			!isset($data['id']) 
-    ){
-      http_response_code(422);
-      echo json_encode(["result" => 0, "message" => "incomplete data"]);
-      return;
-    }
+			!isset($data['id'])
+		) {
+			http_response_code(422);
+			echo json_encode(['result' => 0, 'message' => 'incomplete data']);
+			return;
+		}
 
 		$this->SchoolModel->update(
 			$data['barangay'],
@@ -84,17 +84,14 @@ class SchoolController
 		echo json_encode(['result' => 1, 'message' => 'school updated']);
 	}
 
-
 	public function findOne($id)
-  {
-    $result = $this->SchoolModel->findOne($id);
-    if ($result !== false) {
-      echo json_encode(["result" => 1, "data" => $result]);
-      return;
-    }
-    http_response_code(404);
-    echo json_encode(["result" => 0, "message" => "not found"]);
-  }
-
-
+	{
+		$result = $this->SchoolModel->findOne($id);
+		if ($result !== false) {
+			echo json_encode(['result' => 1, 'data' => $result]);
+			return;
+		}
+		http_response_code(404);
+		echo json_encode(['result' => 0, 'message' => 'not found']);
+	}
 }

@@ -7,7 +7,7 @@ ini_set('display_errors', '1');
 require_once __DIR__ . '/vendor/autoload.php';
 
 // error handlers
-set_error_handler("src\ErrorHandler::handleError");
+set_error_handler('src\ErrorHandler::handleError');
 set_exception_handler('src\ErrorHandler::handleException');
 
 header('Content-type: application/json; charset-UTF-8');
@@ -15,7 +15,6 @@ use src\controllers\{UserController, AdminController, SchoolController, SchoolYe
 use src\controllers\{StudentController, TeacherController, SubjectController, SectionController};
 use src\controllers\{StudentAssignController, SubjectAssignController};
 use src\controllers\{ClassrecordController, ClassrecordDetailController, GradeController};
-
 
 // for htdocs
 if (str_contains($_SERVER['REQUEST_URI'], 'server')) {
@@ -25,6 +24,7 @@ if (str_contains($_SERVER['REQUEST_URI'], 'server')) {
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
 	$r->addGroup('/user', function (FastRoute\RouteCollector $r) {
 		$r->addRoute('POST', '/login', UserController::class . '@login');
+		$r->addRoute('POST', '/changePass', UserController::class . '@changePass');
 		$r->addRoute('GET', '/test', UserController::class . '@funBee');
 	});
 
@@ -72,9 +72,13 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
 		$r->addRoute('PUT', '/update', SectionController::class . '@update');
 		$r->addRoute('GET', '/findById/{id:\d+}', SectionController::class . '@findById');
 		$r->addRoute('GET', '/findBySYID/{id:\d+}', SectionController::class . '@findBySYID');
-		$r->addRoute('GET', '/findByAdvisorIdAndSYID/{id:\d+}/{sy_id:\d+}', SectionController::class . '@findByAdvisorIdAndSYID');
+		$r->addRoute(
+			'GET',
+			'/findByAdvisorIdAndSYID/{id:\d+}/{sy_id:\d+}',
+			SectionController::class . '@findByAdvisorIdAndSYID'
+		);
 	});
-	
+
 	$r->addGroup('/studentassign', function (FastRoute\RouteCollector $r) {
 		$r->addRoute('POST', '/create', StudentAssignController::class . '@create');
 		$r->addRoute('GET', '/findUnassignedStudents/{id:\d+}', StudentAssignController::class . '@findUnassignedStudents');
@@ -84,7 +88,11 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
 	$r->addGroup('/subjectassign', function (FastRoute\RouteCollector $r) {
 		$r->addRoute('POST', '/create', SubjectAssignController::class . '@create');
 		$r->addRoute('GET', '/findBySYID/{id:\d+}', SubjectAssignController::class . '@findBySYID');
-		$r->addRoute('GET', '/findTeacherSubjects/{id:\d+}/{sy_id:\d+}', SubjectAssignController::class . '@findTeacherSubjects');
+		$r->addRoute(
+			'GET',
+			'/findTeacherSubjects/{id:\d+}/{sy_id:\d+}',
+			SubjectAssignController::class . '@findTeacherSubjects'
+		);
 	});
 
 	$r->addGroup('/classrecord', function (FastRoute\RouteCollector $r) {
@@ -95,17 +103,17 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
 
 	$r->addGroup('/classrecorddetail', function (FastRoute\RouteCollector $r) {
 		$r->addRoute('PUT', '/update', ClassrecordDetailController::class . '@update');
-		$r->addRoute('GET', '/findBySubjectAssignment/{id:\d+}/{quarter:\d+}', ClassrecordDetailController::class . '@findBySubjectAssignment');
+		$r->addRoute(
+			'GET',
+			'/findBySubjectAssignment/{id:\d+}/{quarter:\d+}',
+			ClassrecordDetailController::class . '@findBySubjectAssignment'
+		);
 	});
 
 	$r->addGroup('/grade', function (FastRoute\RouteCollector $r) {
 		$r->addRoute('GET', '/getSubjectGrades/{subject_assignment_id:\d+}', GradeController::class . '@getSubjectGrades');
 		$r->addRoute('GET', '/getStudentGrades/{student_id:\d+}', GradeController::class . '@getStudentGrades');
 	});
-
-
-
-
 });
 
 // Fetch method and URI from somewhere
@@ -123,7 +131,7 @@ switch ($routeInfo[0]) {
 	case FastRoute\Dispatcher::NOT_FOUND:
 		// ... 404 Not Found
 		http_response_code(404);
-		echo json_encode(['result' => 0, 'message' => 'not found']);			
+		echo json_encode(['result' => 0, 'message' => 'not found']);
 		break;
 	case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
 		$allowedMethods = $routeInfo[1];
@@ -134,6 +142,6 @@ switch ($routeInfo[0]) {
 		$vars = $routeInfo[2];
 		// ... call $handler with $vars
 		[$class, $method] = explode('@', $handler, 2);
-		call_user_func_array([new $class, $method], $vars);
+		call_user_func_array([new $class(), $method], $vars);
 		break;
 }

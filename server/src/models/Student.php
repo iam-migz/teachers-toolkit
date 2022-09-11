@@ -9,13 +9,12 @@ class Student
 
 	public function __construct()
 	{
-		$db = new Database;
+		$db = new Database();
 		$this->conn = $db->getConnection();
 	}
 
-
 	public function create(
-    $user_id,
+		$user_id,
 		$school_id,
 		$firstname,
 		$lastname,
@@ -27,25 +26,24 @@ class Student
 		$gender,
 		$LRN,
 		$birthdate
-  ) : string|false
-	{
+	): string|false {
 		$query = <<<SQL
-    INSERT INTO 
-      students 
-    SET 
-      user_id = :user_id, 
-      firstname = :firstname,
-      lastname = :lastname,
-      school_id = :school_id,
-      middlename = :middlename,
-      email = :email,
-      province = :province,
-      city = :city,
-      barangay = :barangay,
-      gender = :gender,
-      LRN = :LRN,
-      birthdate = :birthdate;    
-    SQL;
+INSERT INTO 
+  students 
+SET 
+  user_id = :user_id, 
+  firstname = :firstname,
+  lastname = :lastname,
+  school_id = :school_id,
+  middlename = :middlename,
+  email = :email,
+  province = :province,
+  city = :city,
+  barangay = :barangay,
+  gender = :gender,
+  LRN = :LRN,
+  birthdate = :birthdate;    
+SQL;
 
 		$stmt = $this->conn->prepare($query);
 
@@ -63,7 +61,7 @@ class Student
 		$stmt->bindParam(':birthdate', $birthdate);
 
 		$stmt->execute();
-	  return $this->conn->lastInsertId();
+		return $this->conn->lastInsertId();
 	}
 	public function findOne($id)
 	{
@@ -81,18 +79,18 @@ class Student
 		$stmt->execute();
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
-  public function findBySchoolId($school_id)
+	public function findBySchoolId($school_id)
 	{
 		$query = <<<SQL
-    SELECT 
-      * 
-    FROM 
-      students 
-    WHERE 
-      school_id = :school_id AND
-      continuing = 1 AND 
-      completed = 0
-    SQL;
+SELECT 
+  * 
+FROM 
+  students 
+WHERE 
+  school_id = :school_id AND
+  continuing = 1 AND 
+  completed = 0
+SQL;
 
 		$stmt = $this->conn->prepare($query);
 
@@ -102,7 +100,7 @@ class Student
 	}
 
 	public function update(
-    $id,
+		$id,
 		$completed,
 		$continuing,
 		$firstname,
@@ -115,27 +113,26 @@ class Student
 		$gender,
 		$LRN,
 		$birthdate
-  ) : bool
-	{
+	): bool {
 		$query = <<<SQL
-    UPDATE 
-      students 
-    SET 
-      completed = :completed,
-      continuing = :continuing,
-      firstname = :firstname,
-      lastname = :lastname,
-      middlename = :middlename,
-      email = :email,
-      province = :province,
-      city = :city,
-      barangay = :barangay,
-      gender = :gender,
-      LRN = :LRN,
-      birthdate = :birthdate
-    WHERE
-      id = :id;
-    SQL;
+UPDATE 
+  students 
+SET 
+  completed = :completed,
+  continuing = :continuing,
+  firstname = :firstname,
+  lastname = :lastname,
+  middlename = :middlename,
+  email = :email,
+  province = :province,
+  city = :city,
+  barangay = :barangay,
+  gender = :gender,
+  LRN = :LRN,
+  birthdate = :birthdate
+WHERE
+  id = :id;
+SQL;
 
 		$stmt = $this->conn->prepare($query);
 
@@ -155,5 +152,4 @@ class Student
 
 		return $stmt->execute();
 	}
-
 }

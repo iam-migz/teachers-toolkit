@@ -1,4 +1,4 @@
-<?php include '../partials/student_head.inc.php'; ?>
+<?php include "../partials/student_head.inc.php"; ?>
 
 <!-- MDBootstrap Cards Extended Pro  -->
 <link href="../mdb/css/addons-pro/cards-extended.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
 </style>
 </head>
 <body>
-    <?php include '../partials/student_nav.inc.php'; ?>
+    <?php include "../partials/student_nav.inc.php"; ?>
 
     <div class="container mt-5 mb-5">
         <div class="card">
@@ -96,9 +96,10 @@
 
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../grades/Grade.js"></script>
     <script>
+      // TODO: query grades by school year
+      
         $('#grading_table').DataTable({
             "bLengthChange": false,
             "searching": false,
@@ -108,7 +109,7 @@
         });
         $('.dataTables_length').addClass('bs-select');
 
-        let student_id = <?php echo $_SESSION['account_id']; ?>;
+        let student_id = <?php echo $_SESSION["account_id"]; ?>;
         document.addEventListener("DOMContentLoaded", async () => { 
 
             try {

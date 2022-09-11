@@ -89,29 +89,10 @@
     <script type="text/javascript" src="../../mdb/js/addons/datatables.min.js"></script>
     <!-- DataTables Select JS -->
     <script src="../../mdb/js/addons/datatables-select2.min.js" type="text/javascript"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             //select
             $('.mdb-select').materialSelect();
-
-            // $('#assign_stud').DataTable();
-            // $('.dataTables_length').addClass('bs-select');
-            // //add classes
-            // $('#assign_stud_wrapper').find('label').each(function () {
-            //     $(this).parent().append($(this).children());
-            // });
-            // $('#assign_stud_wrapper .dataTables_filter').find('input').each(function () {
-            //     const $this = $(this);
-            //     $this.attr("placeholder", "Search..");
-            //     $this.removeClass('form-control-sm');
-            // });
-            // $('#assign_stud_wrapper .dataTables_length').addClass('d-flex flex-row');
-            // $('#assign_stud_wrapper .dataTables_filter').addClass('md-form mt-3');
-            // $('#assign_stud_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
-            // $('#assign_stud_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
-            // $('#assign_stud_wrapper .mdb-select').materialSelect();
-            // $('#assign_stud_wrapper .dataTables_filter').find('label').remove();
         });
 
         // get sy_id from query params

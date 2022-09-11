@@ -94,7 +94,6 @@
     <script type="text/javascript" src="../../mdb/js/addons/datatables.min.js"></script>
     <!-- DataTables Select JS -->
     <script src="../../mdb/js/addons/datatables-select2.min.js" type="text/javascript"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             //select

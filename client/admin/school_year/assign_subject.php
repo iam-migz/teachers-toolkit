@@ -85,7 +85,6 @@
         </div> 
     </div>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.mdb-select').materialSelect();

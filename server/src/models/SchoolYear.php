@@ -9,12 +9,11 @@ class SchoolYear
 
 	public function __construct()
 	{
-		$db = new Database;
+		$db = new Database();
 		$this->conn = $db->getConnection();
 	}
 
-
-	public function create(int $school_id, string $sy_start, string $sy_end) : string|false
+	public function create(int $school_id, string $sy_start, string $sy_end): string|false
 	{
 		$query = "INSERT INTO school_years 
 							SET 
@@ -31,8 +30,8 @@ class SchoolYear
 		$stmt->execute();
 		return $this->conn->lastInsertId();
 	}
-	
-	public function findOne(int $id) : array | false
+
+	public function findOne(int $id): array|false
 	{
 		$query = 'SELECT * FROM school_years WHERE id = :id LIMIT 0, 1';
 		$stmt = $this->conn->prepare($query);
@@ -40,14 +39,13 @@ class SchoolYear
 		$stmt->execute();
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
-	
-	public function findAll(int $school_id) : array | false
-	{;
+
+	public function findAll(int $school_id): array|false
+	{
 		$query = 'SELECT * FROM school_years WHERE school_id = :school_id';
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(':school_id', $school_id);
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
-
 }

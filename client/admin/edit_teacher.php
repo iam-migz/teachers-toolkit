@@ -1,10 +1,11 @@
-<?php include '../partials/admin_head.inc.php'; ?>  
+<?php include "../partials/admin_head.inc.php"; ?>
 <style>
-    body{
+    body {
         margin-bottom: 5%;
     }
-    .register-container{
-        padding-top: 10%; 
+
+    .register-container {
+        padding-top: 10%;
         background-color: white;
         margin: 2% auto;
         width: 66%;
@@ -12,28 +13,33 @@
         border-radius: 4px;
         padding: 10px 20px;
     }
-    .register-title{
+
+    .register-title {
         text-align: center;
         margin-bottom: 30px;
     }
-    .display-4{
+
+    .display-4 {
         font-size: 40px;
     }
-    .submit-modify{
+
+    .submit-modify {
         font-size: 20px;
         width: 48%;
         padding: 11px;
         border-radius: 10px;
     }
+
     #error-msg {
         color: red;
     }
 </style>
 </head>
+
 <body>
-    <?php include '../partials/admin_nav.inc.php'; ?>
+    <?php include "../partials/admin_nav.inc.php"; ?>
     <form>
-        <div class="register-container">    
+        <div class="register-container">
 
             <div class="register-title">
                 <h1 class="display-4">Update Teacher</h1>
@@ -59,13 +65,13 @@
             <div class="form-group">
                 <input class="form-control" type="number" placeholder="Update Phone Number" name="phone_no" id="phone_no" required>
             </div>
-            
+
             <div class="form-group">
                 <label class="">Continuing Status:</label>
                 <div class="switch">
                     <label class="text-center">
                         <input type="checkbox" id="continuing">
-                        <span class="lever"></span> 
+                        <span class="lever"></span>
                     </label>
                 </div>
             </div>
@@ -88,12 +94,10 @@
         </div>
         <div class="toast-body">
             Teacher Account Successfully Updated.
-        </div> 
+        </div>
     </div>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
-
         const firstname = document.querySelector("#firstname");
         const middlename = document.querySelector("#middlename");
         const lastname = document.querySelector("#lastname");
@@ -111,7 +115,7 @@
             .then(res => {
                 if (res.data.result == 0) {
                     return;
-                }                
+                }
                 let teacher = res.data.data;
                 firstname.value = teacher.firstname;
                 middlename.value = teacher.middlename;
@@ -126,32 +130,32 @@
         const errorDiv = document.querySelector("#error-msg");
         document.querySelector("#submit").addEventListener("click", (x) => {
             x.preventDefault();
-            if (firstname.value == '' || middlename.value == '' || lastname.value == '' || email.value == '' || phone_no.value == ''){
+            if (firstname.value == '' || middlename.value == '' || lastname.value == '' || email.value == '' || phone_no.value == '') {
                 errorDiv.innerHTML = "please complete the form";
                 return;
             }
 
             let continue_val = continuing.checked ? 1 : 0;
             axios.put('http://localhost/teachers-toolkit-app/server/teacher/update', {
-                "id": teacher_id,
-                "firstname": firstname.value,
-                "lastname": lastname.value,
-                "middlename": middlename.value,
-                "phone_no": phone_no.value,
-                "email": email.value,
-                "continuing": continue_val
-            })
-            .then(res => {
-                if (res.data.result) {
-                    location.reload();
-                } else {
-                    errorDiv.innerHTML = res.data.message;
-                }
-            })
-            .catch(err => console.log(err));
+                    "id": teacher_id,
+                    "firstname": firstname.value,
+                    "lastname": lastname.value,
+                    "middlename": middlename.value,
+                    "phone_no": phone_no.value,
+                    "email": email.value,
+                    "continuing": continue_val
+                })
+                .then(res => {
+                    if (res.data.result) {
+                        location.reload();
+                    } else {
+                        errorDiv.innerHTML = res.data.message;
+                    }
+                })
+                .catch(err => console.log(err));
 
         });
-
     </script>
 </body>
+
 </html>

@@ -9,28 +9,20 @@ class Teacher
 
 	public function __construct()
 	{
-		$db = new Database;
+		$db = new Database();
 		$this->conn = $db->getConnection();
 	}
 
-  public function findByUserId(string $user_id) : array | false
-  {
-    $query = 'SELECT * FROM teachers WHERE user_id = :user_id LIMIT 0, 1';
-    $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(':user_id', $user_id);
-    $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-  }
+	public function findByUserId(string $user_id): array|false
+	{
+		$query = 'SELECT * FROM teachers WHERE user_id = :user_id LIMIT 0, 1';
+		$stmt = $this->conn->prepare($query);
+		$stmt->bindParam(':user_id', $user_id);
+		$stmt->execute();
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
 
-  public function create(
-    $user_id,
-		$school_id,
-		$firstname,
-		$lastname,
-		$middlename,
-		$phone_no,
-		$email
-  ) : string|false
+	public function create($user_id, $school_id, $firstname, $lastname, $middlename, $phone_no, $email): string|false
 	{
 		$query = <<<SQL
     INSERT INTO 
@@ -56,7 +48,7 @@ class Teacher
 		$stmt->bindParam(':email', $email);
 
 		$stmt->execute();
-    return $this->conn->lastInsertId();
+		return $this->conn->lastInsertId();
 	}
 
 	public function findBySchoolId($school_id)
@@ -81,15 +73,7 @@ class Teacher
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
-	public function update(
-    $id,
-		$continuing,
-		$firstname,
-		$lastname,
-		$middlename,
-		$phone_no,
-		$email
-  ) : bool
+	public function update($id, $continuing, $firstname, $lastname, $middlename, $phone_no, $email): bool
 	{
 		$query = <<<SQL
     UPDATE teachers 
@@ -116,5 +100,4 @@ class Teacher
 
 		return $stmt->execute();
 	}
-
 }

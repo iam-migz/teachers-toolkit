@@ -9,11 +9,11 @@ class ClassrecordDetail
 
 	public function __construct()
 	{
-		$db = new Database;
+		$db = new Database();
 		$this->conn = $db->getConnection();
 	}
 
-  public function create($subject_assignment_id, $quarter)
+	public function create($subject_assignment_id, $quarter)
 	{
 		$query = "INSERT INTO classrecord_details
               SET 
@@ -29,43 +29,63 @@ class ClassrecordDetail
 	}
 
 	public function update(
-    $written_weight, $performance_weight, $quarterly_weight,
-		$hw1,$hw2,$hw3,$hw4,$hw5,$hw6,$hw7,$hw8,$hw9,$hw10,
-		$hp1,$hp2,$hp3,$hp4,$hp5,$hp6,$hp7,$hp8,$hp9,$hp10,
-		$hq1,$id
-  )
-	{
+		$written_weight,
+		$performance_weight,
+		$quarterly_weight,
+		$hw1,
+		$hw2,
+		$hw3,
+		$hw4,
+		$hw5,
+		$hw6,
+		$hw7,
+		$hw8,
+		$hw9,
+		$hw10,
+		$hp1,
+		$hp2,
+		$hp3,
+		$hp4,
+		$hp5,
+		$hp6,
+		$hp7,
+		$hp8,
+		$hp9,
+		$hp10,
+		$hq1,
+		$id
+	) {
 		$query = <<<SQL
-    UPDATE 
-      classrecord_details 
-    SET 
-      written_weight = :written_weight,
-      performance_weight = :performance_weight,
-      quarterly_weight = :quarterly_weight,
-      hw1 = :hw1,   
-      hw2 = :hw2,   
-      hw3 = :hw3,   
-      hw4 = :hw4,   
-      hw5 = :hw5,   
-      hw6 = :hw6,   
-      hw7 = :hw7,   
-      hw8 = :hw8,   
-      hw9 = :hw9,   
-      hw10 = :hw10,   
-      hp1 = :hp1,   
-      hp2 = :hp2,   
-      hp3 = :hp3,   
-      hp4 = :hp4,   
-      hp5 = :hp5,   
-      hp6 = :hp6,   
-      hp7 = :hp7,   
-      hp8 = :hp8,   
-      hp9 = :hp9,   
-      hp10 = :hp10,   
-      hq1 = :hq1
-    WHERE 
-      id = :id;
-    SQL;
+UPDATE 
+  classrecord_details 
+SET 
+  written_weight = :written_weight,
+  performance_weight = :performance_weight,
+  quarterly_weight = :quarterly_weight,
+  hw1 = :hw1,   
+  hw2 = :hw2,   
+  hw3 = :hw3,   
+  hw4 = :hw4,   
+  hw5 = :hw5,   
+  hw6 = :hw6,   
+  hw7 = :hw7,   
+  hw8 = :hw8,   
+  hw9 = :hw9,   
+  hw10 = :hw10,   
+  hp1 = :hp1,   
+  hp2 = :hp2,   
+  hp3 = :hp3,   
+  hp4 = :hp4,   
+  hp5 = :hp5,   
+  hp6 = :hp6,   
+  hp7 = :hp7,   
+  hp8 = :hp8,   
+  hp9 = :hp9,   
+  hp10 = :hp10,   
+  hq1 = :hq1
+WHERE 
+  id = :id;
+SQL;
 		$stmt = $this->conn->prepare($query);
 
 		$stmt->bindParam(':written_weight', $written_weight);
@@ -103,18 +123,18 @@ class ClassrecordDetail
 	public function findBySubjectAssignment($subject_assignment_id, $quarter)
 	{
 		$query = <<<SQL
-    SELECT 	
-      crd.written_weight, crd.performance_weight, crd.quarterly_weight, crd.id,
-      hw1, hw2, hw3, hw4, hw5, hw6, hw7, hw8, hw9, hw10, 
-      hp1, hp2, hp3, hp4, hp5, hp6, hp7, hp8, hp9, hp10, hq1
-    FROM 	    
-      classrecord_details crd	
-    WHERE 	
-      crd.subject_assignment_id = :subject_assignment_id AND
-      crd.quarter = :quarter
-    LIMIT     
-      0,1;
-    SQL;
+SELECT 	
+  crd.written_weight, crd.performance_weight, crd.quarterly_weight, crd.id,
+  hw1, hw2, hw3, hw4, hw5, hw6, hw7, hw8, hw9, hw10, 
+  hp1, hp2, hp3, hp4, hp5, hp6, hp7, hp8, hp9, hp10, hq1
+FROM 	    
+  classrecord_details crd	
+WHERE 	
+  crd.subject_assignment_id = :subject_assignment_id AND
+  crd.quarter = :quarter
+LIMIT     
+  0,1;
+SQL;
 
 		$stmt = $this->conn->prepare($query);
 

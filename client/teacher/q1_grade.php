@@ -1,4 +1,4 @@
-<?php include '../partials/teacher_head.inc.php';?>
+<?php include "../partials/teacher_head.inc.php"; ?>
 
 <!-- MDBootstrap Datatables  -->
 <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
@@ -53,7 +53,7 @@
 </style>
 </head>
 <body>
-    <?php include '../partials/teacher_nav.inc.php'; ?>
+    <?php include "../partials/teacher_nav.inc.php"; ?>
 
     <h3 class="text-center mt-4 mb-0">
         First Quarter Grade Sheet <br>
@@ -86,20 +86,16 @@
                     <td></td>
                     <td></td>
                     <!--Written Works-->
-                    <?php
-                        for ($row=1; $row < 11; $row++) { 
-                            echo "<td>$row</td>";
-                        }
-                    ?>
+                    <?php for ($row = 1; $row < 11; $row++) {
+                        echo "<td>$row</td>";
+                    } ?>
                     <td>Total</td>
                     <td>PS</td>
                     <td>WS</td>
                     <!--Performance Tasks-->
-                    <?php
-                        for ($row=1; $row < 11; $row++) { 
-                            echo "<td>$row</td>";
-                        }
-                    ?>
+                    <?php for ($row = 1; $row < 11; $row++) {
+                        echo "<td>$row</td>";
+                    } ?>
                     <td>Total</td>
                     <td>PS</td>
                     <td>WS</td>
@@ -150,11 +146,9 @@
                 <tr id="boys">
                     <td class="table-active"></td>
                     <td class="table-active">Male</td>
-                    <?php
-                        for ($row=0; $row < 31; $row++) { 
-                            echo "<td class='table-active'>";
-                        }
-                    ?>
+                    <?php for ($row = 0; $row < 31; $row++) {
+                        echo "<td class='table-active'>";
+                    } ?>
                 </tr>
 
                 <!--DATA FOR MALE STUDENTS-->
@@ -164,11 +158,9 @@
                 <tr id="girls">
                     <td class="table-active"></td>
                     <td class="table-active">Female</td>
-                    <?php
-                        for ($row=0; $row < 31; $row++) { 
-                            echo "<td class='table-active'>";
-                        }
-                    ?>
+                    <?php for ($row = 0; $row < 31; $row++) {
+                        echo "<td class='table-active'>";
+                    } ?>
                 </tr>
 
                 <!--DATA FOR FEMALE STUDENTS-->
@@ -181,7 +173,6 @@
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
     <script src="../grades/Grade.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
 
     document.addEventListener("DOMContentLoaded", async () => { 

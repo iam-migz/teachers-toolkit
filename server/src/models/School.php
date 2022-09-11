@@ -9,7 +9,7 @@ class School
 
 	public function __construct()
 	{
-		$db = new Database;
+		$db = new Database();
 		$this->conn = $db->getConnection();
 	}
 
@@ -22,9 +22,8 @@ class School
 		string $principal_fn,
 		string $principal_ln,
 		string $principal_mn,
-		string $school_name,
-	) : string|false
-	{
+		string $school_name
+	): string|false {
 		$query = "INSERT INTO schools 
 		SET 
 				barangay = :barangay,
@@ -64,8 +63,7 @@ class School
 		$principal_mn,
 		$school_name,
 		$id
-	) : bool
-	{
+	): bool {
 		$query = "UPDATE schools 
 							SET 
 								barangay = :barangay,
@@ -92,10 +90,10 @@ class School
 		$stmt->bindParam(':school_name', $school_name);
 		$stmt->bindParam(':id', $id);
 
-		return $stmt->execute();	
+		return $stmt->execute();
 	}
 
-	public function findOne($id) : array | false
+	public function findOne($id): array|false
 	{
 		$query = 'SELECT * FROM schools WHERE id = :id LIMIT 0,1';
 		$stmt = $this->conn->prepare($query);

@@ -9,11 +9,11 @@ class SubjectData
 	public $id;
 	public function __construct()
 	{
-		$db = new Database;
+		$db = new Database();
 		$this->conn = $db->getConnection();
 	}
 
-  public function create($student_id, $subject_assignment_id)
+	public function create($student_id, $subject_assignment_id)
 	{
 		$query = "INSERT INTO subject_data 
               SET 

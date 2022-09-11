@@ -1,4 +1,4 @@
-<?php include '../partials/admin_head.inc.php'; ?>
+<?php include "../partials/admin_head.inc.php"; ?>
 <!-- MDBootstrap Datatables  -->
 <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
 
@@ -18,7 +18,7 @@
 </style>
 </head>
 <body>
-    <?php include '../partials/admin_nav.inc.php'; ?>
+    <?php include "../partials/admin_nav.inc.php"; ?>
     <div class="container mt-5 mb-5">
         <div class="card">
             <!-- Nav Pills -->
@@ -90,12 +90,11 @@
     </div>
 
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
     <script type="text/javascript">
 
-    const school_id = <?php echo $_SESSION['school_id']; ?>;
+    const school_id = <?php echo $_SESSION["school_id"]; ?>;
     
     axios.get(`http://localhost/teachers-toolkit-app/server/teacher/findBySchoolId/${school_id}`)
         .then(res => {

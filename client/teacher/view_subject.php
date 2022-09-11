@@ -1,4 +1,4 @@
-<?php include '../partials/teacher_head.inc.php';?>
+<?php include "../partials/teacher_head.inc.php"; ?>
     
 <!-- MDBootstrap Datatables  -->
 <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
@@ -20,7 +20,7 @@
 </style>
 </head>
 <body>
-    <?php include '../partials/teacher_nav.inc.php'; ?>
+    <?php include "../partials/teacher_nav.inc.php"; ?>
 
     <h3 class="text-center mt-4 mb-0">
         <span id="subject_name"></span>
@@ -169,7 +169,6 @@
     </div>
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
 
         const urlParams = new URLSearchParams(window.location.search);

@@ -1,4 +1,4 @@
-<?php include '../partials/teacher_head.inc.php';?>
+<?php include "../partials/teacher_head.inc.php"; ?>
 
 <style>
     .container{
@@ -11,7 +11,7 @@
 </style>
 </head>
 <body>
-    <?php include '../partials/teacher_nav.inc.php'; ?>
+    <?php include "../partials/teacher_nav.inc.php"; ?>
 
     <div class="container">
         <h2 id="school_name"></h2>
@@ -76,11 +76,10 @@
 
     </div>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
 
-        const teacher_id = <?php echo $_SESSION['account_id']; ?>;
-        const school_id = <?php echo $_SESSION['school_id']; ?>;
+        const teacher_id = <?php echo $_SESSION["account_id"]; ?>;
+        const school_id = <?php echo $_SESSION["school_id"]; ?>;
 
         // get sy_id from query params
         const urlParams = new URLSearchParams(window.location.search);

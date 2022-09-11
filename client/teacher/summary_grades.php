@@ -1,4 +1,4 @@
-<?php include '../partials/teacher_head.inc.php';?>
+<?php include "../partials/teacher_head.inc.php"; ?>
     
 <!-- MDBootstrap Cards Extended Pro  -->
 <link href="../mdb/css/addons-pro/cards-extended.min.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 </style>
 </head>
 <body>
-    <?php include '../partials/teacher_nav.inc.php'; ?>
+    <?php include "../partials/teacher_nav.inc.php"; ?>
 
     <div class="container mt-5">
         <div class="card">
@@ -56,7 +56,6 @@
     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
 
     <script src="../grades/Grade.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
 
     document.addEventListener("DOMContentLoaded", async () => { 

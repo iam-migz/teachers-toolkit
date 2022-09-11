@@ -46,7 +46,6 @@
 
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../../mdb/js/addons/datatables.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
 
         // get sy_id from query params

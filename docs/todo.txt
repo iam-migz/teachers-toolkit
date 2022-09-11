@@ -1,12 +1,13 @@
-1. make a seeder
-2. remove redundancy in server apis
-3. figure out front-end heavy code
+features
+1. make a seeder                         -- 
 
-4. rename teachers-toolkit-app to teachers-toolkit
-5. change student and teachers password
-6. determine/display current sem
-
-add account page
+fix
+1. generating report card                       -- 
 
 caveats:
 1. must assign all students to section to make it work
+
+
+change name
+Teachers-Toolkit
+

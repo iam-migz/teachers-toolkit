@@ -32,7 +32,6 @@
         color: red;
     }
 </style>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     const school_id = <?php echo $_SESSION['school_id']; ?>;
     axios.get(`http://localhost/teachers-toolkit-app/server/teacher/findBySchoolId/${school_id}`)
