@@ -10,6 +10,10 @@ class UserController
 	{
 		$this->UserModel = new User();
 	}
+  public function funBee()
+  {
+    echo json_encode(['result' => 1, 'message' => 'ok']);
+  }
 
 	public function login(): void
 	{

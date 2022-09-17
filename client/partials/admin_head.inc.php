@@ -29,25 +29,25 @@ define('PATH', $path);
   <title>Teacher's Toolkit</title>
 
   <!-- favicon -->
-  <link rel="icon" href="<?php echo PATH; ?>/images/tk.png" type="image/gif" sizes="16x16" />
+  <link rel="icon" href="<?=PATH?>/images/tk.png" type="image/gif" sizes="16x16" />
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="<?php echo PATH; ?>/mdb/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?=PATH?>/mdb/css/bootstrap.min.css">
   <!-- Material Design Bootstrap -->
-  <link rel="stylesheet" href="<?php echo PATH; ?>/mdb/css/mdb.min.css">
+  <link rel="stylesheet" href="<?=PATH?>/mdb/css/mdb.min.css">
 
   <!-- jQuery -->
-  <script type="text/javascript" src="<?php echo PATH; ?>/mdb/js/jquery.min.js"></script>
+  <script type="text/javascript" src="<?=PATH?>/mdb/js/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="<?php echo PATH; ?>/mdb/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="<?=PATH?>/mdb/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="<?php echo PATH; ?>/mdb/js/mdb.min.js"></script>
+  <script type="text/javascript" src="<?=PATH?>/mdb/js/mdb.min.js"></script>
 
   <!-- axios -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

@@ -1,13 +1,11 @@
-features
-1. make a seeder                         -- 
+features to add
+1. make a seeder                          --
+2. protect api routes(middleware)         -- 
+3. all routes in a file                   -- DONE
+4. forgot password                        --
+5. landing page                           --
+
 
 fix
-1. generating report card                       -- 
-
-caveats:
-1. must assign all students to section to make it work
-
-
-change name
-Teachers-Toolkit
-
+1. generating report card                 -- 
+2. must assign all students to section to make it work

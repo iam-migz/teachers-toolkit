@@ -1,7 +1,7 @@
 <style>
 body, html{ min-height: 100%; }
 body{
-  background-image: url('<?php echo PATH; ?>/images/home.jpg');  
+  background-image: url('<?=PATH?>/images/home.jpg');  
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0;
@@ -38,7 +38,7 @@ body{
 
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark default-color sticky-top">
-  <a class="navbar-brand" rel="next" href="<?php echo PATH; ?>/admin/home.php">Teachers Toolkit</a>
+  <a class="navbar-brand" rel="next" href="<?=PATH?>/admin/home.php">Teachers Toolkit</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" 
       aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -54,7 +54,7 @@ body{
                 <a href="" class="dropdown-item" data-toggle="modal" data-target="#basicExampleModal">
                   Profile
                 </a>
-                <a class="dropdown-item" href="<?php echo PATH; ?>/login/logout.php">Log out</a>
+                <a class="dropdown-item" href="<?=PATH?>/login/logout.php">Log out</a>
               </div>
           </li>
       </ul>
@@ -111,7 +111,7 @@ body{
     }
     try {
       const res = await axios.post('http://localhost/teachers-toolkit-app/server/user/changePass', {
-        old_pass: old_pass_val, new_pass: new_pass_val, id: <?php echo $_SESSION["user_id"]; ?>
+        old_pass: old_pass_val, new_pass: new_pass_val, id: <?=$_SESSION["user_id"]?>
       })
       const data = res.data
       message_div.innerHTML = data.message;
@@ -189,7 +189,7 @@ body{
     `;
   }
 
-  axios.get('http://localhost/teachers-toolkit-app/server/admin/findOne/<?php echo $_SESSION['account_id'];?>')
+  axios.get('http://localhost/teachers-toolkit-app/server/admin/findOne/<?=$_SESSION['account_id']?>')
     .then(data => {
       data = data.data;
       if (data.result === 1) {
@@ -199,7 +199,7 @@ body{
         nameDiv.innerText = accountData.firstname;
       } else {
         modalBody.innerHTML = 'failed to get account information';
-        nameDiv.innerText = '<?php echo $_SESSION["user_id"]; ?>';
+        nameDiv.innerText = '<?=$_SESSION["user_id"]?>';
       }
     })
     .catch(err => console.log(err));
