@@ -1,30 +1,16 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 2){
-
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .container{
-            margin-top: 4%;
-        }
-        #school_name {
-            text-transform: capitalize;
-            font-style: italic;
-        }
-    </style>
+<?php include "../partials/teacher_head.inc.php"; ?>
+<style>
+    .container{
+        margin-top: 4%;
+    }
+    #school_name {
+        text-transform: capitalize;
+        font-style: italic;
+    }
+</style>
 </head>
 <body>
-    <?php include '../partials/header_teacher.php'; ?>
+    <?php include "../partials/teacher_nav.inc.php"; ?>
 
     <div class="container">
         <h2 id="school_name"></h2>
@@ -33,7 +19,6 @@
         <div class="row mt-4" id="sy_list">
             <!-- data from db -->
         </div>
-
 
         <!-- <div class="row mt-4" id="sy_list">
             <div class="col-md-6 mt-1 mb-4 box_card"> 
@@ -51,16 +36,12 @@
                 </div>
             </div>
         </div> -->
-
-
         <hr>
-
     </div>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-    const school_id = <?php echo $_SESSION['school_id']; ?>;
-    axios.get(`http://localhost/teachers-toolkit-app/server/api/school_year/read.php?school_id=${school_id}`)
+    const school_id = <?php echo $_SESSION["school_id"]; ?>;
+    axios.get(`http://localhost/teachers-toolkit-app/server/schoolyear/findAll/${school_id}`)
         .then(res => {
             if (res.data.result == 0) {
                 return;
@@ -99,9 +80,9 @@
         .catch(err => console.log(err));
     
     // set school
-    axios.get(`http://localhost/teachers-toolkit-app/server/api/school/read_one.php?id=${school_id}`)
+    axios.get(`http://localhost/teachers-toolkit-app/server/school/findOne/${school_id}`)
         .then(res => {
-            const school = res.data;
+            const school = res.data.data;
             $('#school_name').html(school.school_name); 
             console.log('school :>> ', school);
         })

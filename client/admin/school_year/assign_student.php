@@ -1,44 +1,26 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 3){
+<?php include '../../partials/admin_head.inc.php'; ?>
 
-        }else{
-            // header("location: ../login/login.html");
-        }
-        // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- MDBootstrap Datatables  -->
-    <link href="../../mdb/css/addons/datatables.min.css" rel="stylesheet">    
-    <!-- DataTables Select CSS -->
-    <link href="../../mdb/css/addons/datatables-select2.min.css" rel="stylesheet">
-
-    <title>Document</title>
-
-    <style>
-        table.dataTable thead .sorting:after,
-        table.dataTable thead .sorting:before,
-        table.dataTable thead .sorting_asc:after,
-        table.dataTable thead .sorting_asc:before,
-        table.dataTable thead .sorting_asc_disabled:after,
-        table.dataTable thead .sorting_asc_disabled:before,
-        table.dataTable thead .sorting_desc:after,
-        table.dataTable thead .sorting_desc:before,
-        table.dataTable thead .sorting_desc_disabled:after,
-        table.dataTable thead .sorting_desc_disabled:before {
-        bottom: .5em;
-        }
-    </style>
+<!-- MDBootstrap Datatables  -->
+<link href="../../mdb/css/addons/datatables.min.css" rel="stylesheet">    
+<!-- DataTables Select CSS -->
+<link href="../../mdb/css/addons/datatables-select2.min.css" rel="stylesheet">
+<style>
+    table.dataTable thead .sorting:after,
+    table.dataTable thead .sorting:before,
+    table.dataTable thead .sorting_asc:after,
+    table.dataTable thead .sorting_asc:before,
+    table.dataTable thead .sorting_asc_disabled:after,
+    table.dataTable thead .sorting_asc_disabled:before,
+    table.dataTable thead .sorting_desc:after,
+    table.dataTable thead .sorting_desc:before,
+    table.dataTable thead .sorting_desc_disabled:after,
+    table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
+    }
+</style>
 </head>
 <body>
-    <!--Main Header-->
-    <?php include 'header_admin.php'; ?>
-    
+    <?php include '../../partials/admin_nav.inc.php'; ?>
     <div class="container mt-4 mb-5">
         <div class="card">
             <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
@@ -88,6 +70,7 @@
                         </tfoot>
                         <div id="count">No Rows Selected</div>
                     </table>
+                    <a class="btn btn-grey submit-modify" href="./sy_home.php?<?php echo $_SERVER['QUERY_STRING'];?>" role="button">Back</a>
                 </div>
             </div>
         </div>
@@ -111,7 +94,6 @@
     <script type="text/javascript" src="../../mdb/js/addons/datatables.min.js"></script>
     <!-- DataTables Select JS -->
     <script src="../../mdb/js/addons/datatables-select2.min.js" type="text/javascript"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             //select
@@ -119,13 +101,13 @@
             
         });
 
-                // get sy_id from query params
-                const urlParams = new URLSearchParams(window.location.search);
+        // get sy_id from query params
+        const urlParams = new URLSearchParams(window.location.search);
         const sy_id = urlParams.get('sy_id');
         console.log('sy_id :>> ', sy_id);
 
         // set sections
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/section/read.php?school_year_id=${sy_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/section/findBySYID/${sy_id}`)
             .then(res => {
                 let sections = res.data.data;
                 console.log('sections', sections);
@@ -137,7 +119,7 @@
             .catch(err => console.log(err));
         console.log('sy_id :>> ', sy_id);
         const school_id = <?php echo $_SESSION['school_id']; ?>;
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/student_assignment/read_unassigned.php?school_year_id=${sy_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/studentassign/findUnassignedStudents/${sy_id}`)
             .then(res => {
                 if (res.data.result == 0) {
                     $('#assign_stud').DataTable({
@@ -225,7 +207,7 @@
             $('#submit').on("click", function(){
                 const inputs = document.querySelectorAll('input[type="checkbox"]:checked');
                 inputs.forEach(input => {
-                    axios.post(`http://localhost/teachers-toolkit-app/server/api/student_assignment/create.php`, {
+                    axios.post(`http://localhost/teachers-toolkit-app/server/studentassign/create`, {
                         'section_id': $("#section").val(), 
                         'student_id': input.value
                     })
@@ -235,9 +217,6 @@
                 })
                 location.reload();
             })
-
-
-
 
     </script>
 </body>

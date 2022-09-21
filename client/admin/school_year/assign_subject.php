@@ -1,55 +1,38 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 3){
+<?php include '../../partials/admin_head.inc.php'; ?>
 
-        }else{
-            // header("location: ../login/login.html");
-        }
-        // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <style>
-        body{
-            margin-bottom: 5%;
-        }
-        .register-container{
-            padding-top: 10%; 
-            background-color: white;
-            margin: 2% auto;
-            width: 900px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 10px 20px;
-        }
-        .register-title{
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .display-4{
-            font-size: 40px;
-        }
-        .submit-modify{
-            font-size: 20px;
-            width: 48%;
-            padding: 11px;
-            border-radius: 10px;
-        }
-        #error-msg {
-            color: red;
-        }
-    </style>
+<style>
+    body{
+        margin-bottom: 5%;
+    }
+    .register-container{
+        padding-top: 10%; 
+        background-color: white;
+        margin: 2% auto;
+        width: 900px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px 20px;
+    }
+    .register-title{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .display-4{
+        font-size: 40px;
+    }
+    .submit-modify{
+        font-size: 20px;
+        width: 48%;
+        padding: 11px;
+        border-radius: 10px;
+    }
+    #error-msg {
+        color: red;
+    }
+</style>
 </head>
 <body>
-    <!--Main Header-->
-    <?php include 'header_admin.php'; ?>
-
+    <?php include '../../partials/admin_nav.inc.php'; ?>
     <form>
         <div class="register-container">    
             <div class="register-title">
@@ -58,7 +41,7 @@
 
             <div class="form-group">
                 <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Section.." id="section">
-                <option value="Grade Section" disabled selected>Grade Section</option>
+                <option value="null" disabled selected>Grade Section</option>
                     <!-- data -->
                 </select>
                 <label class="mdb-main-label">Select Section</label>
@@ -66,7 +49,7 @@
             
             <div class="form-group">
                 <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Subject.." id="subject">
-                <option value="Subject Class" disabled selected>Subject Class</option>
+                <option value="null" disabled selected>Subject Class</option>
                     <!-- data -->
                 </select>
                 <label class="mdb-main-label">Select Subject</label>
@@ -74,7 +57,7 @@
             
             <div class="form-group">
                 <select class="mdb-select md-form colorful-select dropdown-primary" searchable="Search Teacher.." id="teacher">
-                <option value="Class Teacher" disabled selected>Class Teacher</option>
+                <option value="null" disabled selected>Class Teacher</option>
                     <!-- data -->
                 </select>
                 <label class="mdb-main-label">Select Teacher</label>
@@ -83,7 +66,7 @@
             <div id="error-msg"></div>
             <div class="modal-footer">
                 <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify">Assign</button>
-                <a class="btn btn-blue submit-modify ml-1" href="../school_year/sy_home.php" role="button">Cancel</a>
+                <a class="btn btn-grey submit-modify ml-1" href="./sy_home.php?<?php echo $_SERVER['QUERY_STRING'];?>" role="button">Back</a>
             </div>
         </div>
     </form>
@@ -102,7 +85,6 @@
         </div> 
     </div>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.mdb-select').materialSelect();
@@ -116,7 +98,7 @@
 
 
         // set teachers
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/teacher/read.php?school_id=${school_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/teacher/findBySchoolId/${school_id}`)
             .then(res => {
                 if (res.data.result == 0) {
                     return;
@@ -132,7 +114,7 @@
             .catch(err => console.log(err));
 
         // set subjects
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/subject/read.php?school_year_id=${sy_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/subject/findBySchoolYearId/${sy_id}`)
             .then(res => {
                 let subjects = res.data.data;
                 console.log('subjects', subjects);
@@ -145,7 +127,7 @@
 
             
         // set sections
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/section/read.php?school_year_id=${sy_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/section/findBySYID/${sy_id}`)
             .then(res => {
                 let sections = res.data.data;
                 console.log('sections', sections);
@@ -164,12 +146,12 @@
             const teacher = document.querySelector("#teacher");
             const errorDiv = document.querySelector("#error-msg");
 
-            if ( section.value == '' || subject.value == '' || teacher.value == '') {
+            if ( section.value == 'null' || subject.value == 'null' || teacher.value == 'null') {
                 errorDiv.innerHTML = "Please complete form";
                 return;
             }
 
-            axios.post('http://localhost/teachers-toolkit-app/server/api/subject_assignment/create.php',
+            axios.post('http://localhost/teachers-toolkit-app/server/subjectassign/create',
                 {
                     'section_id': section.value,
                     'subject_id': subject.value,
@@ -190,7 +172,12 @@
                         errorDiv.innerHTML = res.data.message;
                     }
                 })
-                .catch(err => console.log(err));
+                .catch(err => {
+                    console.log(err);
+                    if (err.response.data.message) {
+                        errorDiv.innerHTML = err.response.data.message;
+                    }
+                });
 
         });
 

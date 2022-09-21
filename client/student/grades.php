@@ -1,36 +1,23 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 1){
+<?php include "../partials/student_head.inc.php"; ?>
 
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- MDBootstrap Cards Extended Pro  -->
-    <link href="../mdb/css/addons-pro/cards-extended.min.css" rel="stylesheet">
-    <!-- MDBootstrap Datatables  -->
-    <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
-    <title>Document</title>
-    <style>
-        .container{
-            margin-top: 4%;
-        }
-        .stud_name_set{
-            font-size: 18px;
-        }
-        .semester {
-            font-style: italic;
-        }
-    </style>
+<!-- MDBootstrap Cards Extended Pro  -->
+<link href="../mdb/css/addons-pro/cards-extended.min.css" rel="stylesheet">
+<!-- MDBootstrap Datatables  -->
+<link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
+<style>
+    .container{
+        margin-top: 4%;
+    }
+    .stud_name_set{
+        font-size: 18px;
+    }
+    .semester {
+        font-style: italic;
+    }
+</style>
 </head>
 <body>
-    <?php include '../partials/header_student.php'; ?>
+    <?php include "../partials/student_nav.inc.php"; ?>
 
     <div class="container mt-5 mb-5">
         <div class="card">
@@ -109,9 +96,10 @@
 
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../grades/Grade.js"></script>
     <script>
+      // TODO: query grades by school year
+      
         $('#grading_table').DataTable({
             "bLengthChange": false,
             "searching": false,
@@ -121,18 +109,18 @@
         });
         $('.dataTables_length').addClass('bs-select');
 
-        let student_id = <?php echo $_SESSION['account_id']; ?>;
+        let student_id = <?php echo $_SESSION["account_id"]; ?>;
         document.addEventListener("DOMContentLoaded", async () => { 
 
             try {
 
-                let res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/student/read_one.php?id=${student_id}`)
-                let this_student = res.data.data[0];
+                let res = await axios.get(`http://localhost/teachers-toolkit-app/server/student/findOne/${student_id}`)
+                let this_student = res.data.data;
                 console.log('this_student :>> ', this_student);
                 $("#student_name").html(this_student.firstname +" " +this_student.middlename + " "+this_student.lastname)
 
-                res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/grades/student_grades.php?student_id=${student_id}`)
-                let student_data = res.data;
+                res = await axios.get(`http://localhost/teachers-toolkit-app/server/grade/getStudentGrades/${student_id}`)
+                let student_data = res.data.data;
                 console.log('student_data :>> ', student_data);
 
                 // divide by school year id

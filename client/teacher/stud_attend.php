@@ -1,38 +1,25 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 2){
+<?php include "../partials/teacher_head.inc.php"; ?>
 
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- MDBootstrap Datatables  -->
-    <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
-    
-    <style>
-        table{
-            width: 100%;
-        }
-        .table_con{
-            border-radius: 10px 10px 0px 0px;
-        }
-        .check_box{
-            padding: 0
-        }
-        label{
-            width: 0px;
-        }
-    </style>
+<!-- MDBootstrap Datatables  -->
+<link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
+
+<style>
+    table{
+        width: 100%;
+    }
+    .table_con{
+        border-radius: 10px 10px 0px 0px;
+    }
+    .check_box{
+        padding: 0
+    }
+    label{
+        width: 0px;
+    }
+</style>
 </head>
 <body>
-    <?php include '../partials/header_teacher.php'; ?>
+    <?php include "../partials/teacher_nav.inc.php"; ?>
 
     <h3 class="text-center mt-4 mb-0">
         Student Attendance Sheet
@@ -48,39 +35,37 @@
                 </tr>
                 <tr>
                     <!--Block of Table Datas-->
-                    <?php
-                        for($row = 0; $row < 25; $row++){
-                            echo '
+                    <?php for ($row = 0; $row < 25; $row++) {
+                        echo '
                                 <td></td>
                             ';
-                        }
-                    ?>
+                    } ?>
                     <!--Display Days-->
                     </tr>
                         <?php
-                            //==========LOOP DAYS================
-                            // $arr = array('M', 'T', 'W', 'TH', 'F');
-                            // for($row = 0; $row < 5; $row++){
-                            //     for($row2 = 0; $row2 < count($arr); $row2++){
-                            //         echo "
-                            //             <td>".$arr[$row2]."</td>
-                            //         ";
-                            //     }
-                            // }
-                            for($row = 0; $row < 5; $row++){
-                                echo "
+                        //==========LOOP DAYS================
+                        // $arr = array('M', 'T', 'W', 'TH', 'F');
+                        // for($row = 0; $row < 5; $row++){
+                        //     for($row2 = 0; $row2 < count($arr); $row2++){
+                        //         echo "
+                        //             <td>".$arr[$row2]."</td>
+                        //         ";
+                        //     }
+                        // }
+                        for ($row = 0; $row < 5; $row++) {
+                            echo "
                                     <td>M</td>
                                     <td>T</td>
                                     <td>W</td>
                                     <td>TH</td>
                                     <td style='border-right: 2px solid #212121;'>F</td>
                                 ";
-                            }
-                                echo "
+                        }
+                        echo "
                                     <td>Absent</td>
                                     <td>Tardy</td>
                                 ";
-                            ?>
+                        ?>
                     <tr>
                 </tr>
             </thead>

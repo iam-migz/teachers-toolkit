@@ -1,55 +1,39 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 3){
+<?php include '../../partials/admin_head.inc.php'; ?>
 
-        }else{
-            // header("location: ../login/login.html");
-        }
-        // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <style>
-        body{
-            margin-bottom: 5%;
-        }
-        .register-container{
-            padding-top: 10%; 
-            background-color: white;
-            margin: 2% auto;
-            width: 66%;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 10px 20px;
-        }
-        .register-title{
-            text-align: center;
-        }
-        .display-4{
-            font-size: 40px;
-        }
-        .submit-modify{
-            font-size: 20px;
-            width: 48%;
-            padding: 11px;
-            border-radius: 10px;
-        }
-        #error-msg {
-            color: red;
-        }
-    </style>
+<!-- DataTables Select CSS -->
+<link href="../../mdb/css/addons/datatables-select2.min.css" rel="stylesheet">
+<style>
+    body{
+        margin-bottom: 5%;
+    }
+    .register-container{
+        padding-top: 10%; 
+        background-color: white;
+        margin: 2% auto;
+        width: 66%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px 20px;
+    }
+    .register-title{
+        text-align: center;
+    }
+    .display-4{
+        font-size: 40px;
+    }
+    .submit-modify{
+        font-size: 20px;
+        width: 48%;
+        padding: 11px;
+        border-radius: 10px;
+    }
+    #error-msg {
+        color: red;
+    }
+</style>
 </head>
 <body>
-    <!--Main Header-->
-    <?php include 'header_admin.php'; ?>
-    
+    <?php include '../../partials/admin_nav.inc.php'; ?>
     <form>
         <div class="register-container">    
             <div class="register-title">
@@ -63,9 +47,8 @@
 
             <div class="form-group">
                 <select class="mdb-select md-form colorful-select dropdown-primary" id="semester">
-                    <option value="Course Semester" selected disabled>Course Semester</option>
-                    <option value="1st Semester">1st Semester</option>
-                    <option value="2nd Semester">2nd Semester</option>
+                    <option value="1">1st Sem</option>
+                    <option value="2">2nd Sem</option>
                 </select>
                 <label class="mdb-main-label">Select Semester</label>
             </div>
@@ -83,7 +66,7 @@
             <div id="error-msg"></div>
             <div class="modal-footer">
                 <button id="submit" data-dismiss="modal" class="btn btn-dark-green submit-modify">Create Subject</button>
-                <a class="btn btn-blue submit-modify ml-1" href="../school_year/sy_home.php" role="button">Cancel</a>
+                <a class="btn btn-grey submit-modify ml-1" href="./sy_home.php?<?php echo $_SERVER['QUERY_STRING'];?>" role="button">Back</a>
             </div>
         </div>
     </form>
@@ -102,7 +85,6 @@
         </div> 
     </div>
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         //Range
         $(document).ready(function() {
@@ -125,7 +107,7 @@
             x.preventDefault();
             const subject_name = document.querySelector("#subject_name").value;
             const semester = document.querySelector("#semester").value;
-            const hours = document.querySelector("#hours").value;
+            const hours = document.querySelector("#hours").valueAsNumber;
             const errDiv = document.querySelector("#error-msg");
 
             if (subject_name == '' || semester == '' || hours == '') {
@@ -137,10 +119,10 @@
             const urlParams = new URLSearchParams(window.location.search);
             const sy_id = urlParams.get('sy_id');
             console.log('sy_id :>> ', sy_id);
-
+            
             try {
-                let res = await axios.post('http://localhost/teachers-toolkit-app/server/api/subject/create.php',{
-                     'school_year_id': sy_id, subject_name, semester, hours
+                let res = await axios.post('http://localhost/teachers-toolkit-app/server/subject/create',{
+                    'school_year_id': sy_id, subject_name, semester: parseInt(semester), hours
                 });
                 let data = res.data;
                 if (res.data.result) {

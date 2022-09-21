@@ -1,40 +1,24 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 3){
+<?php include "../partials/admin_head.inc.php"; ?>
+<!-- MDBootstrap Datatables  -->
+<link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
 
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- MDBootstrap Datatables  -->
-    <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
-
-    <style>
-        table.dataTable thead .sorting:after,
-        table.dataTable thead .sorting:before,
-        table.dataTable thead .sorting_asc:after,
-        table.dataTable thead .sorting_asc:before,
-        table.dataTable thead .sorting_asc_disabled:after,
-        table.dataTable thead .sorting_asc_disabled:before,
-        table.dataTable thead .sorting_desc:after,
-        table.dataTable thead .sorting_desc:before,
-        table.dataTable thead .sorting_desc_disabled:after,
-        table.dataTable thead .sorting_desc_disabled:before {
-        bottom: .5em;
-        }
-    </style>
+<style>
+    table.dataTable thead .sorting:after,
+    table.dataTable thead .sorting:before,
+    table.dataTable thead .sorting_asc:after,
+    table.dataTable thead .sorting_asc:before,
+    table.dataTable thead .sorting_asc_disabled:after,
+    table.dataTable thead .sorting_asc_disabled:before,
+    table.dataTable thead .sorting_desc:after,
+    table.dataTable thead .sorting_desc:before,
+    table.dataTable thead .sorting_desc_disabled:after,
+    table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
+    }
+</style>
 </head>
 <body>
-    <!--Main Header-->
-    <?php include '../partials/header_admin.php'; ?>
-
+    <?php include "../partials/admin_nav.inc.php"; ?>
     <div class="container mt-5 mb-5">
         <div class="card">
             <!-- Nav Pills -->
@@ -106,14 +90,13 @@
     </div>
 
 
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
     <script type="text/javascript">
 
-    const school_id = <?php echo $_SESSION['school_id']; ?>;
+    const school_id = <?php echo $_SESSION["school_id"]; ?>;
     
-    axios.get(`http://localhost/teachers-toolkit-app/server/api/teacher/read.php?school_id=${school_id}`)
+    axios.get(`http://localhost/teachers-toolkit-app/server/teacher/findBySchoolId/${school_id}`)
         .then(res => {
             if (res.data.result == 0) {
                 return;
@@ -153,7 +136,7 @@
         })
         .catch(err => console.log(err));
 
-    axios.get(`http://localhost/teachers-toolkit-app/server/api/student/read.php?school_id=${school_id}`)
+    axios.get(`http://localhost/teachers-toolkit-app/server/student/findBySchoolId/${school_id}`)
         .then(res => {
             if (res.data.result == 0) {
                 return;

@@ -1,71 +1,58 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 2){
+<?php include "../partials/teacher_head.inc.php"; ?>
 
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- MDBootstrap Datatables  -->
-    <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
-    
-    <style>
-        table{
-            width: 100%;
-        }
-        .table_con{
-            border-radius: 10px 10px 0px 0px;
-        }
-        /* Written Transform */
-        .t_input{
-            transform: translateY(-58%) translateX(220%);
-        }
-        .w_label{
-            transform: translateY(80%);
-        }
-        /* Performance Transform */
-        .p_input{
-            transform: translateY(-58%) translateX(265%);
-        }
-        .p_label{
-            transform: translateY(80%);
-        }
-        /* Quarterly Transform */
-        .q_input{
-            transform: translateY(-20%);
-        }
+<!-- MDBootstrap Datatables  -->
+<link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
 
-        /* hide handle bar number input */
-        /* Chrome, Safari, Edge, Opera */
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+<style>
+    table{
+        width: 100%;
+    }
+    .table_con{
+        border-radius: 10px 10px 0px 0px;
+    }
+    /* Written Transform */
+    .t_input{
+        transform: translateY(-58%) translateX(220%);
+    }
+    .w_label{
+        transform: translateY(80%);
+    }
+    /* Performance Transform */
+    .p_input{
+        transform: translateY(-58%) translateX(265%);
+    }
+    .p_label{
+        transform: translateY(80%);
+    }
+    /* Quarterly Transform */
+    .q_input{
+        transform: translateY(-20%);
+    }
 
-        /* Firefox */
-        input[type=number] {
-           -moz-appearance: textfield;
-        }
+    /* hide handle bar number input */
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 
-        input[type=number] {
-            background: #eaeaea;
-            text-align: center;
-        }
-        #subject_name {
-            font-style: italic;
-        }
-    </style>
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    input[type=number] {
+        background: #eaeaea;
+        text-align: center;
+    }
+    #subject_name {
+        font-style: italic;
+    }
+</style>
 </head>
 <body>
-    <?php include '../partials/header_teacher.php'; ?>
+    <?php include "../partials/teacher_nav.inc.php"; ?>
 
     <h3 class="text-center mt-4 mb-0">
         Second Quarter Grade Sheet <br>
@@ -97,20 +84,16 @@
                     <td></td>
                     <td></td>
                     <!--Written Works-->
-                    <?php
-                        for ($row=1; $row < 11; $row++) { 
-                            echo "<td>$row</td>";
-                        }
-                    ?>
+                    <?php for ($row = 1; $row < 11; $row++) {
+                        echo "<td>$row</td>";
+                    } ?>
                     <td>Total</td>
                     <td>PS</td>
                     <td>WS</td>
                     <!--Performance Tasks-->
-                    <?php
-                        for ($row=1; $row < 11; $row++) { 
-                            echo "<td>$row</td>";
-                        }
-                    ?>
+                    <?php for ($row = 1; $row < 11; $row++) {
+                        echo "<td>$row</td>";
+                    } ?>
                     <td>Total</td>
                     <td>PS</td>
                     <td>WS</td>
@@ -161,11 +144,9 @@
                 <tr id="boys">
                     <td class="table-active"></td>
                     <td class="table-active">Male</td>
-                    <?php
-                        for ($row=0; $row < 31; $row++) { 
-                            echo "<td class='table-active'>";
-                        }
-                    ?>
+                    <?php for ($row = 0; $row < 31; $row++) {
+                        echo "<td class='table-active'>";
+                    } ?>
                 </tr>
 
                 <!--DATA FOR MALE STUDENTS-->
@@ -175,11 +156,9 @@
                 <tr id="girls">
                     <td class="table-active"></td>
                     <td class="table-active">Female</td>
-                    <?php
-                        for ($row=0; $row < 31; $row++) { 
-                            echo "<td class='table-active'>";
-                        }
-                    ?>
+                    <?php for ($row = 0; $row < 31; $row++) {
+                        echo "<td class='table-active'>";
+                    } ?>
                 </tr>
 
                 <!--DATA FOR FEMALE STUDENTS-->
@@ -192,7 +171,6 @@
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
     <script src="../grades/Grade.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
 
     document.addEventListener("DOMContentLoaded", async () => { 
@@ -205,12 +183,12 @@
         }
 
         // get subject
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/subject/read_one.php?id=${subject_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/subject/findById/${subject_id}`)
             .then(res => {
                 if (res.data.result == 0){
                     return;
                 }
-                const subject = res.data;
+                const subject = res.data.data;
                 $("#subject_name").html(subject.subject_name);
                 console.log('subject :>> ', subject);
 
@@ -221,8 +199,8 @@
 
         try {
             // set classrecord detail
-            let res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/classrecord_detail/read_by_subject_assignment.php?subject_assignment_id=${subject_assignment_id}&quarter=2`);
-            let crd = res.data;
+            let res = await axios.get(`http://localhost/teachers-toolkit-app/server/classrecorddetail/findBySubjectAssignment/${subject_assignment_id}/2`);
+            let crd = res.data.data;
             crd.total_highest_written = Number(crd.hw1) + Number(crd.hw2) + Number(crd.hw3) + Number(crd.hw4) + Number(crd.hw5) + Number(crd.hw6) + Number(crd.hw7) + Number(crd.hw8) + Number(crd.hw9) + Number(crd.hw10);
             crd.total_highest_performance = Number(crd.hp1) + Number(crd.hp2) + Number(crd.hp3) + Number(crd.hp4) + Number(crd.hp5) + Number(crd.hp6) + Number(crd.hp7) + Number(crd.hp8) + Number(crd.hp9) + Number(crd.hp10);
             setClassrecordDetail(crd);
@@ -230,7 +208,7 @@
 
 
             // set classrecord
-            res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/classrecord/read_by_subject_assignment.php?subject_assignment_id=${subject_assignment_id}&quarter=2`);
+            res = await axios.get(`http://localhost/teachers-toolkit-app/server/classrecord/findBySubjectAssignment/${subject_assignment_id}`);
             if(res.data.result == 0) return;
             let students = res.data.data;
             students = students.filter(stud => stud.quarter == 2)
@@ -407,7 +385,7 @@
             try {
 
                 // update crd
-                let res = await axios.put('http://localhost/teachers-toolkit-app/server/api/classrecord_detail/update.php',  classrecord_detail );
+                let res = await axios.put('http://localhost/teachers-toolkit-app/server/classrecorddetail/update',  classrecord_detail );
                 console.log(res.data);
 
 
@@ -444,7 +422,7 @@
                         "p10" : performance_data[9].value,
                         "q1" : quarterly_score
                     }
-                    let res = await axios.put('http://localhost/teachers-toolkit-app/server/api/classrecord/update.php', item);
+                    let res = await axios.put('http://localhost/teachers-toolkit-app/server/classrecord/update', item);
                     console.log(res.data);
                 });
 

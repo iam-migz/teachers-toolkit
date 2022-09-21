@@ -1,39 +1,26 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 2){
-
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- MDBootstrap Datatables  -->
-    <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
-    <title>Document</title>
-    <style>
-        .container{
-            background-color: white;
-            margin-top: 4%;
-        }
-        .btn_proceed{
-            width: 97%;
-        }
-        .table{
-            transform: scale(0.95);
-        }
-        #subject_name {
-            text-transform: capitalize;
-            font-style: italic;
-        }
-    </style>
+<?php include "../partials/teacher_head.inc.php"; ?>
+    
+<!-- MDBootstrap Datatables  -->
+<link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
+<style>
+    .container{
+        background-color: white;
+        margin-top: 4%;
+    }
+    .btn_proceed{
+        width: 97%;
+    }
+    .table{
+        transform: scale(0.95);
+    }
+    #subject_name {
+        text-transform: capitalize;
+        font-style: italic;
+    }
+</style>
 </head>
 <body>
-    <?php include '../partials/header_teacher.php'; ?>
+    <?php include "../partials/teacher_nav.inc.php"; ?>
 
     <h3 class="text-center mt-4 mb-0">
         <span id="subject_name"></span>
@@ -106,18 +93,17 @@
                         <div class="card indigo lighten-3">
                             <div class="card-body pb-0">
                                 <h2 class="card-title font-weight-bold">
-                                    <i class="fas fa-graduation-cap pl-5 fa-2x"></i>
-                                    First Quarter
+                                    <i class="fas fa-graduation-cap"></i>
+                                    First Quarter Classrecord
                                 </h2>
                                 <div class="d-flex justify-content-between">
-                                    <p class="card-subtitle font-weight-normal">1st Semester</p>
                                 </div>
                             </div>
                             <hr>
-                            <div class="card-body pt-0 align-self-end">
+                            <div class="card-body pt-0 align-self-center">
                             <a href="#" onclick="linkTo(1, event)" role="button" class="btn btn-rounded btn-block btn-mdb-color darken-2">
-                                <i class="fas fa-search pr-1" aria-hidden="true"></i>
-                                Review
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                                View
                             </a>
                             </div>
                         </div>
@@ -127,18 +113,17 @@
                         <div class="card indigo lighten-3">
                             <div class="card-body pb-0">
                                 <h2 class="card-title font-weight-bold">
-                                    <i class="fas fa-graduation-cap pl-5 fa-2x"></i>
-                                    Second Quarter
+                                    <i class="fas fa-graduation-cap"></i>
+                                    Second Quarter Classrecord
                                 </h2>
                                 <div class="d-flex justify-content-between">
-                                    <p class="card-subtitle font-weight-normal">2nd Semester</p>
                                 </div>
                             </div>
                             <hr>
-                            <div class="card-body pt-0 align-self-end">
+                            <div class="card-body pt-0 align-self-center">
                             <a href="#" onclick="linkTo(2, event)" role="button" class="btn btn-rounded btn-block btn-mdb-color darken-2">
                                 <i class="fas fa-search pr-1" aria-hidden="true"></i>
-                                Review
+                                View
                             </a>
                             </div>
                         </div>
@@ -184,10 +169,8 @@
     </div>
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
 
-        // get sy_id from query params
         const urlParams = new URLSearchParams(window.location.search);
         const subject_assignment_id = urlParams.get('subject_assignment_id');
         const subject_id = urlParams.get('subject_id');
@@ -211,7 +194,7 @@
         }
 
         // get students
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/student_assignment/read_by_section.php?section_id=${section_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/studentassign/findBySectionId/${section_id}`)
             .then(res => {
                 if (res.data.result == 0){
                     return;
@@ -238,12 +221,12 @@
             .catch(err => console.log(err));
 
         // get subject
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/subject/read_one.php?id=${subject_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/subject/findById/${subject_id}`)
             .then(res => {
                 if (res.data.result == 0){
                     return;
                 }
-                const subject = res.data;
+                const subject = res.data.data;
                 $("#subject_name").html(subject.subject_name);
                 console.log('subject :>> ', subject);
 

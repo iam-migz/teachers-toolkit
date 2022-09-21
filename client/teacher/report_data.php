@@ -1,39 +1,26 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 2){
-
-        }else{
-            header("location: http://localhost/teachers-toolkit-app/client/login/login.html");
-        }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- MDBootstrap Datatables  -->
-    <link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
-    <title>Document</title>
-    <style>
-        .container{
-            background-color: white;
-            margin-top: 4%;
-        }
-        .btn_proceed{
-            width: 97%;
-        }
-        .table{
-            transform: scale(0.95);
-        }
-        #subject_name {
-            text-transform: capitalize;
-            font-style: italic;
-        }
-    </style>
+<?php include "../partials/teacher_head.inc.php"; ?>
+    
+<!-- MDBootstrap Datatables  -->
+<link href="../mdb/css/addons/datatables.min.css" rel="stylesheet">
+<style>
+    .container{
+        background-color: white;
+        margin-top: 4%;
+    }
+    .btn_proceed{
+        width: 97%;
+    }
+    .table{
+        transform: scale(0.95);
+    }
+    #subject_name {
+        text-transform: capitalize;
+        font-style: italic;
+    }
+</style>
 </head>
 <body>
-    <?php include '../partials/header_teacher.php'; ?>
+    <?php include "../partials/teacher_nav.inc.php"; ?>
 
     <h3 class="text-center mt-4 mb-0">
         Report Data <br>
@@ -105,9 +92,7 @@
     </div>
     <!-- MDBootstrap Datatables  -->
     <script type="text/javascript" src="../mdb/js/addons/datatables.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../grades/Grade.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
 
 
@@ -123,20 +108,20 @@
             }
 
             // get subject
-            axios.get(`http://localhost/teachers-toolkit-app/server/api/subject/read_one.php?id=${subject_id}`)
+            axios.get(`http://localhost/teachers-toolkit-app/server/subject/findById/${subject_id}`)
                 .then(res => {
                     if (res.data.result == 0){
                         return;
                     }
-                    const subject = res.data;
+                    const subject = res.data.data;
                     $("#subject_name").html(subject.subject_name);
                     console.log('subject :>> ', subject);
                 })
                 .catch(err => console.log(err));
 
             try {
-                res = await axios.get(`http://localhost/teachers-toolkit-app/server/api/grades/subject_grades.php?subject_assignment_id=${subject_assignment_id}`)
-                let grades = res.data
+                res = await axios.get(`http://localhost/teachers-toolkit-app/server/grade/getSubjectGrades/${subject_assignment_id}`)
+                let grades = res.data.data
 
 
                 let new_grades = []

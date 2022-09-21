@@ -1,44 +1,28 @@
-<?php 
-        session_start();
-        if(isset($_SESSION['access']) && $_SESSION['access'] == 3){
+<?php include '../../partials/admin_head.inc.php'; ?>
 
-        }else{
-            // header("location: ../login/login.html");
-        }
-        // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- MDBootstrap Datatables  -->
-    <link href="../../mdb/css/addons/datatables.min.css" rel="stylesheet">    
-    <!-- DataTables Select CSS -->
-    <link href="../../mdb/css/addons/datatables-select2.min.css" rel="stylesheet">
+<!-- MDBootstrap Datatables  -->
+<link href="../../mdb/css/addons/datatables.min.css" rel="stylesheet">    
+<!-- DataTables Select CSS -->
+<link href="../../mdb/css/addons/datatables-select2.min.css" rel="stylesheet">
 
-    <title>Document</title>
 
-    <style>
-        table.dataTable thead .sorting:after,
-        table.dataTable thead .sorting:before,
-        table.dataTable thead .sorting_asc:after,
-        table.dataTable thead .sorting_asc:before,
-        table.dataTable thead .sorting_asc_disabled:after,
-        table.dataTable thead .sorting_asc_disabled:before,
-        table.dataTable thead .sorting_desc:after,
-        table.dataTable thead .sorting_desc:before,
-        table.dataTable thead .sorting_desc_disabled:after,
-        table.dataTable thead .sorting_desc_disabled:before {
-        bottom: .5em;
-        }
-    </style>
+<style>
+    table.dataTable thead .sorting:after,
+    table.dataTable thead .sorting:before,
+    table.dataTable thead .sorting_asc:after,
+    table.dataTable thead .sorting_asc:before,
+    table.dataTable thead .sorting_asc_disabled:after,
+    table.dataTable thead .sorting_asc_disabled:before,
+    table.dataTable thead .sorting_desc:after,
+    table.dataTable thead .sorting_desc:before,
+    table.dataTable thead .sorting_desc_disabled:after,
+    table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
+    }
+</style>
 </head>
 <body>
-    <!--Main Header-->
-    <?php include 'header_admin.php'; ?>
-    
+    <?php include '../../partials/admin_nav.inc.php'; ?>
     <div class="container mt-4 mb-5">
         <div class="card">
             <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
@@ -83,10 +67,10 @@
                         </tfoot>
                     </table>
                 </div>
+                <a class="btn btn-grey submit-modify ml-1" href="./sy_home.php?<?php echo $_SERVER['QUERY_STRING'];?>" role="button">Back</a>
             </div>
         </div>
     </div>
-
     <!-- TOAST -->
     <div class="toast" id="EpicToast" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute; top: 80px; right: 40px;">
         <div class="toast-header">
@@ -105,29 +89,10 @@
     <script type="text/javascript" src="../../mdb/js/addons/datatables.min.js"></script>
     <!-- DataTables Select JS -->
     <script src="../../mdb/js/addons/datatables-select2.min.js" type="text/javascript"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             //select
             $('.mdb-select').materialSelect();
-
-            // $('#assign_stud').DataTable();
-            // $('.dataTables_length').addClass('bs-select');
-            // //add classes
-            // $('#assign_stud_wrapper').find('label').each(function () {
-            //     $(this).parent().append($(this).children());
-            // });
-            // $('#assign_stud_wrapper .dataTables_filter').find('input').each(function () {
-            //     const $this = $(this);
-            //     $this.attr("placeholder", "Search..");
-            //     $this.removeClass('form-control-sm');
-            // });
-            // $('#assign_stud_wrapper .dataTables_length').addClass('d-flex flex-row');
-            // $('#assign_stud_wrapper .dataTables_filter').addClass('md-form mt-3');
-            // $('#assign_stud_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
-            // $('#assign_stud_wrapper select').addClass('mdb-select colorful-select dropdown-primary');
-            // $('#assign_stud_wrapper .mdb-select').materialSelect();
-            // $('#assign_stud_wrapper .dataTables_filter').find('label').remove();
         });
 
         // get sy_id from query params
@@ -136,7 +101,7 @@
         console.log('sy_id :>> ', sy_id);
 
         // set sections
-        axios.get(`http://localhost/teachers-toolkit-app/server/api/section/read.php?school_year_id=${sy_id}`)
+        axios.get(`http://localhost/teachers-toolkit-app/server/section/findBySYID/${sy_id}`)
             .then(res => {
                 let sections = res.data.data;
                 console.log('sections', sections);
@@ -153,7 +118,7 @@
             $('#submit').on("click",function(){
                 
                 const section_id = $("#section").val()
-                axios.get(`http://localhost/teachers-toolkit-app/server/api/student_assignment/read_by_section.php?section_id=${section_id}`)
+                axios.get(`http://localhost/teachers-toolkit-app/server/studentassign/findBySectionId/${section_id}`)
                     .then(res => {
                         if (res.data.result == 0) {
                             return;
